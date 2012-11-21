@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="09e80497-3297-4e4a-9494-d10b27df9c62" solutionId="09e80497-3297-4e4a-9494-d10b27df9c62" resetWebServer="false" name="SharePoint.BeachCamp" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="ebda4b40-c8c3-496e-bb89-e387cc054ca4" />
+  </features>
+</package>
