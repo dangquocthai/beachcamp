@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="BeachCamp Periods"
+                OnQuickLaunch="TRUE"
+                TemplateType="100"
+                FeatureId="00bfea71-de22-43b2-a848-c05709900100"
+                Url="Lists/BCPeriods"
+                CustomSchema="BCPeriods/Schema.xml"
+                Description="[BeachCamp] -  Periods">
+    <Data>
+      <Rows>
+        <Row>
+          <Field Name='ID'>1</Field>
+          <Field Name='Title'>1st Period(07:00- -16:30 hrs)</Field>
+        </Row>
+
+        <Row>
+          <Field Name='ID'>2</Field>
+          <Field Name='Title'>2nd Period(17:30- -02:00 hrs)</Field>
+        </Row>
+
+        <Row>
+          <Field Name='ID'>3</Field>
+          <Field Name='Title'>Full day(17:30- -02:00 hrs)</Field>
+        </Row>
+
+        <Row>
+          <Field Name='ID'>4</Field>
+          <Field Name='Title'>Ramadan(15:00- -04:00 hrs)</Field>
+        </Row>
+        
+      </Rows>
+    </Data>
+  </ListInstance>
+</Elements>
