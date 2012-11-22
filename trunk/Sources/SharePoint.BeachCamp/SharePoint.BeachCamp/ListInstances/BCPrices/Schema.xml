@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint" Title="SharePoint.BeachCamp - ListDefinition1" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/SharePoint.BeachCamp-ListDefinition1" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <MetaData>
+    <ContentTypes>
+      
+    </ContentTypes>
+    
+    <Fields>
+
+      <Field Type="Text" Name="Title" Hidden="TRUE" ></Field>
+      
+      <Field Type="Lookup" DisplayName="Section" Required="TRUE"  List="Lists/BCSections" ShowField="Title"
+             UnlimitedLengthInDocumentLibrary="FALSE" RelationshipDeleteBehavior="None"
+             ID="{01DD811A-0616-4812-899D-10F07E3FB934}" StaticName="Section" Name="Section" Group="[BeachCamp]"/>
+
+      <Field Type="Lookup" DisplayName="Period" Required="TRUE"  List="Lists/BCPeriods" ShowField="Title"
+             UnlimitedLengthInDocumentLibrary="FALSE" RelationshipDeleteBehavior="None"
+             ID="{DE04AA1C-FFCE-415f-A332-4B15CCD552DD}" StaticName="Period" Name="Period" Group="[BeachCamp]"/>
+
+      <Field Type="Integer" DisplayName="Price" Required="TRUE" Decimals="0" UnlimitedLengthInDocumentLibrary="FALSE" RelationshipDeleteBehavior="None"
+             ID="{E038C37A-43B9-43c6-B11B-16B276FD5F92}" StaticName="Price" Name="Price" Group="[BeachCamp]"/>
+      
+    </Fields>
+    
+    <Views>
+      <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitleNoMenu"></FieldRef>
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="Modified" Ascending="FALSE"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,addnewitem)" />
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_ONET_HOME)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AllItems.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <!--<FieldRef Name="Attachments"></FieldRef>
+          <FieldRef Name="LinkTitle"></FieldRef>-->
+          <FieldRef Name="Edit"></FieldRef>
+          <FieldRef Name="Section"></FieldRef>
+          <FieldRef Name="Period"></FieldRef>
+          <FieldRef Name="Price"></FieldRef>
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>

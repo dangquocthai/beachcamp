@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title=" BeachCamp Prices"
+                OnQuickLaunch="TRUE"
+                TemplateType="100"
+                FeatureId="00bfea71-de22-43b2-a848-c05709900100"
+                Url="Lists/BCPrices"
+                CustomSchema="BCPrices/Schema.xml"
+                Description="[BeachCamp] - BearchCamp Prices">
+    <Data>
+      <Rows>
+        
+        <Row>
+          <Field Name='ID'>1</Field>
+          <Field Name='Section'>1</Field>
+          <Field Name='Period'>1</Field>
+          <Field Name='Price'>150</Field>
+        </Row>
+
+        <Row>
+          <Field Name='ID'>2</Field>
+          <Field Name='Section'>1</Field>
+          <Field Name='Period'>2</Field>
+          <Field Name='Price'>150</Field>
+        </Row>
+
+        <Row>
+          <Field Name='ID'>3</Field>
+          <Field Name='Section'>1</Field>
+          <Field Name='Period'>3</Field>
+          <Field Name='Price'>300</Field>
+        </Row>
+
+        <Row>
+          <Field Name='ID'>4</Field>
+          <Field Name='Section'>1</Field>
+          <Field Name='Period'>4</Field>
+          <Field Name='Price'>150</Field>
+        </Row>
+
+        <Row>
+          <Field Name='ID'>5</Field>
+          <Field Name='Section'>2</Field>
+          <Field Name='Period'>1</Field>
+          <Field Name='Price'>150</Field>
+        </Row>
+
+        <Row>
+          <Field Name='ID'>6</Field>
+          <Field Name='Section'>2</Field>
+          <Field Name='Period'>2</Field>
+          <Field Name='Price'>150</Field>
+        </Row>
+
+        <Row>
+          <Field Name='ID'>7</Field>
+          <Field Name='Section'>2</Field>
+          <Field Name='Period'>3</Field>
+          <Field Name='Price'>300</Field>
+        </Row>
+
+        <Row>
+          <Field Name='ID'>8</Field>
+          <Field Name='Section'>2</Field>
+          <Field Name='Period'>4</Field>
+          <Field Name='Price'>150</Field>
+        </Row>
+
+        <Row>
+          <Field Name='ID'>9</Field>
+          <Field Name='Section'>3</Field>
+          <Field Name='Period'>1</Field>
+          <Field Name='Price'>300</Field>
+        </Row>
+
+        <Row>
+          <Field Name='ID'>10</Field>
+          <Field Name='Section'>3</Field>
+          <Field Name='Period'>2</Field>
+          <Field Name='Price'>300</Field>
+        </Row>
+
+        <Row>
+          <Field Name='ID'>11</Field>
+          <Field Name='Section'>3</Field>
+          <Field Name='Period'>3</Field>
+          <Field Name='Price'>600</Field>
+        </Row>
+
+        <Row>
+          <Field Name='ID'>12</Field>
+          <Field Name='Section'>3</Field>
+          <Field Name='Period'>4</Field>
+          <Field Name='Price'>300</Field>
+        </Row>
+        
+      </Rows>
+    </Data>
+  </ListInstance>
+</Elements>

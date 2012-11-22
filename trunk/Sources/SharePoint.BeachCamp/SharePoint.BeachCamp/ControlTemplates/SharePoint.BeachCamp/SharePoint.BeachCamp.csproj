@@ -44,52 +44,17 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.SharePoint" />
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContentTypes\BeachCampEvent\BeachCampEventReciver.cs" />
-    <Compile Include="ControlTemplates\SharePoint.BeachCamp\BeachCampDispEvent.ascx.cs">
-      <DependentUpon>BeachCampDispEvent.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ControlTemplates\SharePoint.BeachCamp\BeachCampDispEvent.ascx.designer.cs">
-      <DependentUpon>BeachCampDispEvent.ascx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ControlTemplates\SharePoint.BeachCamp\BeachCampNewEvent.ascx.cs">
-      <DependentUpon>BeachCampNewEvent.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ControlTemplates\SharePoint.BeachCamp\BeachCampNewEvent.ascx.designer.cs">
-      <DependentUpon>BeachCampNewEvent.ascx.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ContentTypes\BeachCampEvent\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{3b28a4c9-c760-42e2-af0d-3ecd0aa3f4b0}</SharePointProjectItemId>
-    </None>
-    <None Include="ControlTemplates\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{d8fea4bc-affa-4359-bcb7-67f75bfd4347}</SharePointProjectItemId>
-    </None>
     <None Include="Features\SharePoint.BeachCamp\SharePoint.BeachCamp.feature">
       <FeatureId>{ebda4b40-c8c3-496e-bb89-e387cc054ca4}</FeatureId>
-    </None>
-    <None Include="ListInstances\BCCalendar\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{0c193c58-c23b-47ea-a006-3eeb07a0658b}</SharePointProjectItemId>
-    </None>
-    <None Include="ListInstances\BCPeriods\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{714a477c-5778-46c4-8b3b-7413510b80f3}</SharePointProjectItemId>
-    </None>
-    <None Include="ListInstances\BCSections\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{aa5bf938-3e58-4a43-8467-456c5fc24ea7}</SharePointProjectItemId>
-    </None>
-    <None Include="ListInstances\BCPrices\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{0a0ce2fe-e963-4c06-97ce-fccf86115e47}</SharePointProjectItemId>
     </None>
     <None Include="Properties\SharePoint.BeachCamp.snk" />
     <None Include="Package\Package.package">
@@ -101,33 +66,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="ContentTypes\BeachCampEvent\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="ControlTemplates\BeachCampRenderTemplate.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="ControlTemplates\SharePoint.BeachCamp\BeachCampDispEvent.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="ControlTemplates\SharePoint.BeachCamp\BeachCampNewEvent.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
     <Content Include="Features\SharePoint.BeachCamp\SharePoint.BeachCamp.Template.xml">
       <DependentUpon>SharePoint.BeachCamp.feature</DependentUpon>
     </Content>
-    <Content Include="ListInstances\BCCalendar\Elements.xml" />
-    <Content Include="ListInstances\BCCalendar\Schema.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="ListInstances\BCPeriods\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="ListInstances\BCPeriods\Schema.xml" />
-    <Content Include="ListInstances\BCPrices\Schema.xml" />
-    <Content Include="ListInstances\BCSections\Elements.xml" />
-    <Content Include="ListInstances\BCSections\Schema.xml" />
-    <Content Include="ListInstances\BCPrices\Elements.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
