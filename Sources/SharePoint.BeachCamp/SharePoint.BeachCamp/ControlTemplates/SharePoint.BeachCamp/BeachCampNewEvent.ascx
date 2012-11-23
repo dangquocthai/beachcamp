@@ -1,22 +1,96 @@
 ﻿<%@ Assembly Name="$SharePoint.Project.AssemblyFullName$" %>
 <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<%@ Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<%@ Register Tagprefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<%@ Register Tagprefix="asp" Namespace="System.Web.UI" Assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" %>
-<%@ Import Namespace="Microsoft.SharePoint" %> 
-<%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="BeachCampNewEvent.ascx.cs" Inherits="SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp.BeachCampNewEvent" %>
-
+<%@ Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls"
+    Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register TagPrefix="asp" Namespace="System.Web.UI" Assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" %>
+<%@ Import Namespace="Microsoft.SharePoint" %>
+<%@ Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages"
+    Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="BeachCampNewEvent.ascx.cs"
+    Inherits="SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp.BeachCampNewEvent" %>
 <%@ Register TagPrefix="wssuc" TagName="ToolBar" Src="~/_controltemplates/ToolBar.ascx" %>
 <%@ Register TagPrefix="wssuc" TagName="ToolBarButton" Src="~/_controltemplates/ToolBarButton.ascx" %>
 
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        _spBodyOnLoadFunctionNames.push("maximizeWindow");
+    });
+
+    /* Maximizes the pop-up dialog */
+    function maximizeWindow() {
+        var currentDialog = SP.UI.ModalDialog.get_childDialog();
+        if (currentDialog != null) {
+            if (!currentDialog.$S_0) {
+                currentDialog.$z();
+            }
+        }
+    }
+</script>
+
 <style type="text/css">
+    
+    body
+    {
+        font: normal 11px Arial,Tahoma, Verdana, Helvetica, sans-serif !important;
+    }
+    
+    .ms-long
+    {
+        width:100%;
+    }
+    
+    .ms-input
+    {
+        color: #000000;
+        background: #ffffff;
+        font: normal 11px Arial,Tahoma, Verdana, Helvetica, sans-serif;
+        height: 19px;
+        border-right: #f5f5f5 1px solid;
+        border-top: #b3c5e1 1px solid;
+        border-left: #b3c5e1 1px solid;
+        border-bottom: #f5f5f5 1px solid;
+        border-collapse: collapse border=1;
+    }
+    
     .ms-dttimeinput
     {
-        display:none;
+        display: none;
     }
+    
+    .tbl-main
+    {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid black;
+        font: normal 11px Arial,Tahoma, Verdana, Helvetica, sans-serif;
+    }
+    
+    .tr-main
+    {
+        border: 1px solid black;
+        padding: 10px 5px 10px 5px;
+    }
+    
+    .td-main
+    {
+        padding: 10px 5px 10px 5px;
+    }
+    
+    .tbl-info
+    {
+        width: 100%;
+    }
+    
+    .tbl-price
+    {
+        width: 100%;
+        border: 1px solid black;
+    }
+    
 </style>
-
 <span id='part1'>
     <SharePoint:InformationBar ID="InformationBar2" runat="server" />
     <div id="listFormToolBarTop">
@@ -31,131 +105,169 @@
     </div>
     <SharePoint:FormToolBar ID="FormToolBar2" runat="server" />
     <SharePoint:ItemValidationFailedMessage ID="ItemValidationFailedMessage2" runat="server" />
-    <table class="ms-formtable" style="margin-top: 8px;" border="0" cellpadding="0" cellspacing="0"
-        width="100%">
+    <%--class="ms-formtable"--%>
+    <table style="margin-top: 8px;" border="0" cellpadding="0" cellspacing="0" width="100%">
         <%--<SharePoint:ChangeContentType ID="ChangeContentType1" runat="server"/>--%>
         <SharePoint:FolderFormFields ID="FolderFormFields1" runat="server" />
         <%--<SharePoint:ListFieldIterator ID="ListFieldIterator1" runat="server" />--%>
         <!-- myCustomForm -->
-        <thead>
-            <tr>
-                <td colspan="2">
-                    <asp:Label ID="lblError" Visible="false" runat="server" ForeColor="Red" Text=""></asp:Label>
-                </td>
-            </tr>
-        </thead>
-        <tbody id="tbodyMain" runat="server">
-            <tr>
-                <td width="190" class="ms-formlabel" nowrap="nowrap" valign="top">
-                    <h3 class="ms-standardheader">
-                        <nobr><SharePoint:FieldLabel runat="server" ID="FieldLabel1" FieldName="TypeOfBeachCamp" /></nobr>
-                    </h3>
-                </td>
-                <td class="ms-formbody" valign="top">
-                    <SharePoint:FormField FieldName="TypeOfBeachCamp" ID="ffTypeOfBeachCamp" runat="server"></SharePoint:FormField>
-                </td>
-            </tr>
 
-            <tr>
-                <td width="190" class="ms-formlabel" nowrap="nowrap" valign="top">
-                    <h3 class="ms-standardheader">
-                        <nobr><SharePoint:FieldLabel runat="server" ID="FieldLabel2" FieldName="Title" /></nobr>
-                    </h3>
-                </td>
-                <td class="ms-formbody" valign="top">
-                    <SharePoint:FormField FieldName="Title" ID="ffTitle" runat="server"></SharePoint:FormField>
+        <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
+
+        <table class="tbl-main">
+            <tr class="tr-main">
+                <td class="td-main">
+                    <table class="tbl-info">
+                        <tr>
+                            <td style="width: 15%;">
+                                Name :
+                            </td>
+                            <td style="width: 20%;" align="left" >
+                                <asp:Literal ID="literalEmployeeName" Text="Tran Anh Tuan" runat="server"></asp:Literal>
+                            </td>
+                            <td style="width: 15%;">
+                                ID :
+                            </td>
+                            <td style="width: 50%;" align="left" >
+                                <asp:Literal ID="literalID" Text="250692114" runat="server"></asp:Literal>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Department :
+                            </td>
+                            <td>
+                                <asp:Literal ID="literalDepartment" Text="Giai Phap" runat="server"></asp:Literal>
+                            </td>
+                            <td>
+                                Section :
+                            </td>
+                            <td>
+                                <asp:Literal ID="literalSection" Text="Section ABCD" runat="server"></asp:Literal>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Office Tel :
+                            </td>
+                            <td>
+                                <asp:Literal ID="literalOfficeTel" Text="(08)-393 284 000" runat="server"></asp:Literal>
+                            </td>
+                            <td>
+                                Mobile :
+                            </td>
+                            <td>
+                                <asp:Literal ID="literalMobile" Text="0906 760 486" runat="server"></asp:Literal>
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
+            <tr class="tr-main">
+                <td class="td-main">
+                    <table>
+                        <tr>
+                            <td>
+                                I would like to request the G.S. department to reserve for me the company beach
+                                camp for the following reason/s: &nbsp;<br />
+                                
+                                <SharePoint:FormField FieldName="Reason" ID="ffReason" runat="server">
+                                </SharePoint:FormField>
 
-            <tr>
-                <td width="190" class="ms-formlabel" nowrap="nowrap" valign="top">
-                    <h3 class="ms-standardheader">
-                        <nobr><SharePoint:FieldLabel runat="server" ID="FieldLabel3" FieldName="EmployeeCode" /></nobr>
-                    </h3>
-                </td>
-                <td class="ms-formbody" valign="top">
-                    <SharePoint:FormField FieldName="EmployeeCode" ID="ffEmployeeCode" runat="server"></SharePoint:FormField>
+                                &nbsp;
+                                <br />
+                                <hr />
+                                <br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            Require day : &nbsp;
+                                        </td>
+                                        <td>
+                                            <SharePoint:FormField FieldName="RequireDay" ID="ffRequireDay" runat="server">
+                                            </SharePoint:FormField>
+                                        </td>
+                                        <td>
+                                            On : &nbsp;
+                                        </td>
+                                        <td>
+                                            <SharePoint:FormField FieldName="EventDate" ID="ffEventDate" runat="server">
+                                            </SharePoint:FormField>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table class="tablelist" border="1" style="border-collapse: collapse" width="100%"
+                                    cellspacing="0" cellpadding="0">
+                                    <asp:Repeater ID="repeaterPrices" runat="server" >
+                                        <HeaderTemplate>
+                                            <tr class="row_titlelist">
+                                                <td width="20%" valign="middle" align="center">
+                                                    Section
+                                                </td>
+                                                <td width="20%" valign="middle" align="center">
+                                                    1<sup>st</sup> Period <br /> 07:00-16:30 hrs
+                                                </td>
+                                                <td width="20%" valign="middle" align="center">
+                                                    2<sup>nd</sup> Period <br /> 17:30-02:00 hrs
+                                                </td>
+                                                <td width="20%" valign="middle" align="center">
+                                                    Full day <br /> 00:70-02:00 hrs
+                                                </td>
+                                                <td width="20%" valign="middle" align="center">
+                                                    Ramadan <br /> 15:00-04:00 hrs
+                                                </td>
+                                            </tr>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <tr class="row1">
+                                                <td valign="middle" align="center" class="titlelinks">
+                                                    <asp:Literal ID="literalSection" runat="server"></asp:Literal>
+                                                </td>
+                                                <td valign="middle" align="center" class="textlist">
+                                                    <asp:Literal ID="literalPeriod1" runat="server"></asp:Literal>
+                                                    <asp:CheckBox ID="chkPeriod1" runat="server" />
+                                                </td>
+                                                <td valign="middle" align="center">
+                                                    <asp:Literal ID="literalPeriod2" runat="server"></asp:Literal>
+                                                    <asp:CheckBox ID="chkPeriod2" runat="server" />
+                                                </td>
+                                                <td valign="middle" align="center">
+                                                    <asp:Literal ID="literalFullDay" runat="server"></asp:Literal>
+                                                    <asp:CheckBox ID="chkFullDay" runat="server" />
+                                                </td>
+                                                <td valign="middle" align="center">
+                                                    <asp:Literal ID="literalRamadan" runat="server"></asp:Literal>
+                                                    <asp:CheckBox ID="chkRamadan" runat="server" />
+                                                </td>
+                                            </tr>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </table>
+                                <br />
+                                <hr />
+                                <br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                I understand that:<br />
+                                1. I will be responsible for cleaning the Beach Camp before leaving.<br />
+                                2. I will be responsible for the conduct and behavior of my guests and consequently
+                                the general moral of those who might jeopardize the reputation of the company.<br />
+                                3. I will be responsible for any damages due to negligence or misuse and the cost
+                                of the repair or replacing missing items will be determined by the company and to
+                                be deducted from my salary.<br />
+                                4. I must submit the camp fees to GS maximum 10 days before the required date.
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
-
-            <tr>
-                <td width="190" class="ms-formlabel" nowrap="nowrap" valign="top">
-                    <h3 class="ms-standardheader">
-                        <nobr><SharePoint:FieldLabel runat="server" ID="FieldLabel4" FieldName="Department" /></nobr>
-                    </h3>
-                </td>
-                <td class="ms-formbody" valign="top">
-                    <SharePoint:FormField FieldName="Department" ID="ffDepartment" runat="server"></SharePoint:FormField>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="190" class="ms-formlabel" nowrap="nowrap" valign="top">
-                    <h3 class="ms-standardheader">
-                        <nobr><SharePoint:FieldLabel runat="server" ID="FieldLabel5" FieldName="OfficeTel" /></nobr>
-                    </h3>
-                </td>
-                <td class="ms-formbody" valign="top">
-                    <SharePoint:FormField FieldName="OfficeTel" ID="ffOfficeTel" runat="server"></SharePoint:FormField>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="190" class="ms-formlabel" nowrap="nowrap" valign="top">
-                    <h3 class="ms-standardheader">
-                        <nobr><SharePoint:FieldLabel runat="server" ID="FieldLabel6" FieldName="Mobile" /></nobr>
-                    </h3>
-                </td>
-                <td class="ms-formbody" valign="top">
-                    <SharePoint:FormField FieldName="Mobile" ID="ffMobile" runat="server"></SharePoint:FormField>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="190" class="ms-formlabel" nowrap="nowrap" valign="top">
-                    <h3 class="ms-standardheader">
-                        <nobr><SharePoint:FieldLabel runat="server" ID="FieldLabel7" FieldName="Reason" /></nobr>
-                    </h3>
-                </td>
-                <td class="ms-formbody" valign="top">
-                    <SharePoint:FormField FieldName="Reason" ID="ffReason" runat="server"></SharePoint:FormField>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="190" class="ms-formlabel" nowrap="nowrap" valign="top">
-                    <h3 class="ms-standardheader">
-                        <nobr><SharePoint:FieldLabel runat="server" ID="FieldLabel8" FieldName="EventDate" /></nobr>
-                    </h3>
-                </td>
-                <td class="ms-formbody" valign="top">
-                    <SharePoint:FormField FieldName="EventDate" ID="ffEventDate" runat="server"></SharePoint:FormField>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="190" class="ms-formlabel" nowrap="nowrap" valign="top">
-                    <h3 class="ms-standardheader">
-                        <nobr><SharePoint:FieldLabel runat="server" ID="FieldLabel9" FieldName="Section" /></nobr>
-                    </h3>
-                </td>
-                <td class="ms-formbody" valign="top">
-                    <SharePoint:FormField FieldName="Section" ID="ffSection" runat="server"></SharePoint:FormField>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="190" class="ms-formlabel" nowrap="nowrap" valign="top">
-                    <h3 class="ms-standardheader">
-                        <nobr><SharePoint:FieldLabel runat="server" ID="FieldLabel10" FieldName="Period" /></nobr>
-                    </h3>
-                </td>
-                <td class="ms-formbody" valign="top">
-                    <SharePoint:FormField FieldName="Period" ID="ffPeriod" runat="server"></SharePoint:FormField>
-                </td>
-            </tr>
-
-        </tbody>
+        </table>
         <!-- myCustomForm -->
         <SharePoint:ApprovalStatus ID="ApprovalStatus2" runat="server" />
         <SharePoint:FormComponent ID="FormComponent2" TemplateName="AttachmentRows" runat="server" />

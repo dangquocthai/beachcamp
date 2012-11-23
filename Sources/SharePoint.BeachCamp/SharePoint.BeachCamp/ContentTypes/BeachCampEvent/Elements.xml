@@ -27,18 +27,26 @@
   <Field Type="Note" DisplayName="Reason" ID="{66D8165A-11D0-4708-B204-0352040586ED}" Name="Reason" StaticName="Reason" Required="FALSE" Group="[BeachCamp]">
   </Field>
 
-  <Field Type="LookupMulti" DisplayName="Section" ID="{41906AAD-9470-4901-89C3-47432606593B}" StaticName="Section" Name="Section"
-         Required="FALSE" EnforceUniqueValues="FALSE" List="Lists/BCSections" ShowField="Title" Mult="TRUE" Sortable="FALSE"
-         UnlimitedLengthInDocumentLibrary="FALSE" RelationshipDeleteBehavior="None" Group="[BeachCamp]" >
+  <Field Type="Integer" DisplayName="RequireDay" ID="{04AFCDE1-B31A-4809-BAE5-8D116036406A}" Name="RequireDay" Decimals="0" StaticName="RequireDay" Required="FALSE"
+       ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE" Group="[BeachCamp]">
   </Field>
 
-  <Field Type="LookupMulti" DisplayName="Period" ID="{6CFBCF33-FC5D-43a1-B232-B10037052139}" StaticName="Period" Name="Period"
+  <!--<Field Type="LookupMulti" DisplayName="Section" ID="{41906AAD-9470-4901-89C3-47432606593B}" StaticName="Section" Name="Section"
+         Required="FALSE" EnforceUniqueValues="FALSE" List="Lists/BCSections" ShowField="Title" Mult="TRUE" Sortable="FALSE"
+         UnlimitedLengthInDocumentLibrary="FALSE" RelationshipDeleteBehavior="None" Group="[BeachCamp]" >
+  </Field>-->
+
+  <!--<Field Type="LookupMulti" DisplayName="Period" ID="{6CFBCF33-FC5D-43a1-B232-B10037052139}" StaticName="Period" Name="Period"
          Required="FALSE" EnforceUniqueValues="FALSE" List="Lists/BCPeriods" ShowField="Title" Mult="TRUE" Sortable="FALSE"
          UnlimitedLengthInDocumentLibrary="FALSE" RelationshipDeleteBehavior="None" Group="[BeachCamp]" >
-  </Field>
+  </Field>-->
 
   <Field Type="Text" DisplayName="TotalPrice" ID="{EB1B42F9-15E3-49ba-AFD3-F7CAFD959B11}" Name="TotalPrice" StaticName="TotalPrice" Required="FALSE" 
          ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE" Group="[BeachCamp]">
+  </Field>
+
+  <Field Type="Text" ID="{B7E4E79C-D66D-4949-B425-66C0811EA74B}" Name="Section" DisplayName="Section" StaticName="Section"
+             ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE">
   </Field>
 
   <!-- Parent ContentType: Event (0x0102) -->
@@ -56,14 +64,15 @@
       <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="Employee Name" />
       <FieldRef ID="{3FEAB511-86E5-48e9-8A57-CE0B72EE3E84}" Name="EmployeeCode" />
       <FieldRef ID="{72966FEE-F992-44f1-9D07-8542DA0A049F}" Name="Department" />
+      <FieldRef ID="{B7E4E79C-D66D-4949-B425-66C0811EA74B}" Name="Section" />
       <FieldRef ID="{2BC93E37-5AAE-46f9-A37C-9810CF1E72B9}" Name="OfficeTel" />
       <FieldRef ID="{42CD2627-1321-4ee7-8DA2-B546B22429B9}" Name="Mobile" />
       <FieldRef ID="{66D8165A-11D0-4708-B204-0352040586ED}" Name="Reason" />
       <FieldRef ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Name="EventDate" />
       <FieldRef ID="{2684f9f2-54be-429f-ba06-76754fc056bf}" Name="EndDate" ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE" />
-      <FieldRef ID="{41906AAD-9470-4901-89C3-47432606593B}" Name="Section" />
-      <FieldRef ID="{6CFBCF33-FC5D-43a1-B232-B10037052139}" Name="Period" />
+      <FieldRef ID="{04AFCDE1-B31A-4809-BAE5-8D116036406A}" Name="RequireDay" />
       <FieldRef ID="{EB1B42F9-15E3-49ba-AFD3-F7CAFD959B11}" Name="TotalPrice" />
+      <FieldRef ID="{288f5f32-8462-4175-8f09-dd7ba29359a9}" Name="Location" />
     </FieldRefs>
 
     <XmlDocuments>

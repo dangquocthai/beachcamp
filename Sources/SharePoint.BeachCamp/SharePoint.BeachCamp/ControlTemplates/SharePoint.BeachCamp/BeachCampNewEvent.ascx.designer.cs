@@ -94,130 +94,58 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp {
         protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
-        /// tbodyMain control.
+        /// literalEmployeeName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tbodyMain;
+        protected global::System.Web.UI.WebControls.Literal literalEmployeeName;
         
         /// <summary>
-        /// FieldLabel1 control.
+        /// literalID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FieldLabel FieldLabel1;
+        protected global::System.Web.UI.WebControls.Literal literalID;
         
         /// <summary>
-        /// ffTypeOfBeachCamp control.
+        /// literalDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FormField ffTypeOfBeachCamp;
+        protected global::System.Web.UI.WebControls.Literal literalDepartment;
         
         /// <summary>
-        /// FieldLabel2 control.
+        /// literalSection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FieldLabel FieldLabel2;
+        protected global::System.Web.UI.WebControls.Literal literalSection;
         
         /// <summary>
-        /// ffTitle control.
+        /// literalOfficeTel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FormField ffTitle;
+        protected global::System.Web.UI.WebControls.Literal literalOfficeTel;
         
         /// <summary>
-        /// FieldLabel3 control.
+        /// literalMobile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FieldLabel FieldLabel3;
-        
-        /// <summary>
-        /// ffEmployeeCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FormField ffEmployeeCode;
-        
-        /// <summary>
-        /// FieldLabel4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FieldLabel FieldLabel4;
-        
-        /// <summary>
-        /// ffDepartment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FormField ffDepartment;
-        
-        /// <summary>
-        /// FieldLabel5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FieldLabel FieldLabel5;
-        
-        /// <summary>
-        /// ffOfficeTel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FormField ffOfficeTel;
-        
-        /// <summary>
-        /// FieldLabel6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FieldLabel FieldLabel6;
-        
-        /// <summary>
-        /// ffMobile control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FormField ffMobile;
-        
-        /// <summary>
-        /// FieldLabel7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FieldLabel FieldLabel7;
+        protected global::System.Web.UI.WebControls.Literal literalMobile;
         
         /// <summary>
         /// ffReason control.
@@ -229,13 +157,13 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp {
         protected global::Microsoft.SharePoint.WebControls.FormField ffReason;
         
         /// <summary>
-        /// FieldLabel8 control.
+        /// ffRequireDay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FieldLabel FieldLabel8;
+        protected global::Microsoft.SharePoint.WebControls.FormField ffRequireDay;
         
         /// <summary>
         /// ffEventDate control.
@@ -247,40 +175,13 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp {
         protected global::Microsoft.SharePoint.WebControls.FormField ffEventDate;
         
         /// <summary>
-        /// FieldLabel9 control.
+        /// repeaterPrices control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FieldLabel FieldLabel9;
-        
-        /// <summary>
-        /// ffSection control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FormField ffSection;
-        
-        /// <summary>
-        /// FieldLabel10 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FieldLabel FieldLabel10;
-        
-        /// <summary>
-        /// ffPeriod control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FormField ffPeriod;
+        protected global::System.Web.UI.WebControls.Repeater repeaterPrices;
         
         /// <summary>
         /// ApprovalStatus2 control.

@@ -14,14 +14,16 @@
           <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="Employee Name" />
           <FieldRef ID="{3FEAB511-86E5-48e9-8A57-CE0B72EE3E84}" Name="EmployeeCode" />
           <FieldRef ID="{72966FEE-F992-44f1-9D07-8542DA0A049F}" Name="Department" />
+          <FieldRef ID="{B7E4E79C-D66D-4949-B425-66C0811EA74B}" Name="Section" />
           <FieldRef ID="{2BC93E37-5AAE-46f9-A37C-9810CF1E72B9}" Name="OfficeTel" />
           <FieldRef ID="{42CD2627-1321-4ee7-8DA2-B546B22429B9}" Name="Mobile" />
           <FieldRef ID="{66D8165A-11D0-4708-B204-0352040586ED}" Name="Reason" />
           <FieldRef ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Name="EventDate" />
           <FieldRef ID="{2684f9f2-54be-429f-ba06-76754fc056bf}" Name="EndDate" ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE" />
-          <FieldRef ID="{41906AAD-9470-4901-89C3-47432606593B}" Name="Section" />
-          <FieldRef ID="{6CFBCF33-FC5D-43a1-B232-B10037052139}" Name="Period" />
+          <FieldRef ID="{04AFCDE1-B31A-4809-BAE5-8D116036406A}" Name="RequireDay" />
           <FieldRef ID="{EB1B42F9-15E3-49ba-AFD3-F7CAFD959B11}" Name="TotalPrice" />
+          
+          <FieldRef ID="{288f5f32-8462-4175-8f09-dd7ba29359a9}" Name="Location" />
         </FieldRefs>
 
         <XmlDocuments>
@@ -78,20 +80,7 @@
     </ContentTypes>
     
     <Fields>
-      <Field ID="{288f5f32-8462-4175-8f09-dd7ba29359a9}" Type="Text" Name="Location" DisplayName="$Resources:core,Location;" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Location">
-      </Field>
-      <Field Type="DateTime" ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Name="EventDate" DisplayName="$Resources:core,Start_Time;" Format="DateTime" Sealed="TRUE" Required="TRUE" FromBaseType="TRUE" Filterable="FALSE" FilterableNoRecurrence="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="EventDate">
-        <Default>[today]</Default>
-        <FieldRefs>
-          <FieldRef Name="fAllDayEvent" RefType="AllDayEvent" />
-        </FieldRefs>
-      </Field>
-      <Field ID="{2684f9f2-54be-429f-ba06-76754fc056bf}" Type="DateTime" Name="EndDate" DisplayName="$Resources:core,End_Time;" Format="DateTime" Sealed="TRUE" Required="TRUE" Filterable="FALSE" FilterableNoRecurrence="TRUE" Indexed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="EndDate">
-        <Default>[today]</Default>
-        <FieldRefs>
-          <FieldRef Name="fAllDayEvent" RefType="AllDayEvent" />
-        </FieldRefs>
-      </Field>
+      
       <Field Type="Note" ID="{9da97a8a-1da5-4a77-98d3-4bc10456e700}" Name="Description" RichText="TRUE" DisplayName="$Resources:core,Description;" Sortable="FALSE" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Description">
       </Field>
       <Field ID="{7d95d1f4-f5fd-4a70-90cd-b35abc9b5bc8}" Type="AllDayEvent" Name="fAllDayEvent" DisplaceOnUpgrade="TRUE" DisplayName="$Resources:core,All_Day_Event;" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="fAllDayEvent">
@@ -171,6 +160,25 @@
       <Field ID="{453c2d71-c41e-46bc-97c1-a5a9535053a3}" Name="Participants" DisplayName="HiddenParticipants" Type="Note" Sortable="FALSE" Sealed="TRUE" StaticName="Participants" Hidden="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3">
       </Field>
 
+
+
+      <Field ID="{288f5f32-8462-4175-8f09-dd7ba29359a9}" Type="Text" Name="Location" DisplayName="SectionPeriod" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Location">
+      </Field>
+      
+      <Field Type="DateTime" ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Name="EventDate" DisplayName="$Resources:core,Start_Time;" Format="DateOnly" Sealed="TRUE" Required="TRUE" FromBaseType="TRUE" Filterable="FALSE" FilterableNoRecurrence="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="EventDate">
+        <Default>[today]</Default>
+        <FieldRefs>
+          <FieldRef Name="fAllDayEvent" RefType="AllDayEvent" />
+        </FieldRefs>
+      </Field>
+      
+      <Field ID="{2684f9f2-54be-429f-ba06-76754fc056bf}" Type="DateTime" Name="EndDate" DisplayName="$Resources:core,End_Time;" Format="DateOnly" Sealed="TRUE" Required="TRUE" Filterable="FALSE" FilterableNoRecurrence="TRUE" Indexed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="EndDate">
+        <Default>[today]</Default>
+        <FieldRefs>
+          <FieldRef Name="fAllDayEvent" RefType="AllDayEvent" />
+        </FieldRefs>
+      </Field>
+
       <Field Type="Choice" DisplayName="Type Of Beach Camp" ID="{0785860E-5464-4e2f-81AA-CC7429D445CB}" Name="TypeOfBeachCamp" StaticName="TypeOfBeachCamp"
          Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="RadioButtons" FillInChoice="FALSE" Group="[BeachCamp]" >
         <CHOICES>
@@ -193,14 +201,16 @@
       
       <Field Type="Note" DisplayName="Reason" ID="{66d8165a-11d0-4708-b204-0352040586ed}" Name="Reason" StaticName="Reason" Required="FALSE" Group="[BeachCamp]">
       </Field>
-      
-      <Field Type="LookupMulti" DisplayName="Section" ID="{41906aad-9470-4901-89c3-47432606593b}" StaticName="Section" Name="Section" Required="FALSE" EnforceUniqueValues="FALSE" List="Lists/BCSections" ShowField="Title" Mult="TRUE" Sortable="FALSE" UnlimitedLengthInDocumentLibrary="FALSE" RelationshipDeleteBehavior="None" Group="[BeachCamp]">
-      </Field>
-      
-      <Field Type="LookupMulti" DisplayName="Period" ID="{6cfbcf33-fc5d-43a1-b232-b10037052139}" StaticName="Period" Name="Period" Required="FALSE" EnforceUniqueValues="FALSE" List="Lists/BCPeriods" ShowField="Title" Mult="TRUE" Sortable="FALSE" UnlimitedLengthInDocumentLibrary="FALSE" RelationshipDeleteBehavior="None" Group="[BeachCamp]">
+
+      <Field Type="Integer" DisplayName="RequireDay" ID="{04AFCDE1-B31A-4809-BAE5-8D116036406A}" Name="RequireDay" Decimals="0" StaticName="RequireDay" Required="FALSE"
+       ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE" Group="[BeachCamp]">
       </Field>
       
       <Field Type="Text" DisplayName="TotalPrice" ID="{eb1b42f9-15e3-49ba-afd3-f7cafd959b11}" Name="TotalPrice" StaticName="TotalPrice" Required="FALSE" ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE" Group="[BeachCamp]">
+      </Field>
+
+      <Field Type="Text" ID="{B7E4E79C-D66D-4949-B425-66C0811EA74B}" Name="Section" DisplayName="Section" StaticName="Section"
+             ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE">
       </Field>
       
     </Fields>
@@ -259,20 +269,43 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
         <ViewFields>
-          <FieldRef Name="fRecurrence" />
-          <FieldRef Name="Attachments">
-          </FieldRef>
-          <FieldRef Name="WorkspaceLink" />
+          <!--<FieldRef Name="fRecurrence" />-->
+          <!--<FieldRef Name="Attachments">
+          </FieldRef>-->
+          <!--<FieldRef Name="WorkspaceLink" />-->
+          
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef Name="Location">
+          
+          <FieldRef Name="EmployeeCode">
           </FieldRef>
+
+          <FieldRef Name="Department">
+          </FieldRef>
+
+          <FieldRef Name="Section">
+          </FieldRef>
+
+          <FieldRef Name="OfficeTel">
+          </FieldRef>
+
+          <FieldRef Name="Mobile">
+          </FieldRef>
+
           <FieldRef Name="EventDate">
           </FieldRef>
-          <FieldRef Name="EndDate">
+          
+          <FieldRef Name="RequireDay">
           </FieldRef>
-          <FieldRef Name="fAllDayEvent">
+          
+          <FieldRef Name="Location">
           </FieldRef>
+
+          <FieldRef Name="TotalPrice">
+          </FieldRef>
+
+          <!--<FieldRef Name="fAllDayEvent">
+          </FieldRef>-->
         </ViewFields>
         <Query>
           <OrderBy>
