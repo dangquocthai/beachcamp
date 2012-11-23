@@ -1,24 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<List xmlns:ows="Microsoft SharePoint" Title="SharePoint.BeachCamp - ListDefinition1" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/SharePoint.BeachCamp-ListDefinition1" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+<List xmlns:ows="Microsoft SharePoint" Title="SharePoint.BeachCamp - BCPrices" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/SharePoint.BeachCamp-ListDefinition1" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
+    
     <ContentTypes>
-      
     </ContentTypes>
     
     <Fields>
 
-      <Field Type="Text" Name="Title" Hidden="TRUE" ></Field>
-      
-      <Field Type="Lookup" DisplayName="Section" Required="TRUE"  List="Lists/BCSections" ShowField="Title"
-             UnlimitedLengthInDocumentLibrary="FALSE" RelationshipDeleteBehavior="None"
-             ID="{01DD811A-0616-4812-899D-10F07E3FB934}" StaticName="Section" Name="Section" Group="[BeachCamp]"/>
+      <Field Type="Text" Name="LinkTitle" ID="{82642ec8-ef9b-478f-acf9-31f7d45fbc31}"  DisplayName="Section" ></Field>
+      <Field Type="Text" Name="LinkTitleNoMenu" ID="{bc91a437-52e7-49e1-8c4e-4698904b2b6d}" DisplayName="Section" ></Field>
+      <Field Type="Text" Name="Title" ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" DisplayName="Section" ></Field>
 
-      <Field Type="Lookup" DisplayName="Period" Required="TRUE"  List="Lists/BCPeriods" ShowField="Title"
-             UnlimitedLengthInDocumentLibrary="FALSE" RelationshipDeleteBehavior="None"
-             ID="{DE04AA1C-FFCE-415f-A332-4B15CCD552DD}" StaticName="Period" Name="Period" Group="[BeachCamp]"/>
+      <Field Type="Integer" DisplayName="1st Period 07:00-16:30" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE"
+             ID="{A7EA1618-CD57-4634-BB74-A4FD04980789}" StaticName="Period1" Name="Period1" Decimals="0" Group="[BeachCamp]" >
+      </Field>
 
-      <Field Type="Integer" DisplayName="Price" Required="TRUE" Decimals="0" UnlimitedLengthInDocumentLibrary="FALSE" RelationshipDeleteBehavior="None"
-             ID="{E038C37A-43B9-43c6-B11B-16B276FD5F92}" StaticName="Price" Name="Price" Group="[BeachCamp]"/>
+      <Field Type="Integer" DisplayName="2st Period 17:30-02:00" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE"
+             ID="{B0BE7AB2-351A-4af7-ABC8-ACB131D03A48}" StaticName="Period2" Name="Period2" Decimals="0" Group="[BeachCamp]" >
+      </Field>
+
+      <Field Type="Integer" DisplayName="Full day(07:00-02:00)" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE"
+             ID="{8C2303FB-3466-47ac-9F15-DC15F9936E29}" StaticName="FullDay" Name="FullDay" Decimals="0" Group="[BeachCamp]" >
+      </Field>
+
+      <Field Type="Integer" DisplayName="Ramadan(15:00-04:00)" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE"
+             ID="{7B459B50-284D-41cf-92A9-85EA9F1DC8B9}" StaticName="Ramadan" Name="Ramadan" Decimals="0" Group="[BeachCamp]" >
+      </Field>
       
     </Fields>
     
@@ -46,12 +53,13 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
-          <!--<FieldRef Name="Attachments"></FieldRef>
-          <FieldRef Name="LinkTitle"></FieldRef>-->
+          <!--<FieldRef Name="Attachments"></FieldRef>-->
           <FieldRef Name="Edit"></FieldRef>
-          <FieldRef Name="Section"></FieldRef>
-          <FieldRef Name="Period"></FieldRef>
-          <FieldRef Name="Price"></FieldRef>
+          <FieldRef Name="LinkTitle"></FieldRef>
+          <FieldRef Name="Period1"></FieldRef>
+          <FieldRef Name="Period2"></FieldRef>
+          <FieldRef Name="FullDay"></FieldRef>
+          <FieldRef Name="Ramadan"></FieldRef>
         </ViewFields>
         <Query>
           <OrderBy>

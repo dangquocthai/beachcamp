@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="BeachCamp Calendar"
+  <ListInstance Title="Beach Camp Calendar"
                 OnQuickLaunch="TRUE"
                 TemplateType="106"
                 FeatureId="00bfea71-ec85-4903-972d-ebe475780106"
