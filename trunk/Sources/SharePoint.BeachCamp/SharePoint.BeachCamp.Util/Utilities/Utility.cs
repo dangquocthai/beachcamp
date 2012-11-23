@@ -320,7 +320,7 @@ namespace SharePoint.BeachCamp.Util.Utilities
             LogError(ex.Message + ex.StackTrace, BeachCampFeatures.BeachCamp);
         }
 
-        
+
 
         public static SPList GetListFromURL(string strURL, SPWeb externalWeb)
         {
@@ -339,6 +339,7 @@ namespace SharePoint.BeachCamp.Util.Utilities
                         site = new SPSite(strURL);
                         web = site.OpenWeb();
                         disposeSite = true;
+
                     }
                     catch
                     {
@@ -351,20 +352,29 @@ namespace SharePoint.BeachCamp.Util.Utilities
                         site = SPContext.Current.Site;
                         web = site.OpenWeb(HttpUtility.UrlDecode(strURL), false);
                     }
-                    
+
                 }
 
                 try
                 {
                     if (externalWeb != null)
                     {
-                        
-                        string url = externalWeb.ServerRelativeUrl.TrimEnd('/') + "/"+strURL.TrimStart('/');
+
+                        string url = externalWeb.ServerRelativeUrl.TrimEnd('/') + "/" + strURL.TrimStart('/');
                         list = externalWeb.GetList(url);
-                        
+
                     }
                     else
-                        list = web.GetList(web.ServerRelativeUrl.TrimEnd('/') + strURL);
+                    {
+                        if (Utility.IsAbsoluteUri(strURL))
+                        {
+                            list = web.GetList(strURL);
+                        }
+                        else
+                        {
+                            list = web.GetList(web.ServerRelativeUrl.TrimEnd('/') + strURL);
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
