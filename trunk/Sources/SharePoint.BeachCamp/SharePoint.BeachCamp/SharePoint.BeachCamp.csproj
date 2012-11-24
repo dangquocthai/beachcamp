@@ -41,6 +41,10 @@
     <AssemblyOriginatorKeyFile>Properties\SharePoint.BeachCamp.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="microsoft.sharepoint.WorkflowActions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\ISAPI\microsoft.sharepoint.WorkflowActions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\ISAPI\Microsoft.Web.CommandUI.dll</HintPath>
@@ -52,13 +56,18 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Workflow.Activities" />
+    <Reference Include="System.Workflow.ComponentModel" />
+    <Reference Include="System.Workflow.Runtime" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.SharePoint" />
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BeachCampWorkflow\BeachCampWorkflow.cs" />
+    <Compile Include="BeachCampWorkflow\BeachCampWorkflow.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="BeachCampWorkflow\BeachCampWorkflow.Designer.cs">
       <DependentUpon>BeachCampWorkflow.cs</DependentUpon>
     </Compile>
@@ -93,6 +102,7 @@
       <DependentUpon>BeachCampTask.aspx.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebParts\BeachCampViewer\BeachCampViewer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ContentTypes\BeachCampTaskContentType\SharePointProjectItem.spdata">
@@ -110,7 +120,7 @@
     <None Include="ControlTemplates\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{d8fea4bc-affa-4359-bcb7-67f75bfd4347}</SharePointProjectItemId>
     </None>
-    <None Include="Features\Feature1\Feature1.feature">
+    <None Include="Features\SharePoint.BeachCamp.Site\SharePoint.BeachCamp.Site.feature">
       <FeatureId>{880d238d-8905-44a2-a4fc-9eab13e80a8f}</FeatureId>
     </None>
     <None Include="Features\SharePoint.BeachCamp\SharePoint.BeachCamp.feature">
@@ -135,6 +145,10 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
+    <None Include="WebParts\BeachCampViewer\BeachCampViewer.webpart" />
+    <None Include="WebParts\BeachCampViewer\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5aa9aa86-4854-4ebf-92d2-a635c0404915}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -156,8 +170,8 @@
     <Content Include="ControlTemplates\SharePoint.BeachCamp\BeachCampNewEvent.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Features\Feature1\Feature1.Template.xml">
-      <DependentUpon>Feature1.feature</DependentUpon>
+    <Content Include="Features\SharePoint.BeachCamp.Site\SharePoint.BeachCamp.Site.Template.xml">
+      <DependentUpon>SharePoint.BeachCamp.Site.feature</DependentUpon>
     </Content>
     <Content Include="Features\SharePoint.BeachCamp\SharePoint.BeachCamp.Template.xml">
       <DependentUpon>SharePoint.BeachCamp.feature</DependentUpon>
@@ -176,6 +190,7 @@
     </Content>
     <Content Include="ListInstances\EmailTemplates\Elements.xml" />
     <Content Include="ListInstances\EmailTemplates\Schema.xml" />
+    <Content Include="WebParts\BeachCampViewer\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharePoint.BeachCamp.Util\SharePoint.BeachCamp.Util.csproj">
