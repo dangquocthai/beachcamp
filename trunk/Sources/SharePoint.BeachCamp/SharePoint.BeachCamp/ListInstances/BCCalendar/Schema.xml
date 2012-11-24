@@ -26,6 +26,9 @@
           <FieldRef ID="{EB1B42F9-15E3-49ba-AFD3-F7CAFD959B11}" Name="TotalPrice" />
           
           <FieldRef ID="{288f5f32-8462-4175-8f09-dd7ba29359a9}" Name="Location" />
+
+          <FieldRef ID="{CBB0232E-5843-4e95-9CE5-33305ABD23B7}" Name="IsPaid" />
+          
         </FieldRefs>
 
         <XmlDocuments>
@@ -208,11 +211,16 @@
        ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE" Group="[BeachCamp]">
       </Field>
       
-      <Field Type="Text" DisplayName="Total Price" ID="{eb1b42f9-15e3-49ba-afd3-f7cafd959b11}" Name="TotalPrice" StaticName="TotalPrice" Required="FALSE" ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE" Group="[BeachCamp]">
+      <Field Type="Integer" DisplayName="Total Price" ID="{eb1b42f9-15e3-49ba-afd3-f7cafd959b11}" Name="TotalPrice" StaticName="TotalPrice" Required="FALSE" ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE" Group="[BeachCamp]">
       </Field>
 
       <Field Type="Text" ID="{B7E4E79C-D66D-4949-B425-66C0811EA74B}" Name="Section" DisplayName="Section" StaticName="Section"
              ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE">
+      </Field>
+
+      <Field Type="Boolean" DisplayName="Paid" ID="{CBB0232E-5843-4e95-9CE5-33305ABD23B7}" Name="IsPaid" StaticName="IsPaid"
+             ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE">
+        <Default>0</Default>
       </Field>
       
     </Fields>
@@ -304,6 +312,9 @@
           </FieldRef>
 
           <FieldRef Name="TotalPrice">
+          </FieldRef>
+          
+          <FieldRef Name="IsPaid">
           </FieldRef>
 
           <!--<FieldRef Name="fAllDayEvent">

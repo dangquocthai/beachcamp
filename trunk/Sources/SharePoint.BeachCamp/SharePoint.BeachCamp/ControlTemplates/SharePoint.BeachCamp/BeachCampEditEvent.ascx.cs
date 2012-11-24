@@ -249,6 +249,8 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 if (rdbBusiness.Checked)
                     typeOfBeachCamp = rdbBusiness.Text;
 
+                totalPrice = totalPrice * int.Parse(ffRequireDay.Value.ToString());
+
                 SPListItem item = SPContext.Current.ListItem;
                 item[SPBuiltInFieldId.Title] = literalEmployeeName.Text;
                 item["TypeOfBeachCamp"] = typeOfBeachCamp;

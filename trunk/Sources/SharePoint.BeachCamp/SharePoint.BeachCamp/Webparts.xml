@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ArrayOfWebpartPageDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <WebpartPageDefinition>
+    <PageUrl>/SitePages/BeachCampReservation.aspx</PageUrl>
+
+    <Webparts xsi:type="DefaultWP">
+      <Title>Timesheet của tôi</Title>
+      <ZoneId>Main</ZoneId>
+      <Index>1</Index>
+      <Hidden>true</Hidden>
+      <AllowDuplicate>false</AllowDuplicate>
+      <WebpartName>BeachCampViewer.webpart</WebpartName>
+      <Properties>
+        <Add Name="Title" Value="Beach Camp Reservation" Type="string" />
+      </Properties>
+    </Webparts>
+  </WebpartPageDefinition>
+</ArrayOfWebpartPageDefinition>

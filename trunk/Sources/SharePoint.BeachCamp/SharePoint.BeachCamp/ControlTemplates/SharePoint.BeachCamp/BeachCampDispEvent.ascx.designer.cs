@@ -13,67 +13,67 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp {
     public partial class BeachCampDispEvent {
         
         /// <summary>
-        /// InformationBar2 control.
+        /// InformationBar1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.InformationBar InformationBar2;
+        protected global::Microsoft.SharePoint.WebControls.InformationBar InformationBar1;
         
         /// <summary>
-        /// toolBarTbltop control.
+        /// toolBar2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UserControl toolBarTbltop;
+        protected global::System.Web.UI.UserControl toolBar2;
         
         /// <summary>
-        /// NextPageButton1 control.
+        /// NextPageButton2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.NextPageButton NextPageButton1;
+        protected global::Microsoft.SharePoint.WebControls.NextPageButton NextPageButton2;
         
         /// <summary>
-        /// SaveButton1 control.
+        /// SaveButton3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.SaveButton SaveButton1;
+        protected global::Microsoft.SharePoint.WebControls.SaveButton SaveButton3;
         
         /// <summary>
-        /// GoBackButton1 control.
+        /// GoBackButton3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.GoBackButton GoBackButton1;
+        protected global::Microsoft.SharePoint.WebControls.GoBackButton GoBackButton3;
         
         /// <summary>
-        /// FormToolBar2 control.
+        /// FormToolBar1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FormToolBar FormToolBar2;
+        protected global::Microsoft.SharePoint.WebControls.FormToolBar FormToolBar1;
         
         /// <summary>
-        /// ItemValidationFailedMessage2 control.
+        /// ItemValidationFailedMessage1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.ItemValidationFailedMessage ItemValidationFailedMessage2;
+        protected global::Microsoft.SharePoint.WebControls.ItemValidationFailedMessage ItemValidationFailedMessage1;
         
         /// <summary>
         /// FolderFormFields1 control.
@@ -229,75 +229,75 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp {
         protected global::Microsoft.SharePoint.WebControls.FormComponent FormComponent2;
         
         /// <summary>
-        /// ItemHiddenVersion2 control.
+        /// ItemHiddenVersion1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.ItemHiddenVersion ItemHiddenVersion2;
+        protected global::Microsoft.SharePoint.WebControls.ItemHiddenVersion ItemHiddenVersion1;
         
         /// <summary>
-        /// ParentInformationField2 control.
+        /// ParentInformationField1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.ParentInformationField ParentInformationField2;
+        protected global::Microsoft.SharePoint.WebControls.ParentInformationField ParentInformationField1;
         
         /// <summary>
-        /// InitContentType2 control.
+        /// InitContentType1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.InitContentType InitContentType2;
+        protected global::Microsoft.SharePoint.WebControls.InitContentType InitContentType1;
         
         /// <summary>
-        /// toolBar1 control.
+        /// toolBarTbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UserControl toolBar1;
+        protected global::System.Web.UI.UserControl toolBarTbl;
         
         /// <summary>
-        /// CreatedModifiedInfo2 control.
+        /// CreatedModifiedInfo1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.CreatedModifiedInfo CreatedModifiedInfo2;
+        protected global::Microsoft.SharePoint.WebControls.CreatedModifiedInfo CreatedModifiedInfo1;
         
         /// <summary>
-        /// SaveButton2 control.
+        /// SaveButton4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.SaveButton SaveButton2;
+        protected global::Microsoft.SharePoint.WebControls.SaveButton SaveButton4;
         
         /// <summary>
-        /// GoBackButton2 control.
+        /// GoBackButton4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.GoBackButton GoBackButton2;
+        protected global::Microsoft.SharePoint.WebControls.GoBackButton GoBackButton4;
         
         /// <summary>
-        /// AttachmentUpload1 control.
+        /// AttachmentUpload2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.AttachmentUpload AttachmentUpload1;
+        protected global::Microsoft.SharePoint.WebControls.AttachmentUpload AttachmentUpload2;
     }
 }

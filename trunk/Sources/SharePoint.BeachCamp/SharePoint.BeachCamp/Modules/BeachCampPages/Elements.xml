@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="SitePages" Url="SitePages" SetupPath="1033\STS\doctemp\smartpgs" >
+
+    <File Url="BeachCampReservation.aspx" Type="GhostableInLibrary" Path="spstd1.aspx">
+      <Property Name="ContentType" Value="Web Part Page" />
+    </File>
+    
+  </Module>
+</Elements>
