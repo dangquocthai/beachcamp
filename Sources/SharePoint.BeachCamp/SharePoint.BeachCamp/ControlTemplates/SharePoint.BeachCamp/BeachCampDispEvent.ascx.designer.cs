@@ -22,42 +22,6 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp {
         protected global::Microsoft.SharePoint.WebControls.InformationBar InformationBar1;
         
         /// <summary>
-        /// toolBar2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UserControl toolBar2;
-        
-        /// <summary>
-        /// NextPageButton2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.NextPageButton NextPageButton2;
-        
-        /// <summary>
-        /// SaveButton3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.SaveButton SaveButton3;
-        
-        /// <summary>
-        /// GoBackButton3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.GoBackButton GoBackButton3;
-        
-        /// <summary>
         /// FormToolBar1 control.
         /// </summary>
         /// <remarks>
@@ -209,15 +173,6 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater repeaterPrices;
-        
-        /// <summary>
-        /// ApprovalStatus2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.ApprovalStatus ApprovalStatus2;
         
         /// <summary>
         /// FormComponent2 control.

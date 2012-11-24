@@ -13,51 +13,6 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp {
     public partial class BeachCampEditEvent {
         
         /// <summary>
-        /// InformationBar2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.InformationBar InformationBar2;
-        
-        /// <summary>
-        /// toolBarTbltop control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UserControl toolBarTbltop;
-        
-        /// <summary>
-        /// NextPageButton1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.NextPageButton NextPageButton1;
-        
-        /// <summary>
-        /// SaveButton1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.SaveButton SaveButton1;
-        
-        /// <summary>
-        /// GoBackButton1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.GoBackButton GoBackButton1;
-        
-        /// <summary>
         /// FormToolBar2 control.
         /// </summary>
         /// <remarks>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<List xmlns:ows="Microsoft SharePoint" Title="SharePoint.BeachCamp - Calendar" Direction="$Resources:Direction;" Url="Lists/SharePoint.BeachCamp-Calendar" EnableContentTypes="TRUE" MultipleTypes="TRUE" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+<List xmlns:ows="Microsoft SharePoint" Title="SharePoint.BeachCamp - Calendar" Direction="$Resources:Direction;" Url="Lists/SharePoint.BeachCamp-Calendar" ModeratedList="TRUE" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     
     <ContentTypes>
@@ -334,26 +334,63 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
         <ViewFields>
+
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+
+          <FieldRef Name="EmployeeCode">
+          </FieldRef>
+
+          <FieldRef Name="Department">
+          </FieldRef>
+
+          <FieldRef Name="Section">
+          </FieldRef>
+
+          <FieldRef Name="OfficeTel">
+          </FieldRef>
+
+          <FieldRef Name="Mobile">
+          </FieldRef>
+
           <FieldRef Name="EventDate">
           </FieldRef>
-          <FieldRef Name="EndDate">
+
+          <FieldRef Name="RequireDay">
           </FieldRef>
-          <FieldRef Name="fRecurrence" />
-          <FieldRef Name="EventType" />
-          <FieldRef Name="Attachments">
-          </FieldRef>
-          <FieldRef Name="WorkspaceLink" />
-          <FieldRef Name="Title">
-          </FieldRef>
+
           <FieldRef Name="Location">
           </FieldRef>
-          <FieldRef Name="Description" />
-          <FieldRef Name="Workspace">
+
+          <FieldRef Name="TotalPrice">
           </FieldRef>
-          <FieldRef Name="MasterSeriesItemID">
+
+          <FieldRef Name="IsPaid">
           </FieldRef>
-          <FieldRef Name="fAllDayEvent">
-          </FieldRef>
+          
+          <!--<FieldRef Name="EndDate">
+          </FieldRef>-->
+          
+          <!--<FieldRef Name="fRecurrence" />-->
+          
+          <!--<FieldRef Name="EventType" />-->
+          
+          <!--<FieldRef Name="Attachments">
+          </FieldRef>-->
+          
+          <!--<FieldRef Name="WorkspaceLink" />-->
+          
+          <!--<FieldRef Name="Description" />-->
+          
+          <!--<FieldRef Name="Workspace">
+          </FieldRef>-->
+          
+          <!--<FieldRef Name="MasterSeriesItemID">
+          </FieldRef>-->
+          
+          <!--<FieldRef Name="fAllDayEvent">
+          </FieldRef>-->
+          
         </ViewFields>
         <ViewData>
           <FieldRef Name="Title" Type="CalendarMonthTitle">
@@ -384,6 +421,7 @@
           </Where>
         </Query>
       </View>
+      
       <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,userinfo_schema_curreventsview;" MobileView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/events.png" Url="MyItems.aspx" ReqAuth="TRUE" RecurrenceRowset="TRUE">
         <Toolbar Type="Standard" />
         <XslLink Default="TRUE">main.xsl</XslLink>
@@ -392,21 +430,40 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
         <ViewFields>
-          <FieldRef Name="fRecurrence">
-          </FieldRef>
-          <FieldRef Name="Attachments">
-          </FieldRef>
-          <FieldRef Name="WorkspaceLink" />
+          
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef Name="Location">
+
+          <FieldRef Name="EmployeeCode">
           </FieldRef>
+
+          <FieldRef Name="Department">
+          </FieldRef>
+
+          <FieldRef Name="Section">
+          </FieldRef>
+
+          <FieldRef Name="OfficeTel">
+          </FieldRef>
+
+          <FieldRef Name="Mobile">
+          </FieldRef>
+
           <FieldRef Name="EventDate">
           </FieldRef>
-          <FieldRef Name="EndDate">
+
+          <FieldRef Name="RequireDay">
           </FieldRef>
-          <FieldRef Name="fAllDayEvent">
+
+          <FieldRef Name="Location">
           </FieldRef>
+
+          <FieldRef Name="TotalPrice">
+          </FieldRef>
+
+          <FieldRef Name="IsPaid">
+          </FieldRef>
+          
         </ViewFields>
         <Query>
           <Where>
