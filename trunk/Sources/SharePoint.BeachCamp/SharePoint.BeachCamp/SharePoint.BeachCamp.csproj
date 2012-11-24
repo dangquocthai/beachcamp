@@ -95,10 +95,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BeachCampTaskContentType\SharePointProjectItem.spdata">
+    <None Include="ContentTypes\BeachCampTaskContentType\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{253e32cc-47ba-42e7-a077-78699edcf3db}</SharePointProjectItemId>
     </None>
-    <None Include="BeachCampTask\SharePointProjectItem.spdata">
+    <None Include="ListInstances\BeachCampTask\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{748bf8b7-5520-40fe-b937-abf202cce299}</SharePointProjectItemId>
     </None>
     <None Include="BeachCampWorkflow\SharePointProjectItem.spdata">
@@ -138,8 +138,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="BeachCampTaskContentType\Elements.xml" />
-    <Content Include="BeachCampTask\Elements.xml" />
+    <Content Include="ContentTypes\BeachCampTaskContentType\Elements.xml" />
+    <Content Include="ListInstances\BeachCampTask\Elements.xml" />
     <Content Include="BeachCampWorkflow\Elements.xml" />
     <Content Include="ContentTypes\BeachCampEvent\Elements.xml">
       <SubType>Designer</SubType>
