@@ -21,8 +21,15 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
         {
             if (!IsPostBack)
             {
-                //Set reason field
-                literalReason.Text = SPContext.Current.ListItem["Reason"] == null ? string.Empty : SPContext.Current.ListItem["Reason"].ToString();
+                //Load field value
+                SPListItem item = SPContext.Current.ListItem;
+                literalEmployeeName.Text = item[SPBuiltInFieldId.Title].ToString();
+                literalEmployeeCode.Text = item[SPBuiltInFieldId.ID].ToString();
+                literalDepartment.Text = item["Department"] == null ? string.Empty : item["Department"].ToString();
+                literalSection.Text = item["Section"] == null ? string.Empty : item["Section"].ToString();
+                literalOfficeTel.Text = item["OfficeTel"] == null ? string.Empty : item["OfficeTel"].ToString();
+                literalMobile.Text = item["Mobile"] == null ? string.Empty : item["Mobile"].ToString();
+                literalReason.Text = item["Reason"] == null ? string.Empty : item["Reason"].ToString();
                 string output = string.Empty;
                 //Get price table
                 output = GetPrices();
