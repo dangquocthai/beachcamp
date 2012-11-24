@@ -10,7 +10,7 @@
 namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp {
     
     
-    public partial class BeachCampNewEvent {
+    public partial class BeachCampEditEvent {
         
         /// <summary>
         /// InformationBar2 control.
