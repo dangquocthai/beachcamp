@@ -55,11 +55,14 @@
   <ItemGroup>
     <Compile Include="BeachCampFieldId.cs" />
     <Compile Include="BeachCampFeatures.cs" />
+    <Compile Include="Extensions\AssemblyExtensions.cs" />
     <Compile Include="Extensions\SPFieldCollectionExtensions.cs" />
     <Compile Include="Extensions\SPListExtensions.cs" />
     <Compile Include="Extensions\SPWebExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\TraceProvider.cs" />
+    <Compile Include="Helpers\WebPartHelper.cs" />
+    <Compile Include="Models\WebpartPageDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\SerializationHelper.cs" />
     <Compile Include="Utilities\Utility.cs" />
