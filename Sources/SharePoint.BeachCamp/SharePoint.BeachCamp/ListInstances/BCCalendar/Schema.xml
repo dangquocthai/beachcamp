@@ -29,7 +29,7 @@
         </FieldRefs>
 
         <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/events">
+          <!--<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/events">
             <Receivers xmlns:spe="http://schemas.microsoft.com/sharepoint/events">
 
               <Receiver>
@@ -65,7 +65,7 @@
               </Receiver>
 
             </Receivers>
-          </XmlDocument>
+          </XmlDocument>-->
 
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
             <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -164,7 +164,7 @@
 
 
 
-      <Field ID="{288f5f32-8462-4175-8f09-dd7ba29359a9}" Type="Text" Name="Location" DisplayName="SectionPeriod" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Location">
+      <Field ID="{288f5f32-8462-4175-8f09-dd7ba29359a9}" Type="Text" Name="Location" DisplayName="Section Period" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Location">
       </Field>
       
       <Field Type="DateTime" ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Name="EventDate" DisplayName="$Resources:core,Start_Time;" Format="DateOnly" Sealed="TRUE" Required="TRUE" FromBaseType="TRUE" Filterable="FALSE" FilterableNoRecurrence="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="EventDate">
@@ -204,11 +204,11 @@
       <Field Type="Note" DisplayName="Reason" ID="{66d8165a-11d0-4708-b204-0352040586ed}" Name="Reason" StaticName="Reason" Required="FALSE" Group="[BeachCamp]">
       </Field>
 
-      <Field Type="Integer" DisplayName="RequireDay" ID="{04AFCDE1-B31A-4809-BAE5-8D116036406A}" Name="RequireDay" Decimals="0" StaticName="RequireDay" Required="TRUE"
+      <Field Type="Integer" DisplayName="Require Day" ID="{04AFCDE1-B31A-4809-BAE5-8D116036406A}" Name="RequireDay" Decimals="0" StaticName="RequireDay" Required="TRUE"
        ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE" Group="[BeachCamp]">
       </Field>
       
-      <Field Type="Text" DisplayName="TotalPrice" ID="{eb1b42f9-15e3-49ba-afd3-f7cafd959b11}" Name="TotalPrice" StaticName="TotalPrice" Required="FALSE" ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE" Group="[BeachCamp]">
+      <Field Type="Text" DisplayName="Total Price" ID="{eb1b42f9-15e3-49ba-afd3-f7cafd959b11}" Name="TotalPrice" StaticName="TotalPrice" Required="FALSE" ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE" Group="[BeachCamp]">
       </Field>
 
       <Field Type="Text" ID="{B7E4E79C-D66D-4949-B425-66C0811EA74B}" Name="Section" DisplayName="Section" StaticName="Section"
