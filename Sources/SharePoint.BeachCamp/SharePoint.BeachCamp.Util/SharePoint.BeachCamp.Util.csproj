@@ -53,7 +53,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BeachCampColumnId.cs" />
+    <Compile Include="BeachCampFieldId.cs" />
     <Compile Include="BeachCampFeatures.cs" />
     <Compile Include="Extensions\SPFieldCollectionExtensions.cs" />
     <Compile Include="Extensions\SPListExtensions.cs" />
