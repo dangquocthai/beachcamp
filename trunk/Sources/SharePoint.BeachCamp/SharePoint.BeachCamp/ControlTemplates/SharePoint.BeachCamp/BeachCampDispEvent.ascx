@@ -77,7 +77,7 @@
 </style>
 <span id='Span1'>
     <SharePoint:InformationBar ID="InformationBar1" runat="server" />
-    <div id="Div1">
+    <%--<div id="Div1">
         <wssuc:ToolBar CssClass="ms-formtoolbar" ID="toolBar2" RightButtonSeparator="&amp;#160;"
             runat="server">
             <Template_RightButtons>
@@ -86,7 +86,7 @@
                 <SharePoint:GoBackButton ID="GoBackButton3" runat="server" />
             </Template_RightButtons>
         </wssuc:ToolBar>
-    </div>
+    </div>--%>
     <SharePoint:FormToolBar ID="FormToolBar1" runat="server" />
     <SharePoint:ItemValidationFailedMessage ID="ItemValidationFailedMessage1" runat="server" />
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -205,25 +205,25 @@
                                     <asp:Repeater ID="repeaterPrices" runat="server">
                                         <HeaderTemplate>
                                             <tr class="row_titlelist">
-                                                <td width="20%" valign="middle" align="center">
+                                                <td style="padding-top: 3px; padding-bottom: 3px;" width="20%" valign="middle" align="center">
                                                     Section
                                                 </td>
-                                                <td width="20%" valign="middle" align="center">
+                                                <td style="padding-top: 3px; padding-bottom: 3px;" width="20%" valign="middle" align="center">
                                                     1<sup>st</sup> Period
                                                     <br />
                                                     07:00-16:30 hrs
                                                 </td>
-                                                <td width="20%" valign="middle" align="center">
+                                                <td style="padding-top: 3px; padding-bottom: 3px;" width="20%" valign="middle" align="center">
                                                     2<sup>nd</sup> Period
                                                     <br />
                                                     17:30-02:00 hrs
                                                 </td>
-                                                <td width="20%" valign="middle" align="center">
+                                                <td style="padding-top: 3px; padding-bottom: 3px;" width="20%" valign="middle" align="center">
                                                     Full day
                                                     <br />
                                                     00:70-02:00 hrs
                                                 </td>
-                                                <td width="20%" valign="middle" align="center">
+                                                <td style="padding-top: 3px; padding-bottom: 3px;" width="20%" valign="middle" align="center">
                                                     Ramadan
                                                     <br />
                                                     15:00-04:00 hrs
@@ -281,7 +281,7 @@
             </tr>
         </table>
         <!-- myCustomForm -->
-        <SharePoint:ApprovalStatus ID="ApprovalStatus2" runat="server" />
+        <%--<SharePoint:ApprovalStatus ID="ApprovalStatus2" runat="server" />--%>
         <SharePoint:FormComponent ID="FormComponent2" TemplateName="AttachmentRows" runat="server" />
     </table>
     <table cellpadding="0" cellspacing="0" width="100%">

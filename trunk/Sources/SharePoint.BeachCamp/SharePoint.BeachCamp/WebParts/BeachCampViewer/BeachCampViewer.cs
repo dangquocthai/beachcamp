@@ -65,6 +65,8 @@ namespace SharePoint.BeachCamp.WebParts.BeachCampViewer
                                                             $('#WPQ1_nav_next_a').parent().hide();
                                                             $('#WPQ2_nav_prev_a').parent().hide();
                                                             $('#WPQ2_nav_next_a').parent().hide();
+                                                            $('td').removeAttr('evtid');
+                                                            $('th').removeAttr('evtid');
                                                             MoveToDate('{1}','WPQ2');
                                                         {2});
                                                     </script>", "{", nextMonth.ToString("yyyy-MM-dd"), "}")

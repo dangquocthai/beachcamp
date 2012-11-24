@@ -1,20 +1,20 @@
 ﻿<%@ Assembly Name="$SharePoint.Project.AssemblyFullName$" %>
 <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<%@ Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<%@ Register Tagprefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<%@ Register Tagprefix="asp" Namespace="System.Web.UI" Assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" %>
-<%@ Import Namespace="Microsoft.SharePoint" %> 
-<%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="BeachCampEditEvent.ascx.cs" Inherits="SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp.BeachCampEditEvent" %>
-
+<%@ Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls"
+    Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register TagPrefix="asp" Namespace="System.Web.UI" Assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" %>
+<%@ Import Namespace="Microsoft.SharePoint" %>
+<%@ Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages"
+    Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="BeachCampEditEvent.ascx.cs"
+    Inherits="SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp.BeachCampEditEvent" %>
 <%@ Register TagPrefix="wssuc" TagName="ToolBar" Src="~/_controltemplates/ToolBar.ascx" %>
 <%@ Register TagPrefix="wssuc" TagName="ToolBarButton" Src="~/_controltemplates/ToolBarButton.ascx" %>
-
 <style type="text/css">
-   
     .ms-long
     {
-        width:100%;
+        width: 100%;
     }
     
     .ms-input
@@ -71,14 +71,13 @@
     .row_titlelist
     {
         background: #EEEEEE;
-        font-weight:bold;
+        font-weight: bold;
         padding: 2px 0px 2px 0px;
     }
-    
 </style>
 <span id='part1'>
-    <SharePoint:InformationBar ID="InformationBar2" runat="server" />
-    <div id="listFormToolBarTop">
+    <%--<SharePoint:InformationBar ID="InformationBar2" runat="server" />--%>
+    <%--<div id="listFormToolBarTop">
         <wssuc:ToolBar CssClass="ms-formtoolbar" ID="toolBarTbltop" RightButtonSeparator="&amp;#160;"
             runat="server">
             <Template_RightButtons>
@@ -87,33 +86,32 @@
                 <SharePoint:GoBackButton ID="GoBackButton1" runat="server" />
             </Template_RightButtons>
         </wssuc:ToolBar>
-    </div>
+    </div>--%>
     <SharePoint:FormToolBar ID="FormToolBar2" runat="server" />
     <SharePoint:ItemValidationFailedMessage ID="ItemValidationFailedMessage2" runat="server" />
-
     <%--class="ms-formtable"--%>
-
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <%--<SharePoint:ChangeContentType ID="ChangeContentType1" runat="server"/>--%>
         <SharePoint:FolderFormFields ID="FolderFormFields1" runat="server" />
         <%--<SharePoint:ListFieldIterator ID="ListFieldIterator1" runat="server" />--%>
         <!-- myCustomForm -->
-
-        <asp:Label ID="lblError" Font-Bold="true" ForeColor="Red" Visible="false" runat="server" Text=""></asp:Label>
+        <asp:Label ID="lblError" Font-Bold="true" ForeColor="Red" Visible="false" runat="server"
+            Text=""></asp:Label>
         <br />
-
-        <table class="tbl-main" id="tblMain" runat="server" >
-             <tr class="tr-main">
+        <table class="tbl-main" id="tblMain" runat="server">
+            <tr class="tr-main">
                 <td class="td-main">
                     <table width="100%" cellspacing="0" cellpadding="0">
                         <tr>
-                            <td style="width:50%;" align="right" valign="middle">
-                                <asp:RadioButton ID="rdbPersonal" Checked="true" Font-Bold="true" Font-Size="Larger" Text="Personal" GroupName="BeachCamp" runat="server" />
+                            <td style="width: 50%;" align="right" valign="middle">
+                                <asp:RadioButton ID="rdbPersonal" Checked="true" Font-Bold="true" Font-Size="Larger"
+                                    Text="Personal" GroupName="BeachCamp" runat="server" />
                                 &nbsp;&nbsp;&nbsp;
                             </td>
-                            <td style="width:50%;" align="left" valign="middle">
+                            <td style="width: 50%;" align="left" valign="middle">
                                 &nbsp;&nbsp;&nbsp;
-                                <asp:RadioButton ID="rdbBusiness" Font-Bold="true" Font-Size="Larger" Text="Business" GroupName="BeachCamp" runat="server" />
+                                <asp:RadioButton ID="rdbBusiness" Font-Bold="true" Font-Size="Larger" Text="Business"
+                                    GroupName="BeachCamp" runat="server" />
                             </td>
                         </tr>
                     </table>
@@ -123,27 +121,27 @@
                 <td class="td-main">
                     <table class="tbl-info">
                         <tr>
-                            <td style="width: 20%; font-weight:bold;">
+                            <td style="width: 20%; font-weight: bold;">
                                 Name :
                             </td>
-                            <td style="width: 25%;" align="left" >
+                            <td style="width: 25%;" align="left">
                                 <asp:Literal ID="literalEmployeeName" Text="Tran Anh Tuan" runat="server"></asp:Literal>
                             </td>
-                            <td style="width: 20%; font-weight:bold;">
+                            <td style="width: 20%; font-weight: bold;">
                                 ID :
                             </td>
-                            <td style="width: 35%;" align="left" >
+                            <td style="width: 35%;" align="left">
                                 <asp:Literal ID="literalEmployeeCode" Text="250692114" runat="server"></asp:Literal>
                             </td>
                         </tr>
                         <tr>
-                            <td style="font-weight:bold;">
+                            <td style="font-weight: bold;">
                                 Department :
                             </td>
                             <td>
                                 <asp:Literal ID="literalDepartment" Text="Giai Phap" runat="server"></asp:Literal>
                             </td>
-                            <td style="font-weight:bold;">
+                            <td style="font-weight: bold;">
                                 Section :
                             </td>
                             <td>
@@ -151,13 +149,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style="font-weight:bold;">
+                            <td style="font-weight: bold;">
                                 Office Tel :
                             </td>
                             <td>
                                 <asp:Literal ID="literalOfficeTel" Text="(08)-393 284 000" runat="server"></asp:Literal>
                             </td>
-                            <td style="font-weight:bold;">
+                            <td style="font-weight: bold;">
                                 Mobile :
                             </td>
                             <td>
@@ -172,12 +170,10 @@
                     <table>
                         <tr>
                             <td>
-                                <b>I would like to request the G.S. department to reserve for me the company beach
-                                camp for the following reason/s:</b> &nbsp;<br />
-                                
+                                <b>I would like to request the G.S. department to reserve for me the company beach camp
+                                    for the following reason/s:</b> &nbsp;<br />
                                 <SharePoint:FormField FieldName="Reason" ID="ffReason" runat="server">
                                 </SharePoint:FormField>
-
                                 &nbsp;
                                 <br />
                                 <hr />
@@ -188,14 +184,14 @@
                             <td>
                                 <table>
                                     <tr>
-                                        <td style="font-weight:bold;" >
+                                        <td style="font-weight: bold;">
                                             Require day:&nbsp;
                                         </td>
                                         <td>
                                             <SharePoint:FormField FieldName="RequireDay" ErrorMessage="*" ID="ffRequireDay" runat="server">
                                             </SharePoint:FormField>
                                         </td>
-                                        <td style="font-weight:bold;">
+                                        <td style="font-weight: bold;">
                                             &nbsp;On:&nbsp;
                                         </td>
                                         <td>
@@ -206,23 +202,31 @@
                                 </table>
                                 <table class="tbl-prices" border="1" style="border-collapse: collapse" width="100%"
                                     cellspacing="0" cellpadding="0">
-                                    <asp:Repeater ID="repeaterPrices" runat="server" >
+                                    <asp:Repeater ID="repeaterPrices" runat="server">
                                         <HeaderTemplate>
                                             <tr class="row_titlelist">
-                                                <td width="20%" valign="middle" align="center">
+                                                <td style="padding-top: 3px; padding-bottom: 3px;" width="20%" valign="middle" align="center">
                                                     Section
                                                 </td>
-                                                <td width="20%" valign="middle" align="center">
-                                                    1<sup>st</sup> Period <br /> 07:00-16:30 hrs
+                                                <td style="padding-top: 3px; padding-bottom: 3px;" width="20%" valign="middle" align="center">
+                                                    1<sup>st</sup> Period
+                                                    <br />
+                                                    07:00-16:30 hrs
                                                 </td>
-                                                <td width="20%" valign="middle" align="center">
-                                                    2<sup>nd</sup> Period <br /> 17:30-02:00 hrs
+                                                <td style="padding-top: 3px; padding-bottom: 3px;" width="20%" valign="middle" align="center">
+                                                    2<sup>nd</sup> Period
+                                                    <br />
+                                                    17:30-02:00 hrs
                                                 </td>
-                                                <td width="20%" valign="middle" align="center">
-                                                    Full day <br /> 00:70-02:00 hrs
+                                                <td style="padding-top: 3px; padding-bottom: 3px;" width="20%" valign="middle" align="center">
+                                                    Full day
+                                                    <br />
+                                                    00:70-02:00 hrs
                                                 </td>
-                                                <td width="20%" valign="middle" align="center">
-                                                    Ramadan <br /> 15:00-04:00 hrs
+                                                <td style="padding-top: 3px; padding-bottom: 3px;" width="20%" valign="middle" align="center">
+                                                    Ramadan
+                                                    <br />
+                                                    15:00-04:00 hrs
                                                 </td>
                                             </tr>
                                         </HeaderTemplate>
@@ -258,7 +262,8 @@
                         </tr>
                         <tr>
                             <td>
-                                I understand that:<br /><br />
+                                I understand that:<br />
+                                <br />
                                 1. I will be responsible for cleaning the Beach Camp before leaving.<br />
                                 2. I will be responsible for the conduct and behavior of my guests and consequently
                                 the general moral of those who might jeopardize the reputation of the company.<br />
@@ -266,6 +271,8 @@
                                 of the repair or replacing missing items will be determined by the company and to
                                 be deducted from my salary.<br />
                                 4. I must submit the camp fees to GS maximum 10 days before the required date.
+                                <br />
+                                <br />
                             </td>
                         </tr>
                     </table>
