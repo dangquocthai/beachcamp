@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
@@ -84,6 +85,13 @@
       <DependentUpon>BeachCampNewEvent.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\SharePoint.BeachCamp\SharePoint.EventReceiver.cs" />
+    <Compile Include="Layouts\SharePoint.BeachCamp\BeachCampTask.aspx.cs">
+      <DependentUpon>BeachCampTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\SharePoint.BeachCamp\BeachCampTask.aspx.designer.cs">
+      <DependentUpon>BeachCampTask.aspx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -128,9 +136,7 @@
       <DependentUpon>Package.package</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Layouts\SharePoint.BeachCamp\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="BeachCampTaskContentType\Elements.xml" />
     <Content Include="BeachCampTask\Elements.xml" />
@@ -157,6 +163,9 @@
       <DependentUpon>SharePoint.BeachCamp.feature</DependentUpon>
     </Content>
     <Content Include="Layouts\1033\jquery-1.8.2.min.js" />
+    <Content Include="Layouts\SharePoint.BeachCamp\BeachCampTask.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="ListInstances\BCCalendar\Elements.xml" />
     <Content Include="ListInstances\BCCalendar\Schema.xml">
       <SubType>Designer</SubType>
