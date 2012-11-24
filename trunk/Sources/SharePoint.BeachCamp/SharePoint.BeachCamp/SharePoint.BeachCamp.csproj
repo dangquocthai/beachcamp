@@ -41,6 +41,10 @@
     <AssemblyOriginatorKeyFile>Properties\SharePoint.BeachCamp.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\ISAPI\Microsoft.Web.CommandUI.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -60,6 +64,13 @@
     </Compile>
     <Compile Include="ControlTemplates\SharePoint.BeachCamp\BeachCampDispEvent.ascx.designer.cs">
       <DependentUpon>BeachCampDispEvent.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlTemplates\SharePoint.BeachCamp\BeachCampEditEvent.ascx.cs">
+      <DependentUpon>BeachCampEditEvent.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlTemplates\SharePoint.BeachCamp\BeachCampEditEvent.ascx.designer.cs">
+      <DependentUpon>BeachCampEditEvent.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="ControlTemplates\SharePoint.BeachCamp\BeachCampNewEvent.ascx.cs">
       <DependentUpon>BeachCampNewEvent.ascx</DependentUpon>
@@ -110,12 +121,16 @@
     <Content Include="ControlTemplates\SharePoint.BeachCamp\BeachCampDispEvent.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="ControlTemplates\SharePoint.BeachCamp\BeachCampEditEvent.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="ControlTemplates\SharePoint.BeachCamp\BeachCampNewEvent.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Features\SharePoint.BeachCamp\SharePoint.BeachCamp.Template.xml">
       <DependentUpon>SharePoint.BeachCamp.feature</DependentUpon>
     </Content>
+    <Content Include="Layouts\1033\jquery-1.8.2.min.js" />
     <Content Include="ListInstances\BCCalendar\Elements.xml" />
     <Content Include="ListInstances\BCCalendar\Schema.xml">
       <SubType>Designer</SubType>

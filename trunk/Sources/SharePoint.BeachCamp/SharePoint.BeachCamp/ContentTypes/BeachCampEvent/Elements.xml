@@ -27,7 +27,7 @@
   <Field Type="Note" DisplayName="Reason" ID="{66D8165A-11D0-4708-B204-0352040586ED}" Name="Reason" StaticName="Reason" Required="FALSE" Group="[BeachCamp]">
   </Field>
 
-  <Field Type="Integer" DisplayName="RequireDay" ID="{04AFCDE1-B31A-4809-BAE5-8D116036406A}" Name="RequireDay" Decimals="0" StaticName="RequireDay" Required="FALSE"
+  <Field Type="Integer" DisplayName="RequireDay" ID="{04AFCDE1-B31A-4809-BAE5-8D116036406A}" Name="RequireDay" Decimals="0" StaticName="RequireDay" Required="TRUE"
        ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE" Group="[BeachCamp]">
   </Field>
 
@@ -62,6 +62,8 @@
 
       <FieldRef ID="{0785860E-5464-4e2f-81AA-CC7429D445CB}" Name="TypeOfBeachCamp" />
       <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="Employee Name" />
+      <FieldRef Name="LinkTitle" ID="{82642ec8-ef9b-478f-acf9-31f7d45fbc31}" DisplayName="Employee Name" />
+      <FieldRef Name="LinkTitleNoMenu" ID="{bc91a437-52e7-49e1-8c4e-4698904b2b6d}" DisplayName="Employee Name" />
       <FieldRef ID="{3FEAB511-86E5-48e9-8A57-CE0B72EE3E84}" Name="EmployeeCode" />
       <FieldRef ID="{72966FEE-F992-44f1-9D07-8542DA0A049F}" Name="Department" />
       <FieldRef ID="{B7E4E79C-D66D-4949-B425-66C0811EA74B}" Name="Section" />
@@ -117,7 +119,7 @@
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
         <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
           <New>BeachCampNewEventTemplate</New>
-          <Edit>BeachCampNewEventTemplate</Edit>
+          <Edit>BeachCampEditEventTemplate</Edit>
           <Display>BeachCampDispEventTemplate</Display>
         </FormTemplates>
       </XmlDocument>

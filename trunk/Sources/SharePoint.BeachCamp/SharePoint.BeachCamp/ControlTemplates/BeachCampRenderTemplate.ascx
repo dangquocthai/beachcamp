@@ -10,12 +10,19 @@
 <%@ Register TagPrefix="wssuc" TagName="ToolBarButton" Src="~/_controltemplates/ToolBarButton.ascx" %>
 
 <%@ Register TagPrefix="uc" TagName="BeachCampNewEventControl" Src="~/_controltemplates/SharePoint.BeachCamp/BeachCampNewEvent.ascx" %>
+<%@ Register TagPrefix="uc" TagName="BeachCampEditEventControl" Src="~/_controltemplates/SharePoint.BeachCamp/BeachCampEditEvent.ascx" %>
 <%@ Register TagPrefix="uc" TagName="BeachCampDispEventControl" Src="~/_controltemplates/SharePoint.BeachCamp/BeachCampDispEvent.ascx" %>
 
 
 <SharePoint:RenderingTemplate ID="BeachCampDispEventTemplate" runat="server">
   <Template>
         <uc:BeachCampDispEventControl ID="BeachCampDispEventTemplate1" runat="server" />
+  </Template>
+</SharePoint:RenderingTemplate>
+
+<SharePoint:RenderingTemplate ID="BeachCampEditEventTemplate" runat="server">
+  <Template>
+        <uc:BeachCampEditEventControl ID="BeachCampEditEventTemplate1" runat="server" />
   </Template>
 </SharePoint:RenderingTemplate>
 
