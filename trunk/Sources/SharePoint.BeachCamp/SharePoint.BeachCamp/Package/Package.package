@@ -2,6 +2,7 @@
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="09e80497-3297-4e4a-9494-d10b27df9c62" solutionId="09e80497-3297-4e4a-9494-d10b27df9c62" resetWebServer="false" name="SharePoint.BeachCamp" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <features>
     <featureReference itemId="ebda4b40-c8c3-496e-bb89-e387cc054ca4" />
+    <featureReference itemId="880d238d-8905-44a2-a4fc-9eab13e80a8f" />
   </features>
   <projectItems>
     <projectItemReference itemId="d8fea4bc-affa-4359-bcb7-67f75bfd4347" />

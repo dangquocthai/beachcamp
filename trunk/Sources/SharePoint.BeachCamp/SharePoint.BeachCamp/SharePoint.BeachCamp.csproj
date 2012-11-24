@@ -57,6 +57,10 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BeachCampWorkflow\BeachCampWorkflow.cs" />
+    <Compile Include="BeachCampWorkflow\BeachCampWorkflow.Designer.cs">
+      <DependentUpon>BeachCampWorkflow.cs</DependentUpon>
+    </Compile>
     <Compile Include="ContentTypes\BeachCampEvent\BeachCampEventReciver.cs" />
     <Compile Include="ControlTemplates\SharePoint.BeachCamp\BeachCampDispEvent.ascx.cs">
       <DependentUpon>BeachCampDispEvent.ascx</DependentUpon>
@@ -79,14 +83,27 @@
     <Compile Include="ControlTemplates\SharePoint.BeachCamp\BeachCampNewEvent.ascx.designer.cs">
       <DependentUpon>BeachCampNewEvent.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\SharePoint.BeachCamp\SharePoint.EventReceiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="BeachCampTaskContentType\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{253e32cc-47ba-42e7-a077-78699edcf3db}</SharePointProjectItemId>
+    </None>
+    <None Include="BeachCampTask\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{748bf8b7-5520-40fe-b937-abf202cce299}</SharePointProjectItemId>
+    </None>
+    <None Include="BeachCampWorkflow\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7e7a8337-cd9d-44f9-9db6-68c0d58b7a50}</SharePointProjectItemId>
+    </None>
     <None Include="ContentTypes\BeachCampEvent\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3b28a4c9-c760-42e2-af0d-3ecd0aa3f4b0}</SharePointProjectItemId>
     </None>
     <None Include="ControlTemplates\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{d8fea4bc-affa-4359-bcb7-67f75bfd4347}</SharePointProjectItemId>
+    </None>
+    <None Include="Features\Feature1\Feature1.feature">
+      <FeatureId>{880d238d-8905-44a2-a4fc-9eab13e80a8f}</FeatureId>
     </None>
     <None Include="Features\SharePoint.BeachCamp\SharePoint.BeachCamp.feature">
       <FeatureId>{ebda4b40-c8c3-496e-bb89-e387cc054ca4}</FeatureId>
@@ -100,6 +117,9 @@
     <None Include="ListInstances\BCPrices\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4be44827-6f22-4fdf-bec7-0374527644e3}</SharePointProjectItemId>
     </None>
+    <None Include="ListInstances\EmailTemplates\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2085b108-5315-43d7-828b-b87b81178978}</SharePointProjectItemId>
+    </None>
     <None Include="Properties\SharePoint.BeachCamp.snk" />
     <None Include="Package\Package.package">
       <PackageId>{09e80497-3297-4e4a-9494-d10b27df9c62}</PackageId>
@@ -112,6 +132,9 @@
     <Folder Include="Layouts\SharePoint.BeachCamp\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BeachCampTaskContentType\Elements.xml" />
+    <Content Include="BeachCampTask\Elements.xml" />
+    <Content Include="BeachCampWorkflow\Elements.xml" />
     <Content Include="ContentTypes\BeachCampEvent\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -127,6 +150,9 @@
     <Content Include="ControlTemplates\SharePoint.BeachCamp\BeachCampNewEvent.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="Features\Feature1\Feature1.Template.xml">
+      <DependentUpon>Feature1.feature</DependentUpon>
+    </Content>
     <Content Include="Features\SharePoint.BeachCamp\SharePoint.BeachCamp.Template.xml">
       <DependentUpon>SharePoint.BeachCamp.feature</DependentUpon>
     </Content>
@@ -139,6 +165,8 @@
     <Content Include="ListInstances\BCPrices\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="ListInstances\EmailTemplates\Elements.xml" />
+    <Content Include="ListInstances\EmailTemplates\Schema.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharePoint.BeachCamp.Util\SharePoint.BeachCamp.Util.csproj">
