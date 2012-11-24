@@ -93,7 +93,9 @@
     <Compile Include="ControlTemplates\SharePoint.BeachCamp\BeachCampNewEvent.ascx.designer.cs">
       <DependentUpon>BeachCampNewEvent.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="Features\SharePoint.BeachCamp\SharePoint.EventReceiver.cs" />
+    <Compile Include="Features\SharePoint.BeachCamp\SharePoint.EventReceiver.cs">
+      <DependentUpon>SharePoint.BeachCamp.feature</DependentUpon>
+    </Compile>
     <Compile Include="Layouts\SharePoint.BeachCamp\BeachCampTask.aspx.cs">
       <DependentUpon>BeachCampTask.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -145,6 +147,9 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
+    <None Include="Modules\BeachCampPages\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{88a42153-7c01-4e49-86a8-6acf49a6c137}</SharePointProjectItemId>
+    </None>
     <None Include="WebParts\BeachCampViewer\BeachCampViewer.webpart" />
     <None Include="WebParts\BeachCampViewer\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5aa9aa86-4854-4ebf-92d2-a635c0404915}</SharePointProjectItemId>
@@ -190,6 +195,11 @@
     </Content>
     <Content Include="ListInstances\EmailTemplates\Elements.xml" />
     <Content Include="ListInstances\EmailTemplates\Schema.xml" />
+    <Content Include="Modules\BeachCampPages\Elements.xml" />
+    <Content Include="Modules\BeachCampPages\BeachCampReservation.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <EmbeddedResource Include="Webparts.xml" />
     <Content Include="WebParts\BeachCampViewer\Elements.xml" />
   </ItemGroup>
   <ItemGroup>

@@ -15,6 +15,13 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
         {
             base.OnInit(e);
             repeaterPrices.ItemDataBound += new RepeaterItemEventHandler(repeaterPrices_ItemDataBound);
+
+            Microsoft.SharePoint.WebControls.SPRibbon ribbon = Microsoft.SharePoint.WebControls.SPRibbon.GetCurrent(this.Page);
+            if (ribbon != null)
+            {
+                ribbon.TrimById("Ribbon.CustomCommands-title");
+            }
+
         }
 
         protected void Page_Load(object sender, EventArgs e)

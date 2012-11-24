@@ -1,8 +1,11 @@
 using System;
+using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Security.Permissions;
 using Microsoft.SharePoint;
-using Microsoft.SharePoint.Security;
+using SharePoint.BeachCamp.Util.Extensions;
+using SharePoint.BeachCamp.Util.Helpers;
+using SharePoint.BeachCamp.Util.Models;
+using SharePoint.BeachCamp.Util.Utilities;
 
 namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
 {
@@ -13,13 +16,22 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
     /// The GUID attached to this class may be used during packaging and should not be modified.
     /// </remarks>
 
-    [Guid("f1714c39-cafd-4827-9393-d4663fa88370")]
+    [Guid("637ced0c-5b29-4ebd-be9a-55bc6fbc6525")]
     public class SharePointEventReceiver : SPFeatureReceiver
     {
         // Uncomment the method below to handle the event raised after a feature has been activated.
 
         public override void FeatureActivated(SPFeatureReceiverProperties properties)
         {
+            SPWeb web = (SPWeb)properties.Feature.Parent;
+            try
+            {
+                ProvisionWebParts(web);
+            }
+            catch (Exception ex)
+            {
+                Utility.LogError(ex.Message, Util.BeachCampFeatures.BeachCamp);
+            }
         }
 
 
@@ -48,5 +60,17 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
         //public override void FeatureUpgrading(SPFeatureReceiverProperties properties, string upgradeActionName, System.Collections.Generic.IDictionary<string, string> parameters)
         //{
         //}
+
+
+        #region Functions
+        private static void ProvisionWebParts(SPWeb web)
+        {
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            string xml = assembly.GetResourceTextFile("SharePoint.BeachCamp.Webparts.xml");
+
+            var webpartPages = SerializationHelper.DeserializeFromXml<WebpartPageDefinitionCollection>(xml);
+            WebPartHelper.ProvisionWebpart(web, webpartPages);
+        }
+        #endregion Functions
     }
 }
