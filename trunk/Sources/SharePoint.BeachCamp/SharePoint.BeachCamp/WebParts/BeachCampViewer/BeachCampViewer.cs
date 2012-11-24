@@ -54,14 +54,20 @@ namespace SharePoint.BeachCamp.WebParts.BeachCampViewer
 
                 this.Controls.Add(wp);
 
+                DateTime nextMonth = DateTime.Now.AddMonths(1);
+
                 this.Controls.Add(
                     new Literal() 
                         { 
-                            Text = @"<script type='text/javascript'>
-                                        $(document).ready(function() {
-                                            MoveToDate('2012-01-01','WPQ3');
-                                        });
-                                   </script>"
+                            Text = string.Format(@"<script language='javascript' type='text/javascript'>
+                                                        $(window).load(function() {0}
+                                                            $('#WPQ1_nav_prev_a').parent().hide();
+                                                            $('#WPQ1_nav_next_a').parent().hide();
+                                                            $('#WPQ2_nav_prev_a').parent().hide();
+                                                            $('#WPQ2_nav_next_a').parent().hide();
+                                                            MoveToDate('{1}','WPQ2');
+                                                        {2});
+                                                    </script>", "{", nextMonth.ToString("yyyy-MM-dd"), "}")
                         }
                     );
 
