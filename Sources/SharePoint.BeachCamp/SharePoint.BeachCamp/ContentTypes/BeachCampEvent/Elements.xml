@@ -78,7 +78,7 @@
     </FieldRefs>
 
     <XmlDocuments>
-      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/events">
+      <!--<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/events">
         <Receivers xmlns:spe="http://schemas.microsoft.com/sharepoint/events">
 
           <Receiver>
@@ -114,7 +114,7 @@
           </Receiver>
 
         </Receivers>
-      </XmlDocument>
+      </XmlDocument>-->
 
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
         <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
