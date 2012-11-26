@@ -12,8 +12,33 @@
 </asp:Content>
 
 <asp:Content ID="Main" ContentPlaceHolderID="PlaceHolderMain" runat="server">
+    <SharePoint:CssRegistration ID="CssRegistration3" Name="/_layouts/1033/styles/Themable/layouts.css" runat="server" />
+    <SharePoint:CssRegistration ID="CssRegistration2" Name="/_layouts/1033/styles/Themable/corev4.css" runat="server" />
+    <SharePoint:CssRegistration ID="CssRegistration1" Name="/_layouts/1033/styles/Themable/forms.css" runat="server" />
+    <table width="100%" class="ms-formtable" style="margin-top: 8px;" border="0" cellSpacing="0" cellPadding="0">
+        <tr>
+            <td colspan="4" style="padding: 0px 0px 2px 0px;"> 
+                <asp:RadioButton GroupName="Approve" Text="Accepted and Reservation charges received." runat="server" ID="radApproved" /> <br />
 
+                <asp:RadioButton GroupName="Approve" ID="radReject" Text="Not Accepted for the following reasons." runat="server" /> <br />
+                <br />
+                <asp:TextBox runat="server" TextMode="MultiLine" Columns="50" Rows="15" ID="txtMessage" />
+
+            </td>
+        </tr>
+        
+        <tr>
+             <td nowrap="nowrap" align="right">
+                <asp:Button runat="server" ID="btnUpdate" Text="Update" />
+                 
+                <asp:Button runat="server" ID="btnCancel" Text="Cancel" Enabled="true" OnClientClick="window.frameElement.commitPopup();return false;"/>
+            </td>
+        </tr>
+
+    </table>
 </asp:Content>
+
+
 
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
 Application Page

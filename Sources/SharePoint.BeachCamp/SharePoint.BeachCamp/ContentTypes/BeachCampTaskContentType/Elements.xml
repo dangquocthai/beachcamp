@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <!-- Parent ContentType: Task (0x0108) -->
-  <ContentType ID="0x010800ee9c0e946ee74d558d46d57a080b1734"
+  <ContentType ID="0x01080100e6fa232bca3b4b25b9df4b2e3791d3cc"
+               
                Name="SharePoint.BeachCamp - BeachCampTaskContentType"
                Group="Custom Content Types"
                Description="My Content Type"
-               Inherits="TRUE"
-               Version="0">
+               Inherits="FALSE"
+               >
     <FieldRefs>
       <FieldRef ID="{58ddda52-c2a3-4650-9178-3bbc1f6e36da}" Name="Link" />
       <FieldRef ID="{16b6952f-3ce6-45e0-8f4e-42dac6e12441}" Name="OffsiteParticipant" />
