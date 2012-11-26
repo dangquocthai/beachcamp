@@ -71,6 +71,9 @@
     <Compile Include="BeachCampWorkflow\BeachCampWorkflow.Designer.cs">
       <DependentUpon>BeachCampWorkflow.cs</DependentUpon>
     </Compile>
+    <Compile Include="BeachCampWorkflow\TaskActivity.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ContentTypes\BeachCampEvent\BeachCampEventReciver.cs" />
     <Compile Include="ControlTemplates\SharePoint.BeachCamp\BeachCampDispEvent.ascx.cs">
       <DependentUpon>BeachCampDispEvent.ascx</DependentUpon>
@@ -194,7 +197,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="ListInstances\EmailTemplates\Elements.xml" />
-    <Content Include="ListInstances\EmailTemplates\Schema.xml" />
+    <Content Include="ListInstances\EmailTemplates\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Modules\BeachCampPages\Elements.xml" />
     <Content Include="Modules\BeachCampPages\BeachCampReservation.aspx">
       <SubType>ASPXCodeBehind</SubType>

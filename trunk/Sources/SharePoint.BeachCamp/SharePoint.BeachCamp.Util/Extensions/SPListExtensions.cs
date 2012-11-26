@@ -313,7 +313,7 @@ namespace SharePoint.BeachCamp.Util.Extensions
                 return list.GetItemById(id);
             }
             catch  {
-                Utility.LogError("The list item id = " +  id.ToString() + " doesn't exist in list " +  list.RootFolder.Url, "Hypertek.IOffice.Common");
+                Utility.LogError("The list item id = " +  id.ToString() + " doesn't exist in list " +  list.RootFolder.Url, "SharePoint.BeachCamp.Util");
             }
             return null;
         }
@@ -475,7 +475,7 @@ namespace SharePoint.BeachCamp.Util.Extensions
                         }
                         catch(Exception e)
                         {
-                            Utility.LogError("Add contenttype error: " + e.Message, "Hypertek.IOffice.Common");
+                            Utility.LogError("Add contenttype error: " + e.Message, "SharePoint.BeachCamp.Util");
                         }
                         finally
                         {
@@ -673,7 +673,7 @@ namespace SharePoint.BeachCamp.Util.Extensions
             }
             catch (Exception ex)
             {
-                Utility.LogError(ex.Message, "Hypertek.IOffice.Common");
+                Utility.LogError(ex.Message, "SharePoint.BeachCamp.Util");
             }
         }
 
@@ -744,7 +744,7 @@ namespace SharePoint.BeachCamp.Util.Extensions
             }
             catch (Exception ex)
             {
-                Utility.LogError("SetPermissionForList " + ex.ToString(), "Hypertek.IOffice.Common.Extensions");
+                Utility.LogError("SetPermissionForList " + ex.ToString(), "SharePoint.BeachCamp.Util.Extensions");
                 throw;
             }
         }

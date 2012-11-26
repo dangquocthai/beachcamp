@@ -26,5 +26,12 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
 
         public Guid workflowId = default(System.Guid);
         public SPWorkflowActivationProperties workflowProperties = new SPWorkflowActivationProperties();
+        public String GeneralSupervisorApproval_TaskOutcome = default(System.String);
+        public String GeneralSupervisorApproval_AssignedTo = default(System.String);
+
+        private void CreateInitialParams_ExecuteCode(object sender, EventArgs e)
+        {
+            GeneralSupervisorApproval_AssignedTo = @"i-office\spfarm";
+        }
     }
 }

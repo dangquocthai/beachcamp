@@ -4,6 +4,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Collections;
 using System.Xml.Linq;
+using SharePoint.BeachCamp.Util.NVelocityTemplateEngine;
+using SharePoint.BeachCamp.Util.Utilities;
 
 namespace SharePoint.BeachCamp.Util.Extensions
 {
@@ -242,7 +244,22 @@ namespace SharePoint.BeachCamp.Util.Extensions
             }
             return ele.ToString();
         }
+        public static string VariablePopulate(this string template, Hashtable Parameters)
+        {
+            try
+            {
+                var memoryEngine = NVelocityEngineFactory.CreateNVelocityMemoryEngine(true);
+                //var Parameters = new Hashtable();
+                //Parameters.Add("Helper", new StringHelper());
+                template = memoryEngine.Process(Parameters, template);
+            }
+            catch (Exception ex)
+            {
 
+                Utility.LogError(ex.Message + ex.StackTrace, BeachCampFeatures.BeachCamp);
+            }
+            return template;
+        }
     }
 }
 
