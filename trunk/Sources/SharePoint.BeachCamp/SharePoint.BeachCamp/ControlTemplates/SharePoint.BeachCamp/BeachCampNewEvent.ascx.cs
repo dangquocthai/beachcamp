@@ -149,12 +149,12 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                             SPListItem userItem = web.Lists.TryGetList(web.SiteUserInfoList.Title).GetItemById(SPContext.Current.Web.CurrentUser.ID);
                             if (userItem != null)
                             {
-                                literalEmployeeName.Text = userItem["Title"].ToString();
-                                literalEmployeeCode.Text = userItem["ID"].ToString();
-                                literalDepartment.Text = userItem["Department"] == null ? "Null" : userItem["Department"].ToString();
-                                literalSection.Text = "Section";
-                                literalOfficeTel.Text = "Office Tel";
-                                literalMobile.Text = userItem["MobilePhone"] == null ? "Null" : userItem["MobilePhone"].ToString();
+                                txtEmployeeName.Text = userItem["Title"].ToString();
+                                txtEmployeeCode.Text = userItem["ID"].ToString();
+                                txtDepartment.Text = userItem["Department"] == null ? "Null" : userItem["Department"].ToString();
+                                txtSection.Text = "";
+                                txtOfficeTel.Text = "";
+                                txtMobile.Text = userItem["MobilePhone"] == null ? "Null" : userItem["MobilePhone"].ToString();
                             }
                         }
                     }
@@ -236,13 +236,13 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 totalPrice = totalPrice * int.Parse(ffRequireDay.Value.ToString());
 
                 SPListItem item = SPContext.Current.List.AddItem();
-                item[SPBuiltInFieldId.Title] = literalEmployeeName.Text;
+                item[SPBuiltInFieldId.Title] = txtEmployeeName.Text;
                 item["TypeOfBeachCamp"] = typeOfBeachCamp;
-                item["EmployeeCode"] = literalEmployeeCode.Text;
-                item["Department"] = literalDepartment.Text;
-                item["Section"] = literalSection.Text;
-                item["OfficeTel"] = literalOfficeTel.Text;
-                item["Mobile"] = literalMobile.Text;
+                item["EmployeeCode"] = txtEmployeeCode.Text;
+                item["Department"] = txtDepartment.Text;
+                item["Section"] = txtSection.Text;
+                item["OfficeTel"] = txtOfficeTel.Text;
+                item["Mobile"] = txtMobile.Text;
                 item[SPBuiltInFieldId.StartDate] = beachCampDate;
                 item[SPBuiltInFieldId.EndDate] = beachCampDate.AddDays(int.Parse(ffRequireDay.Value.ToString()));
                 item["Reason"] = ffReason.Value;

@@ -6,6 +6,8 @@ using System.Collections;
 using Microsoft.SharePoint.Workflow;
 using Microsoft.SharePoint.Utilities;
 using SharePoint.BeachCamp.Util.Utilities;
+using System.Web.UI.WebControls;
+using System.Data;
 
 namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
 {
@@ -73,12 +75,11 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
             }
         }
 
-
         protected override void OnInit(EventArgs e)
         {
             btnUpdate.Click += new EventHandler(btnUpdate_Click);
-            
-            btnCancel.Click += new EventHandler(btnCancel_Click);
+            repeaterPrices.ItemDataBound += new RepeaterItemEventHandler(repeaterPrices_ItemDataBound);
+
             base.OnInit(e);
         }
 
@@ -106,6 +107,7 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
                 else
                     SPUtility.Redirect(SPEncode.UrlDecodeAsUrl(SourceUrl), SPRedirectFlags.Default, this.Context);
         }
+
         private void ClosePopup()
         {
             Context.Response.Clear();
@@ -113,6 +115,7 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
             Context.Response.Flush();
             Context.Response.End();
         }
+
         protected bool IsDialog
         {
             get
@@ -134,14 +137,129 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
                 return base.Request.QueryString["Source"];
             }
         }
-        void btnCancel_Click(object sender, EventArgs e)
-        {
-            
-        }
 
-        
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                //Get Beach Camp Reservation
+                GetBeachCampReservation();
+            }
         }
+
+        #region Functions
+
+        private void GetBeachCampReservation()
+        {
+            try
+            {
+                SPListItem item = CurrentWorkflowItem;
+                literalEmployeeName.Text = item[SPBuiltInFieldId.Title].ToString();
+                literalEmployeeCode.Text = item["EmployeeCode"].ToString();
+                literalDepartment.Text = item["Department"] == null ? string.Empty : item["Department"].ToString();
+                literalSection.Text = item["Section"] == null ? string.Empty : item["Section"].ToString();
+                literalOfficeTel.Text = item["OfficeTel"] == null ? string.Empty : item["OfficeTel"].ToString();
+                literalMobile.Text = item["Mobile"] == null ? string.Empty : item["Mobile"].ToString();
+                literalReason.Text = item["Reason"] == null ? string.Empty : item["Reason"].ToString();
+                literalRequireDay.Text = item["RequireDay"].ToString();
+                literalEventDate.Text = item["EventDate"].ToString();
+
+                GetPrices();
+            }
+            catch (Exception ex)
+            {
+                Utility.LogError(ex.Message, BeachCampFeatures.Workflow);
+            }
+        }
+
+        private string GetPrices()
+        {
+            string output = string.Empty;
+            try
+            {
+                SPList priceList = Utility.GetListFromURL("/Lists/BCPrices", SPContext.Current.Web);
+                SPListItemCollection itemCollections = priceList.GetItems();
+                repeaterPrices.DataSource = itemCollections.GetDataTable();
+                repeaterPrices.DataBind();
+            }
+            catch (Exception ex)
+            {
+                output = ex.Message;
+            }
+
+            return output;
+        }
+
+        private string GetPeriod(Guid period)
+        {
+            SPList list = Utility.GetListFromURL("/Lists/BCPrices", SPContext.Current.Web);
+            SPField field = list.Fields[period];
+            if (field != null)
+                return field.Title;
+            return string.Empty;
+        }
+
+        void repeaterPrices_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            DataRowView rowView = (DataRowView)e.Item.DataItem;
+            if (rowView != null)
+            {
+                string period1 = GetPeriod(BeachCampFieldId.Period1);
+                string period2 = GetPeriod(BeachCampFieldId.Period2);
+                string fullDay = GetPeriod(BeachCampFieldId.FullDay);
+                string ramadan = GetPeriod(BeachCampFieldId.Ramadan);
+
+                string sectionPeriod = CurrentWorkflowItem[SPBuiltInFieldId.Location].ToString();
+
+                Literal literalSection = (Literal)e.Item.FindControl("literalSection");
+                literalSection.Text = rowView["Title"].ToString();
+
+                //Literal literalPeriod1 = (Literal)e.Item.FindControl("literalPeriod1");
+                //literalPeriod1.Text = rowView["Period1"].ToString();
+
+                CheckBox chkPeriod1 = (CheckBox)e.Item.FindControl("chkPeriod1");
+                chkPeriod1.Text = rowView["Period1"].ToString();
+                chkPeriod1.Enabled = false;
+                string toolTipPeriod1 = rowView["Title"].ToString() + " - " + period1;
+                chkPeriod1.ToolTip = toolTipPeriod1;
+                if (sectionPeriod.Contains(toolTipPeriod1))
+                    chkPeriod1.Checked = true;
+
+                //Literal literalPeriod2 = (Literal)e.Item.FindControl("literalPeriod2");
+                //literalPeriod2.Text = rowView["Period2"].ToString();
+
+                CheckBox chkPeriod2 = (CheckBox)e.Item.FindControl("chkPeriod2");
+                chkPeriod2.Text = rowView["Period2"].ToString();
+                chkPeriod2.Enabled = false;
+                string toolTipPeriod2 = rowView["Title"].ToString() + " - " + period2;
+                chkPeriod2.ToolTip = toolTipPeriod2;
+                if (sectionPeriod.Contains(toolTipPeriod2))
+                    chkPeriod2.Checked = true;
+
+                //Literal literalFullDay = (Literal)e.Item.FindControl("literalFullDay");
+                //literalFullDay.Text = rowView["FullDay"].ToString();
+
+                CheckBox chkFullDay = (CheckBox)e.Item.FindControl("chkFullDay");
+                chkFullDay.Text = rowView["FullDay"].ToString();
+                chkFullDay.Enabled = false;
+                string to0lTipFullDay = rowView["Title"].ToString() + " - " + fullDay;
+                chkFullDay.ToolTip = to0lTipFullDay;
+                if (sectionPeriod.Contains(to0lTipFullDay))
+                    chkFullDay.Checked = true;
+
+                //Literal literalRamadan = (Literal)e.Item.FindControl("literalRamadan");
+                //literalRamadan.Text = rowView["Ramadan"].ToString();
+
+                CheckBox chkRamadan = (CheckBox)e.Item.FindControl("chkRamadan");
+                chkRamadan.Text = rowView["Ramadan"].ToString();
+                chkRamadan.Enabled = false;
+                string toolTipRamadan = rowView["Title"].ToString() + " - " + ramadan;
+                chkRamadan.ToolTip = toolTipRamadan;
+                if (sectionPeriod.Contains(toolTipRamadan))
+                    chkRamadan.Checked = true;
+            }
+        }
+
+        #endregion Functions
     }
 }

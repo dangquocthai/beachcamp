@@ -30,12 +30,12 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
             {
                 string output = string.Empty;
                 //Get user info
-                output = GetUserInfo();
-                if (!string.IsNullOrEmpty(output))
-                {
-                    ShowErrorMessages(output, true);
-                    return;
-                }
+                //output = GetUserInfo();
+                //if (!string.IsNullOrEmpty(output))
+                //{
+                //    ShowErrorMessages(output, true);
+                //    return;
+                //}
                 //Get price table
                 output = GetPrices();
                 if (!string.IsNullOrEmpty(output))
@@ -127,45 +127,6 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
 
         #region Functions
 
-        private string GetUserInfo()
-        {
-            string output = string.Empty;
-            try
-            {
-                SPFieldUserValue createdBy = new SPFieldUserValue(SPContext.Current.Web, SPContext.Current.ListItem[SPBuiltInFieldId.Author].ToString());
-                if (createdBy.User.ID != SPContext.Current.Web.CurrentUser.ID)
-                    return "You can not modify this reservation !";
-
-                SPSecurity.RunWithElevatedPrivileges(delegate()
-                {
-                    using (SPSite site = new SPSite(SPContext.Current.Site.ID))
-                    {
-                        using (SPWeb web = site.OpenWeb())
-                        {
-                            SPListItemCollection userItems = web.Lists.TryGetList(web.SiteUserInfoList.Title).GetItems();
-
-                            SPListItem userItem = web.Lists.TryGetList(web.SiteUserInfoList.Title).GetItemById(SPContext.Current.Web.CurrentUser.ID);
-                            if (userItem != null)
-                            {
-                                literalEmployeeName.Text = userItem["Title"].ToString();
-                                literalEmployeeCode.Text = userItem["ID"].ToString();
-                                literalDepartment.Text = userItem["Department"] == null ? "Null" : userItem["Department"].ToString();
-                                literalSection.Text = "Section";
-                                literalOfficeTel.Text = "Office Tel";
-                                literalMobile.Text = userItem["MobilePhone"] == null ? "Null" : userItem["MobilePhone"].ToString();
-                            }
-                        }
-                    }
-                });
-            }
-            catch (Exception ex)
-            {
-                output = ex.Message;
-            }
-
-            return output;
-        }
-
         private string GetPrices()
         {
             string output = string.Empty;
@@ -252,13 +213,13 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 totalPrice = totalPrice * int.Parse(ffRequireDay.Value.ToString());
 
                 SPListItem item = SPContext.Current.ListItem;
-                item[SPBuiltInFieldId.Title] = literalEmployeeName.Text;
+                item[SPBuiltInFieldId.Title] = ffTitle.Value;
                 item["TypeOfBeachCamp"] = typeOfBeachCamp;
-                item["EmployeeCode"] = literalEmployeeCode.Text;
-                item["Department"] = literalDepartment.Text;
-                item["Section"] = literalSection.Text;
-                item["OfficeTel"] = literalOfficeTel.Text;
-                item["Mobile"] = literalMobile.Text;
+                item["EmployeeCode"] = ffEmployeeCode.Value;
+                item["Department"] = ffDepartment.Value;
+                item["Section"] = ffSection.Value;
+                item["OfficeTel"] = ffOfficeTel.Value;
+                item["Mobile"] = ffMobile.Value;
                 item[SPBuiltInFieldId.StartDate] = beachCampDate;
                 item[SPBuiltInFieldId.EndDate] = beachCampDate.AddDays(int.Parse(ffRequireDay.Value.ToString()));
                 item["Reason"] = ffReason.Value;

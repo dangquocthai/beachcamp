@@ -76,58 +76,58 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp {
         protected global::System.Web.UI.WebControls.RadioButton rdbBusiness;
         
         /// <summary>
-        /// literalEmployeeName control.
+        /// txtEmployeeName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal literalEmployeeName;
+        protected global::System.Web.UI.WebControls.TextBox txtEmployeeName;
         
         /// <summary>
-        /// literalEmployeeCode control.
+        /// txtEmployeeCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal literalEmployeeCode;
+        protected global::System.Web.UI.WebControls.TextBox txtEmployeeCode;
         
         /// <summary>
-        /// literalDepartment control.
+        /// txtDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal literalDepartment;
+        protected global::System.Web.UI.WebControls.TextBox txtDepartment;
         
         /// <summary>
-        /// literalSection control.
+        /// txtSection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal literalSection;
+        protected global::System.Web.UI.WebControls.TextBox txtSection;
         
         /// <summary>
-        /// literalOfficeTel control.
+        /// txtOfficeTel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal literalOfficeTel;
+        protected global::System.Web.UI.WebControls.TextBox txtOfficeTel;
         
         /// <summary>
-        /// literalMobile control.
+        /// txtMobile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal literalMobile;
+        protected global::System.Web.UI.WebControls.TextBox txtMobile;
         
         /// <summary>
         /// ffReason control.
