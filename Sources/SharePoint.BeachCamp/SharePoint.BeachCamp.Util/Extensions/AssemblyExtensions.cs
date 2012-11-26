@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System.Reflection;
 
-namespace Hypertek.IOffice.Common.Extensions
+namespace SharePoint.BeachCamp.Util.Extensions
 {
     public static class AssemblyExtensions
     {
