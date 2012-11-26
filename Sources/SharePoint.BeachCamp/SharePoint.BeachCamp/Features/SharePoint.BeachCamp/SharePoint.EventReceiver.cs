@@ -66,10 +66,10 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
         private static void ProvisionWebParts(SPWeb web)
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
-           // string xml = assembly.GetResourceTextFile("SharePoint.BeachCamp.Webparts.xml");
+            string xml = assembly.GetResourceTextFile("SharePoint.BeachCamp.Webparts.xml");
 
-            //var webpartPages = SerializationHelper.DeserializeFromXml<WebpartPageDefinitionCollection>(xml);
-           /// WebPartHelper.ProvisionWebpart(web, webpartPages);
+            var webpartPages = SerializationHelper.DeserializeFromXml<WebpartPageDefinitionCollection>(xml);
+            WebPartHelper.ProvisionWebpart(web, webpartPages);
         }
         #endregion Functions
     }

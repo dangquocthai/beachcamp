@@ -97,7 +97,7 @@
         <!-- myCustomForm -->
         <asp:Label ID="lblError" Font-Bold="true" ForeColor="Red" Visible="false" runat="server"
             Text=""></asp:Label>
-        <br />
+        &nbsp;<br /><br />
         <table class="tbl-main" id="tblMain" runat="server">
             <tr class="tr-main">
                 <td class="td-main">
@@ -125,13 +125,15 @@
                                 Name :
                             </td>
                             <td style="width: 25%;" align="left">
-                                <asp:Literal ID="literalEmployeeName" Text="Tran Anh Tuan" runat="server"></asp:Literal>
+                                <%--<asp:Literal ID="literalEmployeeName" Text="Tran Anh Tuan" runat="server"></asp:Literal>--%>
+                                <asp:TextBox ID="txtEmployeeName" runat="server"></asp:TextBox>
                             </td>
                             <td style="width: 20%; font-weight: bold;">
                                 ID :
                             </td>
                             <td style="width: 35%;" align="left">
-                                <asp:Literal ID="literalEmployeeCode" Text="250692114" runat="server"></asp:Literal>
+                                <%--<asp:Literal ID="literalEmployeeCode" Text="250692114" runat="server"></asp:Literal>--%>
+                                <asp:TextBox ID="txtEmployeeCode" runat="server"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -139,13 +141,15 @@
                                 Department :
                             </td>
                             <td>
-                                <asp:Literal ID="literalDepartment" Text="Giai Phap" runat="server"></asp:Literal>
+                                <%--<asp:Literal ID="literalDepartment" Text="Giai Phap" runat="server"></asp:Literal>--%>
+                                <asp:TextBox ID="txtDepartment" runat="server"></asp:TextBox>
                             </td>
                             <td style="font-weight: bold;">
                                 Section :
                             </td>
                             <td>
-                                <asp:Literal ID="literalSection" Text="Section ABCD" runat="server"></asp:Literal>
+                                <%--<asp:Literal ID="literalSection" Text="Section ABCD" runat="server"></asp:Literal>--%>
+                                <asp:TextBox ID="txtSection" runat="server"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -153,13 +157,15 @@
                                 Office Tel :
                             </td>
                             <td>
-                                <asp:Literal ID="literalOfficeTel" Text="(08)-393 284 000" runat="server"></asp:Literal>
+                                <%--<asp:Literal ID="literalOfficeTel" Text="(08)-393 284 000" runat="server"></asp:Literal>--%>
+                                <asp:TextBox ID="txtOfficeTel" runat="server"></asp:TextBox>
                             </td>
                             <td style="font-weight: bold;">
                                 Mobile :
                             </td>
                             <td>
-                                <asp:Literal ID="literalMobile" Text="0906 760 486" runat="server"></asp:Literal>
+                                <%--<asp:Literal ID="literalMobile" Text="0906 760 486" runat="server"></asp:Literal>--%>
+                                <asp:TextBox ID="txtMobile" runat="server"></asp:TextBox>
                             </td>
                         </tr>
                     </table>
