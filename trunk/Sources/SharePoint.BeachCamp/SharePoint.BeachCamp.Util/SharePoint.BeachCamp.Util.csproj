@@ -62,6 +62,7 @@
     <Compile Include="Extensions\SPFieldCollectionExtensions.cs" />
     <Compile Include="Extensions\SPListExtensions.cs" />
     <Compile Include="Extensions\SPWebExtensions.cs" />
+    <Compile Include="Extensions\SPWorkflowActivationPropertiesExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\Nvelocity\BaseClasses\NVelocityEngineBase.cs" />
     <Compile Include="Helpers\Nvelocity\Engines\NVelocityAssemblyEngine.cs" />
