@@ -154,6 +154,13 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
             try
             {
                 SPListItem item = CurrentWorkflowItem;
+
+                string personal = item["TypeOfBeachCamp"].ToString();
+                rdbBusiness.Checked = true;
+                if (personal == "Personal")
+                    rdbPersonal.Checked = true;
+                rdbBusiness.Enabled = false;
+                rdbPersonal.Enabled = false;
                 literalEmployeeName.Text = item[SPBuiltInFieldId.Title].ToString();
                 literalEmployeeCode.Text = item["EmployeeCode"].ToString();
                 literalDepartment.Text = item["Department"] == null ? string.Empty : item["Department"].ToString();
