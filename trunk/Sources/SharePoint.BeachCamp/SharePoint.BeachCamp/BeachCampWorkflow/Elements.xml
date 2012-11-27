@@ -10,7 +10,9 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
      Description="My SharePoint Workflow"
      Id="91418941-ddf2-4059-b67a-472d6c5fc48e"
      CodeBesideClass="SharePoint.BeachCamp.BeachCampWorkflow.BeachCampWorkflow"
-     CodeBesideAssembly="$assemblyname$">
+     CodeBesideAssembly="$assemblyname$" 
+     AssociationUrl="_layouts/SharePoint.BeachCamp/BeachCampWorkflow/BCWorkflowAssociationForm.aspx">
+    
     <Categories/>
     <MetaData>
       <AssociationCategories>List</AssociationCategories>

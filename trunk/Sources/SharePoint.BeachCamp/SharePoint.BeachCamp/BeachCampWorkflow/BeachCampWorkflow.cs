@@ -14,6 +14,8 @@ using System.Workflow.Activities.Rules;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
 using Microsoft.SharePoint.WorkflowActions;
+using SharePoint.BeachCamp.Util.Helpers;
+using SharePoint.BeachCamp.Util;
 
 namespace SharePoint.BeachCamp.BeachCampWorkflow
 {
@@ -28,10 +30,13 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
         public SPWorkflowActivationProperties workflowProperties = new SPWorkflowActivationProperties();
         public String GeneralSupervisorApproval_TaskOutcome = default(System.String);
         public String GeneralSupervisorApproval_AssignedTo = default(System.String);
-
+        public BCWorkflowAssociationData associationData;
         private void CreateInitialParams_ExecuteCode(object sender, EventArgs e)
         {
-            GeneralSupervisorApproval_AssignedTo = @"i-office\spfarm";
+
+
+            associationData = SerializationHelper.DeserializeFromXml<BCWorkflowAssociationData>(workflowProperties.AssociationData);
+
         }
 
         public static DependencyProperty publishItemActivity1_CommentTextProperty = DependencyProperty.Register("publishItemActivity1_CommentText", typeof(System.String), typeof(SharePoint.BeachCamp.BeachCampWorkflow.BeachCampWorkflow));
@@ -59,5 +64,15 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
 
         public String publishItemActivity1___ListId = default(System.String);
         public Int32 publishItemActivity1___ListItem = default(System.Int32);
+
+        private void UpdateItem_ExecuteCode(object sender, EventArgs e)
+        {
+            var item = workflowProperties.Item;
+            //GeneralSupervisorApproval_TaskOutcome  == TaskResult.Approved
+            //GeneralSupervisorApproval_ApproveComments
+
+        }
+
+        public String GeneralSupervisorApproval_ApproveComments = default(System.String);
     }
 }
