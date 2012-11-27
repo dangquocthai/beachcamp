@@ -133,6 +133,7 @@
     </None>
     <None Include="Layouts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{472dc5da-57bd-4ea6-aa11-189b37c799ee}</SharePointProjectItemId>
+      <SubType>Designer</SubType>
     </None>
     <None Include="ListInstances\BCCalendar\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0c193c58-c23b-47ea-a006-3eeb07a0658b}</SharePointProjectItemId>
@@ -185,9 +186,7 @@
       <DependentUpon>SharePoint.BeachCamp.feature</DependentUpon>
     </Content>
     <Content Include="Layouts\1033\jquery-1.8.2.min.js" />
-    <Content Include="Layouts\SharePoint.BeachCamp\BeachCampTask.aspx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Layouts\SharePoint.BeachCamp\BeachCampTask.aspx" />
     <Content Include="ListInstances\BCCalendar\Elements.xml" />
     <Content Include="ListInstances\BCCalendar\Schema.xml">
       <SubType>Designer</SubType>
