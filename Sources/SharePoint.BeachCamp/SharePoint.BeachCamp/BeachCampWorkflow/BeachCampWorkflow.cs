@@ -33,5 +33,31 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
         {
             GeneralSupervisorApproval_AssignedTo = @"i-office\spfarm";
         }
+
+        public static DependencyProperty publishItemActivity1_CommentTextProperty = DependencyProperty.Register("publishItemActivity1_CommentText", typeof(System.String), typeof(SharePoint.BeachCamp.BeachCampWorkflow.BeachCampWorkflow));
+
+        [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
+        [BrowsableAttribute(true)]
+        [CategoryAttribute("Misc")]
+        public String publishItemActivity1_CommentText
+        {
+            get
+            {
+                return ((string)(base.GetValue(SharePoint.BeachCamp.BeachCampWorkflow.BeachCampWorkflow.publishItemActivity1_CommentTextProperty)));
+            }
+            set
+            {
+                base.SetValue(SharePoint.BeachCamp.BeachCampWorkflow.BeachCampWorkflow.publishItemActivity1_CommentTextProperty, value);
+            }
+        }
+
+        private void SetApprovalData_ExecuteCode(object sender, EventArgs e)
+        {
+            publishItemActivity1___ListId = this.workflowProperties.List.ID.ToString();
+            publishItemActivity1___ListItem = this.workflowProperties.ItemId;
+        }
+
+        public String publishItemActivity1___ListId = default(System.String);
+        public Int32 publishItemActivity1___ListItem = default(System.Int32);
     }
 }

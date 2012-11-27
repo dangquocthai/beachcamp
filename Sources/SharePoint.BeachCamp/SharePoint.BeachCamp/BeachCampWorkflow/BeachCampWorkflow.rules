@@ -1,0 +1,32 @@
+﻿<RuleDefinitions xmlns="http://schemas.microsoft.com/winfx/2006/xaml/workflow">
+	<RuleDefinitions.Conditions>
+		<RuleExpressionCondition Name="Condition1">
+			<RuleExpressionCondition.Expression>
+				<ns0:CodeBinaryOperatorExpression Operator="ValueEquality" xmlns:ns0="clr-namespace:System.CodeDom;Assembly=System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+					<ns0:CodeBinaryOperatorExpression.Right>
+						<ns0:CodeMethodInvokeExpression>
+							<ns0:CodeMethodInvokeExpression.Method>
+								<ns0:CodeMethodReferenceExpression MethodName="ToString">
+									<ns0:CodeMethodReferenceExpression.TargetObject>
+										<ns0:CodeFieldReferenceExpression FieldName="Approved">
+											<ns0:CodeFieldReferenceExpression.TargetObject>
+												<ns0:CodeTypeReferenceExpression Type="SharePoint.BeachCamp.Util.TaskResult, SharePoint.BeachCamp.Util, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b729a361cadc17a6" />
+											</ns0:CodeFieldReferenceExpression.TargetObject>
+										</ns0:CodeFieldReferenceExpression>
+									</ns0:CodeMethodReferenceExpression.TargetObject>
+								</ns0:CodeMethodReferenceExpression>
+							</ns0:CodeMethodInvokeExpression.Method>
+						</ns0:CodeMethodInvokeExpression>
+					</ns0:CodeBinaryOperatorExpression.Right>
+					<ns0:CodeBinaryOperatorExpression.Left>
+						<ns0:CodeFieldReferenceExpression FieldName="GeneralSupervisorApproval_TaskOutcome">
+							<ns0:CodeFieldReferenceExpression.TargetObject>
+								<ns0:CodeThisReferenceExpression />
+							</ns0:CodeFieldReferenceExpression.TargetObject>
+						</ns0:CodeFieldReferenceExpression>
+					</ns0:CodeBinaryOperatorExpression.Left>
+				</ns0:CodeBinaryOperatorExpression>
+			</RuleExpressionCondition.Expression>
+		</RuleExpressionCondition>
+	</RuleDefinitions.Conditions>
+</RuleDefinitions>

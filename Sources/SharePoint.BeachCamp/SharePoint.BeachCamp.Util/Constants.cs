@@ -8,6 +8,6 @@ namespace SharePoint.BeachCamp.Util
     public class Constants
     {
         public const string APPROVE_STATUS = "TaskStatus";
-        public const string APPROVE_MESSAGE = "Approve Message";
+        public const string APPROVE_MESSAGE = "ApproveMessage";
     }
 }

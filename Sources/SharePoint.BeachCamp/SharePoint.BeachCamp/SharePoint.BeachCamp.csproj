@@ -71,6 +71,12 @@
     <Compile Include="BeachCampWorkflow\BeachCampWorkflow.Designer.cs">
       <DependentUpon>BeachCampWorkflow.cs</DependentUpon>
     </Compile>
+    <Compile Include="BeachCampWorkflow\CCICoreActivity.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BeachCampWorkflow\PublishItemActivity.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="BeachCampWorkflow\TaskActivity.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -181,6 +187,7 @@
     </Content>
     <Content Include="Features\SharePoint.BeachCamp.Site\SharePoint.BeachCamp.Site.Template.xml">
       <DependentUpon>SharePoint.BeachCamp.Site.feature</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\SharePoint.BeachCamp\SharePoint.BeachCamp.Template.xml">
       <DependentUpon>SharePoint.BeachCamp.feature</DependentUpon>
@@ -203,6 +210,9 @@
     <Content Include="Modules\BeachCampPages\BeachCampReservation.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <EmbeddedResource Include="BeachCampWorkflow\BeachCampWorkflow.rules">
+      <DependentUpon>BeachCampWorkflow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Webparts.xml" />
     <Content Include="WebParts\BeachCampViewer\Elements.xml" />
   </ItemGroup>
