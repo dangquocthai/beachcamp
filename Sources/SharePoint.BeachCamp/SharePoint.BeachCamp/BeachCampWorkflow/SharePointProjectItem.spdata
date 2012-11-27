@@ -2,6 +2,7 @@
 <ProjectItem Type="Microsoft.VisualStudio.SharePoint.Workflow" DefaultFile="BeachCampWorkflow.cs" SupportedTrustLevels="FullTrust" SupportedDeploymentScopes="Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
   <Files>
     <ProjectItemFile Source="Elements.xml" Target="BeachCampWorkflow\" Type="ElementManifest" />
+    <ProjectItemFile Source="BCWorkflowAssociationForm.aspx" Target="LAYOUTS\SharePoint.BeachCamp\BeachCampWorkflow\" Type="TemplateFile" />
   </Files>
   <ExtensionData>
     <ExtensionDataItem Key="WorkflowType" Value="List" />

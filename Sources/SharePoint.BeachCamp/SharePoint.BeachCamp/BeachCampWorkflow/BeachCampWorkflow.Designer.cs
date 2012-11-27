@@ -34,14 +34,18 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
             System.Workflow.ComponentModel.ActivityBind activitybind5 = new System.Workflow.ComponentModel.ActivityBind();
             System.Workflow.ComponentModel.ActivityBind activitybind6 = new System.Workflow.ComponentModel.ActivityBind();
             System.Workflow.ComponentModel.ActivityBind activitybind7 = new System.Workflow.ComponentModel.ActivityBind();
-            System.Workflow.ComponentModel.ActivityBind activitybind9 = new System.Workflow.ComponentModel.ActivityBind();
-            System.Workflow.Runtime.CorrelationToken correlationtoken1 = new System.Workflow.Runtime.CorrelationToken();
             System.Workflow.ComponentModel.ActivityBind activitybind8 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind9 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind10 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind12 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.Runtime.CorrelationToken correlationtoken1 = new System.Workflow.Runtime.CorrelationToken();
+            System.Workflow.ComponentModel.ActivityBind activitybind11 = new System.Workflow.ComponentModel.ActivityBind();
             this.publishItemActivity1 = new SharePoint.BeachCamp.BeachCampWorkflow.PublishItemActivity();
             this.SetApprovalData = new System.Workflow.Activities.CodeActivity();
             this.ifElseBranchActivity2 = new System.Workflow.Activities.IfElseBranchActivity();
             this.ifElseBranchActivity1 = new System.Workflow.Activities.IfElseBranchActivity();
             this.ifElseActivity1 = new System.Workflow.Activities.IfElseActivity();
+            this.UpdateItem = new System.Workflow.Activities.CodeActivity();
             this.GeneralSupervisorApproval = new SharePoint.BeachCamp.BeachCampWorkflow.TaskActivity();
             this.CreateInitialParams = new System.Workflow.Activities.CodeActivity();
             this.onWorkflowActivated1 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated();
@@ -86,26 +90,40 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
             this.ifElseActivity1.Activities.Add(this.ifElseBranchActivity2);
             this.ifElseActivity1.Name = "ifElseActivity1";
             // 
+            // UpdateItem
+            // 
+            this.UpdateItem.Name = "UpdateItem";
+            this.UpdateItem.ExecuteCode += new System.EventHandler(this.UpdateItem_ExecuteCode);
+            // 
             // GeneralSupervisorApproval
             // 
             activitybind5.Name = "BeachCampWorkflow";
-            activitybind5.Path = "GeneralSupervisorApproval_AssignedTo";
+            activitybind5.Path = "GeneralSupervisorApproval_ApproveComments";
+            activitybind6.Name = "BeachCampWorkflow";
+            activitybind6.Path = "associationData.GeneralSupervisor";
+            activitybind7.Name = "BeachCampWorkflow";
+            activitybind7.Path = "associationData.Message";
             this.GeneralSupervisorApproval.Name = "GeneralSupervisorApproval";
             this.GeneralSupervisorApproval.TaskContentTypeId = "0x01080100E6FA232BCA3B4B25B9DF4B2E3791D3CC";
-            activitybind6.Name = "BeachCampWorkflow";
-            activitybind6.Path = "GeneralSupervisorApproval_TaskOutcome";
-            activitybind7.Name = "BeachCampWorkflow";
-            activitybind7.Path = "workflowProperties";
-            this.GeneralSupervisorApproval.SetBinding(SharePoint.BeachCamp.BeachCampWorkflow.TaskActivity.TaskOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind6)));
-            this.GeneralSupervisorApproval.SetBinding(SharePoint.BeachCamp.BeachCampWorkflow.TaskActivity.AssignedToProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind5)));
-            this.GeneralSupervisorApproval.SetBinding(SharePoint.BeachCamp.BeachCampWorkflow.TaskActivity.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind7)));
+            activitybind8.Name = "BeachCampWorkflow";
+            activitybind8.Path = "GeneralSupervisorApproval_TaskOutcome";
+            activitybind9.Name = "BeachCampWorkflow";
+            activitybind9.Path = "associationData.TaskTitle";
+            activitybind10.Name = "BeachCampWorkflow";
+            activitybind10.Path = "workflowProperties";
+            this.GeneralSupervisorApproval.SetBinding(SharePoint.BeachCamp.BeachCampWorkflow.TaskActivity.TaskOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind8)));
+            this.GeneralSupervisorApproval.SetBinding(SharePoint.BeachCamp.BeachCampWorkflow.TaskActivity.AssignedToProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind6)));
+            this.GeneralSupervisorApproval.SetBinding(SharePoint.BeachCamp.BeachCampWorkflow.TaskActivity.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind10)));
+            this.GeneralSupervisorApproval.SetBinding(SharePoint.BeachCamp.BeachCampWorkflow.TaskActivity.MessageProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind7)));
+            this.GeneralSupervisorApproval.SetBinding(SharePoint.BeachCamp.BeachCampWorkflow.TaskActivity.TaskTitleProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind9)));
+            this.GeneralSupervisorApproval.SetBinding(SharePoint.BeachCamp.BeachCampWorkflow.TaskActivity.ApproveCommentsProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind5)));
             // 
             // CreateInitialParams
             // 
             this.CreateInitialParams.Name = "CreateInitialParams";
             this.CreateInitialParams.ExecuteCode += new System.EventHandler(this.CreateInitialParams_ExecuteCode);
-            activitybind9.Name = "BeachCampWorkflow";
-            activitybind9.Path = "workflowId";
+            activitybind12.Name = "BeachCampWorkflow";
+            activitybind12.Path = "workflowId";
             // 
             // onWorkflowActivated1
             // 
@@ -114,16 +132,17 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
             this.onWorkflowActivated1.CorrelationToken = correlationtoken1;
             this.onWorkflowActivated1.EventName = "OnWorkflowActivated";
             this.onWorkflowActivated1.Name = "onWorkflowActivated1";
-            activitybind8.Name = "BeachCampWorkflow";
-            activitybind8.Path = "workflowProperties";
-            this.onWorkflowActivated1.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind9)));
-            this.onWorkflowActivated1.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind8)));
+            activitybind11.Name = "BeachCampWorkflow";
+            activitybind11.Path = "workflowProperties";
+            this.onWorkflowActivated1.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind12)));
+            this.onWorkflowActivated1.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind11)));
             // 
             // BeachCampWorkflow
             // 
             this.Activities.Add(this.onWorkflowActivated1);
             this.Activities.Add(this.CreateInitialParams);
             this.Activities.Add(this.GeneralSupervisorApproval);
+            this.Activities.Add(this.UpdateItem);
             this.Activities.Add(this.ifElseActivity1);
             this.Name = "BeachCampWorkflow";
             this.CanModifyActivities = false;
@@ -131,6 +150,8 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
         }
 
         #endregion
+
+        private CodeActivity UpdateItem;
 
         private CodeActivity SetApprovalData;
 
@@ -147,6 +168,11 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
         private TaskActivity GeneralSupervisorApproval;
 
         private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated onWorkflowActivated1;
+
+
+
+
+
 
 
 

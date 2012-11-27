@@ -32,6 +32,30 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
 
 
 
+
+        public string TaskTitle
+        {
+            get { return (string)GetValue(TaskTitleProperty); }
+            set { SetValue(TaskTitleProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for TaskTitle.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TaskTitleProperty =
+            DependencyProperty.Register("TaskTitle", typeof(string), typeof(TaskActivity));
+
+
+
+        public string Message
+        {
+            get { return (string)GetValue(MessageProperty); }
+            set { SetValue(MessageProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Message.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MessageProperty =
+            DependencyProperty.Register("Message", typeof(string), typeof(TaskActivity));
+
+
         public string TaskOutcome
         {
             get { return (string)GetValue(TaskOutcomeProperty); }
@@ -211,20 +235,28 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
             DependencyProperty.Register("AssignedTo", typeof(string), typeof(TaskActivity));
 
 
+
+        public string ApproveComments
+        {
+            get { return (string)GetValue(ApproveCommentsProperty); }
+            set { SetValue(ApproveCommentsProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ApproveComments.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ApproveCommentsProperty =
+            DependencyProperty.Register("ApproveComments", typeof(string), typeof(TaskActivity));
+
+        
         private void CreateTask_MethodInvoking(object sender, EventArgs e)
         {
             WorkflowProperties.TaskList.EnsureContentTypeInList(this.TaskContentTypeId);
             CreateTask_TaskId = Guid.NewGuid();
             approvalTaskProperties.AssignedTo = AssignedTo;
-            approvalTaskProperties.EmailBody = "aaaaaaaaaaaaaa";
-            approvalTaskProperties.Title = "GOOOOOOOOOOOOGLE";
-
-
+            //Add code to populate variable here.
+            approvalTaskProperties.EmailBody = Message;
+            approvalTaskProperties.Description = Message;
+            approvalTaskProperties.Title = TaskTitle + (string.IsNullOrEmpty(this.WorkflowProperties.Item.Title)? "" : this.WorkflowProperties.Item.Title);
         }
-
-
-
-
 
         public SPWorkflowActivationProperties WorkflowProperties
         {
@@ -246,7 +278,7 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
 
         private void UpdateData_ExecuteCode(object sender, EventArgs e)
         {
-            TaskActivityLog_HistoryDescription = "Task was " + TaskOutcome + "by " + approver;
+            TaskActivityLog_HistoryDescription = "Task was " + TaskOutcome + " by " + approver;
         }
 
         private string approver = string.Empty;
@@ -260,6 +292,7 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
                     TaskCompleted = true;
                     TaskOutcome = approveStatus;
                 }
+                ApproveComments = TaskChanged_AfterProperties.ExtendedProperties[Constants.APPROVE_MESSAGE] as string;
             }
             approver = e.Identity;
         }
