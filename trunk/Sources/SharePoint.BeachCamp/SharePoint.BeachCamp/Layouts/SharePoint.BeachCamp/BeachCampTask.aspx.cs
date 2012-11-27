@@ -91,7 +91,7 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
             properties[Constants.APPROVE_MESSAGE] = txtMessage.Text.Trim();
 
             CurrentTaskItem[SPBuiltInFieldId.WorkflowVersion] = 1;
-            SPWorkflowTask.AlterTask(CurrentTaskItem, properties, true);
+            SPWorkflowTask.AlterTask(CurrentTaskItem, properties,true);
             CurrentTaskItem.SystemUpdate();
             Back();
 

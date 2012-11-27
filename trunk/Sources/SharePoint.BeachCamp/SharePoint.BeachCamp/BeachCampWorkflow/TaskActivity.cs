@@ -83,6 +83,7 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
             // logToHistoryListActivity2
             // 
             this.logToHistoryListActivity2.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity2.Enabled = false;
             this.logToHistoryListActivity2.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
             this.logToHistoryListActivity2.HistoryDescription = "xyyyyyyyyyyyyy";
             this.logToHistoryListActivity2.HistoryOutcome = "yyyyyyyyy";
@@ -111,6 +112,7 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
             // logToHistoryListActivity1
             // 
             this.logToHistoryListActivity1.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity1.Enabled = false;
             this.logToHistoryListActivity1.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
             this.logToHistoryListActivity1.HistoryDescription = "xxxxxxxxxxxxxxxxxxxxx";
             this.logToHistoryListActivity1.HistoryOutcome = "x";
@@ -267,9 +269,6 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
 
         }
 
-        private void onTaskChanged1_Invoked(object sender, ExternalDataEventArgs e)
-        {
-            Console.Write("ssssssssssssss");
-        }
+
     }
 }
