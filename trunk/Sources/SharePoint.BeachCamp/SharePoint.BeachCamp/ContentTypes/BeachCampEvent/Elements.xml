@@ -54,6 +54,14 @@
     <Default>0</Default>
   </Field>
 
+  <Field Type="Text" ID="{981C8B72-2F76-4dbc-9ADD-8FE7B83943CB}" Name="GSApproval" DisplayName="General Supervisor Approval" StaticName="GSApproval"
+             ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE">
+  </Field>
+
+  <Field Type="Text" ID="{F1D22DAC-081B-415e-B548-42F59CF1F94E}" Name="GSApprovalComment" DisplayName="General Supervisor Approval Comment" StaticName="GSApprovalComment"
+             ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE">
+  </Field>
+
   <!-- Parent ContentType: Event (0x0102) -->
   <ContentType ID="0x010200df82c3b1ef75416ba8a8cc325ed7b4ae"
                Name="[BeachCamp] - BeachCamp Event"
@@ -81,10 +89,12 @@
       <FieldRef ID="{EB1B42F9-15E3-49ba-AFD3-F7CAFD959B11}" Name="TotalPrice" />
       <FieldRef ID="{288f5f32-8462-4175-8f09-dd7ba29359a9}" Name="Location" />
       <FieldRef ID="{CBB0232E-5843-4e95-9CE5-33305ABD23B7}" Name="IsPaid" />
+      <FieldRef ID="{981C8B72-2F76-4dbc-9ADD-8FE7B83943CB}" Name="GSApproval" />
+      <FieldRef ID="{F1D22DAC-081B-415e-B548-42F59CF1F94E}" Name="GSApprovalComment" />
     </FieldRefs>
 
     <XmlDocuments>
-      <!--<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/events">
+      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/events">
         <Receivers xmlns:spe="http://schemas.microsoft.com/sharepoint/events">
 
           <Receiver>
@@ -120,7 +130,7 @@
           </Receiver>
 
         </Receivers>
-      </XmlDocument>-->
+      </XmlDocument>
 
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
         <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">

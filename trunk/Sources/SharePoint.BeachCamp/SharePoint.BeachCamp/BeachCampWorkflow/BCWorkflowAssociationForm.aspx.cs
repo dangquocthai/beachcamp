@@ -46,7 +46,8 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
         private void PopulateFormFields(SPWorkflowAssociation existingAssociation)
         {
             // Optionally, add code here to pre-populate your form fields.
-            if (!string.IsNullOrEmpty(existingAssociation.AssociationData))
+            if (existingAssociation != null 
+                && !string.IsNullOrEmpty(existingAssociation.AssociationData))
             {
                 BCWorkflowAssociationData data = SerializationHelper.DeserializeFromXml<BCWorkflowAssociationData>(existingAssociation.AssociationData);
                 BindPeoplePicker(ppGS, new List<string>() { data.GeneralSupervisor });

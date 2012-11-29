@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <CustomAction Id="SharePoint.BeachCamp.ReservationItem"
+           RegistrationType="List"
+           RegistrationId="106"
+           Location="EditControlBlock"
+           Title="Print Reservation"
+           Sequence="1000"
+           ImageUrl="~site/_layouts/images/SharePoint.BeachCamp/Printer-icon.png"
+           Rights="EditListItems">
+    <UrlAction Url="javascript:OpenPopUpPageWithTitle('{SiteUrl}/_layouts/SharePoint.BeachCamp/BeachCampExport.aspx?ID={ItemId}&amp;List={ListId}',RefreshOnDialogClose,650,850,'Beach Camp Reservation')"/>
+  </CustomAction>
+</Elements>

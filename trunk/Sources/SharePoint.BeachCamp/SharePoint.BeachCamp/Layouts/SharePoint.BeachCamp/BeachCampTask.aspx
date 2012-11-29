@@ -53,7 +53,7 @@
         
         .tbl-main
         {
-            width: 100%;
+            width: 595px;
             border-collapse: collapse;
             border: 1px solid black;
             font: normal 12px Arial, Tahoma, Verdana, Helvetica, sans-serif !important;

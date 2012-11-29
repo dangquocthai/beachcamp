@@ -16,6 +16,7 @@ using Microsoft.SharePoint.Workflow;
 using Microsoft.SharePoint.WorkflowActions;
 using SharePoint.BeachCamp.Util.Helpers;
 using SharePoint.BeachCamp.Util;
+using SharePoint.BeachCamp.Util.Utilities;
 
 namespace SharePoint.BeachCamp.BeachCampWorkflow
 {
@@ -67,10 +68,13 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
 
         private void UpdateItem_ExecuteCode(object sender, EventArgs e)
         {
-            var item = workflowProperties.Item;
-            //GeneralSupervisorApproval_TaskOutcome  == TaskResult.Approved
-            //GeneralSupervisorApproval_ApproveComments
-
+            using (DisableItemEvent disableItemEvent = new DisableItemEvent())
+            {
+                var item = workflowProperties.Item;
+                item["GSApproval"] = GeneralSupervisorApproval_TaskOutcome;
+                item["GSApprovalComment"] = GeneralSupervisorApproval_ApproveComments;
+                item.SystemUpdate();   
+            }
         }
 
         public String GeneralSupervisorApproval_ApproveComments = default(System.String);

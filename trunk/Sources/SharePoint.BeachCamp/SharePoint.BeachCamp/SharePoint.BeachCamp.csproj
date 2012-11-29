@@ -113,6 +113,13 @@
     <Compile Include="Features\SharePoint.BeachCamp\SharePoint.EventReceiver.cs">
       <DependentUpon>SharePoint.BeachCamp.feature</DependentUpon>
     </Compile>
+    <Compile Include="Layouts\SharePoint.BeachCamp\BeachCampExport.aspx.cs">
+      <DependentUpon>BeachCampExport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\SharePoint.BeachCamp\BeachCampExport.aspx.designer.cs">
+      <DependentUpon>BeachCampExport.aspx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Layouts\SharePoint.BeachCamp\BeachCampTask.aspx.cs">
       <DependentUpon>BeachCampTask.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -126,6 +133,9 @@
   <ItemGroup>
     <None Include="ContentTypes\BeachCampTaskContentType\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{253e32cc-47ba-42e7-a077-78699edcf3db}</SharePointProjectItemId>
+    </None>
+    <None Include="CustomActions\BeachCampRegistration\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{602814f3-2bd6-4da0-978b-00e8c237acec}</SharePointProjectItemId>
     </None>
     <None Include="ListInstances\BeachCampTask\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{748bf8b7-5520-40fe-b937-abf202cce299}</SharePointProjectItemId>
@@ -179,6 +189,11 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="ContentTypes\BeachCampTaskContentType\Elements.xml" />
+    <Content Include="CustomActions\BeachCampRegistration\Elements.xml" />
+    <Content Include="Layouts\SharePoint.BeachCamp\BeachCampExport.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Layouts\Images\SharePoint.BeachCamp\Printer-icon.png" />
     <Content Include="ListInstances\BeachCampTask\Elements.xml" />
     <Content Include="BeachCampWorkflow\Elements.xml" />
     <Content Include="ContentTypes\BeachCampEvent\Elements.xml">
