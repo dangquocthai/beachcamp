@@ -137,6 +137,9 @@
     <None Include="CustomActions\BeachCampRegistration\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{602814f3-2bd6-4da0-978b-00e8c237acec}</SharePointProjectItemId>
     </None>
+    <None Include="Images\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b46a8b12-6299-4515-8912-9cd7a5e66392}</SharePointProjectItemId>
+    </None>
     <None Include="ListInstances\BeachCampTask\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{748bf8b7-5520-40fe-b937-abf202cce299}</SharePointProjectItemId>
     </None>
@@ -193,7 +196,7 @@
     <Content Include="Layouts\SharePoint.BeachCamp\BeachCampExport.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Layouts\Images\SharePoint.BeachCamp\Printer-icon.png" />
+    <Content Include="Images\SharePoint.BeachCamp\Printer-icon.png" />
     <Content Include="ListInstances\BeachCampTask\Elements.xml" />
     <Content Include="BeachCampWorkflow\Elements.xml" />
     <Content Include="ContentTypes\BeachCampEvent\Elements.xml">
