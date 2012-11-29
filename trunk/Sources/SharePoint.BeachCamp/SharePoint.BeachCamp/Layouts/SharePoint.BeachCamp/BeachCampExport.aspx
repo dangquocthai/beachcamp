@@ -21,7 +21,9 @@
             win.document.write('<' + 'html' + '><' + 'head' + '><' + 'style' + '>');
             win.document.write('.tbl-main { border-collapse: collapse; border: 1px solid black; font: normal 12px Arial, Tahoma, Verdana, Helvetica, sans-serif !important; font-size: 12px !important; color: #000000 !important; width: 595px;} .tr-main { border: 1px solid black; padding: 10px 5px 10px 5px;} .td-main { padding: 10px 5px 10px 5px;} .tbl-info { width: 100%;} .tbl-price { width: 100%; border: 1px solid black;} .row_titlelist { background: #EEEEEE; font-weight: bold; padding: 2px 0px 2px 0px;}');
             win.document.write('<' + '/' + 'style' + '><' + '/' + 'head' + '><' + 'body' + '>');
+            win.document.write('<' + 'center' + '>');
             win.document.write(printThis);
+            win.document.write('<' + '/' + 'center' + '>');
             win.document.write('<' + '/' + 'body' + '><' + '/' + 'html' + '>');
             win.document.close();
             win.print();
