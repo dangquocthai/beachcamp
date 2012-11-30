@@ -41,6 +41,7 @@
     <AssemblyOriginatorKeyFile>Properties\SharePoint.BeachCamp.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="NVelocity, Version=1.1.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -64,6 +65,28 @@
     <Compile Include="Extensions\SPWebExtensions.cs" />
     <Compile Include="Extensions\SPWorkflowActivationPropertiesExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Helpers\DocxGenerator\CellAttribute.cs" />
+    <Compile Include="Helpers\DocxGenerator\Charts\ChartData.cs" />
+    <Compile Include="Helpers\DocxGenerator\Charts\ChartEx.cs" />
+    <Compile Include="Helpers\DocxGenerator\Charts\Line3DChartEx.cs" />
+    <Compile Include="Helpers\DocxGenerator\Charts\LineChartData.cs" />
+    <Compile Include="Helpers\DocxGenerator\Charts\ScatterChartData.cs" />
+    <Compile Include="Helpers\DocxGenerator\Charts\ScatterChartEx.cs" />
+    <Compile Include="Helpers\DocxGenerator\ContentControlXmlMetadata.cs" />
+    <Compile Include="Helpers\DocxGenerator\CustomXmlPartCore.cs" />
+    <Compile Include="Helpers\DocxGenerator\CustomXmlPartHelper.cs" />
+    <Compile Include="Helpers\DocxGenerator\DocumentGenerationInfo.cs" />
+    <Compile Include="Helpers\DocxGenerator\DocumentGenerator.cs" />
+    <Compile Include="Helpers\DocxGenerator\DocumentMetadata.cs" />
+    <Compile Include="Helpers\DocxGenerator\DocxGenericReport.cs" />
+    <Compile Include="Helpers\DocxGenerator\ExcelReportSample.cs" />
+    <Compile Include="Helpers\DocxGenerator\MySampleReport.cs" />
+    <Compile Include="Helpers\DocxGenerator\NodeType.cs" />
+    <Compile Include="Helpers\DocxGenerator\OpenXmlElementDataContext.cs" />
+    <Compile Include="Helpers\DocxGenerator\OpenXmlHelper.cs" />
+    <Compile Include="Helpers\DocxGenerator\PlaceHolderAttribute.cs" />
+    <Compile Include="Helpers\DocxGenerator\PlaceHolderType.cs" />
+    <Compile Include="Helpers\DocxGenerator\ReportBase.cs" />
     <Compile Include="Helpers\Nvelocity\BaseClasses\NVelocityEngineBase.cs" />
     <Compile Include="Helpers\Nvelocity\Engines\NVelocityAssemblyEngine.cs" />
     <Compile Include="Helpers\Nvelocity\Engines\NVelocityFileEngine.cs" />
@@ -93,6 +116,7 @@
     <Folder Include="Features\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Libs\DocumentFormat.OpenXml.dll" />
     <Content Include="Libs\NVelocity.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
