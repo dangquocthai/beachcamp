@@ -6,6 +6,7 @@ using System.Data;
 using Microsoft.SharePoint;
 using SharePoint.BeachCamp.Util.Utilities;
 using SharePoint.BeachCamp.Util;
+using SharePoint.BeachCamp.Util.Helpers;
 
 namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
 {
@@ -37,7 +38,7 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 //    return;
                 //}
                 //Get price table
-                output = GetPrices();
+                output = BeachCampHelper.GetPrices(repeaterPrices, SPContext.Current.Web);
                 if (!string.IsNullOrEmpty(output))
                 {
                     ShowErrorMessages(output, true);
@@ -52,10 +53,11 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
             DataRowView rowView = (DataRowView)e.Item.DataItem;
             if (rowView != null)
             {
-                string period1 = GetPeriod(BeachCampFieldId.Period1);
-                string period2 = GetPeriod(BeachCampFieldId.Period2);
-                string fullDay = GetPeriod(BeachCampFieldId.FullDay);
-                string ramadan = GetPeriod(BeachCampFieldId.Ramadan);
+                var currentWeb = SPContext.Current.Web;
+                string period1 = BeachCampHelper.GetPeriod(BeachCampFieldId.Period1, currentWeb);
+                string period2 = BeachCampHelper.GetPeriod(BeachCampFieldId.Period2, currentWeb);
+                string fullDay = BeachCampHelper.GetPeriod(BeachCampFieldId.FullDay, currentWeb);
+                string ramadan = BeachCampHelper.GetPeriod(BeachCampFieldId.Ramadan, currentWeb);
 
                 string sectionPeriod = SPContext.Current.ListItem[SPBuiltInFieldId.Location].ToString();
 
@@ -127,39 +129,12 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
 
         #region Functions
 
-        private string GetPrices()
-        {
-            string output = string.Empty;
-            try
-            {
-                SPList priceList = Utility.GetListFromURL("/Lists/BCPrices", SPContext.Current.Web);
-                SPListItemCollection itemCollections = priceList.GetItems();
-                repeaterPrices.DataSource = itemCollections.GetDataTable();
-                repeaterPrices.DataBind();
-            }
-            catch (Exception ex)
-            {
-                output = ex.Message;
-            }
-
-            return output;
-        }
-
         private void ShowErrorMessages(string message, bool hideSaveButton)
         {
             lblError.Text = message;
             lblError.Visible = true;
             if (hideSaveButton)
                 btnSave.Visible = false;
-        }
-
-        private string GetPeriod(Guid period)
-        {
-            SPList list = Utility.GetListFromURL("/Lists/BCPrices", SPContext.Current.Web);
-            SPField field = list.Fields[period];
-            if (field != null)
-                return field.Title;
-            return string.Empty;
         }
 
         private string UpdateBeachCampEvent()
