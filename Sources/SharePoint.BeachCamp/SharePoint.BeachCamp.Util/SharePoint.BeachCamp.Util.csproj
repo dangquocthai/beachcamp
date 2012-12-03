@@ -60,11 +60,13 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Extensions\AssemblyExtensions.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\SPFieldCollectionExtensions.cs" />
     <Compile Include="Extensions\SPListExtensions.cs" />
     <Compile Include="Extensions\SPWebExtensions.cs" />
     <Compile Include="Extensions\SPWorkflowActivationPropertiesExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Helpers\BeachCampHelper.cs" />
     <Compile Include="Helpers\DocxGenerator\CellAttribute.cs" />
     <Compile Include="Helpers\DocxGenerator\Charts\ChartData.cs" />
     <Compile Include="Helpers\DocxGenerator\Charts\ChartEx.cs" />
