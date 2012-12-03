@@ -8,6 +8,7 @@ using Microsoft.SharePoint.Utilities;
 using SharePoint.BeachCamp.Util.Utilities;
 using System.Web.UI.WebControls;
 using System.Data;
+using SharePoint.BeachCamp.Util.Helpers;
 
 namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
 {
@@ -183,7 +184,7 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
                     txtMessage.Enabled = false;
                     btnUpdate.Visible = false;
                 }
-                GetPrices();
+                BeachCampHelper.GetPrices(repeaterPrices, SPContext.Current.Web);
             }
             catch (Exception ex)
             {
@@ -191,42 +192,16 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
             }
         }
 
-        private string GetPrices()
-        {
-            string output = string.Empty;
-            try
-            {
-                SPList priceList = Utility.GetListFromURL("/Lists/BCPrices", SPContext.Current.Web);
-                SPListItemCollection itemCollections = priceList.GetItems();
-                repeaterPrices.DataSource = itemCollections.GetDataTable();
-                repeaterPrices.DataBind();
-            }
-            catch (Exception ex)
-            {
-                output = ex.Message;
-            }
-
-            return output;
-        }
-
-        private string GetPeriod(Guid period)
-        {
-            SPList list = Utility.GetListFromURL("/Lists/BCPrices", SPContext.Current.Web);
-            SPField field = list.Fields[period];
-            if (field != null)
-                return field.Title;
-            return string.Empty;
-        }
-
         void repeaterPrices_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             DataRowView rowView = (DataRowView)e.Item.DataItem;
             if (rowView != null)
             {
-                string period1 = GetPeriod(BeachCampFieldId.Period1);
-                string period2 = GetPeriod(BeachCampFieldId.Period2);
-                string fullDay = GetPeriod(BeachCampFieldId.FullDay);
-                string ramadan = GetPeriod(BeachCampFieldId.Ramadan);
+                var currentWeb = SPContext.Current.Web;
+                string period1 = BeachCampHelper.GetPeriod(BeachCampFieldId.Period1, currentWeb);
+                string period2 = BeachCampHelper.GetPeriod(BeachCampFieldId.Period2, currentWeb);
+                string fullDay = BeachCampHelper.GetPeriod(BeachCampFieldId.FullDay, currentWeb);
+                string ramadan = BeachCampHelper.GetPeriod(BeachCampFieldId.Ramadan, currentWeb);
 
                 string sectionPeriod = CurrentWorkflowItem[SPBuiltInFieldId.Location].ToString();
 
