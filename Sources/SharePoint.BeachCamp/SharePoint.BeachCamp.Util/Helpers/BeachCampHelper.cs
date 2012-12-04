@@ -45,44 +45,62 @@ namespace SharePoint.BeachCamp.Util.Helpers
             }
         }
 
-        public static bool IsUserReserved(SPWeb web, DateTime date)
+        public static bool IsUserReserved(SPWeb web, string employeeCode, DateTime date)
         {
            string caml = string.Format(@"<Where>
                                             <And>
-                                                <Geq>
-                                                    <FieldRef Name='EventDate' />
-                                                    <Value Type='DateTime'>{0}</Value>
-                                                </Geq>
-                                                <Leq>
-                                                    <FieldRef Name='EventDate' />
-                                                    <Value Type='DateTime'>{1}</Value>
-                                                </Leq>
+                                                <Eq>
+                                                    <FieldRef Name='EmployeeCode' />
+                                                    <Value Type='Text'>{0}</Value>
+                                                </Eq>
+                                                <And>
+                                                    <Geq>
+                                                        <FieldRef Name='EventDate' />
+                                                        <Value Type='DateTime'>{1}</Value>
+                                                    </Geq>
+                                                    <Leq>
+                                                        <FieldRef Name='EventDate' />
+                                                        <Value Type='DateTime'>{2}</Value>
+                                                    </Leq>
+                                                </And>
                                             </And>
                                         </Where>
                                         <OrderBy>
                                             <FieldRef Name='EventDate' Ascending='False' />
-                                        </OrderBy>", date.FirstDayOfMonthFromDateTime().ToString("yyyy-MM-dd"), date.LastDayOfMonthFromDateTime().ToString("yyyy-MM-dd"));
+                                        </OrderBy>", employeeCode, date.FirstDayOfMonthFromDateTime().ToString("yyyy-MM-dd"), date.LastDayOfMonthFromDateTime().ToString("yyyy-MM-dd"));
 
             return IsUserReserved(web, caml);
         }
 
-        public static bool IsUserReserved(SPWeb web, DateTime date, int id)
+        public static bool IsUserReserved(SPWeb web, string employeeCode, DateTime date, int id)
         {
-            string caml = string.Format(@"<Where>
+            string caml = string.Format(@"<<Where>
                                             <And>
-                                                <Geq>
-                                                    <FieldRef Name='EventDate' />
-                                                    <Value Type='DateTime'>{0}</Value>
-                                                </Geq>
-                                                <Leq>
-                                                    <FieldRef Name='EventDate' />
-                                                    <Value Type='DateTime'>{1}</Value>
-                                                </Leq>
+                                                <Eq>
+                                                    <FieldRef Name='ID' />
+                                                    <Value Type='Counter'>{0}</Value>
+                                                </Eq>
+                                                <And>
+                                                    <Eq>
+                                                        <FieldRef Name='EmployeeCode' />
+                                                        <Value Type='Text'>{1}</Value>
+                                                    </Eq>
+                                                    <And>
+                                                        <Geq>
+                                                            <FieldRef Name='EventDate' />
+                                                            <Value Type='DateTime'>{2}</Value>
+                                                        </Geq>
+                                                        <Leq>
+                                                            <FieldRef Name='EventDate' />
+                                                            <Value Type='DateTime'>{3}</Value>
+                                                        </Leq>
+                                                    </And>
+                                                </And>
                                             </And>
                                         </Where>
                                         <OrderBy>
                                             <FieldRef Name='EventDate' Ascending='False' />
-                                        </OrderBy>", date.FirstDayOfMonthFromDateTime().ToString("yyyy-MM-dd"), date.LastDayOfMonthFromDateTime().ToString("yyyy-MM-dd"));
+                                        </OrderBy>", id, employeeCode, date.FirstDayOfMonthFromDateTime().ToString("yyyy-MM-dd"), date.LastDayOfMonthFromDateTime().ToString("yyyy-MM-dd"));
 
             return IsUserReserved(web, caml);
         }
