@@ -6,6 +6,7 @@ using SharePoint.BeachCamp.Util.Extensions;
 using SharePoint.BeachCamp.Util.Helpers;
 using SharePoint.BeachCamp.Util.Models;
 using SharePoint.BeachCamp.Util.Utilities;
+using Microsoft.SharePoint.Navigation;
 
 namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
 {
@@ -27,6 +28,7 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
             try
             {
                 ProvisionWebParts(web);
+                AddNavigation(web);
             }
             catch (Exception ex)
             {
@@ -37,9 +39,18 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
 
         // Uncomment the method below to handle the event raised before a feature is deactivated.
 
-        //public override void FeatureDeactivating(SPFeatureReceiverProperties properties)
-        //{
-        //}
+        public override void FeatureDeactivating(SPFeatureReceiverProperties properties)
+        {
+            SPWeb web = (SPWeb)properties.Feature.Parent;
+            try
+            {
+                RemoveNavigation(web);
+            }
+            catch (Exception ex)
+            {
+                Utility.LogError(ex.Message, Util.BeachCampFeatures.BeachCamp);
+            }
+        }
 
 
         // Uncomment the method below to handle the event raised after a feature has been installed.
@@ -71,6 +82,50 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
             var webpartPages = SerializationHelper.DeserializeFromXml<WebpartPageDefinitionCollection>(xml);
             WebPartHelper.ProvisionWebpart(web, webpartPages);
         }
+
+        private void AddNavigation(SPWeb web)
+        {
+            web.AllowUnsafeUpdates = true;
+            if (!web.Navigation.UseShared)
+            {
+                SPNavigationNodeCollection topNavigationNodes = web.Navigation.TopNavigationBar;
+
+                //You can also edit the Quick Launch the same way  
+                //SPNavigationNodeCollection topNavigationNodes = web.Navigation.QuickLaunch;  
+
+                SPNavigationNode objItem = new SPNavigationNode("Beach Camp Reservation", "/sites/beachcamp/SitePages/BeachCampReservation.aspx", false);
+                //topNavigationNodes.AddAsFirst(objItem);
+                topNavigationNodes.AddAsLast(objItem);
+            }
+            web.Update();
+            web.AllowUnsafeUpdates = false;   
+        }
+
+
+        private void RemoveNavigation(SPWeb web)
+        {
+            try
+            {
+                web.AllowUnsafeUpdates = true;
+                if (!web.Navigation.UseShared)
+                {
+                    SPNavigationNodeCollection topNavigationNodes = web.Navigation.TopNavigationBar;
+
+                    //You can also edit the Quick Launch the same way  
+                    //SPNavigationNodeCollection topNavigationNodes = web.Navigation.QuickLaunch;  
+
+                    SPNavigationNode objItem = topNavigationNodes.Navigation.GetNodeByUrl("/sites/beachcamp/SitePages/BeachCampReservation.aspx");
+                    //topNavigationNodes.AddAsFirst(objItem);
+                    topNavigationNodes.Delete(objItem);
+                }
+                web.Update();
+                web.AllowUnsafeUpdates = false;
+            }
+            catch
+            {
+            }
+        }
+
         #endregion Functions
     }
 }
