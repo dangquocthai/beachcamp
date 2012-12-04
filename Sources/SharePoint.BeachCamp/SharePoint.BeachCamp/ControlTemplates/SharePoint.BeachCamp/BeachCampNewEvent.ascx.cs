@@ -169,6 +169,8 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
 
                 DateTime beachCampDate = DateTime.Parse(ffEventDate.Value.ToString());
 
+                //BeachCampHelper.IsUserReserved(SPContext.Current.Web, txtEmployeeCode.Text.TrimEnd(), beachCampDate);
+
                 foreach (RepeaterItem prices in repeaterPrices.Items)
                 {
                     CheckBox chkPeriod1 = (CheckBox)prices.FindControl("chkPeriod1");
