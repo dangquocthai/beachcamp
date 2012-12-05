@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePoint.BeachCamp", "Sha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePoint.BeachCamp.Util", "SharePoint.BeachCamp.Util\SharePoint.BeachCamp.Util.csproj", "{2AA028FD-D27B-4DA5-BFC8-27F61FC5EFD9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePoint.BeachCamp.Setup", "SharePoint.BeachCamp.Setup\SharePoint.BeachCamp.Setup.csproj", "{FC2A4FC4-23EE-4EFB-AC09-25102C8EC133}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{2AA028FD-D27B-4DA5-BFC8-27F61FC5EFD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AA028FD-D27B-4DA5-BFC8-27F61FC5EFD9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2AA028FD-D27B-4DA5-BFC8-27F61FC5EFD9}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{FC2A4FC4-23EE-4EFB-AC09-25102C8EC133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC2A4FC4-23EE-4EFB-AC09-25102C8EC133}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC2A4FC4-23EE-4EFB-AC09-25102C8EC133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC2A4FC4-23EE-4EFB-AC09-25102C8EC133}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

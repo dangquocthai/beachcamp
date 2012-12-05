@@ -1,0 +1,5 @@
+﻿;!@Install@!UTF-8!
+Title="AAAAAAAAAA"
+
+RunProgram="Debug\Setup.exe"
+;!@InstallEnd@!
