@@ -237,6 +237,7 @@
     </Fields>
     
     <Views>
+      
       <View BaseViewID="0" Type="HTML" RecurrenceRowset="TRUE" TabularView="FALSE" MobileView="TRUE">
         <Toolbar Type="Standard" />
         <XslLink>main.xsl</XslLink>
@@ -281,6 +282,7 @@
           </OrderBy>
         </Query>
       </View>
+      
       <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,userinfo_schema_alleventsview;" MobileView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/events.png" Url="AllItems.aspx" DefaultBaseView="TRUE">
         <Toolbar Type="Standard" />
         <XslLink Default="TRUE">main.xsl</XslLink>
@@ -336,8 +338,12 @@
             <FieldRef Name="EventDate">
             </FieldRef>
           </OrderBy>
+          <GroupBy Collapse="FALSE" GroupLimit="30">
+            <FieldRef Name="_ModerationStatus"/>
+          </GroupBy>
         </Query>
       </View>
+      
       <View BaseViewID="2" Type="CALENDAR" WebPartZoneID="Main" DisplayName="$Resources:core,userinfo_schema_calendarview;" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/events.png" TabularView="FALSE" Url="calendar.aspx" RecurrenceRowset="TRUE" DefaultView="TRUE" MobileUrl="_layouts/mobile/viewdaily.aspx">
         <Toolbar Type="Standard" />
         <ParameterBindings>
@@ -495,6 +501,310 @@
         </Query>
         <RowLimit Paged="TRUE">100</RowLimit>
       </View>
+
+      <!--<View BaseViewID="4" Type="CALENDAR" WebPartZoneID="Main" DisplayName="Approved Reservation" MobileView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/events.png" TabularView="FALSE" Url="DraftReservation.aspx" RecurrenceRowset="TRUE" DefaultView="TRUE" MobileUrl="_layouts/mobile/viewdaily.aspx">
+        <Toolbar Type="Standard" />
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+        <ViewFields>
+
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+
+          <FieldRef Name="EmployeeCode">
+          </FieldRef>
+
+          <FieldRef Name="Department">
+          </FieldRef>
+
+          <FieldRef Name="Section">
+          </FieldRef>
+
+          <FieldRef Name="OfficeTel">
+          </FieldRef>
+
+          <FieldRef Name="Mobile">
+          </FieldRef>
+
+          <FieldRef Name="EventDate">
+          </FieldRef>
+
+          <FieldRef Name="RequireDay">
+          </FieldRef>
+
+          <FieldRef Name="Location">
+          </FieldRef>
+
+          <FieldRef Name="TotalPrice">
+          </FieldRef>
+
+          <FieldRef Name="IsPaid">
+          </FieldRef>
+
+          --><!--<FieldRef Name="EndDate">
+          </FieldRef>--><!--
+
+          --><!--<FieldRef Name="fRecurrence" />--><!--
+
+          --><!--<FieldRef Name="EventType" />--><!--
+
+          --><!--<FieldRef Name="Attachments">
+          </FieldRef>--><!--
+
+          --><!--<FieldRef Name="WorkspaceLink" />--><!--
+
+          --><!--<FieldRef Name="Description" />--><!--
+
+          --><!--<FieldRef Name="Workspace">
+          </FieldRef>--><!--
+
+          --><!--<FieldRef Name="MasterSeriesItemID">
+          </FieldRef>--><!--
+
+          --><!--<FieldRef Name="fAllDayEvent">
+          </FieldRef>--><!--
+
+        </ViewFields>
+        <ViewData>
+          <FieldRef Name="Title" Type="CalendarMonthTitle">
+          </FieldRef>
+          <FieldRef Name="Title" Type="CalendarWeekTitle">
+          </FieldRef>
+          <FieldRef Name="Location" Type="CalendarWeekLocation">
+          </FieldRef>
+          <FieldRef Name="Title" Type="CalendarDayTitle">
+          </FieldRef>
+          <FieldRef Name="Location" Type="CalendarDayLocation">
+          </FieldRef>
+        </ViewData>
+        <Query>
+          <Where>
+            <And>
+              <Eq>
+                <FieldRef Name='_ModerationStatus' />
+                <Value Type='ModStat'>Approved</Value>
+              </Eq>
+              <DateRangesOverlap>
+                <FieldRef Name="EventDate">
+                </FieldRef>
+                <FieldRef Name="EndDate">
+                </FieldRef>
+                <FieldRef Name="RecurrenceID">
+                </FieldRef>
+                <Value Type="DateTime">
+                  <Month>
+                  </Month>
+                </Value>
+              </DateRangesOverlap>
+            </And>
+          </Where>
+        </Query>
+      </View>
+
+      <View BaseViewID="5" Type="CALENDAR" WebPartZoneID="Main" DisplayName="Pending Reservation" MobileView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/events.png" TabularView="FALSE" Url="PendingReservation.aspx" RecurrenceRowset="TRUE" DefaultView="TRUE" MobileUrl="_layouts/mobile/viewdaily.aspx">
+        <Toolbar Type="Standard" />
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+        <ViewFields>
+
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+
+          <FieldRef Name="EmployeeCode">
+          </FieldRef>
+
+          <FieldRef Name="Department">
+          </FieldRef>
+
+          <FieldRef Name="Section">
+          </FieldRef>
+
+          <FieldRef Name="OfficeTel">
+          </FieldRef>
+
+          <FieldRef Name="Mobile">
+          </FieldRef>
+
+          <FieldRef Name="EventDate">
+          </FieldRef>
+
+          <FieldRef Name="RequireDay">
+          </FieldRef>
+
+          <FieldRef Name="Location">
+          </FieldRef>
+
+          <FieldRef Name="TotalPrice">
+          </FieldRef>
+
+          <FieldRef Name="IsPaid">
+          </FieldRef>
+
+          --><!--<FieldRef Name="EndDate">
+          </FieldRef>--><!--
+
+          --><!--<FieldRef Name="fRecurrence" />--><!--
+
+          --><!--<FieldRef Name="EventType" />--><!--
+
+          --><!--<FieldRef Name="Attachments">
+          </FieldRef>--><!--
+
+          --><!--<FieldRef Name="WorkspaceLink" />--><!--
+
+          --><!--<FieldRef Name="Description" />--><!--
+
+          --><!--<FieldRef Name="Workspace">
+          </FieldRef>--><!--
+
+          --><!--<FieldRef Name="MasterSeriesItemID">
+          </FieldRef>--><!--
+
+          --><!--<FieldRef Name="fAllDayEvent">
+          </FieldRef>--><!--
+
+        </ViewFields>
+        <ViewData>
+          <FieldRef Name="Title" Type="CalendarMonthTitle">
+          </FieldRef>
+          <FieldRef Name="Title" Type="CalendarWeekTitle">
+          </FieldRef>
+          <FieldRef Name="Location" Type="CalendarWeekLocation">
+          </FieldRef>
+          <FieldRef Name="Title" Type="CalendarDayTitle">
+          </FieldRef>
+          <FieldRef Name="Location" Type="CalendarDayLocation">
+          </FieldRef>
+        </ViewData>
+        <Query>
+          <Where>
+            <And>
+              <Eq>
+                <FieldRef Name='_ModerationStatus' />
+                <Value Type='ModStat'>Pending</Value>
+              </Eq>
+              <DateRangesOverlap>
+                <FieldRef Name="EventDate">
+                </FieldRef>
+                <FieldRef Name="EndDate">
+                </FieldRef>
+                <FieldRef Name="RecurrenceID">
+                </FieldRef>
+                <Value Type="DateTime">
+                  <Month>
+                  </Month>
+                </Value>
+              </DateRangesOverlap>
+            </And>
+          </Where>
+        </Query>
+      </View>
+
+      <View BaseViewID="6" Type="CALENDAR" WebPartZoneID="Main" DisplayName="Rejected Reservation" MobileView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/events.png" TabularView="FALSE" Url="RejectedReservation.aspx" RecurrenceRowset="TRUE" DefaultView="TRUE" MobileUrl="_layouts/mobile/viewdaily.aspx">
+        <Toolbar Type="Standard" />
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+        <ViewFields>
+
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+
+          <FieldRef Name="EmployeeCode">
+          </FieldRef>
+
+          <FieldRef Name="Department">
+          </FieldRef>
+
+          <FieldRef Name="Section">
+          </FieldRef>
+
+          <FieldRef Name="OfficeTel">
+          </FieldRef>
+
+          <FieldRef Name="Mobile">
+          </FieldRef>
+
+          <FieldRef Name="EventDate">
+          </FieldRef>
+
+          <FieldRef Name="RequireDay">
+          </FieldRef>
+
+          <FieldRef Name="Location">
+          </FieldRef>
+
+          <FieldRef Name="TotalPrice">
+          </FieldRef>
+
+          <FieldRef Name="IsPaid">
+          </FieldRef>
+
+          --><!--<FieldRef Name="EndDate">
+          </FieldRef>--><!--
+
+          --><!--<FieldRef Name="fRecurrence" />--><!--
+
+          --><!--<FieldRef Name="EventType" />--><!--
+
+          --><!--<FieldRef Name="Attachments">
+          </FieldRef>--><!--
+
+          --><!--<FieldRef Name="WorkspaceLink" />--><!--
+
+          --><!--<FieldRef Name="Description" />--><!--
+
+          --><!--<FieldRef Name="Workspace">
+          </FieldRef>--><!--
+
+          --><!--<FieldRef Name="MasterSeriesItemID">
+          </FieldRef>--><!--
+
+          --><!--<FieldRef Name="fAllDayEvent">
+          </FieldRef>--><!--
+
+        </ViewFields>
+        <ViewData>
+          <FieldRef Name="Title" Type="CalendarMonthTitle">
+          </FieldRef>
+          <FieldRef Name="Title" Type="CalendarWeekTitle">
+          </FieldRef>
+          <FieldRef Name="Location" Type="CalendarWeekLocation">
+          </FieldRef>
+          <FieldRef Name="Title" Type="CalendarDayTitle">
+          </FieldRef>
+          <FieldRef Name="Location" Type="CalendarDayLocation">
+          </FieldRef>
+        </ViewData>
+        <Query>
+          <Where>
+            <And>
+              <Eq>
+                <FieldRef Name='_ModerationStatus' />
+                <Value Type='ModStat'>Rejected</Value>
+              </Eq>
+              <DateRangesOverlap>
+                <FieldRef Name="EventDate">
+                </FieldRef>
+                <FieldRef Name="EndDate">
+                </FieldRef>
+                <FieldRef Name="RecurrenceID">
+                </FieldRef>
+                <Value Type="DateTime">
+                  <Month>
+                  </Month>
+                </Value>
+              </DateRangesOverlap>
+            </And>
+          </Where>
+        </Query>
+      </View>-->
+      
     </Views>
     
     <Forms>

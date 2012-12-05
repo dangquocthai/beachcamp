@@ -93,9 +93,12 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
                 //You can also edit the Quick Launch the same way  
                 //SPNavigationNodeCollection topNavigationNodes = web.Navigation.QuickLaunch;  
 
-                SPNavigationNode objItem = new SPNavigationNode("Beach Camp Reservation", "/sites/beachcamp/SitePages/BeachCampReservation.aspx", false);
-                //topNavigationNodes.AddAsFirst(objItem);
+                SPNavigationNode objItem = new SPNavigationNode("Beach Camp Reservation", web.ServerRelativeUrl.TrimEnd('/') + "/SitePages/BeachCampReservation.aspx", false);
                 topNavigationNodes.AddAsLast(objItem);
+                SPNavigationNode objItemChild = new SPNavigationNode("Management Reservation", web.ServerRelativeUrl.TrimEnd('/') + "/Lists/BCCalendar/AllItems.aspx", false);
+                objItem.Children.AddAsFirst(objItemChild);
+                
+                
             }
             web.Update();
             web.AllowUnsafeUpdates = false;   
