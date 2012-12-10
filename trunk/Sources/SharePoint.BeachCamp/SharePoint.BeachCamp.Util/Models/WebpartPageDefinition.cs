@@ -21,11 +21,14 @@ namespace SharePoint.BeachCamp.Util.Models
 
         public string PageUrl { get; set; }
         public bool Overwrite { get; set; }
+
         [XmlElement("Webparts")]
         public List<WebpartDefinition> Webparts { get; set; }
-        public WebpartPageDefinition() {
+
+        public WebpartPageDefinition() 
+        {
             Webparts = new List<WebpartDefinition>();
-    }
+        }
 
 
         public string Title { get; set; }
@@ -39,6 +42,7 @@ namespace SharePoint.BeachCamp.Util.Models
     [Serializable]
     [XmlInclude(typeof(XSLTListViewWP))]
     [XmlInclude(typeof(DefaultWP))]
+    [XmlInclude(typeof(ListViewWP))]
     [XmlRoot("Webpart")]
     public class WebpartDefinition
     {
@@ -75,10 +79,20 @@ namespace SharePoint.BeachCamp.Util.Models
         {
 
             var type = webpart.GetType();
-            var pi = type.GetProperty(property);
+            System.Reflection.PropertyInfo pi = type.GetProperty(property);
             if (pi != null)
             {
-                Object objValue = Convert.ChangeType(value, pi.PropertyType);
+
+                Object objValue = null;
+
+                if (System.Reflection.PropertyInfo.Equals(pi.PropertyType.ToString(), "System.Web.UI.WebControls.WebParts.PartChromeType"))
+                {
+                    objValue = System.Web.UI.WebControls.WebParts.PartChromeType.None;
+                }
+                else
+                {
+                    objValue = Convert.ChangeType(value, pi.PropertyType);
+                }
 
                 pi.SetValue(webpart, objValue, null);
             }
@@ -108,8 +122,9 @@ namespace SharePoint.BeachCamp.Util.Models
         [XmlAttribute]
         public string Type { get; set; }
     }
-    [Serializable]
 
+
+    [Serializable]
     public class XSLTListViewWP : WebpartDefinition
     {
         public string SiteUrl { get; set; }
@@ -246,4 +261,106 @@ namespace SharePoint.BeachCamp.Util.Models
         }
 
     }
+
+    [Serializable]
+    public class ListViewWP : WebpartDefinition
+    {
+        public string SiteUrl { get; set; }
+        public string ListName { get; set; }
+        public string ListUrl { get; set; }
+        public string ViewName { get; set; }
+        public bool CreateDefaultWP { get; set; }
+        public override WebPart CreateWebPart(SPWeb web, Microsoft.SharePoint.WebPartPages.SPLimitedWebPartManager webPartManager)
+        {
+            SPList list = GetList(web, ListUrl, ListName);
+
+            if (list == null)
+                return null;
+
+            Microsoft.SharePoint.WebPartPages.ListViewWebPart webPart = new Microsoft.SharePoint.WebPartPages.ListViewWebPart();
+            webPart.ListId = list.ID;
+            webPart.Title = Title;
+            webPart.WebId = list.ParentWeb.ID;
+
+
+            //webPart.ChromeType = System.Web.UI.WebControls.WebParts.PartChromeType.TitleAndBorder;
+            SPView view = GetView(list, ViewName);
+            webPart.ViewGuid = view.ID.ToString();
+            webPart.ListViewXml = view.GetViewXml();
+
+            webPart.ExportMode = WebPartExportMode.All;
+            base.UpdateProperties(webPart);
+            return webPart;
+        }
+
+
+        private SPView GetView(SPList list, string ViewName)
+        {
+            if (string.IsNullOrEmpty(ViewName)) return list.DefaultView;
+
+            return list.Views[ViewName];
+        }
+
+        private SPList GetList(SPWeb web, string listUrl, string listName)
+        {
+            SPList currentList = null;
+            if (!string.IsNullOrEmpty(listName))
+            {
+                currentList = web.Lists.Cast<SPList>().FirstOrDefault(p => p.Title == listName);
+            }
+
+            if (currentList == null && !string.IsNullOrEmpty(listUrl))
+            {
+                string url = string.Format("{0}/{1}", web.ServerRelativeUrl.TrimEnd('/'), listUrl.TrimStart('/'));
+                try
+                {
+                    currentList = web.GetList(url);
+                }
+                catch
+                {
+                    currentList = null;
+                }
+
+            }
+
+            if (currentList == null)
+            {
+                string url = string.Format("{0}/{1}", web.Site.RootWeb.ServerRelativeUrl.TrimEnd('/'), listUrl.TrimStart('/'));
+                currentList = web.Site.RootWeb.GetList(url);
+            }
+
+            return currentList;
+
+        }
+
+        private SPList GetList(string siteUrl, string listUrl, string listName)
+        {
+            SPList currentList = null;
+            try
+            {
+                using (SPSite site = new SPSite(siteUrl))
+                {
+                    using (SPWeb web = site.OpenWeb())
+                    {
+                        if (!string.IsNullOrEmpty(listName))
+                        {
+                            currentList = web.Lists.Cast<SPList>().FirstOrDefault(p => p.Title == listName);
+                        }
+
+                        if (currentList == null && !string.IsNullOrEmpty(listUrl))
+                        {
+                            listUrl = string.Format("{0}/{1}", web.ServerRelativeUrl.TrimEnd('/'), listUrl.TrimStart('/'));
+                            currentList = web.GetList(listUrl);
+                        }
+                        return currentList;
+                    }
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+    }       
 }
