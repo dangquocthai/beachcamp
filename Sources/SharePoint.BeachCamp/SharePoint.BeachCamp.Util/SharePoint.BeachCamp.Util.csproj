@@ -64,6 +64,7 @@
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\SPFieldCollectionExtensions.cs" />
     <Compile Include="Extensions\SPListExtensions.cs" />
+    <Compile Include="Extensions\SPListItemExtensions.cs" />
     <Compile Include="Extensions\SPWebExtensions.cs" />
     <Compile Include="Extensions\SPWorkflowActivationPropertiesExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Helpers\DocxGenerator\Charts\ScatterChartData.cs" />
     <Compile Include="Helpers\DocxGenerator\Charts\ScatterChartEx.cs" />
     <Compile Include="Helpers\DocxGenerator\ContentControlXmlMetadata.cs" />
+    <Compile Include="Helpers\DocxGenerator\BeachCampReport.cs" />
     <Compile Include="Helpers\DocxGenerator\CustomXmlPartCore.cs" />
     <Compile Include="Helpers\DocxGenerator\CustomXmlPartHelper.cs" />
     <Compile Include="Helpers\DocxGenerator\DocumentGenerationInfo.cs" />
