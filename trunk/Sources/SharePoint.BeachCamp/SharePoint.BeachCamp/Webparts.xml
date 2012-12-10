@@ -3,15 +3,48 @@
   <WebpartPageDefinition>
     <PageUrl>/SitePages/BeachCampReservation.aspx</PageUrl>
 
-    <Webparts xsi:type="DefaultWP">
-      <Title>Timesheet của tôi</Title>
+    <Webparts xsi:type="ListViewWP">
+      <Title></Title>
+      <ZoneId>Main</ZoneId>
+      <Index>0</Index>
+      <Hidden>false</Hidden>
+      <AllowDuplicate>true</AllowDuplicate>
+      <ListName>Beach Camp Reservation</ListName>
+      <ListUrl>/Lists/BCCalendar</ListUrl>
+      <ViewName>Calendar</ViewName>
+      <CreateDefaultWP>true</CreateDefaultWP>
+      <Properties>
+        <Add Name="Title" Value="Beach Camp Reservation" Type="string" />
+        <!--<Add Name="ChromeType" Value="2" Type="chrometype" />-->
+      </Properties>
+    </Webparts>
+
+    <Webparts xsi:type="ListViewWP">
+      <Title>Beach Camp Reservation</Title>
       <ZoneId>Main</ZoneId>
       <Index>1</Index>
+      <Hidden>false</Hidden>
+      <AllowDuplicate>true</AllowDuplicate>
+      <ListName>Beach Camp Reservation</ListName>
+      <ListUrl>/Lists/BCCalendar</ListUrl>
+      <ViewName>Calendar</ViewName>
+      <CreateDefaultWP>true</CreateDefaultWP>
+      <Properties>
+        <Add Name="Title" Value="WPQ2" Type="string" />
+        <Add Name="ChromeType" Value="2" Type="chrometype" />
+      </Properties>
+    </Webparts>
+
+    <Webparts xsi:type="DefaultWP">
+      <Title></Title>
+      <ZoneId>Main</ZoneId>
+      <Index>2</Index>
       <Hidden>true</Hidden>
       <AllowDuplicate>false</AllowDuplicate>
       <WebpartName>BeachCampViewer.webpart</WebpartName>
       <Properties>
-        <Add Name="Title" Value="Beach Camp Reservation" Type="string" />
+        <Add Name="Title" Value="Beach Camp Viewer" Type="string" />
+        <Add Name="Hidden" Value="true" Type="string" />
       </Properties>
     </Webparts>
   </WebpartPageDefinition>

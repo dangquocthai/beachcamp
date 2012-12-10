@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BB1F664B-9266-4fd6-B973-E1E44974B511};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <SandboxedSolution>False</SandboxedSolution>
-    <ActiveDeploymentConfiguration>Default</ActiveDeploymentConfiguration>
+    <ActiveDeploymentConfiguration>No Activation</ActiveDeploymentConfiguration>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,6 +41,9 @@
     <AssemblyOriginatorKeyFile>Properties\SharePoint.BeachCamp.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>E:\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="microsoft.sharepoint.WorkflowActions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\ISAPI\microsoft.sharepoint.WorkflowActions.dll</HintPath>
@@ -140,6 +143,7 @@
     <None Include="Images\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b46a8b12-6299-4515-8912-9cd7a5e66392}</SharePointProjectItemId>
     </None>
+    <None Include="Layouts\SharePoint.BeachCamp\BeachCampReservation.docx" />
     <None Include="ListInstances\BeachCampTask\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{748bf8b7-5520-40fe-b937-abf202cce299}</SharePointProjectItemId>
     </None>
@@ -171,6 +175,12 @@
     <None Include="ListInstances\EmailTemplates\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2085b108-5315-43d7-828b-b87b81178978}</SharePointProjectItemId>
     </None>
+    <None Include="ListInstances\ListDefinition1\ListInstance1\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{de23a826-785c-4456-ae34-bbf7b81464b1}</SharePointProjectItemId>
+    </None>
+    <None Include="ListInstances\ListDefinition1\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{85daafed-6f60-464c-8660-f34409172081}</SharePointProjectItemId>
+    </None>
     <None Include="Properties\SharePoint.BeachCamp.snk" />
     <None Include="Package\Package.package">
       <PackageId>{09e80497-3297-4e4a-9494-d10b27df9c62}</PackageId>
@@ -188,7 +198,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="BeachCampWorkflow\BCWorkflowAssociationForm.aspx" />
+    <Content Include="BeachCampWorkflow\BCWorkflowAssociationForm.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="ContentTypes\BeachCampTaskContentType\Elements.xml" />
     <Content Include="CustomActions\BeachCampRegistration\Elements.xml" />
     <Content Include="Layouts\SharePoint.BeachCamp\BeachCampExport.aspx">
@@ -231,10 +243,14 @@
     <Content Include="ListInstances\BCPrices\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="ListInstances\BeachCampTask\Schema.xml" />
     <Content Include="ListInstances\EmailTemplates\Elements.xml" />
     <Content Include="ListInstances\EmailTemplates\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="ListInstances\ListDefinition1\Elements.xml" />
+    <Content Include="ListInstances\ListDefinition1\ListInstance1\Elements.xml" />
+    <Content Include="ListInstances\ListDefinition1\Schema.xml" />
     <Content Include="Modules\BeachCampPages\Elements.xml" />
     <Content Include="Modules\BeachCampPages\BeachCampReservation.aspx">
       <SubType>ASPXCodeBehind</SubType>

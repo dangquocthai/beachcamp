@@ -29,13 +29,16 @@
             <template_inputformcontrols>
          <wssuc:InputFormControl ID="InputFormControl1" runat="server">
 				 <Template_Control>
-                     
-				   <SharePoint:PeopleEditor runat="server" SelectionSet="User" AllowEmpty="false" ID="ppGS" />
+                    <label>General Supervisor</label><br />
+				    <SharePoint:PeopleEditor runat="server" SelectionSet="User" CssClass="ms-usereditor" MultiSelect="false" AllowEmpty="false" ID="ppGS" />
+                    <asp:Label ID="lblError" runat="server" Visible ="false" ForeColor="Red" Font-Bold="true" Text="lblError"></asp:Label><br />
 
-                   <label>Task Title</label><br />
-                     <asp:TextBox runat="server" CssClass="ms-long" ID="txtTitle" /> <br />
-                     <asp:Label Text="Message" runat="server" /><br />
-                     <asp:TextBox runat="server" ID="txtMessage" Columns="40" Rows="10" TextMode="MultiLine" CssClass="ms-long"/>
+                    <label>Task Title</label><br />
+                    <asp:TextBox runat="server" CssClass="ms-long" ID="txtTitle" /> <br />
+
+                    <label>Message</label><br />
+                    <asp:TextBox runat="server" ID="txtMessage" Columns="40" Rows="10" TextMode="MultiLine" CssClass="ms-long"/>
+
 				 </Template_Control>
                  </wssuc:InputFormControl>
 	   </template_inputformcontrols>

@@ -20,10 +20,14 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
             {
                 ribbon.TrimById("Ribbon.ListForm.Edit.Commit");
             }
-
+            ffTitle.ControlMode = Microsoft.SharePoint.WebControls.SPControlMode.Display;
+            ffEmployeeCode.ControlMode = Microsoft.SharePoint.WebControls.SPControlMode.Display;
             repeaterPrices.ItemDataBound += new RepeaterItemEventHandler(repeaterPrices_ItemDataBound);
             btnSave.Click += new EventHandler(btnSave_Click);
+            btnSaveAndSubmit.Click += new EventHandler(btnSaveAndSubmit_Click);
         }
+
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -48,6 +52,47 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
         }
 
         #region Events
+
+
+        void btnSaveAndSubmit_Click(object sender, EventArgs e)
+        {
+            if (!this.Page.IsValid)
+                return;
+
+            string output = UpdateBeachCampEvent(TaskResult.Pending);
+
+            if (!string.IsNullOrEmpty(output))
+            {
+                ShowErrorMessages(output, false);
+                return;
+            }
+
+            this.Page.Response.Clear();
+            this.Page.Response.Write(
+            string.Format(System.Globalization.CultureInfo.InvariantCulture, @"<script type='text/javascript'> window.frameElement.commonModalDialogClose(1, '{0}');</script>", ""));
+            this.Page.Response.End();
+        }
+
+
+        protected void SectionPeriod_OnCheckedChanged(object sender, EventArgs e)
+        {
+            foreach (RepeaterItem item in repeaterPrices.Items)
+            {
+                CheckBox chkPeriod1 = (CheckBox)item.FindControl("chkPeriod1");
+                chkPeriod1.Checked = false;
+
+                CheckBox chkPeriod2 = (CheckBox)item.FindControl("chkPeriod2");
+                chkPeriod2.Checked = false;
+
+                CheckBox chkFullDay = (CheckBox)item.FindControl("chkFullDay");
+                chkFullDay.Checked = false;
+
+                CheckBox chkRamadan = (CheckBox)item.FindControl("chkRamadan");
+                chkRamadan.Checked = false;
+            }
+            ((CheckBox)sender).Checked = true;
+        }
+
         void repeaterPrices_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             DataRowView rowView = (DataRowView)e.Item.DataItem;
@@ -111,7 +156,7 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
             if (!this.Page.IsValid)
                 return;
 
-            string output = UpdateBeachCampEvent();
+            string output = UpdateBeachCampEvent(TaskResult.Draft);
 
             if (!string.IsNullOrEmpty(output))
             {
@@ -137,7 +182,7 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 btnSave.Visible = false;
         }
 
-        private string UpdateBeachCampEvent()
+        private string UpdateBeachCampEvent(TaskResult status)
         {
             string output = string.Empty;
             try
@@ -201,6 +246,9 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 item["RequireDay"] = ffRequireDay.Value;
                 item["TotalPrice"] = totalPrice;
                 item[SPBuiltInFieldId.Location] = sectionPeriod.TrimEnd('|');
+
+                item["GSApproval"] = status.ToString();
+
                 item.Update();
             }
             catch (Exception ex)

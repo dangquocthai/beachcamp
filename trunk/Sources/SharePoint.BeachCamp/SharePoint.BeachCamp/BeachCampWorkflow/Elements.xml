@@ -6,8 +6,8 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
 
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Workflow
-     Name="SharePoint.BeachCamp - BeachCampWorkflow"
-     Description="My SharePoint Workflow"
+     Name="[BeachCamp] - Beach Camp Workflow"
+     Description="[BeachCamp] - Beach Camp Workflow"
      Id="91418941-ddf2-4059-b67a-472d6c5fc48e"
      CodeBesideClass="SharePoint.BeachCamp.BeachCampWorkflow.BeachCampWorkflow"
      CodeBesideAssembly="$assemblyname$" 

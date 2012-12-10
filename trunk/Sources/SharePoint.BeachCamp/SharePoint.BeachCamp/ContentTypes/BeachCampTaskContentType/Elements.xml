@@ -3,9 +3,9 @@
   <!-- Parent ContentType: Task (0x0108) -->
   <ContentType ID="0x01080100e6fa232bca3b4b25b9df4b2e3791d3cc"
                
-               Name="SharePoint.BeachCamp - BeachCampTaskContentType"
-               Group="Custom Content Types"
-               Description="My Content Type"
+               Name="[BeachCamp] - Beach Camp Task Item"
+               Group="[BeachCamp]"
+               Description="[BeachCamp] - Beach Camp Task Item"
                Inherits="FALSE"
                >
     <FieldRefs>

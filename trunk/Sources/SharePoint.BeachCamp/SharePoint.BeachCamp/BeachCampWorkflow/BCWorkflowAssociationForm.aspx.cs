@@ -8,6 +8,8 @@ using Microsoft.SharePoint.WebControls;
 using Microsoft.SharePoint.Workflow;
 using SharePoint.BeachCamp.Util.Helpers;
 using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
 
 namespace SharePoint.BeachCamp.BeachCampWorkflow
 {
@@ -75,6 +77,17 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
             // Optionally, add code here to perform additional steps before associating your workflow
             try
             {
+                //Is valid user
+                ArrayList peEntities = ppGS.ResolvedEntities;
+                PickerEntity pickEn = (PickerEntity)peEntities[0];
+                SPUser user = Web.EnsureUser(pickEn.Key);
+                SPGroup reservationAdminGroup = Web.Groups["Beach Camp General Supervisor"];
+                if (!IsValidUser(user, reservationAdminGroup))
+                {
+                    lblError.Text = "General suppervisor is not valid. Please checked !!!";
+                    lblError.Visible = true;
+                    return;
+                }
                 CreateTaskList();
                 CreateHistoryList();
                 HandleAssociateWorkflow();
@@ -92,6 +105,12 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
         }
 
         #region Workflow Association Code - Typically, the following code should not be changed
+
+        private bool IsValidUser(SPUser spUser, SPGroup spGroup)
+        {
+            return spUser.Groups.Cast<SPGroup>()
+              .Any(g => g.ID == spGroup.ID);
+        }
 
         private AssociationParams associationParams;
 

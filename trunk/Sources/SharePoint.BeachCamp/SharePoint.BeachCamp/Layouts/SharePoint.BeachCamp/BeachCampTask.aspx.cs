@@ -111,10 +111,13 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
 
         private void ClosePopup()
         {
-            Context.Response.Clear();
-            Context.Response.Write("<script type='text/javascript'>window.frameElement.commitPopup();</script>");
-            Context.Response.Flush();
-            Context.Response.End();
+            //Context.Response.Clear();
+            //Context.Response.Write("<script type='text/javascript'>window.frameElement.commitPopup();</script>");
+            //Context.Response.Flush();
+            //Context.Response.End();
+            this.Page.Response.Clear();
+            this.Page.Response.Write(string.Format(System.Globalization.CultureInfo.InvariantCulture, @"<script type='text/javascript'> window.frameElement.commonModalDialogClose(1, '{0}');</script>", ""));
+            this.Page.Response.End();
         }
 
         protected bool IsDialog
@@ -172,13 +175,13 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
                 literalRequireDay.Text = item["RequireDay"].ToString();
                 literalEventDate.Text = item["EventDate"].ToString();
                 //Check reservation is approved or rejected
-                if (item["GSApproval"] != null 
-                    && !string.IsNullOrEmpty(item["GSApproval"].ToString()))
+                if (item["GSApproval"] != null  
+                    && (item["GSApproval"].ToString() == TaskResult.Rejected.ToString() || item["GSApproval"].ToString() == TaskResult.Approved.ToString()))
                 {
-                    radReject.Checked = true;
-                    if(item["GSApproval"].ToString() == TaskResult.Approved.ToString())
+                    radApproved.Checked = true;
+                    if(item["GSApproval"].ToString() == TaskResult.Rejected.ToString())
                         radApproved.Checked = true;
-                    txtMessage.Text = item["GSApprovalComment"].ToString();
+                    txtMessage.Text = item["GSApprovalComment"] == null ? string.Empty : item["GSApprovalComment"].ToString();
                     radReject.Enabled = false;
                     radApproved.Enabled = false;
                     txtMessage.Enabled = false;
