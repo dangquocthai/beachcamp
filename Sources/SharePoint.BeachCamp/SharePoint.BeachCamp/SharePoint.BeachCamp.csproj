@@ -191,6 +191,9 @@
     <None Include="Modules\BeachCampPages\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{88a42153-7c01-4e49-86a8-6acf49a6c137}</SharePointProjectItemId>
     </None>
+    <None Include="TEMPLATE\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{75012795-b088-476a-830c-87ba1937b360}</SharePointProjectItemId>
+    </None>
     <None Include="WebParts\BeachCampViewer\BeachCampViewer.webpart" />
     <None Include="WebParts\BeachCampViewer\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5aa9aa86-4854-4ebf-92d2-a635c0404915}</SharePointProjectItemId>
@@ -207,6 +210,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Images\SharePoint.BeachCamp\Printer-icon.png" />
+    <Content Include="Libs\itextsharp.dll" />
     <Content Include="ListInstances\BeachCampTask\Elements.xml" />
     <Content Include="BeachCampWorkflow\Elements.xml" />
     <Content Include="ContentTypes\BeachCampEvent\Elements.xml">
@@ -259,6 +263,7 @@
       <DependentUpon>BeachCampWorkflow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Webparts.xml" />
+    <Content Include="TEMPLATE\PAGES\FullPage_WebPart.aspx" />
     <Content Include="WebParts\BeachCampViewer\Elements.xml" />
   </ItemGroup>
   <ItemGroup>

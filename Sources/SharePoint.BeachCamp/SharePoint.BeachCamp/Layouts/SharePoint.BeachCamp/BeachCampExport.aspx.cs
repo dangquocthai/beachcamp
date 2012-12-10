@@ -67,32 +67,32 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
 
             #region Export Pdf
 
-            //var sb = new StringBuilder();
-            //divContent.RenderControl(new System.Web.UI.HtmlTextWriter(new System.IO.StringWriter(sb)));
-            //string contents = sb.ToString();
+            var sb = new StringBuilder();
+            divContent.RenderControl(new System.Web.UI.HtmlTextWriter(new System.IO.StringWriter(sb)));
+            string contents = sb.ToString();
 
-            //// Create a Document object
-            //var document = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 50, 50, 25, 25);
+            // Create a Document object
+            var document = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 50, 50, 25, 25);
 
-            //// Create a new PdfWrite object, writing the output to a MemoryStream
-            //var output = new System.IO.MemoryStream();
-            //var writer = iTextSharp.text.pdf.PdfWriter.GetInstance(document, output);
+            // Create a new PdfWrite object, writing the output to a MemoryStream
+            var output = new System.IO.MemoryStream();
+            var writer = iTextSharp.text.pdf.PdfWriter.GetInstance(document, output);
 
-            //// Open the Document for writing
-            //document.Open();
+            // Open the Document for writing
+            document.Open();
 
-            //// Add content
-            //var parsedHtmlElements = iTextSharp.text.html.simpleparser.HTMLWorker.ParseToList(new System.IO.StringReader(contents), null);
-            //foreach (var htmlElement in parsedHtmlElements)
-            //    document.Add(htmlElement as iTextSharp.text.IElement);
+            // Add content
+            var parsedHtmlElements = iTextSharp.text.html.simpleparser.HTMLWorker.ParseToList(new System.IO.StringReader(contents), null);
+            foreach (var htmlElement in parsedHtmlElements)
+                document.Add(htmlElement as iTextSharp.text.IElement);
 
-            //// Close document
-            //document.Close();
+            // Close document
+            document.Close();
 
-            //// Wirte to pdf
-            //Response.ContentType = "application/pdf";
-            //Response.AddHeader("Content-Disposition", "attachment;filename=Receipt.pdf");
-            //Response.BinaryWrite(output.ToArray());
+            // Wirte to pdf
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", "attachment;filename=BeachCampReservation.pdf");
+            Response.BinaryWrite(output.ToArray());
 
             #endregion Export Pdf
         }
