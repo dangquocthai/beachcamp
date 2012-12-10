@@ -7,6 +7,7 @@ using Microsoft.SharePoint;
 using SharePoint.BeachCamp.Util;
 using SharePoint.BeachCamp.Util.Utilities;
 using SharePoint.BeachCamp.Util.Helpers;
+using Microsoft.SharePoint.Workflow;
 
 namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
 {
@@ -25,7 +26,10 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
 
             repeaterPrices.ItemDataBound += new RepeaterItemEventHandler(repeaterPrices_ItemDataBound);
             btnSave.Click += new EventHandler(btnSave_Click);
+            btnSaveAndSubmit.Click += new EventHandler(btnSaveAndSubmit_Click);
         }
+
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -50,6 +54,48 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
         }
 
         #region Events
+
+        void btnSaveAndSubmit_Click(object sender, EventArgs e)
+        {
+            if (!this.Page.IsValid)
+                return;
+
+            string output = AddBeachCampEvent(TaskResult.Pending);
+
+            if (!string.IsNullOrEmpty(output))
+            {
+                ShowErrorMessages(output, false);
+                return;
+            }
+
+            //StartWorkflow(itemId, "Approve Beach Camp Reservation");
+
+            this.Page.Response.Clear();
+            this.Page.Response.Write(
+            string.Format(System.Globalization.CultureInfo.InvariantCulture, @"<script type='text/javascript'> window.frameElement.commonModalDialogClose(1, '{0}');</script>", ""));
+            this.Page.Response.End();
+        }
+
+
+        protected void SectionPeriod_OnCheckedChanged(object sender, EventArgs e)
+        {
+            foreach (RepeaterItem item in repeaterPrices.Items)
+            {
+                CheckBox chkPeriod1 = (CheckBox)item.FindControl("chkPeriod1");
+                chkPeriod1.Checked = false;
+
+                CheckBox chkPeriod2 = (CheckBox)item.FindControl("chkPeriod2");
+                chkPeriod2.Checked = false;
+
+                CheckBox chkFullDay = (CheckBox)item.FindControl("chkFullDay");
+                chkFullDay.Checked = false;
+
+                CheckBox chkRamadan = (CheckBox)item.FindControl("chkRamadan");
+                chkRamadan.Checked = false;
+            }
+            ((CheckBox)sender).Checked = true;
+        }
+
         void repeaterPrices_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             DataRowView rowView = (DataRowView)e.Item.DataItem;
@@ -71,12 +117,20 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 chkPeriod1.Text = rowView["Period1"].ToString();
                 chkPeriod1.ToolTip = rowView["Title"].ToString() + " - " + period1;
 
+                //RadioButton chkPeriod1 = (RadioButton)e.Item.FindControl("radPeriod1");
+                //chkPeriod1.Text = rowView["Period1"].ToString();
+                //chkPeriod1.ToolTip = rowView["Title"].ToString() + " - " + period1;
+
                 //Literal literalPeriod2 = (Literal)e.Item.FindControl("literalPeriod2");
                 //literalPeriod2.Text = rowView["Period2"].ToString();
 
                 CheckBox chkPeriod2 = (CheckBox)e.Item.FindControl("chkPeriod2");
                 chkPeriod2.Text = rowView["Period2"].ToString();
                 chkPeriod2.ToolTip = rowView["Title"].ToString() + " - " + period2;
+
+                //RadioButton chkPeriod2 = (RadioButton)e.Item.FindControl("radPeriod2");
+                //chkPeriod2.Text = rowView["Period1"].ToString();
+                //chkPeriod2.ToolTip = rowView["Title"].ToString() + " - " + period1;
 
                 //Literal literalFullDay = (Literal)e.Item.FindControl("literalFullDay");
                 //literalFullDay.Text = rowView["FullDay"].ToString();
@@ -85,12 +139,20 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 chkFullDay.Text = rowView["FullDay"].ToString();
                 chkFullDay.ToolTip = rowView["Title"].ToString() + " - " + fullDay;
 
+                //RadioButton chkFullDay = (RadioButton)e.Item.FindControl("radFullDay");
+                //chkFullDay.Text = rowView["Period1"].ToString();
+                //chkFullDay.ToolTip = rowView["Title"].ToString() + " - " + period1;
+
                 //Literal literalRamadan = (Literal)e.Item.FindControl("literalRamadan");
                 //literalRamadan.Text = rowView["Ramadan"].ToString();
 
                 CheckBox chkRamadan = (CheckBox)e.Item.FindControl("chkRamadan");
                 chkRamadan.Text = rowView["Ramadan"].ToString();
                 chkRamadan.ToolTip = rowView["Title"].ToString() + " - " + ramadan;
+
+                //RadioButton chkRamadan = (RadioButton)e.Item.FindControl("radRamadan");
+                //chkRamadan.Text = rowView["Period1"].ToString();
+                //chkRamadan.ToolTip = rowView["Title"].ToString() + " - " + period1;
             }
         }
 
@@ -98,15 +160,14 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
         {
             if (!this.Page.IsValid)
                 return;
-
-            string output = AddBeachCampEvent();
+            string output = AddBeachCampEvent(TaskResult.Draft);
 
             if (!string.IsNullOrEmpty(output))
             {
                 ShowErrorMessages(output, false);
                 return;
             }
-            
+
             this.Page.Response.Clear();
             this.Page.Response.Write(
             string.Format(System.Globalization.CultureInfo.InvariantCulture, @"<script type='text/javascript'> window.frameElement.commonModalDialogClose(1, '{0}');</script>", ""));
@@ -116,6 +177,7 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
         #endregion Events
 
         #region Functions
+
         private string GetUserInfo()
         {
             string output = string.Empty;
@@ -133,7 +195,9 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                             if (userItem != null)
                             {
                                 txtEmployeeName.Text = userItem["Title"].ToString();
+                                txtEmployeeName.Enabled = false;
                                 txtEmployeeCode.Text = userItem["ID"].ToString();
+                                txtEmployeeCode.Enabled = false;
                                 txtDepartment.Text = userItem["Department"] == null ? "Null" : userItem["Department"].ToString();
                                 txtSection.Text = "";
                                 txtOfficeTel.Text = "";
@@ -147,7 +211,7 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
             {
                 output = ex.Message;
             }
-            
+
             return output;
         }
 
@@ -155,11 +219,11 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
         {
             lblError.Text = message;
             lblError.Visible = true;
-            if(hideSaveButton)
+            if (hideSaveButton)
                 btnSave.Visible = false;
         }
 
-        private string AddBeachCampEvent()
+        private string AddBeachCampEvent(TaskResult status)
         {
             string output = string.Empty;
             try
@@ -168,16 +232,20 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 double totalPrice = 0;
 
                 DateTime beachCampDate = DateTime.Parse(ffEventDate.Value.ToString());
+                int requireDay = int.Parse(ffRequireDay.Value.ToString());
+                DateTime beachCampEndDate = beachCampDate.AddDays(requireDay);
 
                 //BeachCampHelper.IsUserReserved(SPContext.Current.Web, txtEmployeeCode.Text.TrimEnd(), beachCampDate);
 
                 foreach (RepeaterItem prices in repeaterPrices.Items)
                 {
+                    #region CheckBox
                     CheckBox chkPeriod1 = (CheckBox)prices.FindControl("chkPeriod1");
                     if (chkPeriod1 != null && chkPeriod1.Checked)
                     {
                         sectionPeriod += chkPeriod1.ToolTip + "|";
                         totalPrice += double.Parse(chkPeriod1.Text);
+                        break;//Choose one
                     }
 
                     CheckBox chkPediod2 = (CheckBox)prices.FindControl("chkPeriod2");
@@ -185,6 +253,7 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                     {
                         sectionPeriod += chkPediod2.ToolTip + "|";
                         totalPrice += double.Parse(chkPediod2.Text);
+                        break;//Choose one
                     }
 
                     CheckBox chkFullDay = (CheckBox)prices.FindControl("chkFullDay");
@@ -192,6 +261,7 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                     {
                         sectionPeriod += chkFullDay.ToolTip + "|";
                         totalPrice += double.Parse(chkFullDay.Text);
+                        break;//Choose one
                     }
 
                     CheckBox chkRamadan = (CheckBox)prices.FindControl("chkRamadan");
@@ -199,7 +269,43 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                     {
                         sectionPeriod += chkRamadan.ToolTip + "|";
                         totalPrice += double.Parse(chkRamadan.Text);
+                        break;//Choose one
                     }
+                    #endregion CheckBox
+
+                    #region RadioButton
+                    //RadioButton chkPeriod1 = (RadioButton)prices.FindControl("radPeriod1");
+                    //if (chkPeriod1 != null && chkPeriod1.Checked)
+                    //{
+                    //    sectionPeriod += chkPeriod1.ToolTip + "|";
+                    //    totalPrice += double.Parse(chkPeriod1.Text);
+                    //    break;
+                    //}
+
+                    //RadioButton chkPediod2 = (RadioButton)prices.FindControl("radPeriod2");
+                    //if (chkPediod2 != null && chkPediod2.Checked)
+                    //{
+                    //    sectionPeriod += chkPediod2.ToolTip + "|";
+                    //    totalPrice += double.Parse(chkPediod2.Text);
+                    //    break;
+                    //}
+
+                    //RadioButton chkFullDay = (RadioButton)prices.FindControl("radFullDay");
+                    //if (chkFullDay != null && chkFullDay.Checked)
+                    //{
+                    //    sectionPeriod += chkFullDay.ToolTip + "|";
+                    //    totalPrice += double.Parse(chkFullDay.Text);
+                    //    break;
+                    //}
+
+                    //RadioButton chkRamadan = (RadioButton)prices.FindControl("radRamadan");
+                    //if (chkRamadan != null && chkRamadan.Checked)
+                    //{
+                    //    sectionPeriod += chkRamadan.ToolTip + "|";
+                    //    totalPrice += double.Parse(chkRamadan.Text);
+                    //    break;
+                    //}
+                    #endregion RadioButton
                 }
 
                 if (string.IsNullOrEmpty(sectionPeriod))
@@ -219,12 +325,20 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 item["Section"] = txtSection.Text;
                 item["OfficeTel"] = txtOfficeTel.Text;
                 item["Mobile"] = txtMobile.Text;
+
+                beachCampDate = new DateTime(beachCampDate.Year, beachCampDate.Month, beachCampDate.Day, 0, 0, 1);
+                beachCampEndDate = new DateTime(beachCampEndDate.Year, beachCampEndDate.Month, beachCampEndDate.Day, 23, 59, 59);
+
                 item[SPBuiltInFieldId.StartDate] = beachCampDate;
-                item[SPBuiltInFieldId.EndDate] = beachCampDate.AddDays(int.Parse(ffRequireDay.Value.ToString()));
+                item[SPBuiltInFieldId.EndDate] = beachCampDate.AddDays(requireDay);
+
                 item["Reason"] = ffReason.Value;
                 item["RequireDay"] = ffRequireDay.Value;
                 item["TotalPrice"] = totalPrice;
                 item[SPBuiltInFieldId.Location] = sectionPeriod.TrimEnd('|');
+
+                item["GSApproval"] = status.ToString();
+
                 item.Update();
             }
             catch (Exception ex)

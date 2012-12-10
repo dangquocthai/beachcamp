@@ -126,7 +126,7 @@
                             </td>
                             <td style="width: 25%;" align="left">
                                 <%--<asp:Literal ID="literalEmployeeName" Text="Tran Anh Tuan" runat="server"></asp:Literal>--%>
-                                <SharePoint:FormField FieldName="Title" ID="ffTitle" runat="server">
+                                <SharePoint:FormField FieldName="Title" ControlMode="Display" ID="ffTitle" runat="server">
                                 </SharePoint:FormField>
                             </td>
                             <td style="width: 20%; font-weight: bold;">
@@ -134,7 +134,7 @@
                             </td>
                             <td style="width: 35%;" align="left">
                                 <%--<asp:Literal ID="literalEmployeeCode" Text="250692114" runat="server"></asp:Literal>--%>
-                                <SharePoint:FormField FieldName="EmployeeCode" ID="ffEmployeeCode" runat="server">
+                                <SharePoint:FormField FieldName="EmployeeCode" ControlMode="Display" ID="ffEmployeeCode" runat="server">
                                 </SharePoint:FormField>
                             </td>
                         </tr>
@@ -249,19 +249,23 @@
                                                 </td>
                                                 <td valign="middle" align="center" class="textlist">
                                                     <asp:Literal ID="literalPeriod1" runat="server"></asp:Literal>
-                                                    <asp:CheckBox ID="chkPeriod1" runat="server" />
+                                                    <asp:CheckBox ID="chkPeriod1" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />
+                                                    <%--<asp:RadioButton ID="radPeriod1" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />--%>
                                                 </td>
                                                 <td valign="middle" align="center">
                                                     <asp:Literal ID="literalPeriod2" runat="server"></asp:Literal>
-                                                    <asp:CheckBox ID="chkPeriod2" runat="server" />
+                                                    <asp:CheckBox ID="chkPeriod2" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />
+                                                    <%--<asp:RadioButton ID="radPeriod2" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />--%>
                                                 </td>
                                                 <td valign="middle" align="center">
                                                     <asp:Literal ID="literalFullDay" runat="server"></asp:Literal>
-                                                    <asp:CheckBox ID="chkFullDay" runat="server" />
+                                                    <asp:CheckBox ID="chkFullDay" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />
+                                                    <%--<asp:RadioButton ID="radFullDay" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />--%>
                                                 </td>
                                                 <td valign="middle" align="center">
                                                     <asp:Literal ID="literalRamadan" runat="server"></asp:Literal>
-                                                    <asp:CheckBox ID="chkRamadan" runat="server" />
+                                                    <asp:CheckBox ID="chkRamadan" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />
+                                                    <%--<asp:RadioButton ID="radRamadan" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />--%>
                                                 </td>
                                             </tr>
                                         </ItemTemplate>
@@ -316,6 +320,7 @@
                     <Template_RightButtons>
                         <%--<SharePoint:SaveButton ID="SaveButton2" runat="server" />--%>
                         <asp:Button ID="btnSave" CssClass="ms-ButtonHeightWidth" runat="server" Text="Save" />
+                        <asp:Button ID="btnSaveAndSubmit" CssClass="ms-ButtonHeightWidth" runat="server" Text="Save & Submit to GS" />
                         <SharePoint:GoBackButton ID="GoBackButton2" runat="server" />
                     </Template_RightButtons>
                 </wssuc:ToolBar>

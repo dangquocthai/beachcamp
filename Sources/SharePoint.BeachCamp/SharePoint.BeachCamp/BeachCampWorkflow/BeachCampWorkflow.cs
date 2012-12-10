@@ -59,8 +59,8 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
 
         private void SetApprovalData_ExecuteCode(object sender, EventArgs e)
         {
-            publishItemActivity1___ListId = this.workflowProperties.List.ID.ToString();
-            publishItemActivity1___ListItem = this.workflowProperties.ItemId;
+            //publishItemActivity1___ListId = this.workflowProperties.List.ID.ToString();
+            //publishItemActivity1___ListItem = this.workflowProperties.ItemId;
         }
 
         public String publishItemActivity1___ListId = default(System.String);
@@ -68,15 +68,21 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
 
         private void UpdateItem_ExecuteCode(object sender, EventArgs e)
         {
-            using (DisableItemEvent disableItemEvent = new DisableItemEvent())
-            {
-                var item = workflowProperties.Item;
-                item["GSApproval"] = GeneralSupervisorApproval_TaskOutcome;
-                item["GSApprovalComment"] = GeneralSupervisorApproval_ApproveComments;
-                item.SystemUpdate();   
-            }
+            var item = workflowProperties.Item;
+            item["GSApproval"] = GeneralSupervisorApproval_TaskOutcome;
+            item["GSApprovalComment"] = GeneralSupervisorApproval_ApproveComments;
+            item.SystemUpdate();
         }
 
         public String GeneralSupervisorApproval_ApproveComments = default(System.String);
+
+        private void onWorkflowActivated_Invoked(object sender, ExternalDataEventArgs e)
+        {
+            var item = workflowProperties.Item;
+            item["GSApproval"] = TaskResult.Pending.ToString();
+            item.SystemUpdate();
+        }
+
+
     }
 }

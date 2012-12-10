@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint" Title="[BeachCamp] - Beach Camp Calendar" FolderCreation="FALSE" Direction="$Resources:Direction;" EnableContentTypes="TRUE" Url="Lists/SharePoint.BeachCamp-ListDefinition1" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <MetaData>
+    <ContentTypes>
+      <ContentType ID="0x01080100e6fa232bca3b4b25b9df4b2e3791d3cc" Name="[BeachCamp] - Beach Camp Task Item" Group="[BeachCamp]" Description="[BeachCamp] - Beach Camp Task Item" Inherits="FALSE">
+        <FieldRefs>
+          <FieldRef ID="{58ddda52-c2a3-4650-9178-3bbc1f6e36da}" Name="Link" />
+          <FieldRef ID="{16b6952f-3ce6-45e0-8f4e-42dac6e12441}" Name="OffsiteParticipant" />
+          <FieldRef ID="{4a799ba5-f449-4796-b43e-aa5186c3c414}" Name="OffsiteParticipantReason" />
+          <FieldRef ID="{18e1c6fa-ae37-4102-890a-cfb0974ef494}" Name="WorkflowOutcome" />
+          <FieldRef ID="{e506d6ca-c2da-4164-b858-306f1c41c9ec}" Name="WorkflowName" />
+          <FieldRef ID="{ae069f25-3ac2-4256-b9c3-15dbc15da0e0}" Name="GUID" />
+          <FieldRef ID="{8d96aa48-9dff-46cf-8538-84c747ffa877}" Name="TaskType" />
+          <FieldRef ID="{17ca3a22-fdfe-46eb-99b5-9646baed3f16}" Name="FormURN" />
+          <FieldRef ID="{78eae64a-f5f2-49af-b416-3247b76f46a1}" Name="FormData" />
+          <FieldRef ID="{8cbb9252-1035-4156-9c35-f54e9056c65a}" Name="EmailBody" />
+          <FieldRef ID="{47f68c3b-8930-406f-bde2-4a8c669ee87c}" Name="HasCustomEmailBody" />
+          <FieldRef ID="{cb2413f2-7de9-4afc-8587-1ca3f563f624}" Name="SendEmailNotification" />
+          <FieldRef ID="{4d2444c2-0e97-476c-a2a3-e9e4a9c73009}" Name="PendingModTime" />
+          <FieldRef ID="{35363960-d998-4aad-b7e8-058dfe2c669e}" Name="Completed" />
+          <FieldRef ID="{1bfee788-69b7-4765-b109-d4d9c31d1ac1}" Name="WorkflowListId" />
+          <FieldRef ID="{8e234c69-02b0-42d9-8046-d5f49bf0174f}" Name="WorkflowItemId" />
+          <FieldRef ID="{1c5518e2-1e99-49fe-bfc6-1a8de3ba16e2}" Name="ExtendedProperties" />
+        </FieldRefs>
+        <XmlDocuments>
+          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
+            <FormUrls xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
+              <New>_layouts/SharePoint.BeachCamp/BeachCampTask.aspx</New>
+              <Display>_layouts/SharePoint.BeachCamp/BeachCampTask.aspx</Display>
+              <Edit>_layouts/SharePoint.BeachCamp/BeachCampTask.aspx</Edit>
+            </FormUrls>
+          </XmlDocument>
+        </XmlDocuments>
+      </ContentType>
+    </ContentTypes>
+    <Fields>
+      <Field ID="{c3a92d97-2b77-4a25-9698-3ab54874bc6f}" Name="Predecessors" Type="LookupMulti" Mult="TRUE" Required="FALSE" DisplayName="$Resources:core,Tasks_Predecessors;" StaticName="Predecessors" List="Self" ShowField="Title" DisplaceOnUpgrade="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3">
+      </Field>
+      <Field ID="{a8eb573e-9e11-481a-a8c9-1104a54b2fbd}" Type="Choice" Name="Priority" DisplayName="$Resources:core,Priority;" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Priority">
+        <CHOICES>
+          <CHOICE>$Resources:core,Priority_High;</CHOICE>
+          <CHOICE>$Resources:core,Priority_Normal;</CHOICE>
+          <CHOICE>$Resources:core,Priority_Low;</CHOICE>
+        </CHOICES>
+        <MAPPINGS>
+          <MAPPING Value="1">$Resources:core,Priority_High;</MAPPING>
+          <MAPPING Value="2">$Resources:core,Priority_Normal;</MAPPING>
+          <MAPPING Value="3">$Resources:core,Priority_Low;</MAPPING>
+        </MAPPINGS>
+        <Default>$Resources:core,Priority_Normal;</Default>
+      </Field>
+      <Field Type="Choice" ID="{c15b34c3-ce7d-490a-b133-3f4de8801b76}" Name="Status" DisplayName="$Resources:core,Tasks_Status;" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Status">
+        <CHOICES>
+          <CHOICE>$Resources:core,Tasks_NotStarted;</CHOICE>
+          <CHOICE>$Resources:core,Tasks_InProgress</CHOICE>
+          <CHOICE>$Resources:core,Tasks_Completed</CHOICE>
+          <CHOICE>$Resources:core,Tasks_Deferred</CHOICE>
+          <CHOICE>$Resources:core,Tasks_Waiting</CHOICE>
+        </CHOICES>
+        <MAPPINGS>
+          <MAPPING Value="1">$Resources:core,Tasks_NotStarted;</MAPPING>
+          <MAPPING Value="2">$Resources:core,Tasks_InProgress</MAPPING>
+          <MAPPING Value="3">$Resources:core,Tasks_Completed</MAPPING>
+          <MAPPING Value="4">$Resources:core,Tasks_Deferred</MAPPING>
+          <MAPPING Value="5">$Resources:core,Tasks_Waiting</MAPPING>
+        </MAPPINGS>
+        <Default>$Resources:core,Tasks_NotStarted;</Default>
+      </Field>
+      <Field ID="{d2311440-1ed6-46ea-b46d-daa643dc3886}" Type="Number" Name="PercentComplete" Percentage="TRUE" Min="0" Max="1" DisplayName="$Resources:core,Percent_Complete;" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="PercentComplete">
+      </Field>
+      <Field ID="{53101f38-dd2e-458c-b245-0c236cc13d1a}" Type="User" List="UserInfo" Name="AssignedTo" DisplayName="$Resources:core,Assigned_To;" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="AssignedTo">
+      </Field>
+      <Field ID="{50d8f08c-8e99-4948-97bf-2be41fa34a0d}" Type="User" List="UserInfo" Name="TaskGroup" DisplaceOnUpgrade="TRUE" DisplayName="$Resources:core,Task_Group;" ReadOnlyEnforced="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="TaskGroup">
+      </Field>
+      <Field ID="{7662cd2c-f069-4dba-9e35-082cf976e170}" Type="Note" RichText="TRUE" Name="Body" DisplayName="$Resources:core,Description;" Sortable="FALSE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Body">
+      </Field>
+      <Field ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Type="DateTime" Name="StartDate" DisplayName="$Resources:core,Start_Date;" Format="DateOnly" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="StartDate">
+        <Default>[today]</Default>
+      </Field>
+      <Field Type="DateTime" ID="{cd21b4c2-6841-4f9e-a23a-738a65f99889}" Name="DueDate" DisplayName="$Resources:core,Due_Date;" Format="DateOnly" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="DueDate">
+      </Field>
+      <Field ID="{35363960-D998-4aad-B7E8-058DFE2C669E}" Name="Completed" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Completed" Group="$Resources:core,Base_Columns;" Type="Boolean" DisplayName="Completed" Hidden="TRUE" Sealed="TRUE">
+        <Default>FALSE</Default>
+      </Field>
+      <Field ID="{8CBB9252-1035-4156-9C35-F54E9056C65A}" Name="EmailBody" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="EmailBody" Group="_Hidden" Type="Note" DisplayName="$Resources:core,Email_Body;" Hidden="TRUE" Sealed="TRUE" />
+      <Field ID="{1C5518E2-1E99-49FE-BFC6-1A8DE3BA16E2}" Name="ExtendedProperties" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="ExtendedProperties" Group="_Hidden" Type="Note" DisplayName="$Resources:core,Extended_Properties;" Hidden="TRUE" Sealed="TRUE" />
+      <Field ID="{16B6952F-3CE6-45e0-8F4E-42DAC6E12441}" Name="OffsiteParticipant" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="OffsiteParticipant" Group="_Hidden" Type="Text" DisplayName="$Resources:core,OffsiteParticipant;" ReadOnly="TRUE" Sealed="TRUE" />
+      <Field ID="{4A799BA5-F449-4796-B43E-AA5186C3C414}" Name="OffsiteParticipantReason" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="OffsiteParticipantReason" Group="_Hidden" Type="Text" DisplayName="$Resources:core,OffsiteParticipantReason;" ReadOnly="TRUE" Sealed="TRUE" />
+      <Field ID="{78EAE64A-F5F2-49af-B416-3247B76F46A1}" Name="FormData" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="FormData" Group="_Hidden" Type="Note" DisplayName="$Resources:core,Form_Data;" Hidden="TRUE" Sealed="TRUE" />
+      <Field ID="{17CA3A22-FDFE-46eb-99B5-9646BAED3F16}" Name="FormURN" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="FormURN" Group="_Hidden" Type="Text" DisplayName="$Resources:core,Form_URN;" Hidden="TRUE" Sealed="TRUE" />
+      <Field ID="{ae069f25-3ac2-4256-b9c3-15dbc15da0e0}" Name="GUID" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="GUID" Group="_Hidden" ColName="tp_GUID" RowOrdinal="0" ReadOnly="TRUE" Hidden="TRUE" Type="Guid" FromBaseType="TRUE" DisplayName="$Resources:core,GUID;" />
+      <Field ID="{47F68C3B-8930-406f-BDE2-4A8C669EE87C}" Name="HasCustomEmailBody" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="HasCustomEmailBody" Group="_Hidden" Type="Boolean" DisplayName="$Resources:core,Has_Custom_Email_Body;" Hidden="TRUE" Sealed="TRUE" />
+      <Field ID="{18E1C6FA-AE37-4102-890A-CFB0974EF494}" Name="WorkflowOutcome" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WorkflowOutcome" Group="_Hidden" Type="Text" DisplayName="$Resources:core,Outcome;" ReadOnly="TRUE" Sealed="TRUE" />
+      <Field ID="{4D2444C2-0E97-476c-A2A3-E9E4A9C73009}" Name="PendingModTime" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="PendingModTime" Group="_Hidden" Type="DateTime" DisplayName="$Resources:core,Pending_Modification_Time;" Hidden="TRUE" Sealed="TRUE" />
+      <Field ID="{58DDDA52-C2A3-4650-9178-3BBC1F6E36DA}" Name="WorkflowLink" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WorkflowLink" Group="_Hidden" Type="URL" DisplayName="$Resources:core,LinkField;" ReadOnly="TRUE" Sealed="TRUE" />
+      <Field ID="{CB2413F2-7DE9-4afc-8587-1CA3F563F624}" Name="SendEmailNotification" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="SendEmailNotification" Group="_Hidden" Type="Boolean" DisplayName="$Resources:core,Send_Email_Notification;" Hidden="TRUE" Sealed="TRUE" />
+      <Field ID="{8D96AA48-9DFF-46cf-8538-84C747FFA877}" Name="TaskType" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="TaskType" Group="_Hidden" Type="Integer" DisplayName="$Resources:core,Task_Type;" Hidden="TRUE" Sealed="TRUE" />
+      <Field ID="{8E234C69-02B0-42d9-8046-D5F49BF0174F}" Name="WorkflowItemId" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WorkflowItemId" Group="$Resources:core,Base_Columns;" Type="Integer" DisplayName="$Resources:core,WorkflowItemId;" Hidden="TRUE" Sealed="TRUE" />
+      <Field ID="{1BFEE788-69B7-4765-B109-D4D9C31D1AC1}" Name="WorkflowListId" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WorkflowListId" Group="$Resources:core,Base_Columns;" Type="Guid" DisplayName="$Resources:core,WorkflowListId;" Hidden="TRUE" Sealed="TRUE" />
+      <Field ID="{E506D6CA-C2DA-4164-B858-306F1C41C9EC}" Name="WorkflowName" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WorkflowName" Group="$Resources:core,Base_Columns;" Type="Text" DisplayName="$Resources:core,Workflow_Name;" Sealed="TRUE" AllowDeletion="TRUE" />
+    </Fields>
+    <Views>
+      <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitleNoMenu">
+          </FieldRef>
+          <FieldRef Name="AssignedTo">
+          </FieldRef>
+        </ViewFields>
+        <ParameterBindings>
+          <ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,addnewitem)" />
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_ONET_HOME)" />
+        </ParameterBindings>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="Modified" Ascending="FALSE">
+            </FieldRef>
+          </OrderBy>
+          <Where>
+            <Or>
+              <Neq>
+                <FieldRef Name="Status">
+                </FieldRef>
+                <Value Type="Text">$Resources:core,Tasks_Completed</Value>
+              </Neq>
+              <IsNull>
+                <FieldRef Name="Status">
+                </FieldRef>
+              </IsNull>
+            </Or>
+          </Where>
+        </Query>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,All_Tasks;" DefaultView="TRUE" MobileView="True" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/issues.png" Url="AllItems.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Attachments">
+          </FieldRef>
+          <FieldRef Name="DocIcon">
+          </FieldRef>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef Name="AssignedTo">
+          </FieldRef>
+          <FieldRef Name="Status">
+          </FieldRef>
+          <FieldRef Name="Priority">
+          </FieldRef>
+          <FieldRef Name="DueDate">
+          </FieldRef>
+          <FieldRef Name="PercentComplete">
+          </FieldRef>
+          <FieldRef Name="Predecessors">
+          </FieldRef>
+        </ViewFields>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+      </View>
+      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,My_Tasks;" MobileView="True" MobileDefaultView="True" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/issues.png" Url="MyItems.aspx" ReqAuth="TRUE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef Name="Status">
+          </FieldRef>
+          <FieldRef Name="Priority">
+          </FieldRef>
+          <FieldRef Name="DueDate">
+          </FieldRef>
+          <FieldRef Name="PercentComplete">
+          </FieldRef>
+        </ViewFields>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+        <Query>
+          <Where>
+            <Eq>
+              <FieldRef Name="AssignedTo">
+              </FieldRef>
+              <Value Type="Integer">
+                <UserID />
+              </Value>
+            </Eq>
+          </Where>
+          <OrderBy>
+            <FieldRef Name="Status">
+            </FieldRef>
+            <FieldRef Name="Priority">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+      </View>
+      <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,Due_Today;" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/issues.png" Url="duetoday.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef Name="AssignedTo">
+          </FieldRef>
+          <FieldRef Name="Status">
+          </FieldRef>
+          <FieldRef Name="Priority">
+          </FieldRef>
+          <FieldRef Name="PercentComplete">
+          </FieldRef>
+          <FieldRef Name="Predecessors">
+          </FieldRef>
+        </ViewFields>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+        <Query>
+          <Where>
+            <Eq>
+              <FieldRef Name="DueDate">
+              </FieldRef>
+              <Value Type="DateTime">
+                <Today>
+                </Today>
+              </Value>
+            </Eq>
+          </Where>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+      </View>
+      <View BaseViewID="4" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,Active_Tasks;" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/issues.png" Url="active.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef Name="AssignedTo">
+          </FieldRef>
+          <FieldRef Name="Status">
+          </FieldRef>
+          <FieldRef Name="Priority">
+          </FieldRef>
+          <FieldRef Name="DueDate">
+          </FieldRef>
+          <FieldRef Name="PercentComplete">
+          </FieldRef>
+          <FieldRef Name="Predecessors">
+          </FieldRef>
+        </ViewFields>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+        <Query>
+          <Where>
+            <Neq>
+              <FieldRef Name="Status">
+              </FieldRef>
+              <Value Type="Text">$Resources:core,Tasks_Completed</Value>
+            </Neq>
+          </Where>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+      </View>
+      <View BaseViewID="5" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,By_Assigned_To;" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/issues.png" Url="byowner.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef Name="AssignedTo">
+          </FieldRef>
+          <FieldRef Name="Status">
+          </FieldRef>
+          <FieldRef Name="Priority">
+          </FieldRef>
+          <FieldRef Name="DueDate">
+          </FieldRef>
+          <FieldRef Name="PercentComplete">
+          </FieldRef>
+          <FieldRef Name="Predecessors">
+          </FieldRef>
+        </ViewFields>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="AssignedTo">
+            </FieldRef>
+            <FieldRef Name="Status">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+      </View>
+      <View BaseViewID="7" Type="HTML" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef Name="AssignedTo">
+          </FieldRef>
+          <FieldRef Name="Status">
+          </FieldRef>
+        </ViewFields>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="Modified" Ascending="FALSE">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+      </View>
+      <View BaseViewID="8" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,By_My_Groups;" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/issues.png" Url="MyGrTsks.aspx" ReqAuth="TRUE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef Name="Status">
+          </FieldRef>
+          <FieldRef Name="Priority">
+          </FieldRef>
+          <FieldRef Name="DueDate">
+          </FieldRef>
+          <FieldRef Name="PercentComplete">
+          </FieldRef>
+          <FieldRef Name="Predecessors">
+          </FieldRef>
+        </ViewFields>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+        <Query>
+          <Where>
+            <Membership Type="CurrentUserGroups">
+              <FieldRef Name="AssignedTo" />
+            </Membership>
+          </Where>
+          <GroupBy Collapse="FALSE">
+            <FieldRef Name="AssignedTo" />
+          </GroupBy>
+          <OrderBy>
+            <FieldRef Name="AssignedTo">
+            </FieldRef>
+            <FieldRef Name="Status">
+            </FieldRef>
+            <FieldRef Name="Priority">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+    <DefaultDescription>$Resources:core,camlidT13;</DefaultDescription>
+  </MetaData>
+</List>

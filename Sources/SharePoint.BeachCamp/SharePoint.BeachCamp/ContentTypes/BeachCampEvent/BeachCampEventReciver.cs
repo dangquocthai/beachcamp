@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.SharePoint;
+using SharePoint.BeachCamp.Util.Helpers;
+using SharePoint.BeachCamp.Util.Utilities;
+using SharePoint.BeachCamp.Util;
+using Microsoft.SharePoint.Workflow;
 
 namespace SharePoint.BeachCamp.ContentTypes
 {
@@ -22,6 +26,19 @@ namespace SharePoint.BeachCamp.ContentTypes
         public override void ItemAdded(SPItemEventProperties properties)
         {
             base.ItemAdded(properties);
+            string status = properties.ListItem["GSApproval"].ToString();
+            if (status == TaskResult.Pending.ToString())
+                //BeachCampHelper.StartWorkflow(properties.ListItem, "Approve Beach Camp Reservation");
+                StartWorkflow(properties);
+            else
+            {
+                using (DisableItemEvent disableItemEvent = new DisableItemEvent())
+                {
+                    //Set permission for reservation
+                    BeachCampHelper.ChangePermission(properties.Web, properties.ListId, properties.ListItemId, TaskResult.Draft.ToString());
+
+                }
+            }
         }
 
         /// <summary>
@@ -38,6 +55,33 @@ namespace SharePoint.BeachCamp.ContentTypes
         public override void ItemUpdated(SPItemEventProperties properties)
         {
             base.ItemUpdated(properties);
+            string status = properties.ListItem["GSApproval"].ToString();
+            if (status == TaskResult.Pending.ToString())
+                StartWorkflow(properties);
+            else
+            {
+                using (DisableItemEvent disableItemEvent = new DisableItemEvent())
+                {
+                    //Set permission for reservation
+                    BeachCampHelper.ChangePermission(properties.Web, properties.ListId, properties.ListItemId, status);
+                }
+            }
         }
+
+        #region Private Functions
+        private static void StartWorkflow(SPItemEventProperties properties)
+        {
+            SPWorkflowManager spWorkflowManager = properties.ListItem.ParentList.ParentWeb.Site.WorkflowManager;
+            SPWorkflowAssociationCollection spWorkflowAssociationCollection = properties.ListItem.ParentList.WorkflowAssociations;
+            foreach (SPWorkflowAssociation item in spWorkflowAssociationCollection)
+            {
+                if (item.BaseId == new Guid("91418941-ddf2-4059-b67a-472d6c5fc48e"))
+                {
+                    spWorkflowManager.StartWorkflow(properties.ListItem, item, item.AssociationData, true);
+                    break;
+                }
+            }
+        }
+        #endregion Private Functions
     }
 }

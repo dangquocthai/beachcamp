@@ -11,6 +11,8 @@
     Inherits="SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp.BeachCampNewEvent" %>
 <%@ Register TagPrefix="wssuc" TagName="ToolBar" Src="~/_controltemplates/ToolBar.ascx" %>
 <%@ Register TagPrefix="wssuc" TagName="ToolBarButton" Src="~/_controltemplates/ToolBarButton.ascx" %>
+
+
 <style type="text/css">
     .ms-long
     {
@@ -243,19 +245,23 @@
                                                 </td>
                                                 <td valign="middle" align="center" class="textlist">
                                                     <asp:Literal ID="literalPeriod1" runat="server"></asp:Literal>
-                                                    <asp:CheckBox ID="chkPeriod1" runat="server" />
+                                                    <asp:CheckBox ID="chkPeriod1" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />
+                                                    <%--<asp:RadioButton ID="radPeriod1" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />--%>
                                                 </td>
                                                 <td valign="middle" align="center">
                                                     <asp:Literal ID="literalPeriod2" runat="server"></asp:Literal>
-                                                    <asp:CheckBox ID="chkPeriod2" runat="server" />
+                                                    <asp:CheckBox ID="chkPeriod2" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />
+                                                    <%--<asp:RadioButton ID="radPeriod2" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />--%>
                                                 </td>
                                                 <td valign="middle" align="center">
                                                     <asp:Literal ID="literalFullDay" runat="server"></asp:Literal>
-                                                    <asp:CheckBox ID="chkFullDay" runat="server" />
+                                                    <asp:CheckBox ID="chkFullDay" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />
+                                                    <%--<asp:RadioButton ID="radFullDay" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />--%>
                                                 </td>
                                                 <td valign="middle" align="center">
                                                     <asp:Literal ID="literalRamadan" runat="server"></asp:Literal>
-                                                    <asp:CheckBox ID="chkRamadan" runat="server" />
+                                                    <asp:CheckBox ID="chkRamadan" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />
+                                                    <%--<asp:RadioButton ID="radRamadan" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />--%>
                                                 </td>
                                             </tr>
                                         </ItemTemplate>
@@ -310,6 +316,7 @@
                     <Template_RightButtons>
                         <%--<SharePoint:SaveButton ID="SaveButton2" runat="server" />--%>
                         <asp:Button ID="btnSave" CssClass="ms-ButtonHeightWidth" runat="server" Text="Save" />
+                        <asp:Button ID="btnSaveAndSubmit" CssClass="ms-ButtonHeightWidth" runat="server" Text="Save & Submit to GS" />
                         <SharePoint:GoBackButton ID="GoBackButton2" runat="server" />
                     </Template_RightButtons>
                 </wssuc:ToolBar>

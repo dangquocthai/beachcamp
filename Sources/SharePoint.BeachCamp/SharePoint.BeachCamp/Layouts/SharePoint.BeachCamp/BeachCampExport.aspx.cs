@@ -6,21 +6,95 @@ using SharePoint.BeachCamp.Util;
 using System.Data;
 using SharePoint.BeachCamp.Util.Utilities;
 using SharePoint.BeachCamp.Util.Helpers;
+using SharePoint.BeachCamp.Util.Helper.DocXGenerator;
+using Microsoft.SharePoint.Utilities;
+using System.Text;
 
 namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
 {
     public partial class BeachCampExport : LayoutsPageBase
     {
+
+        public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
+        {
+            return;
+        }
+
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
             repeaterPrices.ItemDataBound+=new RepeaterItemEventHandler(repeaterPrices_ItemDataBound);
+            btnExport.Click += new EventHandler(btnExport_Click);
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             //int id = int.Parse(Request.QueryString["BeachCampId"]);
             GetBeachCampReservation();
+        }
+
+        void btnExport_Click(object sender, EventArgs e)
+        {
+            #region Generic Word
+            //string tempFolderPath = SPUtility.GetGenericSetupPath(@"TEMPLATE\LAYOUTS\SharePoint.BeachCamp\");
+            //string filePath = tempFolderPath + "BeachCampReservation.docx";
+            //BeachCampReport data = new BeachCampReport()
+            //{
+            //    EmployeeName= "Tran Anh Tuan",
+            //    EmployeeCode = "17031987",
+            //    Department = "Giai Phap",
+            //    Section = "Dich Vu - Ky Thuat",
+            //    OfficeTel = "(08) 39324000",
+            //    Mobile = "0906760486"
+            //};
+            //DocxGenericReport<BeachCampReport> reporter = new DocxGenericReport<BeachCampReport>(filePath, data);
+
+            //byte[] fileContent = reporter.GenerateDocument();
+            
+            //if (fileContent != null)
+            //{
+            //    Response.Clear();
+            //    Response.ClearHeaders();
+            //    Response.ClearContent();
+            //    Response.AddHeader("content-disposition", "attachment; filename=BeachCampReservation.docx" + "");
+            //    Response.AddHeader("Content-Type", "application/msword");
+            //    Response.ContentType = "application/msword";
+            //    Response.AddHeader("Content-Length", fileContent.Length.ToString());
+            //    Response.BinaryWrite(fileContent);
+            //    Response.End();
+            //}
+            #endregion Generic Word
+
+            #region Export Pdf
+
+            //var sb = new StringBuilder();
+            //divContent.RenderControl(new System.Web.UI.HtmlTextWriter(new System.IO.StringWriter(sb)));
+            //string contents = sb.ToString();
+
+            //// Create a Document object
+            //var document = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 50, 50, 25, 25);
+
+            //// Create a new PdfWrite object, writing the output to a MemoryStream
+            //var output = new System.IO.MemoryStream();
+            //var writer = iTextSharp.text.pdf.PdfWriter.GetInstance(document, output);
+
+            //// Open the Document for writing
+            //document.Open();
+
+            //// Add content
+            //var parsedHtmlElements = iTextSharp.text.html.simpleparser.HTMLWorker.ParseToList(new System.IO.StringReader(contents), null);
+            //foreach (var htmlElement in parsedHtmlElements)
+            //    document.Add(htmlElement as iTextSharp.text.IElement);
+
+            //// Close document
+            //document.Close();
+
+            //// Wirte to pdf
+            //Response.ContentType = "application/pdf";
+            //Response.AddHeader("Content-Disposition", "attachment;filename=Receipt.pdf");
+            //Response.BinaryWrite(output.ToArray());
+
+            #endregion Export Pdf
         }
 
 
@@ -51,12 +125,14 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
                 literalEventDate.Text = DateTime.Parse(item["EventDate"].ToString()).ToString("dd/MM/yyyy");
                 //Check reservation is approved or rejected
                 if (item["GSApproval"] != null
-                    && !string.IsNullOrEmpty(item["GSApproval"].ToString()))
+                    && (item["GSApproval"].ToString() == TaskResult.Rejected.ToString() 
+                    || item["GSApproval"].ToString() == TaskResult.Approved.ToString()
+                    || item["GSApproval"].ToString() == TaskResult.Draft.ToString()))
                 {
-                    radReject.Checked = true;
-                    if (item["GSApproval"].ToString() == TaskResult.Approved.ToString())
+                    radApproved.Checked = true;
+                    if (item["GSApproval"].ToString() == TaskResult.Rejected.ToString())
                         radApproved.Checked = true;
-                    literalApproveComments.Text = item["GSApprovalComment"].ToString();
+                    literalApproveComments.Text = item["GSApprovalComment"] == null ? string.Empty : item["GSApprovalComment"].ToString();
                     radReject.Enabled = false;
                     radApproved.Enabled = false;
                 }
