@@ -94,6 +94,15 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 chkRamadan.Checked = false;
             }
             ((CheckBox)sender).Checked = true;
+
+            int requiredDay = 0;
+            int.TryParse(ffRequireDay.Value == null ? "0" : ffRequireDay.Value.ToString(), out requiredDay);
+            DateTime eventDate = DateTime.Now;
+            DateTime.TryParse(ffEventDate.Value.ToString(), out eventDate);
+            HideErrorMessages(true);
+            bool isSectionPeriodReserved = BeachCampHelper.IsSectionPeriodReserved(SPContext.Current.Web, ((CheckBox)sender).ToolTip, eventDate, requiredDay);
+            if(isSectionPeriodReserved)
+                ShowErrorMessages("This section and period is reserved. Please choose another section - period !", false);
         }
 
         void repeaterPrices_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -219,8 +228,14 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
         {
             lblError.Text = message;
             lblError.Visible = true;
-            if (hideSaveButton)
-                btnSave.Visible = false;
+            btnSave.Visible = !hideSaveButton;
+        }
+
+        private void HideErrorMessages(bool showSaveButton)
+        {
+            lblError.Text = string.Empty;
+            lblError.Visible = false;
+            btnSave.Visible = showSaveButton;
         }
 
         private string AddBeachCampEvent(TaskResult status)
@@ -228,6 +243,9 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
             string output = string.Empty;
             try
             {
+                if (string.IsNullOrEmpty(lblError.Text) && lblError.Visible)
+                    return lblError.Text;
+
                 string sectionPeriod = string.Empty;
                 double totalPrice = 0;
 
@@ -235,7 +253,9 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 int requireDay = int.Parse(ffRequireDay.Value.ToString());
                 DateTime beachCampEndDate = beachCampDate.AddDays(requireDay);
 
-                //BeachCampHelper.IsUserReserved(SPContext.Current.Web, txtEmployeeCode.Text.TrimEnd(), beachCampDate);
+                bool isReserved = BeachCampHelper.IsUserReserved(SPContext.Current.Web, txtEmployeeCode.Text.TrimEnd(), beachCampDate);
+                if (isReserved)
+                    return "You can only reserve beach camp one a month. Please select another day!";
 
                 foreach (RepeaterItem prices in repeaterPrices.Items)
                 {

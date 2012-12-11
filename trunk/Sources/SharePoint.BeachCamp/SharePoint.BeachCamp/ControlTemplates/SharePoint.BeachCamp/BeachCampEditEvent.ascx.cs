@@ -20,8 +20,8 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
             {
                 ribbon.TrimById("Ribbon.ListForm.Edit.Commit");
             }
-            ffTitle.ControlMode = Microsoft.SharePoint.WebControls.SPControlMode.Display;
-            ffEmployeeCode.ControlMode = Microsoft.SharePoint.WebControls.SPControlMode.Display;
+            //ffTitle.ControlMode = Microsoft.SharePoint.WebControls.SPControlMode.Display;
+            //ffEmployeeCode.ControlMode = Microsoft.SharePoint.WebControls.SPControlMode.Display;
             repeaterPrices.ItemDataBound += new RepeaterItemEventHandler(repeaterPrices_ItemDataBound);
             btnSave.Click += new EventHandler(btnSave_Click);
             btnSaveAndSubmit.Click += new EventHandler(btnSaveAndSubmit_Click);
@@ -33,14 +33,11 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
         {
             if (!IsPostBack)
             {
+                txtEmployeeName.Text = SPContext.Current.ListItem["Title"].ToString();
+                txtEmployeeName.Enabled = false;
+                txtEmployeeCode.Text = SPContext.Current.ListItem["EmployeeCode"].ToString();
+                txtEmployeeCode.Enabled = false;
                 string output = string.Empty;
-                //Get user info
-                //output = GetUserInfo();
-                //if (!string.IsNullOrEmpty(output))
-                //{
-                //    ShowErrorMessages(output, true);
-                //    return;
-                //}
                 //Get price table
                 output = BeachCampHelper.GetPrices(repeaterPrices, SPContext.Current.Web);
                 if (!string.IsNullOrEmpty(output))
@@ -91,6 +88,15 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 chkRamadan.Checked = false;
             }
             ((CheckBox)sender).Checked = true;
+
+            int requiredDay = 0;
+            int.TryParse(ffRequireDay.Value == null ? "0" : ffRequireDay.Value.ToString(), out requiredDay);
+            DateTime eventDate = DateTime.Now;
+            DateTime.TryParse(ffEventDate.Value.ToString(), out eventDate);
+            HideErrorMessages(true);
+            bool isSectionPeriodReserved = BeachCampHelper.IsSectionPeriodReserved(SPContext.Current.Web, ((CheckBox)sender).ToolTip, eventDate, requiredDay, SPContext.Current.ItemId);
+            if (isSectionPeriodReserved)
+                ShowErrorMessages("This section and period is reserved. Please choose another section - period !", false);
         }
 
         void repeaterPrices_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -178,8 +184,14 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
         {
             lblError.Text = message;
             lblError.Visible = true;
-            if (hideSaveButton)
-                btnSave.Visible = false;
+            btnSave.Visible = !hideSaveButton;
+        }
+
+        private void HideErrorMessages(bool showSaveButton)
+        {
+            lblError.Text = string.Empty;
+            lblError.Visible = false;
+            btnSave.Visible = showSaveButton;
         }
 
         private string UpdateBeachCampEvent(TaskResult status)
@@ -187,10 +199,17 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
             string output = string.Empty;
             try
             {
+                if (string.IsNullOrEmpty(lblError.Text) && lblError.Visible)
+                    return lblError.Text;
+
                 string sectionPeriod = string.Empty;
                 double totalPrice = 0;
 
                 DateTime beachCampDate = DateTime.Parse(ffEventDate.Value.ToString());
+
+                bool isReserved = BeachCampHelper.IsUserReserved(SPContext.Current.Web, SPContext.Current.ListItem["EmployeeCode"].ToString(), beachCampDate, SPContext.Current.ItemId);
+                if (isReserved)
+                    return "You can only reserve beach camp one a month. Please select another day!";
 
                 foreach (RepeaterItem prices in repeaterPrices.Items)
                 {
@@ -233,9 +252,9 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 totalPrice = totalPrice * int.Parse(ffRequireDay.Value.ToString());
 
                 SPListItem item = SPContext.Current.ListItem;
-                item[SPBuiltInFieldId.Title] = ffTitle.Value;
+                //item[SPBuiltInFieldId.Title] = ffTitle.Value;
                 item["TypeOfBeachCamp"] = typeOfBeachCamp;
-                item["EmployeeCode"] = ffEmployeeCode.Value;
+                //item["EmployeeCode"] = ffEmployeeCode.Value;
                 item["Department"] = ffDepartment.Value;
                 item["Section"] = ffSection.Value;
                 item["OfficeTel"] = ffOfficeTel.Value;

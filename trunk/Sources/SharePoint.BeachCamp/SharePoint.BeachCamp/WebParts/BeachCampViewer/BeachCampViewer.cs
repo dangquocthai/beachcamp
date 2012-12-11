@@ -185,6 +185,7 @@ namespace SharePoint.BeachCamp.WebParts.BeachCampViewer
         protected override void CreateChildControls()
         {
             this.Controls.Add(new Literal() { Text = "<script src='/_layouts/1033/jquery-1.8.2.min.js' type='text/javascript'></script>" });
+            this.Controls.Add(new Literal() { Text = "<script src='/_layouts/1033/fixed-calendar.js' type='text/javascript'></script>" });
 
             var beachCampCalendar = Utility.GetListFromURL("/Lists/BCCalendar", SPContext.Current.Web);
 

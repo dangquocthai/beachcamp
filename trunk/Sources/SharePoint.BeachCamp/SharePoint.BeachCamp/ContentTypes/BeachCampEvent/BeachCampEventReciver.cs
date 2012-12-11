@@ -56,7 +56,8 @@ namespace SharePoint.BeachCamp.ContentTypes
         {
             base.ItemUpdated(properties);
             string status = properties.ListItem["GSApproval"].ToString();
-            if (status == TaskResult.Pending.ToString())
+            if (status == TaskResult.Pending.ToString()
+                && !IsWorkflowRunning(properties.ListItem))
                 StartWorkflow(properties);
             else
             {
@@ -82,6 +83,29 @@ namespace SharePoint.BeachCamp.ContentTypes
                 }
             }
         }
+
+        private bool WorkflowStatePresent(int wfState, int stateToCheckFor)
+        {
+            bool statePresent = false;
+            if ((wfState & stateToCheckFor) == stateToCheckFor)
+                statePresent = true;
+            return statePresent;
+        }
+
+
+        private bool IsWorkflowRunning(SPListItem item)
+        {
+            foreach (SPWorkflow wf in item.Workflows)
+            {
+                if (WorkflowStatePresent((int)wf.InternalState, (int)SPWorkflowState.Running))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
         #endregion Private Functions
     }
 }

@@ -61,5 +61,7 @@ body #s4-leftpanel {
 					<td id="_invisibleIfEmpty" name="_invisibleIfEmpty" valign="top" width="100%"> <WebPartPages:WebPartZone runat="server" Title="loc:FullPage" ID="FullPage" FrameType="TitleBarOnly"/> </td>
 				</tr>
 				<script type="text/javascript" language="javascript">if(typeof(MSOLayout_MakeInvisibleIfEmpty) == "function") {MSOLayout_MakeInvisibleIfEmpty();}</script>
+                <script src="../../sites/beachcamp/_layouts/1033/jquery-1.8.2.min.js" type="text/javascript"></script>
+                <script src="../../sites/beachcamp/_layouts/1033/fixed-calendar.js" type="text/javascript"></script>
 		</table>
 </asp:Content>
