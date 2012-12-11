@@ -37,89 +37,21 @@
         function supressSubmitWraper() {
             _spSuppressFormOnSubmitWrapper = true;
         }
-
     </script>
-    <style type="text/css">
-        .ms-long
-        {
-            width: 100%;
-        }
-        
-        .ms-input
-        {
-            color: #000000;
-            background: #ffffff;
-            font: normal 12px Arial,Tahoma, Verdana, Helvetica, sans-serif;
-            height: 15px;
-            width: 70px;
-            border-right: #f5f5f5 1px solid;
-            border-top: #b3c5e1 1px solid;
-            border-left: #b3c5e1 1px solid;
-            border-bottom: #f5f5f5 1px solid;
-            border-collapse: collapse border=1;
-        }
-        
-        .ms-dttimeinput
-        {
-            display: none;
-        }
-        
-        .tbl-beachcamp-reservation
-        {
-            display: none;
-        }
-        
-        .tbl-main
-        {
-            border-collapse: collapse;
-            border: 1px solid black;
-            font: normal 12px Arial, Tahoma, Verdana, Helvetica, sans-serif !important;
-            font-size: 12px !important;
-            color: #000000 !important;
-            width: 595px;
-        }
-        
-        .tr-main
-        {
-            border: 1px solid black;
-            padding: 10px 5px 10px 5px;
-        }
-        
-        .td-main
-        {
-            padding: 10px 5px 10px 5px;
-        }
-        
-        .tbl-info
-        {
-            width: 100%;
-        }
-        
-        .tbl-price
-        {
-            width: 100%;
-            border: 1px solid black;
-        }
-        
-        .row_titlelist
-        {
-            background: #EEEEEE;
-            font-weight: bold;
-            padding: 2px 0px 2px 0px;
-        }
-    </style>
+
 </asp:Content>
 <asp:Content ID="Main" ContentPlaceHolderID="PlaceHolderMain" runat="server">
     <center>
+        <asp:HiddenField ID="hiddenFieldContent" runat="server" />
         <div id="divContent" runat="server">
             <div id="printcontent">
                 &nbsp;<br />
                 <h2>
                     <b>BEACH CAMP RESERVATION FORM</b></h2>
                 <br />
-                <table class="tbl-main">
-                    <tr class="tr-main">
-                        <td class="td-main">
+                <table style="width:595px; border: 1px solid black; font:normal 12px Arial, Tahoma, Verdana, Hevetica, sans-serif; font-size: 12px; color: #000000">
+                    <tr style="border: 1px solid black; padding: 10px 5px 10px 5px;">
+                        <td style="padding: 10px 5px 10px 5px;">
                             <table width="100%" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td style="width: 50%;" align="right" valign="middle">
@@ -136,9 +68,9 @@
                             </table>
                         </td>
                     </tr>
-                    <tr class="tr-main">
-                        <td class="td-main">
-                            <table class="tbl-info">
+                    <tr style="border: 1px solid black; padding: 10px 5px 10px 5px; ">
+                        <td style="padding: 10px 5px 10px 5px;">
+                            <table style="width:100%;">
                                 <tr>
                                     <td style="width: 20%; font-weight: bold;">
                                         Name :
@@ -190,8 +122,8 @@
                             </table>
                         </td>
                     </tr>
-                    <tr class="tr-main">
-                        <td class="td-main">
+                    <tr style="border: 1px solid black; padding: 10px 5px 10px 5px;">
+                        <td style="padding: 10px 5px 10px 5px;">
                             <table>
                                 <tr>
                                     <td>
@@ -224,11 +156,10 @@
                                                 </td>
                                             </tr>
                                         </table>
-                                        <table class="tbl-prices" border="1" style="border-collapse: collapse" width="100%"
-                                            cellspacing="0" cellpadding="0">
+                                        <table style="width: 100%; border: 1px solid black; border-collapse: collapse;" cellspacing="0" cellpadding="0">
                                             <asp:Repeater ID="repeaterPrices" runat="server">
                                                 <HeaderTemplate>
-                                                    <tr class="row_titlelist">
+                                                    <tr style="background: #EEEEEE; font-weight: bold; padding: 2px 0px 2px 0px;">
                                                         <td style="padding-top: 3px; padding-bottom: 3px;" width="20%" valign="middle" align="center">
                                                             Section
                                                         </td>
@@ -303,8 +234,8 @@
                             </table>
                         </td>
                     </tr>
-                    <tr class="tr-main">
-                        <td class="td-main">
+                    <tr style="border: 1px solid black; padding: 10px 5px 10px 5px;">
+                        <td style="padding: 10px 5px 10px 5px;">
                             <asp:RadioButton GroupName="BeachCampApprove" Checked="true" Font-Bold="true" Text="Accepted and Reservation charges received."
                                 runat="server" ID="radApproved" />
                             <br />
@@ -336,6 +267,18 @@
             </tr>
         </table>
     </center>
+
+    <script type="text/javascript">
+
+        var content = "<center>";
+        content += document.getElementById("printcontent").innerHTML;
+        content += "</center>";
+        var hiddenFieldContent = document.getElementById('<%= hiddenFieldContent.ClientID %>');
+        hiddenFieldContent.value = content;
+        //alert(hiddenFieldContent.value);
+
+    </script>
+
 </asp:Content>
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
     Beach Camp Reservation Export

@@ -206,6 +206,7 @@
     </Content>
     <Content Include="ContentTypes\BeachCampTaskContentType\Elements.xml" />
     <Content Include="CustomActions\BeachCampRegistration\Elements.xml" />
+    <Content Include="Layouts\1033\fixed-calendar.js" />
     <Content Include="Layouts\SharePoint.BeachCamp\BeachCampExport.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
@@ -263,7 +264,9 @@
       <DependentUpon>BeachCampWorkflow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Webparts.xml" />
-    <Content Include="TEMPLATE\PAGES\FullPage_WebPart.aspx" />
+    <Content Include="TEMPLATE\PAGES\FullPage_WebPart.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="WebParts\BeachCampViewer\Elements.xml" />
   </ItemGroup>
   <ItemGroup>

@@ -344,7 +344,7 @@
         </Query>
       </View>
 
-      <View BaseViewID="2" Type="CALENDAR" WebPartZoneID="Main" DisplayName="$Resources:core,userinfo_schema_calendarview;" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\FullPage_WebPart.aspx" ImageUrl="/_layouts/images/events.png" TabularView="FALSE" Url="calendar.aspx" RecurrenceRowset="TRUE" DefaultView="TRUE" MobileUrl="_layouts/mobile/viewdaily.aspx">
+      <View BaseViewID="2" Type="CALENDAR" WebPartZoneID="Main" DisplayName="Calendar" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\FullPage_WebPart.aspx" ImageUrl="/_layouts/images/events.png" TabularView="FALSE" Url="calendar.aspx" RecurrenceRowset="TRUE" DefaultView="TRUE" MobileUrl="_layouts/mobile/viewdaily.aspx">
         <Toolbar Type="Standard" />
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
@@ -393,127 +393,6 @@
           </Where>
         </Query>
       </View>
-
-      <View BaseViewID="3" Type="CALENDAR" WebPartZoneID="Main" DisplayName="Overlay calendar" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\FullPage_WebPart.aspx" ImageUrl="/_layouts/images/events.png" TabularView="FALSE" Url="OverlayCalendar.aspx" RecurrenceRowset="TRUE" MobileUrl="_layouts/mobile/viewdaily.aspx">
-        <Toolbar Type="Standard" />
-        <ParameterBindings>
-          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
-          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
-        </ParameterBindings>
-        <ViewFields>
-          <FieldRef Name="EventDate"></FieldRef>
-          <FieldRef Name="EndDate"></FieldRef>
-          <FieldRef Name="fRecurrence" />
-          <FieldRef Name="EventType" />
-          <FieldRef Name="Attachments"></FieldRef>
-          <FieldRef Name="WorkspaceLink" />
-          <FieldRef Name="Title"></FieldRef>
-          <FieldRef Name="Location"></FieldRef>
-          <FieldRef Name="Description" />
-          <FieldRef Name="Workspace"></FieldRef>
-          <FieldRef Name="MasterSeriesItemID"></FieldRef>
-          <FieldRef Name="fAllDayEvent"></FieldRef>
-        </ViewFields>
-        <ViewData>
-          <FieldRef Name="Title" Type="CalendarMonthTitle"></FieldRef>
-          <FieldRef Name="Title" Type="CalendarWeekTitle"></FieldRef>
-          <FieldRef Name="Location" Type="CalendarWeekLocation"></FieldRef>
-          <FieldRef Name="Title" Type="CalendarDayTitle"></FieldRef>
-          <FieldRef Name="Location" Type="CalendarDayLocation"></FieldRef>
-        </ViewData>
-        <Query>
-          <Where>
-              <DateRangesOverlap>
-                <FieldRef Name="EventDate">
-                </FieldRef>
-                <FieldRef Name="EndDate">
-                </FieldRef>
-                <FieldRef Name="RecurrenceID">
-                </FieldRef>
-                <Value Type="DateTime">
-                  <Month>
-                  </Month>
-                </Value>
-              </DateRangesOverlap>
-          </Where>
-        </Query>
-      </View>
-      
-      <!--<View BaseViewID="2" Type="CALENDAR" WebPartZoneID="Main" DisplayName="$Resources:core,userinfo_schema_calendarview;" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/events.png" TabularView="FALSE" Url="calendar.aspx" RecurrenceRowset="TRUE" DefaultView="TRUE" MobileUrl="_layouts/mobile/viewdaily.aspx">
-        <Toolbar Type="Standard" />
-        <ParameterBindings>
-          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
-          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
-        </ParameterBindings>
-        <ViewFields>
-
-          <FieldRef Name="LinkTitle">
-          </FieldRef>
-
-          <FieldRef Name="EmployeeCode">
-          </FieldRef>
-
-          <FieldRef Name="Department">
-          </FieldRef>
-
-          <FieldRef Name="Section">
-          </FieldRef>
-
-          <FieldRef Name="OfficeTel">
-          </FieldRef>
-
-          <FieldRef Name="Mobile">
-          </FieldRef>
-
-          <FieldRef Name="EventDate">
-          </FieldRef>
-
-          <FieldRef Name="RequireDay">
-          </FieldRef>
-
-          <FieldRef Name="Location">
-          </FieldRef>
-
-          <FieldRef Name="TotalPrice">
-          </FieldRef>
-
-          <FieldRef Name="IsPaid">
-          </FieldRef>          
-        </ViewFields>
-        <ViewData>
-          <FieldRef Name="Title" Type="CalendarMonthTitle">
-          </FieldRef>
-          <FieldRef Name="Title" Type="CalendarWeekTitle">
-          </FieldRef>
-          <FieldRef Name="Location" Type="CalendarWeekLocation">
-          </FieldRef>
-          <FieldRef Name="Title" Type="CalendarDayTitle">
-          </FieldRef>
-          <FieldRef Name="Location" Type="CalendarDayLocation">
-          </FieldRef>
-        </ViewData>
-        <Query>
-          <Where>
-            <And>
-            <DateRangesOverlap>
-              <FieldRef Name="EventDate">
-              </FieldRef>
-              <FieldRef Name="EndDate">
-              </FieldRef>
-              <FieldRef Name="RecurrenceID">
-              </FieldRef>
-              <Value Type="DateTime">
-                <Month>
-                </Month>
-              </Value>
-            </DateRangesOverlap>
-            <IsNull>
-              <FieldRef Name="GSApproval"/>
-            </IsNull>
-            </And>
-          </Where>
-        </Query>
-      </View>-->
       
       <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,userinfo_schema_curreventsview;" MobileView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/events.png" Url="MyItems.aspx" ReqAuth="TRUE" RecurrenceRowset="TRUE">
         <Toolbar Type="Standard" />

@@ -76,22 +76,22 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp {
         protected global::System.Web.UI.WebControls.RadioButton rdbBusiness;
         
         /// <summary>
-        /// ffTitle control.
+        /// txtEmployeeName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FormField ffTitle;
+        protected global::System.Web.UI.WebControls.TextBox txtEmployeeName;
         
         /// <summary>
-        /// ffEmployeeCode control.
+        /// txtEmployeeCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FormField ffEmployeeCode;
+        protected global::System.Web.UI.WebControls.TextBox txtEmployeeCode;
         
         /// <summary>
         /// ffDepartment control.

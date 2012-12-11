@@ -139,8 +139,10 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
 
         private void CreateCalendarView(SPList list, string viewName)
         {
-            System.Collections.Specialized.StringCollection viewFields = list.Views["Calendar"].ViewFields.ToStringCollection();
-            string query = string.Format(@"<Where>
+            try
+            {
+                System.Collections.Specialized.StringCollection viewFields = list.Views["Calendar"].ViewFields.ToStringCollection();
+                string query = string.Format(@"<Where>
                                                 <And>
                                                     <DateRangesOverlap>
                                                         <FieldRef Name='EventDate'/>
@@ -157,36 +159,43 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
                                                 </And>
                                             </Where>", viewName);
 
-            SPView newView = list.Views.Add(viewName, viewFields, query, 0, true, false, SPViewCollection.SPViewType.Calendar, false);
+                SPView newView = list.Views.Add(viewName, viewFields, query, 0, true, false, SPViewCollection.SPViewType.Calendar, false);
 
-            newView.ViewData = @"<FieldRef Name='Author' Type='CalendarMonthTitle' />
+                newView.ViewData = @"<FieldRef Name='Author' Type='CalendarMonthTitle' />
                                 <FieldRef Name='AssignedTo' Type='CalendarWeekTitle' /> 
                                 <FieldRef Name='AssignedTo' Type='CalendarDayTitle' />
                                 <FieldRef Name='Title' Type='CalendarDayLocation' />";
-            //newView.Hidden = true;
-            newView.Update();
+                newView.Hidden = true;
+                newView.Update();
+            }
+            catch (Exception ex)
+            {
+                Utility.LogError(ex.Message, BeachCampFeatures.BeachCamp);
+            }
         }
 
         private void CreateOverlapCalenday(SPWeb web)
         {
-            var beachCampCalendar = Utility.GetListFromURL(Constants.BEACH_CAMP_CALENDAR_LIST_URL, web);
-            if (beachCampCalendar != null)
+            try
             {
-                CreateCalendarView(beachCampCalendar, TaskResult.Draft.ToString());
-                CreateCalendarView(beachCampCalendar, TaskResult.Pending.ToString());
-                CreateCalendarView(beachCampCalendar, TaskResult.Approved.ToString());
-                CreateCalendarView(beachCampCalendar, TaskResult.Rejected.ToString());
-
-                SPView calendar = beachCampCalendar.Views["Calendar"];
-                SPView draft = beachCampCalendar.Views[TaskResult.Draft.ToString()];
-                SPView pending = beachCampCalendar.Views[TaskResult.Pending.ToString()];
-                SPView approved = beachCampCalendar.Views[TaskResult.Approved.ToString()];
-                SPView rejected = beachCampCalendar.Views[TaskResult.Rejected.ToString()];
-
-                //XmlDocument xmlDocument = new XmlDocument();
-                if (string.IsNullOrEmpty(calendar.CalendarSettings))
+                var beachCampCalendar = Utility.GetListFromURL(Constants.BEACH_CAMP_CALENDAR_LIST_URL, web);
+                if (beachCampCalendar != null)
                 {
-                    string xmlOverlay = string.Format(@"<AggregationCalendars>
+                    CreateCalendarView(beachCampCalendar, TaskResult.Draft.ToString());
+                    CreateCalendarView(beachCampCalendar, TaskResult.Pending.ToString());
+                    CreateCalendarView(beachCampCalendar, TaskResult.Approved.ToString());
+                    CreateCalendarView(beachCampCalendar, TaskResult.Rejected.ToString());
+
+                    SPView calendar = beachCampCalendar.Views["Calendar"];
+                    SPView draft = beachCampCalendar.Views[TaskResult.Draft.ToString()];
+                    SPView pending = beachCampCalendar.Views[TaskResult.Pending.ToString()];
+                    SPView approved = beachCampCalendar.Views[TaskResult.Approved.ToString()];
+                    SPView rejected = beachCampCalendar.Views[TaskResult.Rejected.ToString()];
+
+                    //XmlDocument xmlDocument = new XmlDocument();
+                    if (string.IsNullOrEmpty(calendar.CalendarSettings))
+                    {
+                        string xmlOverlay = string.Format(@"<AggregationCalendars>
                                                           <AggregationCalendar Id='{0}' Type='SharePoint' Name='Draft' Description='Draft' Color='3' AlwaysShow='True' CalendarUrl='{8}'>
                                                             <Settings WebUrl='{12}' ListId='{13}' ViewId='{4}' ListFormUrl='{14}' />
                                                           </AggregationCalendar>
@@ -200,29 +209,34 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
                                                             <Settings WebUrl='{12}' ListId='{13}' ViewId='{7}' ListFormUrl='{14}' />
                                                           </AggregationCalendar>
                                                         </AggregationCalendars>", Guid.NewGuid().ToString("B", CultureInfo.InvariantCulture)// Draft ID
-                                                                                , Guid.NewGuid().ToString("B", CultureInfo.InvariantCulture)// Pending ID
-                                                                                , Guid.NewGuid().ToString("B", CultureInfo.InvariantCulture)// Approved ID
-                                                                                , Guid.NewGuid().ToString("B", CultureInfo.InvariantCulture)// Rejceted ID
-                                                                                , draft.ID.ToString("B", CultureInfo.InstalledUICulture)// Draft View ID
-                                                                                , pending.ID.ToString("B", CultureInfo.InstalledUICulture)// Pending View ID
-                                                                                , approved.ID.ToString("B", CultureInfo.InstalledUICulture)// Approved View ID
-                                                                                , rejected.ID.ToString("B", CultureInfo.InstalledUICulture)// Rejected View ID
-                                                                                , web.ServerRelativeUrl.TrimEnd('/') + "/" + calendar.Url // Draft CalendarUrl
-                                                                                , web.ServerRelativeUrl.TrimEnd('/') + "/" + calendar.Url // Pending CalendarUrl
-                                                                                , web.ServerRelativeUrl.TrimEnd('/') + "/" + calendar.Url // Approved CalendarUrl
-                                                                                , web.ServerRelativeUrl.TrimEnd('/') + "/" + calendar.Url // Rejected CalendarUrl
-                                                                                , beachCampCalendar.ParentWeb.Site.MakeFullUrl(beachCampCalendar.ParentWebUrl) //WebUrl
-                                                                                , beachCampCalendar.ID.ToString("B", CultureInfo.InvariantCulture) // List ID
-                                                                                , beachCampCalendar.Forms[PAGETYPE.PAGE_DISPLAYFORM].ServerRelativeUrl // ListFormUrl
-                                                                                );
-                    calendar.CalendarSettings = xmlOverlay;
-                    calendar.Update();
-                }
+                                                                                    , Guid.NewGuid().ToString("B", CultureInfo.InvariantCulture)// Pending ID
+                                                                                    , Guid.NewGuid().ToString("B", CultureInfo.InvariantCulture)// Approved ID
+                                                                                    , Guid.NewGuid().ToString("B", CultureInfo.InvariantCulture)// Rejceted ID
+                                                                                    , draft.ID.ToString("B", CultureInfo.InstalledUICulture)// Draft View ID
+                                                                                    , pending.ID.ToString("B", CultureInfo.InstalledUICulture)// Pending View ID
+                                                                                    , approved.ID.ToString("B", CultureInfo.InstalledUICulture)// Approved View ID
+                                                                                    , rejected.ID.ToString("B", CultureInfo.InstalledUICulture)// Rejected View ID
+                                                                                    , web.ServerRelativeUrl.TrimEnd('/') + "/" + calendar.Url // Draft CalendarUrl
+                                                                                    , web.ServerRelativeUrl.TrimEnd('/') + "/" + calendar.Url // Pending CalendarUrl
+                                                                                    , web.ServerRelativeUrl.TrimEnd('/') + "/" + calendar.Url // Approved CalendarUrl
+                                                                                    , web.ServerRelativeUrl.TrimEnd('/') + "/" + calendar.Url // Rejected CalendarUrl
+                                                                                    , beachCampCalendar.ParentWeb.Site.MakeFullUrl(beachCampCalendar.ParentWebUrl) //WebUrl
+                                                                                    , beachCampCalendar.ID.ToString("B", CultureInfo.InvariantCulture) // List ID
+                                                                                    , beachCampCalendar.Forms[PAGETYPE.PAGE_DISPLAYFORM].ServerRelativeUrl // ListFormUrl
+                                                                                    );
+                        calendar.CalendarSettings = xmlOverlay;
+                        calendar.Update();
+                    }
 
-                //BeachCampHelper.AddCalendarOverlay(beachCampCalendar, "Calendar", beachCampCalendar, TaskResult.Draft.ToString(), TaskResult.Draft.ToString(), CalendarOverlayColor.Pink, true, false);
-                //BeachCampHelper.AddCalendarOverlay(beachCampCalendar, "Calendar", beachCampCalendar, TaskResult.Pending.ToString(), TaskResult.Pending.ToString(), CalendarOverlayColor.LightYellow, true, false);
-                //BeachCampHelper.AddCalendarOverlay(beachCampCalendar, "Calendar", beachCampCalendar, TaskResult.Approved.ToString(), TaskResult.Approved.ToString(), CalendarOverlayColor.Orange, true, false);
-                //BeachCampHelper.AddCalendarOverlay(beachCampCalendar, "Calendar", beachCampCalendar, TaskResult.Rejected.ToString(), TaskResult.Rejected.ToString(), CalendarOverlayColor.LightGreen, true, false);
+                    //BeachCampHelper.AddCalendarOverlay(beachCampCalendar, "Calendar", beachCampCalendar, TaskResult.Draft.ToString(), TaskResult.Draft.ToString(), CalendarOverlayColor.Pink, true, false);
+                    //BeachCampHelper.AddCalendarOverlay(beachCampCalendar, "Calendar", beachCampCalendar, TaskResult.Pending.ToString(), TaskResult.Pending.ToString(), CalendarOverlayColor.LightYellow, true, false);
+                    //BeachCampHelper.AddCalendarOverlay(beachCampCalendar, "Calendar", beachCampCalendar, TaskResult.Approved.ToString(), TaskResult.Approved.ToString(), CalendarOverlayColor.Orange, true, false);
+                    //BeachCampHelper.AddCalendarOverlay(beachCampCalendar, "Calendar", beachCampCalendar, TaskResult.Rejected.ToString(), TaskResult.Rejected.ToString(), CalendarOverlayColor.LightGreen, true, false);
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.LogError(ex.Message, BeachCampFeatures.BeachCamp);
             }
         }
 
@@ -306,11 +320,11 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
                 topNavigationNodes.AddAsLast(objItem);
                 SPNavigationNode objItemChild = new SPNavigationNode("Management Reservation", web.ServerRelativeUrl.TrimEnd('/') + "/Lists/BCCalendar/AllItems.aspx", false);
                 objItem.Children.AddAsFirst(objItemChild);
-                
-                
+
+
             }
             web.Update();
-            web.AllowUnsafeUpdates = false;   
+            web.AllowUnsafeUpdates = false;
         }
 
 

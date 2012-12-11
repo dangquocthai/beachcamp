@@ -126,16 +126,18 @@
                             </td>
                             <td style="width: 25%;" align="left">
                                 <%--<asp:Literal ID="literalEmployeeName" Text="Tran Anh Tuan" runat="server"></asp:Literal>--%>
-                                <SharePoint:FormField FieldName="Title" ControlMode="Display" ID="ffTitle" runat="server">
-                                </SharePoint:FormField>
+                                <%--<SharePoint:FormField FieldName="Title" ControlMode="Display" ID="ffTitle" runat="server">
+                                </SharePoint:FormField>--%>
+                                <asp:TextBox ID="txtEmployeeName" CssClass="ms-long ms-spellcheck-true" runat="server"></asp:TextBox>
                             </td>
                             <td style="width: 20%; font-weight: bold;">
                                 ID :
                             </td>
                             <td style="width: 35%;" align="left">
                                 <%--<asp:Literal ID="literalEmployeeCode" Text="250692114" runat="server"></asp:Literal>--%>
-                                <SharePoint:FormField FieldName="EmployeeCode" ControlMode="Display" ID="ffEmployeeCode" runat="server">
-                                </SharePoint:FormField>
+                                <%--<SharePoint:FormField FieldName="EmployeeCode" ControlMode="Display" ID="ffEmployeeCode" runat="server">
+                                </SharePoint:FormField>--%>
+                                <asp:TextBox ID="txtEmployeeCode" CssClass="ms-long ms-spellcheck-true" runat="server"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>

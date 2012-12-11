@@ -82,7 +82,7 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
             document.Open();
 
             // Add content
-            var parsedHtmlElements = iTextSharp.text.html.simpleparser.HTMLWorker.ParseToList(new System.IO.StringReader(contents), null);
+            var parsedHtmlElements = iTextSharp.text.html.simpleparser.HTMLWorker.ParseToList(new System.IO.StringReader(hiddenFieldContent.Value), null);
             foreach (var htmlElement in parsedHtmlElements)
                 document.Add(htmlElement as iTextSharp.text.IElement);
 
