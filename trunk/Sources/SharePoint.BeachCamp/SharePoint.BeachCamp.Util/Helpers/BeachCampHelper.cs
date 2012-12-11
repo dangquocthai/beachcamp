@@ -44,7 +44,7 @@ namespace SharePoint.BeachCamp.Util.Helpers
                             SPGroup reservationAdminGroup = web.Groups["Beach Camp General Supervisor"];
 
                             item.SetPermissions(authenticatedUsers, SPRoleType.Reader);
-                            item.SetPermissions(reservationAdminGroup, SPRoleType.Reader);
+                            item.SetPermissions(reservationAdminGroup, SPRoleType.Contributor);
 
                             if (status == TaskResult.Draft.ToString() ||
                                 status == TaskResult.Rejected.ToString())
@@ -119,22 +119,19 @@ namespace SharePoint.BeachCamp.Util.Helpers
                                                     </Leq>
                                                 </And>
                                             </And>
-                                        </Where>
-                                        <OrderBy>
-                                            <FieldRef Name='EventDate' Ascending='False' />
-                                        </OrderBy>", employeeCode, date.FirstDayOfMonthFromDateTime().ToString("yyyy-MM-dd"), date.LastDayOfMonthFromDateTime().ToString("yyyy-MM-dd"));
+                                        </Where>", employeeCode, date.FirstDayOfMonthFromDateTime().ToString("yyyy-MM-dd"), date.LastDayOfMonthFromDateTime().ToString("yyyy-MM-dd"));
 
-            return IsUserReserved(web, caml);
+            return GetItemByCaml(web, caml);
         }
 
         public static bool IsUserReserved(SPWeb web, string employeeCode, DateTime date, int id)
         {
             string caml = string.Format(@"<<Where>
                                             <And>
-                                                <Eq>
+                                                <Neq>
                                                     <FieldRef Name='ID' />
                                                     <Value Type='Counter'>{0}</Value>
-                                                </Eq>
+                                                </Neq>
                                                 <And>
                                                     <Eq>
                                                         <FieldRef Name='EmployeeCode' />
@@ -152,15 +149,67 @@ namespace SharePoint.BeachCamp.Util.Helpers
                                                     </And>
                                                 </And>
                                             </And>
-                                        </Where>
-                                        <OrderBy>
-                                            <FieldRef Name='EventDate' Ascending='False' />
-                                        </OrderBy>", id, employeeCode, date.FirstDayOfMonthFromDateTime().ToString("yyyy-MM-dd"), date.LastDayOfMonthFromDateTime().ToString("yyyy-MM-dd"));
+                                        </Where>", id, employeeCode, date.FirstDayOfMonthFromDateTime().ToString("yyyy-MM-dd"), date.LastDayOfMonthFromDateTime().ToString("yyyy-MM-dd"));
 
-            return IsUserReserved(web, caml);
+            return GetItemByCaml(web, caml);
         }
 
-        private static bool IsUserReserved(SPWeb web, string caml)
+
+        public static bool IsSectionPeriodReserved(SPWeb web, string sectionPeriod, DateTime date, int requiredDay)
+        {
+            string caml = string.Format(@"<Where>
+                                            <And>
+                                                <Contains>
+                                                    <FieldRef Name='Location' />
+                                                    <Value Type='Text'>{0}</Value>
+                                                </Contains>
+                                                <And>
+                                                    <Geq>
+                                                        <FieldRef Name='EndDate' />
+                                                        <Value Type='DateTime'>{1}</Value>
+                                                    </Geq>
+                                                    <Leq>
+                                                        <FieldRef Name='EndDate' />
+                                                        <Value Type='DateTime'>{2}</Value>
+                                                    </Leq>
+                                                </And>
+                                            </And>
+                                        </Where>", sectionPeriod, date.ToString("yyyy-MM-dd"), date.AddDays(requiredDay).ToString("yyyy-MM-dd"));
+
+            return GetItemByCaml(web, caml);
+        }
+
+        public static bool IsSectionPeriodReserved(SPWeb web, string sectionPeriod, DateTime date, int requiredDay, int id)
+        {
+            string caml = string.Format(@"<<Where>
+                                            <And>
+                                                <Neq>
+                                                    <FieldRef Name='ID' />
+                                                    <Value Type='Counter'>{0}</Value>
+                                                </Neq>
+                                                <And>
+                                                    <Contains>
+                                                        <FieldRef Name='Location' />
+                                                        <Value Type='Text'>{0}</Value>
+                                                    </Contains>
+                                                    <And>
+                                                        <Geq>
+                                                            <FieldRef Name='EndDate' />
+                                                            <Value Type='DateTime'>{2}</Value>
+                                                        </Geq>
+                                                        <Leq>
+                                                            <FieldRef Name='EndDate' />
+                                                            <Value Type='DateTime'>{3}</Value>
+                                                        </Leq>
+                                                    </And>
+                                                </And>
+                                            </And>
+                                        </Where>", id, sectionPeriod, date.ToString("yyyy-MM-dd"), date.AddDays(requiredDay).ToString("yyyy-MM-dd"));
+                            
+            return GetItemByCaml(web, caml);
+        }
+
+        private static bool GetItemByCaml(SPWeb web, string caml)
         {
             bool output = false;
             try
