@@ -1,0 +1,52 @@
+﻿
+======================================================================================
+
+
+1. Create web for beach camp
+
+2. Run setup file
+
+3. Active featuer SharePoint.BeachCamp.Site (site collection scope)
+
+4. Actie featuer SharePoint.BeachCamp (web scope)
+
+5. Ensuare any user can access this web
+
+6. Add user has permission General Supervisor for beach camp reservation system (to group "Beach Camp General Supervisor"
+
+7. Setup workflow for list Beach Camp Reservation
+
+8. Edit view in BeachCampReservation page (SitePages/BeachCampReservation.aspx) change view to Calendar
+
+======================================================================================
+
+Permission :
+
+1. Draft : 
+	Author -> Contribute
+	GS -> Contribute
+	Authenticated -> Read
+
+2. Pending :
+	Author -> Read
+	Authenticated -> Read
+	GS -> Contribute
+3. Approved :
+	Author -> Read
+	GS -> Contribute
+	Autheticated - > Read
+4. Rejected :
+	Author -> Contribute
+	GS -> Contribute
+	Authenticated -> Read
+
+======================================================================================
+
+Color :
+1. Draft : Orange
+
+2. Pending : Light Green
+
+3. Approved : Pink
+
+4. Rejected : Light Turquoise
