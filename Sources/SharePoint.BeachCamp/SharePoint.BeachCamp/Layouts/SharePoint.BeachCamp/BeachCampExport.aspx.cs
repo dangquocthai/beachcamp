@@ -35,66 +35,77 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
 
         void btnExport_Click(object sender, EventArgs e)
         {
-            #region Generic Word
-            //string tempFolderPath = SPUtility.GetGenericSetupPath(@"TEMPLATE\LAYOUTS\SharePoint.BeachCamp\");
-            //string filePath = tempFolderPath + "BeachCampReservation.docx";
-            //BeachCampReport data = new BeachCampReport()
-            //{
-            //    EmployeeName= "Tran Anh Tuan",
-            //    EmployeeCode = "17031987",
-            //    Department = "Giai Phap",
-            //    Section = "Dich Vu - Ky Thuat",
-            //    OfficeTel = "(08) 39324000",
-            //    Mobile = "0906760486"
-            //};
-            //DocxGenericReport<BeachCampReport> reporter = new DocxGenericReport<BeachCampReport>(filePath, data);
+            try
+            {
+                #region Generic Word
 
-            //byte[] fileContent = reporter.GenerateDocument();
-            
-            //if (fileContent != null)
-            //{
-            //    Response.Clear();
-            //    Response.ClearHeaders();
-            //    Response.ClearContent();
-            //    Response.AddHeader("content-disposition", "attachment; filename=BeachCampReservation.docx" + "");
-            //    Response.AddHeader("Content-Type", "application/msword");
-            //    Response.ContentType = "application/msword";
-            //    Response.AddHeader("Content-Length", fileContent.Length.ToString());
-            //    Response.BinaryWrite(fileContent);
-            //    Response.End();
-            //}
-            #endregion Generic Word
+                SPListItem listItem = SPContext.Current.ListItem;
 
-            #region Export Pdf
+                string tempFolderPath = SPUtility.GetGenericSetupPath(@"TEMPLATE\LAYOUTS\SharePoint.BeachCamp\");
+                string filePath = tempFolderPath + "BeachCampReservation.docx";
+                BeachCampReport data = new BeachCampReport()
+                {
+                    EmployeeName = listItem["Title"].ToString(),
+                    EmployeeCode = listItem["EmployeeCode"].ToString(),
+                    Department = listItem["Department"] != null ? listItem["Department"].ToString() : string.Empty,
+                    Section = listItem["Section"] != null ? listItem["Section"].ToString() : string.Empty,
+                    OfficeTel = listItem["OfficeTel"] != null ? listItem["OfficeTel"].ToString() : string.Empty,
+                    Mobile = listItem["Mobile"] != null ? listItem["Mobile"].ToString() : string.Empty,
+                    GSApproval = listItem["GSApproval"].ToString()
+                };
+                DocxGenericReport<BeachCampReport> reporter = new DocxGenericReport<BeachCampReport>(filePath, data);
 
-            var sb = new StringBuilder();
-            divContent.RenderControl(new System.Web.UI.HtmlTextWriter(new System.IO.StringWriter(sb)));
-            string contents = sb.ToString();
+                byte[] fileContent = reporter.GenerateDocument();
 
-            // Create a Document object
-            var document = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 50, 50, 25, 25);
+                if (fileContent != null)
+                {
+                    Response.Clear();
+                    Response.ClearHeaders();
+                    Response.ClearContent();
+                    Response.AddHeader("content-disposition", "attachment; filename=BeachCampReservation.docx" + "");
+                    Response.AddHeader("Content-Type", "application/msword");
+                    Response.ContentType = "application/msword";
+                    Response.AddHeader("Content-Length", fileContent.Length.ToString());
+                    Response.BinaryWrite(fileContent);
+                    Response.End();
+                }
+                #endregion Generic Word
 
-            // Create a new PdfWrite object, writing the output to a MemoryStream
-            var output = new System.IO.MemoryStream();
-            var writer = iTextSharp.text.pdf.PdfWriter.GetInstance(document, output);
+                #region Export Pdf
 
-            // Open the Document for writing
-            document.Open();
+                //var sb = new StringBuilder();
+                //divContent.RenderControl(new System.Web.UI.HtmlTextWriter(new System.IO.StringWriter(sb)));
+                //string contents = sb.ToString();
 
-            // Add content
-            var parsedHtmlElements = iTextSharp.text.html.simpleparser.HTMLWorker.ParseToList(new System.IO.StringReader(hiddenFieldContent.Value), null);
-            foreach (var htmlElement in parsedHtmlElements)
-                document.Add(htmlElement as iTextSharp.text.IElement);
+                //// Create a Document object
+                //var document = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 50, 50, 25, 25);
 
-            // Close document
-            document.Close();
+                //// Create a new PdfWrite object, writing the output to a MemoryStream
+                //var output = new System.IO.MemoryStream();
+                //var writer = iTextSharp.text.pdf.PdfWriter.GetInstance(document, output);
 
-            // Wirte to pdf
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", "attachment;filename=BeachCampReservation.pdf");
-            Response.BinaryWrite(output.ToArray());
+                //// Open the Document for writing
+                //document.Open();
 
-            #endregion Export Pdf
+                //// Add content
+                //var parsedHtmlElements = iTextSharp.text.html.simpleparser.HTMLWorker.ParseToList(new System.IO.StringReader(contents), null);
+                //foreach (var htmlElement in parsedHtmlElements)
+                //    document.Add(htmlElement as iTextSharp.text.IElement);
+
+                //// Close document
+                //document.Close();
+
+                //// Wirte to pdf
+                //Response.ContentType = "application/pdf";
+                //Response.AddHeader("Content-Disposition", "attachment;filename=BeachCampReservation.pdf");
+                //Response.BinaryWrite(output.ToArray());
+
+                #endregion Export Pdf
+            }
+            catch (Exception ex)
+            {
+                Utility.LogError(ex.Message, BeachCampFeatures.BeachCamp);
+            }
         }
 
 
@@ -111,7 +122,10 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
                 string personal = item["TypeOfBeachCamp"].ToString();
                 rdbBusiness.Checked = true;
                 if (personal == "Personal")
+                {
                     rdbPersonal.Checked = true;
+                    rdbBusiness.Checked = false;
+                }
                 rdbBusiness.Enabled = false;
                 rdbPersonal.Enabled = false;
                 literalEmployeeName.Text = item[SPBuiltInFieldId.Title].ToString();
@@ -124,18 +138,27 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
                 literalRequireDay.Text = item["RequireDay"].ToString();
                 literalEventDate.Text = DateTime.Parse(item["EventDate"].ToString()).ToString("dd/MM/yyyy");
                 //Check reservation is approved or rejected
-                if (item["GSApproval"] != null
-                    && (item["GSApproval"].ToString() == TaskResult.Rejected.ToString() 
-                    || item["GSApproval"].ToString() == TaskResult.Approved.ToString()
-                    || item["GSApproval"].ToString() == TaskResult.Draft.ToString()))
+
+                if (item["GSApproval"] != null && item["GSApproval"].ToString() == TaskResult.Approved.ToString())
                 {
                     radApproved.Checked = true;
-                    if (item["GSApproval"].ToString() == TaskResult.Rejected.ToString())
-                        radApproved.Checked = true;
-                    literalApproveComments.Text = item["GSApprovalComment"] == null ? string.Empty : item["GSApprovalComment"].ToString();
-                    radReject.Enabled = false;
-                    radApproved.Enabled = false;
+                    radApproved.Visible = true;
                 }
+                else if (item["GSApproval"] != null && item["GSApproval"].ToString() == TaskResult.Rejected.ToString())
+                {
+                    radReject.Checked = true;
+                    radReject.Visible = true;
+                    literalApproveComments.Text = item["GSApprovalComment"] == null ? string.Empty : item["GSApprovalComment"].ToString();
+                    literalApproveComments.Visible = true;
+                }
+                else
+                {
+                    lblError.Text = "This reservation status is : " + item["GSApproval"].ToString();
+                    lblError.Visible = true;
+                    btnExport.Enabled = false;
+                    btnPrint.Enabled = false;
+                }
+
                 BeachCampHelper.GetPrices(repeaterPrices, SPContext.Current.Web);
             }
             catch (Exception ex)

@@ -62,6 +62,14 @@
              ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE">
   </Field>
 
+  <Field Type="Calculated" ID="{205033BD-9E25-45d5-8586-E44727BD3E52}" Name="Reservation" StaticName="Reservation" DisplayName="Reservation" EnforceUniqueValues="FALSE" Indexed="FALSE" ResultType="Text" ReadOnly="TRUE" >
+    <Formula>="|||"&amp;GSApproval&amp;"|||"&amp;Title</Formula>
+    <FieldRefs>
+      <FieldRef Name="Title" />
+      <FieldRef Name="GSApproval" />
+    </FieldRefs>
+  </Field>
+
   <!-- Parent ContentType: Event (0x0102) -->
   <ContentType ID="0x010200df82c3b1ef75416ba8a8cc325ed7b4ae"
                Name="[BeachCamp] - BeachCamp Event"
@@ -91,6 +99,7 @@
       <FieldRef ID="{CBB0232E-5843-4e95-9CE5-33305ABD23B7}" Name="IsPaid" />
       <FieldRef ID="{981C8B72-2F76-4dbc-9ADD-8FE7B83943CB}" Name="GSApproval" />
       <FieldRef ID="{F1D22DAC-081B-415e-B548-42F59CF1F94E}" Name="GSApprovalComment" />
+      <FieldRef ID="{205033BD-9E25-45d5-8586-E44727BD3E52}" Name="Reservation" />
     </FieldRefs>
 
     <XmlDocuments>

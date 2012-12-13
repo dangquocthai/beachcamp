@@ -71,7 +71,8 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
             var item = workflowProperties.Item;
             item["GSApproval"] = GeneralSupervisorApproval_TaskOutcome;
             item["GSApprovalComment"] = GeneralSupervisorApproval_ApproveComments;
-            item.SystemUpdate();
+            //item.SystemUpdate();
+            item.Update();
         }
 
         public String GeneralSupervisorApproval_ApproveComments = default(System.String);
@@ -80,7 +81,8 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
         {
             var item = workflowProperties.Item;
             item["GSApproval"] = TaskResult.Pending.ToString();
-            item.SystemUpdate();
+            //item.SystemUpdate();
+            item.Update();
         }
 
 

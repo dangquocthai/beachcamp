@@ -42,8 +42,9 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
             SPSecurity.RunWithElevatedPrivileges(delegate()
             {
                 SPListItem sourceListItem = __ActivationProperties.GetListItem(__ListId, __ListItem);
-                
-                if (sourceListItem == null) return;
+
+                if (sourceListItem == null)
+                    return;
 
                 EnsureVersioningControl(sourceListItem.ParentList);
                 try

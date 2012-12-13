@@ -61,7 +61,29 @@ body #s4-leftpanel {
 					<td id="_invisibleIfEmpty" name="_invisibleIfEmpty" valign="top" width="100%"> <WebPartPages:WebPartZone runat="server" Title="loc:FullPage" ID="FullPage" FrameType="TitleBarOnly"/> </td>
 				</tr>
 				<script type="text/javascript" language="javascript">if(typeof(MSOLayout_MakeInvisibleIfEmpty) == "function") {MSOLayout_MakeInvisibleIfEmpty();}</script>
-                <script src="../../sites/beachcamp/_layouts/1033/jquery-1.8.2.min.js" type="text/javascript"></script>
-                <script src="../../sites/beachcamp/_layouts/1033/fixed-calendar.js" type="text/javascript"></script>
+
+                <script src="/_layouts/1033/jquery-1.8.2.min.js" type="text/javascript"></script>
+
+                <script type="text/javascript" language="javascript">
+                    $(window).load(function() {
+                                                $('#WPQ1_nav_prev_a').parent().hide();
+                                                $('#WPQ1_nav_next_a').parent().hide();
+                                                $('#WPQ2_nav_prev_a').parent().hide();
+                                                $('#WPQ2_nav_next_a').parent().hide();
+                                                MoveToDate('<%= DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd") %>', 'WPQ2');
+                                                $('td').removeAttr('evtid');
+                                                $('th').removeAttr('evtid');
+                                            });
+                    $(document).ready(function() {
+                        setTimeout(function(){
+                            $('td').removeAttr('evtid');
+                            $('th').removeAttr('evtid');
+                        },800);
+                                                            
+                    });
+                </script>
+                
+                <script src="/_layouts/1033/fixed-calendar.js" type="text/javascript"></script>
+                <script src="/_layouts/1033/colour-calendar.js" type="text/javascript"></script>
 		</table>
 </asp:Content>

@@ -131,6 +131,7 @@
       <DependentUpon>BeachCampTask.aspx.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebParts\BeachCampCalendarFixed\BeachCampCalendarFixed.cs" />
     <Compile Include="WebParts\BeachCampViewer\BeachCampViewer.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +140,9 @@
     </None>
     <None Include="CustomActions\BeachCampRegistration\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{602814f3-2bd6-4da0-978b-00e8c237acec}</SharePointProjectItemId>
+    </None>
+    <None Include="CustomActions\BeachCampRibbon\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{776ed2f1-30f6-4be1-a628-23a01726c3d6}</SharePointProjectItemId>
     </None>
     <None Include="Images\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b46a8b12-6299-4515-8912-9cd7a5e66392}</SharePointProjectItemId>
@@ -175,12 +179,6 @@
     <None Include="ListInstances\EmailTemplates\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2085b108-5315-43d7-828b-b87b81178978}</SharePointProjectItemId>
     </None>
-    <None Include="ListInstances\ListDefinition1\ListInstance1\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{de23a826-785c-4456-ae34-bbf7b81464b1}</SharePointProjectItemId>
-    </None>
-    <None Include="ListInstances\ListDefinition1\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{85daafed-6f60-464c-8660-f34409172081}</SharePointProjectItemId>
-    </None>
     <None Include="Properties\SharePoint.BeachCamp.snk" />
     <None Include="Package\Package.package">
       <PackageId>{09e80497-3297-4e4a-9494-d10b27df9c62}</PackageId>
@@ -194,6 +192,10 @@
     <None Include="TEMPLATE\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{75012795-b088-476a-830c-87ba1937b360}</SharePointProjectItemId>
     </None>
+    <None Include="WebParts\BeachCampCalendarFixed\BeachCampCalendarFixed.webpart" />
+    <None Include="WebParts\BeachCampCalendarFixed\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b77d3aee-249d-4cfa-a930-82f59091aa86}</SharePointProjectItemId>
+    </None>
     <None Include="WebParts\BeachCampViewer\BeachCampViewer.webpart" />
     <None Include="WebParts\BeachCampViewer\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5aa9aa86-4854-4ebf-92d2-a635c0404915}</SharePointProjectItemId>
@@ -206,6 +208,10 @@
     </Content>
     <Content Include="ContentTypes\BeachCampTaskContentType\Elements.xml" />
     <Content Include="CustomActions\BeachCampRegistration\Elements.xml" />
+    <Content Include="CustomActions\BeachCampRibbon\Elements.xml" />
+    <Content Include="Images\SharePoint.BeachCamp\Printer-icon-32.png" />
+    <Content Include="Images\SharePoint.BeachCamp\Printer-icon-48.png" />
+    <Content Include="Layouts\1033\colour-calendar.js" />
     <Content Include="Layouts\1033\fixed-calendar.js" />
     <Content Include="Layouts\SharePoint.BeachCamp\BeachCampExport.aspx">
       <SubType>ASPXCodeBehind</SubType>
@@ -253,9 +259,6 @@
     <Content Include="ListInstances\EmailTemplates\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="ListInstances\ListDefinition1\Elements.xml" />
-    <Content Include="ListInstances\ListDefinition1\ListInstance1\Elements.xml" />
-    <Content Include="ListInstances\ListDefinition1\Schema.xml" />
     <Content Include="Modules\BeachCampPages\Elements.xml" />
     <Content Include="Modules\BeachCampPages\BeachCampReservation.aspx">
       <SubType>ASPXCodeBehind</SubType>
@@ -267,6 +270,7 @@
     <Content Include="TEMPLATE\PAGES\FullPage_WebPart.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="WebParts\BeachCampCalendarFixed\Elements.xml" />
     <Content Include="WebParts\BeachCampViewer\Elements.xml" />
   </ItemGroup>
   <ItemGroup>

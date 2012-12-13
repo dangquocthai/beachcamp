@@ -209,37 +209,37 @@ namespace SharePoint.BeachCamp.WebParts.BeachCampViewer
             {
 
                 #region Add ListViewWebPart
-                //wp = new ListViewWebPart()
-                //{
-                //    ID = "currentMonthBeachCamp",
-                //    ListId = beachCampCalendar.ID,
-                //    ViewId = 0,
-                //    TitleUrl = beachCampCalendar.RootFolder.Url,
-                //    ViewType = ViewType.Calendar,
-                //    ViewGuid = beachCampCalendar.Views["Calendar"].ID.ToString(),
-                //};
+                wp = new ListViewWebPart()
+                {
+                    ID = "currentMonthBeachCamp",
+                    ListId = beachCampCalendar.ID,
+                    ViewId = 0,
+                    TitleUrl = beachCampCalendar.RootFolder.Url,
+                    ViewType = ViewType.Calendar,
+                    ViewGuid = beachCampCalendar.Views["Draft"].ID.ToString(),
+                };
 
-                ////UpdatePanel updatePanel1 = new UpdatePanel();
-                ////updatePanel1.ID = "updatePanel1";
-                ////updatePanel1.ContentTemplateContainer.Controls.Add(wp);
-                ////this.Controls.Add(updatePanel1);
+                //UpdatePanel updatePanel1 = new UpdatePanel();
+                //updatePanel1.ID = "updatePanel1";
+                //updatePanel1.ContentTemplateContainer.Controls.Add(wp);
+                //this.Controls.Add(updatePanel1);
 
-                ////wp.GetDesignTimeHtml();
-                //this.Controls.Add(wp);
-                //this.Controls.Add(new Literal() { Text = "<br />" });
+                //wp.GetDesignTimeHtml();
+                this.Controls.Add(wp);
+                this.Controls.Add(new Literal() { Text = "<br />" });
 
-                //wp = new ListViewWebPart()
-                //{
-                //    ID = "nextMonthBeachCamp",
-                //    ListId = beachCampCalendar.ID,
-                //    ViewId = 1,
-                //    TitleUrl = beachCampCalendar.RootFolder.Url,
-                //    ViewType = ViewType.Calendar,
-                //    ViewGuid = beachCampCalendar.Views["Calendar"].ID.ToString(),
-                //};
+                wp = new ListViewWebPart()
+                {
+                    ID = "nextMonthBeachCamp",
+                    ListId = beachCampCalendar.ID,
+                    ViewId = 1,
+                    TitleUrl = beachCampCalendar.RootFolder.Url,
+                    ViewType = ViewType.Calendar,
+                    ViewGuid = beachCampCalendar.Views["Draft"].ID.ToString(),
+                };
 
-                ////wp.GetDesignTimeHtml();
-                //this.Controls.Add(wp);
+                //wp.GetDesignTimeHtml();
+                this.Controls.Add(wp);
 
                 #endregion Add ListViewWebPart
 
