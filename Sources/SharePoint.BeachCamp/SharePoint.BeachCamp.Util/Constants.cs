@@ -14,5 +14,7 @@ namespace SharePoint.BeachCamp.Util
         
         public const string APPROVE_STATUS = "TaskStatus";
         public const string APPROVE_MESSAGE = "ApproveMessage";
+
+        public const string TITLE_COLOUR_FORMAT = "|||{0}|||{1}";
     }
 }
