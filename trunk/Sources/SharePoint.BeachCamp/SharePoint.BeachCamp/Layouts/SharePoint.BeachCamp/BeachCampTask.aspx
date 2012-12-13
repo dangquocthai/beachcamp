@@ -312,7 +312,7 @@
                     runat="server" />
                 <br />
                 <br />
-                <asp:TextBox runat="server" TextMode="MultiLine" Width="100%" Rows="15" ID="txtMessage" />
+                <asp:TextBox runat="server" Enabled="false" TextMode="MultiLine" Width="100%" Rows="15" ID="txtMessage" />
             </td>
         </tr>
     </table>

@@ -29,7 +29,17 @@
 	  // if (SP.UI.ApplicationPages.CalendarNotify.???)
 	}
 
-	function bindEventClickHandler()	{
+	function bindEventClickHandler() {
+
+	    $(".ms-acal-sdiv").each(function () {
+	        var time = $(this).children(".ms-acal-time").text();
+	        $(this).children(".ms-acal-time").hide();
+	        var titleText = $(this).parent(".ms-acal-item").attr("title");
+	        var titleValue = titleText.replace(time, "");
+	        $(this).parent(".ms-acal-item").attr("title", titleValue);
+	        $(this).find("a").html(titleValue);
+	    });
+        
 	    //$(".ms-acal-rootdiv .ms-acal-title a[href*='/Lists/'], .ms-acal-rootdiv .ms-acal-mdiv a[href*='/Lists/']").click(function () { EditLink2(this, 'WPQ1'); return false; });
 	    //$(".ms-acal-rootdiv .ms-acal-mdiv a[href*='/Lists/']").click(function () { EditLink2(this, 'WPQ2'); return false; });
 	    $(".ms-acal-rootdiv .ms-acal-mdiv a[href*='/Lists/']").each(function () {

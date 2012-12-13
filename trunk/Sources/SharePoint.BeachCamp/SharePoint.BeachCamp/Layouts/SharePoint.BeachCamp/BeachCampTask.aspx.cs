@@ -14,6 +14,7 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
 {
     public partial class BeachCampTask : LayoutsPageBase
     {
+        #region Properties
         protected SPList CurrentTaskList
         {
             get
@@ -75,13 +76,26 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
                 catch { return null; }
             }
         }
+        #endregion Properties
 
         protected override void OnInit(EventArgs e)
         {
             btnUpdate.Click += new EventHandler(btnUpdate_Click);
             repeaterPrices.ItemDataBound += new RepeaterItemEventHandler(repeaterPrices_ItemDataBound);
-
+            radApproved.CheckedChanged += new EventHandler(radApproved_CheckedChanged);
+            radApproved.AutoPostBack = true;
+            radReject.CheckedChanged += new EventHandler(radApproved_CheckedChanged);
+            radReject.AutoPostBack = true;
             base.OnInit(e);
+        }
+
+        void radApproved_CheckedChanged(object sender, EventArgs e)
+        {
+            txtMessage.Enabled = false;
+            if (!radApproved.Checked)
+            {
+                txtMessage.Enabled = true;
+            }
         }
 
         void btnUpdate_Click(object sender, EventArgs e)
@@ -93,7 +107,8 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
 
             CurrentTaskItem[SPBuiltInFieldId.WorkflowVersion] = 1;
             SPWorkflowTask.AlterTask(CurrentTaskItem, properties,true);
-            CurrentTaskItem.SystemUpdate();
+            //CurrentTaskItem.SystemUpdate();
+            CurrentTaskItem.Update();
             Back();
 
         }

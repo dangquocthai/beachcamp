@@ -32,7 +32,7 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
             {
                 ProvisionWebParts(web);
                 AddNavigation(web);
-                CreateOverlapCalenday(web);
+                //CreateOverlapCalenday(web);
                 EnsureSupervisorGroup(web);
                 SetListPermission(web);
             }
@@ -50,6 +50,7 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
             SPWeb web = (SPWeb)properties.Feature.Parent;
             try
             {
+                DeleteBeachCampList(web);
                 RemoveNavigation(web);
             }
             catch (Exception ex)
@@ -160,12 +161,12 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
                                             </Where>", viewName);
 
                 SPView newView = list.Views.Add(viewName, viewFields, query, 0, true, false, SPViewCollection.SPViewType.Calendar, false);
-
+                
                 newView.ViewData = @"<FieldRef Name='Author' Type='CalendarMonthTitle' />
                                 <FieldRef Name='AssignedTo' Type='CalendarWeekTitle' /> 
                                 <FieldRef Name='AssignedTo' Type='CalendarDayTitle' />
                                 <FieldRef Name='Title' Type='CalendarDayLocation' />";
-                newView.Hidden = true;
+                //newView.Hidden = true;
                 newView.Update();
             }
             catch (Exception ex)
@@ -216,10 +217,10 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
                                                                                     , pending.ID.ToString("B", CultureInfo.InstalledUICulture)// Pending View ID
                                                                                     , approved.ID.ToString("B", CultureInfo.InstalledUICulture)// Approved View ID
                                                                                     , rejected.ID.ToString("B", CultureInfo.InstalledUICulture)// Rejected View ID
-                                                                                    , web.ServerRelativeUrl.TrimEnd('/') + "/" + calendar.Url // Draft CalendarUrl
-                                                                                    , web.ServerRelativeUrl.TrimEnd('/') + "/" + calendar.Url // Pending CalendarUrl
-                                                                                    , web.ServerRelativeUrl.TrimEnd('/') + "/" + calendar.Url // Approved CalendarUrl
-                                                                                    , web.ServerRelativeUrl.TrimEnd('/') + "/" + calendar.Url // Rejected CalendarUrl
+                                                                                    , web.ServerRelativeUrl.TrimEnd('/') + "/" + draft.Url // Draft CalendarUrl
+                                                                                    , web.ServerRelativeUrl.TrimEnd('/') + "/" + pending.Url // Pending CalendarUrl
+                                                                                    , web.ServerRelativeUrl.TrimEnd('/') + "/" + approved.Url // Approved CalendarUrl
+                                                                                    , web.ServerRelativeUrl.TrimEnd('/') + "/" + rejected.Url // Rejected CalendarUrl
                                                                                     , beachCampCalendar.ParentWeb.Site.MakeFullUrl(beachCampCalendar.ParentWebUrl) //WebUrl
                                                                                     , beachCampCalendar.ID.ToString("B", CultureInfo.InvariantCulture) // List ID
                                                                                     , beachCampCalendar.Forms[PAGETYPE.PAGE_DISPLAYFORM].ServerRelativeUrl // ListFormUrl
@@ -316,17 +317,30 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
                 //You can also edit the Quick Launch the same way  
                 //SPNavigationNodeCollection topNavigationNodes = web.Navigation.QuickLaunch;  
 
-                SPNavigationNode objItem = new SPNavigationNode("Beach Camp Reservation", web.ServerRelativeUrl.TrimEnd('/') + "/SitePages/BeachCampReservation.aspx", false);
+                SPNavigationNode objItem = new SPNavigationNode("Beach Camp Reservation", web.ServerRelativeUrl.TrimEnd('/') + Constants.BEACH_CAMP_CALENDAR_LIST_URL, false);
                 topNavigationNodes.AddAsLast(objItem);
-                SPNavigationNode objItemChild = new SPNavigationNode("Management Reservation", web.ServerRelativeUrl.TrimEnd('/') + "/Lists/BCCalendar/AllItems.aspx", false);
-                objItem.Children.AddAsFirst(objItemChild);
-
-
+                //SPNavigationNode objItemChild = new SPNavigationNode("Management Reservation", web.ServerRelativeUrl.TrimEnd('/') + "/Lists/BCCalendar/AllItems.aspx", false);
+                //objItem.Children.AddAsFirst(objItemChild);
             }
             web.Update();
             web.AllowUnsafeUpdates = false;
         }
 
+        private void DeleteBeachCampList(SPWeb web)
+        {
+            try
+            {
+                var beachCampList = Utility.GetListFromURL(Constants.BEACH_CAMP_CALENDAR_LIST_URL, web);
+                if (beachCampList != null)
+                {
+                    beachCampList.Delete();
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.LogError(ex.Message, BeachCampFeatures.BeachCamp);
+            }
+        }
 
         private void RemoveNavigation(SPWeb web)
         {

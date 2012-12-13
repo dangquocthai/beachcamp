@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ArrayOfWebpartPageDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <WebpartPageDefinition>
-    <PageUrl>/SitePages/BeachCampReservation.aspx</PageUrl>
+    <PageUrl>/Lists/BCCalendar/calendar.aspx</PageUrl>
 
-    <Webparts xsi:type="ListViewWP">
+    <!--<Webparts xsi:type="ListViewWP">
       <Title></Title>
       <ZoneId>Main</ZoneId>
       <Index>0</Index>
@@ -15,30 +15,43 @@
       <CreateDefaultWP>true</CreateDefaultWP>
       <Properties>
         <Add Name="Title" Value="Beach Camp Reservation" Type="string" />
-        <!--<Add Name="ChromeType" Value="2" Type="chrometype" />-->
+        --><!--<Add Name="ChromeType" Value="2" Type="chrometype" />--><!--
       </Properties>
-    </Webparts>
+    </Webparts>-->
 
     <Webparts xsi:type="ListViewWP">
       <Title>Beach Camp Reservation</Title>
       <ZoneId>Main</ZoneId>
-      <Index>1</Index>
+      <Index>2</Index>
       <Hidden>false</Hidden>
       <AllowDuplicate>true</AllowDuplicate>
       <ListName>Beach Camp Reservation</ListName>
       <ListUrl>/Lists/BCCalendar</ListUrl>
       <ViewName>Calendar</ViewName>
-      <CreateDefaultWP>true</CreateDefaultWP>
+      <CreateDefaultWP>false</CreateDefaultWP>
       <Properties>
         <Add Name="Title" Value="WPQ2" Type="string" />
         <Add Name="ChromeType" Value="2" Type="chrometype" />
       </Properties>
     </Webparts>
 
-    <Webparts xsi:type="DefaultWP">
+    <!--<Webparts xsi:type="DefaultWP">
       <Title></Title>
       <ZoneId>Main</ZoneId>
-      <Index>2</Index>
+      <Index>3</Index>
+      <Hidden>true</Hidden>
+      <AllowDuplicate>false</AllowDuplicate>
+      <WebpartName>BeachCampCalendarFixed.webpart</WebpartName>
+      <Properties>
+        <Add Name="Title" Value="Beach Camp Calendar Fixed" Type="string" />
+        <Add Name="Hidden" Value="true" Type="string" />
+      </Properties>
+    </Webparts>-->
+
+    <!--<Webparts xsi:type="DefaultWP">
+      <Title></Title>
+      <ZoneId>Main</ZoneId>
+      <Index>3</Index>
       <Hidden>true</Hidden>
       <AllowDuplicate>false</AllowDuplicate>
       <WebpartName>BeachCampViewer.webpart</WebpartName>
@@ -46,6 +59,8 @@
         <Add Name="Title" Value="Beach Camp Viewer" Type="string" />
         <Add Name="Hidden" Value="true" Type="string" />
       </Properties>
-    </Webparts>
+    </Webparts>-->
+
+
   </WebpartPageDefinition>
 </ArrayOfWebpartPageDefinition>

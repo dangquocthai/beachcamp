@@ -38,11 +38,80 @@
             _spSuppressFormOnSubmitWrapper = true;
         }
     </script>
-
+    <style type="text/css">
+        .ms-long
+        {
+            width: 100%;
+        }
+        
+        .ms-input
+        {
+            color: #000000;
+            background: #ffffff;
+            font: normal 12px Arial,Tahoma, Verdana, Helvetica, sans-serif;
+            height: 15px;
+            width: 70px;
+            border-right: #f5f5f5 1px solid;
+            border-top: #b3c5e1 1px solid;
+            border-left: #b3c5e1 1px solid;
+            border-bottom: #f5f5f5 1px solid;
+            border-collapse: collapse border=1;
+        }
+        
+        .ms-dttimeinput
+        {
+            display: none;
+        }
+        
+        .tbl-beachcamp-reservation
+        {
+            display: none;
+        }
+        
+        .tbl-main
+        {
+            border-collapse: collapse;
+            border: 1px solid black;
+            font: normal 12px Arial, Tahoma, Verdana, Helvetica, sans-serif !important;
+            font-size: 12px !important;
+            color: #000000 !important;
+            width: 595px;
+        }
+        
+        .tr-main
+        {
+            border: 1px solid black;
+            padding: 10px 5px 10px 5px;
+        }
+        
+        .td-main
+        {
+            padding: 10px 5px 10px 5px;
+        }
+        
+        .tbl-info
+        {
+            width: 100%;
+        }
+        
+        .tbl-price
+        {
+            width: 100%;
+            border: 1px solid black;
+        }
+        
+        .row_titlelist
+        {
+            background: #EEEEEE;
+            font-weight: bold;
+            padding: 2px 0px 2px 0px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Main" ContentPlaceHolderID="PlaceHolderMain" runat="server">
     <center>
         <asp:HiddenField ID="hiddenFieldContent" runat="server" />
+
         <div id="divContent" runat="server">
             <div id="printcontent">
                 &nbsp;<br />
@@ -50,8 +119,8 @@
                     <b>BEACH CAMP RESERVATION FORM</b></h2>
                 <br />
                 <table style="width:595px; border: 1px solid black; font:normal 12px Arial, Tahoma, Verdana, Hevetica, sans-serif; font-size: 12px; color: #000000">
-                    <tr style="border: 1px solid black; padding: 10px 5px 10px 5px;">
-                        <td style="padding: 10px 5px 10px 5px;">
+                    <tr class="tr-main" style="border: 1px solid black;">
+                        <td class="td-main">
                             <table width="100%" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td style="width: 50%;" align="right" valign="middle">
@@ -68,9 +137,9 @@
                             </table>
                         </td>
                     </tr>
-                    <tr style="border: 1px solid black; padding: 10px 5px 10px 5px; ">
-                        <td style="padding: 10px 5px 10px 5px;">
-                            <table style="width:100%;">
+                    <tr class="tr-main" style="border: 1px solid black;">
+                        <td class="td-main">
+                            <table class="tbl-info">
                                 <tr>
                                     <td style="width: 20%; font-weight: bold;">
                                         Name :
@@ -122,8 +191,8 @@
                             </table>
                         </td>
                     </tr>
-                    <tr style="border: 1px solid black; padding: 10px 5px 10px 5px;">
-                        <td style="padding: 10px 5px 10px 5px;">
+                    <tr class="tr-main" style="border: 1px solid black;">
+                        <td class="td-main">
                             <table>
                                 <tr>
                                     <td>
@@ -156,10 +225,11 @@
                                                 </td>
                                             </tr>
                                         </table>
-                                        <table style="width: 100%; border: 1px solid black; border-collapse: collapse;" cellspacing="0" cellpadding="0">
+                                        <table class="tbl-prices" border="1" style="border-collapse: collapse" width="100%"
+                                            cellspacing="0" cellpadding="0">
                                             <asp:Repeater ID="repeaterPrices" runat="server">
                                                 <HeaderTemplate>
-                                                    <tr style="background: #EEEEEE; font-weight: bold; padding: 2px 0px 2px 0px;">
+                                                    <tr class="row_titlelist">
                                                         <td style="padding-top: 3px; padding-bottom: 3px;" width="20%" valign="middle" align="center">
                                                             Section
                                                         </td>
@@ -234,17 +304,22 @@
                             </table>
                         </td>
                     </tr>
-                    <tr style="border: 1px solid black; padding: 10px 5px 10px 5px;">
-                        <td style="padding: 10px 5px 10px 5px;">
-                            <asp:RadioButton GroupName="BeachCampApprove" Checked="true" Font-Bold="true" Text="Accepted and Reservation charges received."
+                    <tr class="tr-main" style="border: 1px solid black;">
+                        <td class="td-main">
+                            <b>General Services Department :</b><br /><br />
+
+                            <asp:Label ID="lblError" Font-Bold="true" ForeColor="Red" Visible="false" runat="server" Text=""></asp:Label>
+                            <br />
+
+                            <asp:RadioButton GroupName="BeachCampApprove" Visible="false" Checked="true" Font-Bold="true" Text="Accepted and Reservation charges received."
                                 runat="server" ID="radApproved" />
                             <br />
-                            <asp:RadioButton GroupName="BeachCampApprove" ID="radReject" Font-Bold="true" Text="Not Accepted for the following reasons."
+                            <asp:RadioButton GroupName="BeachCampApprove" Visible="false" ID="radReject" Font-Bold="true" Text="Not Accepted for the following reasons :"
                                 runat="server" />
                             <br />
                             <br />
                             <%--<asp:TextBox runat="server" TextMode="MultiLine" Width="100%" Rows="15" ID="txtMessage" />--%>
-                            <asp:Literal ID="literalApproveComments" Text="" runat="server"></asp:Literal>
+                            <asp:Literal ID="literalApproveComments" Visible="false" Text="" runat="server"></asp:Literal>
                         </td>
                     </tr>
                 </table>
@@ -270,12 +345,23 @@
 
     <script type="text/javascript">
 
-        var content = "<center>";
-        content += document.getElementById("printcontent").innerHTML;
-        content += "</center>";
-        var hiddenFieldContent = document.getElementById('<%= hiddenFieldContent.ClientID %>');
-        hiddenFieldContent.value = content;
-        //alert(hiddenFieldContent.value);
+//        var content = '<' + 'html' + '><' + 'head' + '><' + 'style' + '>';
+//        content += '.tbl-main { border-collapse: collapse; border: 1px solid black; font: normal 12px Arial, Tahoma, Verdana, Helvetica, sans-serif !important; font-size: 12px !important; color: #000000 !important; width: 595px;} .tr-main { border: 1px solid black; padding: 10px 5px 10px 5px;} .td-main { padding: 10px 5px 10px 5px;} .tbl-info { width: 100%;} .tbl-price { width: 100%; border: 1px solid black;} .row_titlelist { background: #EEEEEE; font-weight: bold; padding: 2px 0px 2px 0px;}';
+//        content += '<' + '/' + 'style' + '><' + '/' + 'head' + '><' + 'body' + '>';
+//        content += '<' + 'center' + '>';
+//        content += document.getElementById("printcontent").innerHTML;
+//        content += '<' + '/' + 'center' + '>';
+//        content += '<' + '/' + 'body' + '><' + '/' + 'html' + '>';
+
+//        var demoContent = "<table border='1' style='border-collapse: collapse' width='100%'";
+//        demoContent += "<tr><td>bawerwr3211111ewr</td></tr>";
+//        demoContent += "<tr><td>bawer232wrewr</td></tr>";
+//        demoContent += "<tr><td>322222222222222sddf</td></tr>";
+//        demoContent += "</table>";
+
+//        var hiddenFieldContent = document.getElementById('<%= hiddenFieldContent.ClientID %>');
+//        hiddenFieldContent.value = demoContent;
+//        alert(hiddenFieldContent.value);
 
     </script>
 
