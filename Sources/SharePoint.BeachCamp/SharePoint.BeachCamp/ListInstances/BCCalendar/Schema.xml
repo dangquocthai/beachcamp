@@ -1,15 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<List xmlns:ows="Microsoft SharePoint" Title="SharePoint.BeachCamp - Calendar" Direction="$Resources:Direction;" Url="Lists/SharePoint.BeachCamp-Calendar" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+<List xmlns:ows="Microsoft SharePoint" Title="BeachCampCalendar" Direction="$Resources:Direction;" Url="Lists/BCCalendar" EnableContentTypes="TRUE" MultipleTypes="TRUE" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
-    
     <ContentTypes>
-      
-      <ContentType ID="0x010200df82c3b1ef75416ba8a8cc325ed7b4ae" Name="[BeachCamp] - BeachCamp Event" Group="[BeachCamp]" Description="[BeachCamp] - BeachCamp Event" Inherits="TRUE" Version="0">
+      <ContentType ID="0x010200df82c3b1ef75416ba8a8cc325ed7b4ae" Name="[BeachCamp] - BeachCamp Event" Group="[BeachCamp]" Description="[BeachCamp] - BeachCamp Event" Version="0">
         <FieldRefs>
           <RemoveFieldRef ID="{f2e63656-135e-4f1c-8fc2-ccbe74071901}" Name="fRecurrence" />
           <RemoveFieldRef ID="{7d95d1f4-f5fd-4a70-90cd-b35abc9b5bc8}" Name="fAllDayEvent" />
           <RemoveFieldRef ID="{08fc65f9-48eb-4e99-bd61-5946c439e691}" Name="WorkspaceLink" />
-
           <FieldRef ID="{0785860E-5464-4e2f-81AA-CC7429D445CB}" Name="TypeOfBeachCamp" />
           <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="Employee Name" />
           <FieldRef Name="LinkTitle" ID="{82642ec8-ef9b-478f-acf9-31f7d45fbc31}" DisplayName="Employee Name" />
@@ -24,22 +21,15 @@
           <FieldRef ID="{2684f9f2-54be-429f-ba06-76754fc056bf}" Name="EndDate" />
           <FieldRef ID="{04AFCDE1-B31A-4809-BAE5-8D116036406A}" Name="RequireDay" />
           <FieldRef ID="{EB1B42F9-15E3-49ba-AFD3-F7CAFD959B11}" Name="TotalPrice" />
-          
           <FieldRef ID="{288f5f32-8462-4175-8f09-dd7ba29359a9}" Name="Location" />
-
           <FieldRef ID="{CBB0232E-5843-4e95-9CE5-33305ABD23B7}" Name="IsPaid" />
-
           <FieldRef ID="{981C8B72-2F76-4dbc-9ADD-8FE7B83943CB}" Name="GSApproval" />
           <FieldRef ID="{F1D22DAC-081B-415e-B548-42F59CF1F94E}" Name="GSApprovalComment" />
-
           <FieldRef ID="{205033BD-9E25-45d5-8586-E44727BD3E52}" Name="Reservation" />
-          
         </FieldRefs>
-
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/events">
             <Receivers xmlns:spe="http://schemas.microsoft.com/sharepoint/events">
-
               <Receiver>
                 <Name>BeachCampEventReciverItemAdding</Name>
                 <Type>ItemAdding</Type>
@@ -47,7 +37,6 @@
                 <Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
                 <Class>SharePoint.BeachCamp.ContentTypes.BeachCampEventReciver</Class>
               </Receiver>
-
               <Receiver>
                 <Name>BeachCampEventReciverItemAdded</Name>
                 <Type>ItemAdded</Type>
@@ -55,7 +44,6 @@
                 <Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
                 <Class>SharePoint.BeachCamp.ContentTypes.BeachCampEventReciver</Class>
               </Receiver>
-
               <Receiver>
                 <Name>BeachCampEventReciverItemUpdating</Name>
                 <Type>ItemUpdating</Type>
@@ -63,7 +51,6 @@
                 <Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
                 <Class>SharePoint.BeachCamp.ContentTypes.BeachCampEventReciver</Class>
               </Receiver>
-
               <Receiver>
                 <Name>BeachCampEventReciverItemUpdated</Name>
                 <Type>ItemUpdated</Type>
@@ -71,10 +58,8 @@
                 <Class>SharePoint.BeachCamp.ContentTypes.BeachCampEventReciver</Class>
                 <SequenceNumber>10000</SequenceNumber>
               </Receiver>
-
             </Receivers>
           </XmlDocument>
-
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
             <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
               <New>BeachCampNewEventTemplate</New>
@@ -82,16 +67,12 @@
               <Display>BeachCampDispEventTemplate</Display>
             </FormTemplates>
           </XmlDocument>
-
         </XmlDocuments>
-        
       </ContentType>
-      
     </ContentTypes>
-
     <Fields>
-
-
+      <Field ID="{288f5f32-8462-4175-8f09-dd7ba29359a9}" Type="Text" Name="Location" DisplayName="$Resources:core,Location;" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Location">
+      </Field>
       <Field Type="DateTime" ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Name="EventDate" DisplayName="$Resources:core,Start_Time;" Format="DateOnly" Sealed="TRUE" Required="TRUE" FromBaseType="TRUE" Filterable="FALSE" FilterableNoRecurrence="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="EventDate">
         <Default>[today]</Default>
         <FieldRefs>
@@ -104,10 +85,8 @@
           <FieldRef Name="fAllDayEvent" RefType="AllDayEvent" />
         </FieldRefs>
       </Field>
-
       <Field Type="Note" ID="{9da97a8a-1da5-4a77-98d3-4bc10456e700}" Name="Description" RichText="TRUE" DisplayName="$Resources:core,Description;" Sortable="FALSE" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Description">
       </Field>
-      
       <Field ID="{7d95d1f4-f5fd-4a70-90cd-b35abc9b5bc8}" Type="AllDayEvent" Name="fAllDayEvent" DisplaceOnUpgrade="TRUE" DisplayName="$Resources:core,All_Day_Event;" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="fAllDayEvent">
         <FieldRefs>
           <FieldRef Name="EventDate" RefType="StartDate" />
@@ -116,7 +95,6 @@
           <FieldRef Name="XMLTZone" RefType="XMLTZone" />
         </FieldRefs>
       </Field>
-      
       <Field ID="{f2e63656-135e-4f1c-8fc2-ccbe74071901}" Type="Recurrence" Name="fRecurrence" DisplayName="$Resources:core,Recurrence;" DisplayImage="recur.gif" ExceptionImage="recurEx.gif" HeaderImage="recurrence.gif" ClassInfo="Icon" Title="$Resources:core,Recurrence;" Sealed="TRUE" NoEditFormBreak="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="fRecurrence">
         <Default>FALSE</Default>
         <FieldRefs>
@@ -135,7 +113,6 @@
           <FieldRef Name="Workspace" RefType="LinkURL" />
         </FieldRefs>
       </Field>
-      
       <Field ID="{08fc65f9-48eb-4e99-bd61-5946c439e691}" Type="CrossProjectLink" Name="WorkspaceLink" Format="EventList" DisplayName="$Resources:core,Workspace;" DisplayImage="mtgicon.gif" HeaderImage="mtgicnhd.gif" ClassInfo="Icon" Title="$Resources:core,Meeting_Workspace;" Filterable="TRUE" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WorkspaceLink">
         <FieldRefs>
           <FieldRef Name="Workspace" RefType="LinkURL" CreateURL="newMWS.aspx">$Resources:core,Calendar_MeetingWorkspaceField_Desc;</FieldRef>
@@ -144,40 +121,28 @@
           <FieldRef Name="UID" RefType="UID" />
         </FieldRefs>
       </Field>
-      
       <Field ID="{5d1d4e76-091a-4e03-ae83-6a59847731c0}" Type="Integer" Name="EventType" DisplayName="$Resources:core,Event_Type;" Sealed="TRUE" Hidden="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="EventType">
       </Field>
-      
       <Field ID="{63055d04-01b5-48f3-9e1e-e564e7c6b23b}" Type="Guid" Name="UID" DisplayName="$Resources:core,UID;" Sealed="TRUE" Hidden="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="UID">
       </Field>
-      
       <Field ID="{dfcc8fff-7c4c-45d6-94ed-14ce0719efef}" Type="DateTime" Name="RecurrenceID" DisplayName="$Resources:core,Recurrence_ID;" CalType="1" Format="ISO8601Gregorian" Sealed="TRUE" Hidden="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="RecurrenceID">
       </Field>
-      
       <Field ID="{b8bbe503-bb22-4237-8d9e-0587756a2176}" Type="Boolean" Name="EventCanceled" DisplayName="$Resources:core,Event_Canceled;" Sealed="TRUE" Hidden="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="EventCanceled">
       </Field>
-      
       <Field ID="{4d54445d-1c84-4a6d-b8db-a51ded4e1acc}" Type="Integer" Name="Duration" DisplayName="$Resources:core,Duration;" Hidden="TRUE" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Duration">
       </Field>
-      
       <Field ID="{d12572d0-0a1e-4438-89b5-4d0430be7603}" Type="Note" Name="RecurrenceData" DisplayName="$Resources:core,RecurrenceData;" Hidden="TRUE" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="RecurrenceData">
       </Field>
-      
       <Field ID="{6cc1c612-748a-48d8-88f2-944f477f301b}" Type="Integer" Name="TimeZone" DisplayName="$Resources:core,TimeZone;" Sealed="TRUE" Hidden="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="TimeZone">
       </Field>
-      
       <Field ID="{c4b72ed6-45aa-4422-bff1-2b6750d30819}" Type="Note" Name="XMLTZone" DisplayName="$Resources:core,XMLTZone;" Hidden="TRUE" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="XMLTZone">
       </Field>
-      
       <Field ID="{9b2bed84-7769-40e3-9b1d-7954a4053834}" Type="Integer" Name="MasterSeriesItemID" DisplayName="$Resources:core,MasterSeriesItemID;" Sealed="TRUE" Hidden="TRUE" Indexed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="MasterSeriesItemID">
       </Field>
-      
       <Field ID="{881eac4a-55a5-48b6-a28e-8329d7486120}" Type="URL" Name="Workspace" DisplayName="$Resources:core,WorkspaceUrl;" Hidden="TRUE" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Workspace">
       </Field>
-      
       <Field ID="{8137f7ad-9170-4c1d-a17b-4ca7f557bc88}" Name="ParticipantsPicker" DisplayName="$Resources:core,ParticipantsPicker;" Type="UserMulti" List="UserInfo" Mult="TRUE" Required="FALSE" ShowField="ImnName" UserSelectionMode="PeopleAndGroups" UserSelectionScope="0" Sortable="FALSE" Sealed="FALSE" AllowDeletion="FALSE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="ParticipantsPicker">
       </Field>
-      
       <Field ID="{6df9bd52-550e-4a30-bc31-a4366832a87d}" Name="Category" DisplayName="$Resources:core,GBW_SR_Category_Field;" Type="Choice" Format="Dropdown" FillInChoice="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Category">
         <CHOICES>
           <CHOICE>$Resources:core,GBW_SR_Category_Meeting;</CHOICE>
@@ -190,82 +155,106 @@
           <CHOICE>$Resources:core,GBW_SR_Category_Anniversary;</CHOICE>
         </CHOICES>
       </Field>
-      
       <Field ID="{a4e7b3e1-1b0a-4ffa-8426-c94d4cb8cc57}" Name="Facilities" DisplayName="$Resources:core,GBW_SR_Facilities_Field;" Type="Facilities" Mult="TRUE" ShowField="Title" Sortable="FALSE" CanToggleHidden="TRUE" Sealed="FALSE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Facilities">
       </Field>
-      
       <Field ID="{393003f9-6ccb-4ea9-9623-704aa4748dec}" Name="FreeBusy" DisplayName="$Resources:core,GBW_SR_FreeBusyCalendar_Field;" Type="FreeBusy" Sortable="FALSE" CanToggleHidden="TRUE" ShowInDisplayForm="FALSE" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="FreeBusy">
       </Field>
-      
       <Field ID="{d8cd5bcf-3768-4d6c-a8aa-fefa3c793d8d}" Name="Overbook" DisplayName="$Resources:core,GBW_SR_Overbook_Field;" Type="Overbook" Sortable="FALSE" CanToggleHidden="TRUE" ShowInDisplayForm="FALSE" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Overbook">
       </Field>
-      
       <Field ID="{453c2d71-c41e-46bc-97c1-a5a9535053a3}" Name="Participants" DisplayName="HiddenParticipants" Type="Note" Sortable="FALSE" Sealed="TRUE" StaticName="Participants" Hidden="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3">
       </Field>
-
-      <Field ID="{288f5f32-8462-4175-8f09-dd7ba29359a9}" Type="Text" Name="Location" DisplayName="Section Period" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Location">
-      </Field>
-      
-      <Field Type="Choice" DisplayName="Type Of Beach Camp" ID="{0785860E-5464-4e2f-81AA-CC7429D445CB}" Name="TypeOfBeachCamp" StaticName="TypeOfBeachCamp"
-         Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="RadioButtons" FillInChoice="FALSE" Group="[BeachCamp]" >
-        <CHOICES>
-          <CHOICE>Personal</CHOICE>
-          <CHOICE>Business</CHOICE>
-        </CHOICES>
-      </Field>
-      
-      <Field Type="Text" DisplayName="ID#" ID="{3FEAB511-86E5-48e9-8A57-CE0B72EE3E84}" Name="EmployeeCode" StaticName="EmployeeCode" Required="FALSE" Group="[BeachCamp]">
-      </Field>
-      
+      <Field Type="Choice" DisplayName="TypeOfBeachCamp" ID="{0785860e-5464-4e2f-81aa-cc7429d445cb}" Name="TypeOfBeachCamp" StaticName="TypeOfBeachCamp" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="RadioButtons" FillInChoice="FALSE" Group="[BeachCamp]">
+    <CHOICES>
+      <CHOICE>Personal</CHOICE>
+      <CHOICE>Business</CHOICE>
+    </CHOICES>
+  </Field>
+      <Field Type="Text" DisplayName="ID#" ID="{3feab511-86e5-48e9-8a57-ce0b72ee3e84}" Name="EmployeeCode" StaticName="EmployeeCode" Required="FALSE" Group="[BeachCamp]">
+  </Field>
       <Field Type="Text" DisplayName="Department" ID="{72966fee-f992-44f1-9d07-8542da0a049f}" Name="Department" StaticName="Department" Required="FALSE" Group="[BeachCamp]">
-      </Field>
-      
+  </Field>
       <Field Type="Text" DisplayName="Office Tel" ID="{2bc93e37-5aae-46f9-a37c-9810cf1e72b9}" Name="OfficeTel" StaticName="OfficeTel" Required="FALSE" Group="[BeachCamp]">
-      </Field>
-      
+  </Field>
       <Field Type="Text" DisplayName="Mobile" ID="{42cd2627-1321-4ee7-8da2-b546b22429b9}" Name="Mobile" StaticName="Mobile" Required="FALSE" Group="[BeachCamp]">
-      </Field>
-      
+  </Field>
       <Field Type="Note" DisplayName="Reason" ID="{66d8165a-11d0-4708-b204-0352040586ed}" Name="Reason" StaticName="Reason" Required="FALSE" Group="[BeachCamp]">
-      </Field>
-
-      <Field Type="Integer" DisplayName="Require Day" ID="{04AFCDE1-B31A-4809-BAE5-8D116036406A}" Name="RequireDay" Decimals="0" StaticName="RequireDay" Required="TRUE"
-       Min="1" Max="10" Group="[BeachCamp]">
-        <Default>1</Default>
-      </Field>
-      
-      <Field Type="Integer" DisplayName="Total Price" ID="{eb1b42f9-15e3-49ba-afd3-f7cafd959b11}" Name="TotalPrice" StaticName="TotalPrice" Required="FALSE" ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE" Group="[BeachCamp]">
-      </Field>
-
-      <Field Type="Text" ID="{B7E4E79C-D66D-4949-B425-66C0811EA74B}" Name="Section" DisplayName="Section" StaticName="Section"
-             ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE">
-      </Field>
-
-      <Field Type="Boolean" DisplayName="Paid" ID="{CBB0232E-5843-4e95-9CE5-33305ABD23B7}" Name="IsPaid" StaticName="IsPaid"
-             ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE">
-        <Default>0</Default>
-      </Field>
-
-      <Field Type="Text" ID="{981C8B72-2F76-4dbc-9ADD-8FE7B83943CB}" Name="GSApproval" DisplayName="General Supervisor Approval" StaticName="GSApproval"
-             ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE">
-      </Field>
-
-      <Field Type="Note" ID="{F1D22DAC-081B-415e-B548-42F59CF1F94E}" Name="GSApprovalComment" DisplayName="General Supervisor Approval Comment" StaticName="GSApprovalComment"
-                 ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE">
-      </Field>
-
-      <Field Type="Calculated" ID="{205033BD-9E25-45d5-8586-E44727BD3E52}" Name="Reservation" StaticName="Reservation" DisplayName="Reservation" EnforceUniqueValues="FALSE" Indexed="FALSE" ResultType="Text" ReadOnly="TRUE" >
-        <Formula>="|||"&amp;GSApproval&amp;"|||"&amp;Title</Formula>
+  </Field>
+      <Field Type="Integer" DisplayName="RequireDay" ID="{04afcde1-b31a-4809-bae5-8d116036406a}" Name="RequireDay" Decimals="0" StaticName="RequireDay" Required="TRUE" ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE" Group="[BeachCamp]">
+    <Default>1</Default>
+  </Field>
+      <Field Type="Integer" DisplayName="TotalPrice" ID="{eb1b42f9-15e3-49ba-afd3-f7cafd959b11}" Name="TotalPrice" StaticName="TotalPrice" Required="FALSE" ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE" Group="[BeachCamp]">
+  </Field>
+      <Field Type="Text" ID="{b7e4e79c-d66d-4949-b425-66c0811ea74b}" Name="Section" DisplayName="Section" StaticName="Section" ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE">
+  </Field>
+      <Field Type="Boolean" DisplayName="Paid" ID="{cbb0232e-5843-4e95-9ce5-33305abd23b7}" Name="IsPaid" StaticName="IsPaid" ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE">
+    <Default>0</Default>
+  </Field>
+      <Field Type="Text" ID="{981c8b72-2f76-4dbc-9add-8fe7b83943cb}" Name="GSApproval" DisplayName="General Supervisor Approval" StaticName="GSApproval" ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE">
+  </Field>
+      <Field Type="Note" ID="{f1d22dac-081b-415e-b548-42f59cf1f94e}" Name="GSApprovalComment" DisplayName="General Supervisor Approval Comment" StaticName="GSApprovalComment" ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE">
+  </Field>
+      <Field Type="Calculated" ID="{205033bd-9e25-45d5-8586-e44727bd3e52}" Name="Reservation" StaticName="Reservation" DisplayName="Reservation" EnforceUniqueValues="FALSE" Indexed="FALSE" ResultType="Text" ReadOnly="TRUE">
+    <Formula>="|||"&amp;GSApproval&amp;"|||"&amp;Title</Formula>
+    <FieldRefs>
+      <FieldRef Name="GSApproval" />
+      <FieldRef Name="Title" />
+    </FieldRefs>
+  </Field>
+      <Field ID="{82642ec8-ef9b-478f-acf9-31f7d45fbc31}" Name="LinkTitle" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="LinkTitle" Group="$Resources:core,Base_Columns;" ReadOnly="TRUE" Type="Computed" DisplayName="$Resources:core,Title;" DisplayNameSrcField="Title" ClassInfo="Menu" AuthoringInfo="$Resources:core,Linked_Item_With_Menu;">
         <FieldRefs>
-          <FieldRef Name="GSApproval" />
-          <FieldRef Name="Title" />
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" />
+          <FieldRef ID="{bc91a437-52e7-49e1-8c4e-4698904b2b6d}" Name="LinkTitleNoMenu" />
+          <FieldRef ID="{1344423c-c7f9-4134-88e4-ad842e2d723c}" Name="_EditMenuTableStart2" />
+          <FieldRef ID="{2ea78cef-1bf9-4019-960a-02c41636cb47}" Name="_EditMenuTableEnd" />
         </FieldRefs>
+        <DisplayPattern>
+          <FieldSwitch>
+            <Expr>
+              <GetVar Name="FreeForm" />
+            </Expr>
+            <Case Value="TRUE">
+              <Field Name="LinkTitleNoMenu" />
+            </Case>
+            <Default>
+              <Field Name="_EditMenuTableStart2" />
+              <Field Name="LinkTitleNoMenu" />
+              <Field Name="_EditMenuTableEnd" />
+            </Default>
+          </FieldSwitch>
+        </DisplayPattern>
       </Field>
-      
+      <Field ID="{bc91a437-52e7-49e1-8c4e-4698904b2b6d}" Name="LinkTitleNoMenu" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="LinkTitleNoMenu" Group="$Resources:core,Base_Columns;" ReadOnly="TRUE" Type="Computed" DisplayName="$Resources:core,Title;" Dir="" DisplayNameSrcField="Title" AuthoringInfo="$Resources:core,Linked_Item;">
+        <FieldRefs>
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" />
+          <FieldRef ID="{9d30f126-ba48-446b-b8f9-83745f322ebe}" Name="LinkFileNameNoMenu" />
+        </FieldRefs>
+        <DisplayPattern>
+          <IfEqual>
+            <Expr1>
+              <LookupColumn Name="FSObjType" />
+            </Expr1>
+            <Expr2>1</Expr2>
+            <Then>
+              <Field Name="LinkFilenameNoMenu" />
+            </Then>
+            <Else>
+              <HTML><![CDATA[<a onfocus="OnLink(this)" href="]]></HTML>
+              <URL />
+              <HTML><![CDATA[" onclick="GoToLink(this);return false;" target="_self">]]></HTML>
+              <Column HTMLEncode="TRUE" Name="Title" Default="$Resources:core,NoTitle;" />
+              <HTML><![CDATA[</a>]]></HTML>
+              <IfNew>
+                <HTML><![CDATA[<img src="/_layouts/[%=System.Threading.Thread.CurrentThread.CurrentUICulture.LCID%]/images/new.gif" alt="]]></HTML>
+                <HTML>$Resources:core,new_gif_alttext;</HTML>
+                <HTML><![CDATA[" class="ms-newgif" />]]></HTML>
+              </IfNew>
+            </Else>
+          </IfEqual>
+        </DisplayPattern>
+      </Field>
     </Fields>
-    
     <Views>
-      
+
       <View BaseViewID="0" Type="HTML" RecurrenceRowset="TRUE" TabularView="FALSE" MobileView="TRUE">
         <Toolbar Type="Standard" />
         <XslLink>main.xsl</XslLink>
@@ -310,7 +299,7 @@
           </OrderBy>
         </Query>
       </View>
-      
+
       <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,userinfo_schema_alleventsview;" MobileView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/events.png" Url="AllItems.aspx" DefaultBaseView="TRUE">
         <Toolbar Type="Standard" />
         <XslLink Default="TRUE">main.xsl</XslLink>
@@ -320,10 +309,10 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
         <ViewFields>
-          
+
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          
+
           <FieldRef Name="EmployeeCode">
           </FieldRef>
 
@@ -341,13 +330,13 @@
 
           <FieldRef Name="EventDate">
           </FieldRef>
-          
+
           <FieldRef Name="Location">
           </FieldRef>
 
           <FieldRef Name="TotalPrice">
           </FieldRef>
-          
+
           <FieldRef Name="IsPaid">
           </FieldRef>
 
@@ -365,7 +354,7 @@
           </GroupBy>
         </Query>
       </View>
-     
+
       <View BaseViewID="2" Type="CALENDAR" WebPartZoneID="CenterLeftColumn" DisplayName="Calendar" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\TwoColumn_WebPart.aspx" ImageUrl="/_layouts/images/events.png" TabularView="FALSE" Url="calendar.aspx" RecurrenceRowset="TRUE" DefaultView="TRUE" MobileUrl="_layouts/mobile/viewdaily.aspx">
         <Toolbar Type="Standard" />
         <ParameterBindings>
@@ -394,7 +383,7 @@
 
           <FieldRef Name="EventDate">
           </FieldRef>
-          
+
           <FieldRef Name="Location">
           </FieldRef>
 
@@ -403,7 +392,7 @@
 
           <FieldRef Name="IsPaid">
           </FieldRef>
-          
+
         </ViewFields>
         <ViewData>
           <FieldRef Name="Reservation" Type="CalendarMonthTitle">
@@ -438,7 +427,7 @@
           </OrderBy>
         </Query>
       </View>
-      
+
       <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,userinfo_schema_curreventsview;" MobileView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/events.png" Url="MyItems.aspx" ReqAuth="TRUE" RecurrenceRowset="TRUE">
         <Toolbar Type="Standard" />
         <XslLink Default="TRUE">main.xsl</XslLink>
@@ -447,7 +436,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
         <ViewFields>
-          
+
           <FieldRef Name="LinkTitle">
           </FieldRef>
 
@@ -477,7 +466,7 @@
 
           <FieldRef Name="IsPaid">
           </FieldRef>
-          
+
         </ViewFields>
         <Query>
           <Where>
@@ -501,16 +490,13 @@
         <RowLimit Paged="TRUE">100</RowLimit>
       </View>
 
-      
+
     </Views>
-    
     <Forms>
       <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
       <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
       <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
     </Forms>
-    
     <DefaultDescription>$Resources:camlidE14;</DefaultDescription>
-    
   </MetaData>
 </List>

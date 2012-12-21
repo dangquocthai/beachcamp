@@ -7,46 +7,37 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp {
+namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp {
     
     
-    public partial class BeachCampNewEvent {
+    public partial class BeachCampPayment {
         
         /// <summary>
-        /// FormToolBar2 control.
+        /// CssRegistration3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FormToolBar FormToolBar2;
+        protected global::Microsoft.SharePoint.WebControls.CssRegistration CssRegistration3;
         
         /// <summary>
-        /// ItemValidationFailedMessage2 control.
+        /// CssRegistration2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.ItemValidationFailedMessage ItemValidationFailedMessage2;
+        protected global::Microsoft.SharePoint.WebControls.CssRegistration CssRegistration2;
         
         /// <summary>
-        /// FolderFormFields1 control.
+        /// CssRegistration1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FolderFormFields FolderFormFields1;
-        
-        /// <summary>
-        /// lblError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
+        protected global::Microsoft.SharePoint.WebControls.CssRegistration CssRegistration1;
         
         /// <summary>
         /// tblMain control.
@@ -76,76 +67,85 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp {
         protected global::System.Web.UI.WebControls.RadioButton rdbBusiness;
         
         /// <summary>
-        /// txtEmployeeName control.
+        /// literalEmployeeName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmployeeName;
+        protected global::System.Web.UI.WebControls.Literal literalEmployeeName;
         
         /// <summary>
-        /// txtEmployeeCode control.
+        /// literalEmployeeCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmployeeCode;
+        protected global::System.Web.UI.WebControls.Literal literalEmployeeCode;
         
         /// <summary>
-        /// txtDepartment control.
+        /// literalDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDepartment;
+        protected global::System.Web.UI.WebControls.Literal literalDepartment;
         
         /// <summary>
-        /// txtSection control.
+        /// literalSection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSection;
+        protected global::System.Web.UI.WebControls.Literal literalSection;
         
         /// <summary>
-        /// txtOfficeTel control.
+        /// literalOfficeTel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOfficeTel;
+        protected global::System.Web.UI.WebControls.Literal literalOfficeTel;
         
         /// <summary>
-        /// txtMobile control.
+        /// literalMobile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMobile;
+        protected global::System.Web.UI.WebControls.Literal literalMobile;
         
         /// <summary>
-        /// ffReason control.
+        /// literalReason control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FormField ffReason;
+        protected global::System.Web.UI.WebControls.Literal literalReason;
         
         /// <summary>
-        /// ffEventDate control.
+        /// literalRequireDay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FormField ffEventDate;
+        protected global::System.Web.UI.WebControls.Literal literalRequireDay;
+        
+        /// <summary>
+        /// literalEventDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal literalEventDate;
         
         /// <summary>
         /// repeaterPrices control.
@@ -157,102 +157,48 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp {
         protected global::System.Web.UI.WebControls.Repeater repeaterPrices;
         
         /// <summary>
-        /// ApprovalStatus2 control.
+        /// lblError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.ApprovalStatus ApprovalStatus2;
+        protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
-        /// FormComponent2 control.
+        /// radUnpaid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FormComponent FormComponent2;
+        protected global::System.Web.UI.WebControls.RadioButton radUnpaid;
         
         /// <summary>
-        /// ItemHiddenVersion2 control.
+        /// radPaid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.ItemHiddenVersion ItemHiddenVersion2;
+        protected global::System.Web.UI.WebControls.RadioButton radPaid;
         
         /// <summary>
-        /// ParentInformationField2 control.
+        /// btnUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.ParentInformationField ParentInformationField2;
+        protected global::System.Web.UI.WebControls.Button btnUpdate;
         
         /// <summary>
-        /// InitContentType2 control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.InitContentType InitContentType2;
-        
-        /// <summary>
-        /// toolBar1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UserControl toolBar1;
-        
-        /// <summary>
-        /// CreatedModifiedInfo2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.CreatedModifiedInfo CreatedModifiedInfo2;
-        
-        /// <summary>
-        /// btnSave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
-        
-        /// <summary>
-        /// btnSaveAndSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSaveAndSubmit;
-        
-        /// <summary>
-        /// GoBackButton2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.GoBackButton GoBackButton2;
-        
-        /// <summary>
-        /// AttachmentUpload1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.AttachmentUpload AttachmentUpload1;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
     }
 }

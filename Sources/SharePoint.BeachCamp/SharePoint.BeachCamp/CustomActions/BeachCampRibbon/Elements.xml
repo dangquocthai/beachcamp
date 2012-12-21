@@ -5,6 +5,7 @@
     RegistrationType="List"
     RegistrationId="106"
     Location="CommandUI.Ribbon">
+    
     <CommandUIExtension>
       <CommandUIDefinitions>
         <CommandUIDefinition
@@ -18,8 +19,23 @@
            LabelText="Export Reservation"
            TemplateAlias="o2"/>
         </CommandUIDefinition>
+
+        <CommandUIDefinition
+         Location="Ribbon.Calendar.Events.Actions.Controls._children">
+          <Button
+           Id="Ribbon.Calendar.Events.Actions.Controls.PayForReservation"
+           Alt="Export Reservation"
+           Sequence="11"
+           Image32by32="/_layouts/images/SharePoint.BeachCamp/Payment-icon-32.png"
+           Command="SharePoint.BeachCamp.PayForReservation"
+           LabelText="Pay For Reservation"
+           TemplateAlias="o2"/>
+        </CommandUIDefinition>
+        
       </CommandUIDefinitions>
+      
       <CommandUIHandlers>
+        
         <CommandUIHandler
          Command="SharePoint.BeachCamp.ExportReservation"
          CommandAction="javascript:OpenPopUpPageWithTitle('{SiteUrl}/_layouts/SharePoint.BeachCamp/BeachCampExport.aspx?ID={SelectedItemId}&amp;List={ListId}',RefreshOnDialogClose,650,850,'Beach Camp Reservation')"
@@ -30,7 +46,20 @@
             return (items.length > 0);
           }
           enableExportReservation();"/>
+
+        <CommandUIHandler
+         Command="SharePoint.BeachCamp.PayForReservation"
+         CommandAction="javascript:OpenPopUpPageWithTitle('{SiteUrl}/_layouts/SharePoint.BeachCamp/BeachCampPayment.aspx?ID={SelectedItemId}&amp;List={ListId}',RefreshOnDialogClose,650,300,'Beach Camp Payment')"
+         EnabledScript="javascript:
+          function enableExportReservation()
+          {
+            var items = SP.ListOperation.Selection.getSelectedItems();
+            return (items.length > 0);
+          }
+          enableExportReservation();"/>
+        
       </CommandUIHandlers>
     </CommandUIExtension>
+    
   </CustomAction>
 </Elements>

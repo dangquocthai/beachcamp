@@ -12,16 +12,18 @@
 <%@ Register TagPrefix="wssuc" TagName="ToolBar" Src="~/_controltemplates/ToolBar.ascx" %>
 <%@ Register TagPrefix="wssuc" TagName="ToolBarButton" Src="~/_controltemplates/ToolBarButton.ascx" %>
 <style type="text/css">
+   
     .ms-long
     {
         width: 100%;
+        font: 12px Arial,Tahoma,Verdana,Helvetica,sans-serif !important;
     }
     
     .ms-input
     {
         color: #000000;
         background: #ffffff;
-        font: normal 12px Arial,Tahoma, Verdana, Helvetica, sans-serif;
+        font: normal 12px Arial,Tahoma, Verdana, Helvetica, sans-serif !important;
         height: 15px;
         width: 70px;
         border-right: #f5f5f5 1px solid;
@@ -44,6 +46,7 @@
         font: normal 12px Arial, Tahoma, Verdana, Helvetica, sans-serif !important;
         font-size: 12px !important;
         color: #000000 !important;
+        /*width: 595px !important;*/
     }
     
     .tr-main
@@ -97,6 +100,7 @@
         <!-- myCustomForm -->
         <asp:Label ID="lblError" Font-Bold="true" ForeColor="Red" Visible="false" runat="server"
             Text=""></asp:Label>
+        <br />
         <br />
         <table class="tbl-main" id="tblMain" runat="server">
             <tr class="tr-main">
@@ -198,13 +202,13 @@
                             <td>
                                 <table>
                                     <tr>
-                                        <td style="font-weight: bold;">
+                                        <%--<td style="font-weight: bold;">
                                             Require day:&nbsp;
                                         </td>
                                         <td>
                                             <SharePoint:FormField FieldName="RequireDay" ErrorMessage="*" ID="ffRequireDay" runat="server">
                                             </SharePoint:FormField>
-                                        </td>
+                                        </td>--%>
                                         <td style="font-weight: bold;">
                                             &nbsp;On:&nbsp;
                                         </td>

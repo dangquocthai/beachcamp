@@ -53,17 +53,18 @@
     
     .word_wrap
     {
-        white-space: pre-wrap; /* css-3 */
-        white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
-        white-space: -pre-wrap; /* Opera 4-6 */
-        white-space: -o-pre-wrap; /* Opera 7 */
-        word-wrap: break-word; /* Internet Explorer 5.5+ */
     }
     
     .ms-acal-ctrlitem
     {
         display:none;
     }
+    
+    .ms-acal-item, .ms-acal-selected
+    {
+        height:16px !important;
+    }
+    
 </style>
 		</contenttemplate>
     </SharePoint:UIVersionedContent>
@@ -87,37 +88,55 @@
 <asp:Content ContentPlaceHolderID="PlaceHolderLeftNavBar" runat="server">
 </asp:Content>
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
-    <table cellpadding="4" cellspacing="0" border="0" width="100%">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <%--<tr>
+            <td id="_invisibleIfEmpty" name="_invisibleIfEmpty" valign="top" style="width:50%;" >
+                <WebPartPages:WebPartZone runat="server" Title="loc:CenterLeftColumn" ID="CenterLeftColumn"
+                    FrameType="TitleBarOnly" />
+            </td>
+            <td id="_invisibleIfEmpty" name="_invisibleIfEmpty" valign="top" style="width:50%;" >
+                <WebPartPages:WebPartZone runat="server" Title="loc:CenterRightColumn" ID="CenterRightColumn"
+                    FrameType="TitleBarOnly" />
+            </td>
+        </tr>--%>
+
         <tr>
-            <td id="_invisibleIfEmpty" name="_invisibleIfEmpty" valign="top" width="100%">
-                <WebPartPages:WebPartZone runat="server" Title="loc:FullPage" ID="FullPage" FrameType="TitleBarOnly" />
+            <td valign="top" style="width:50%;" >
+                <WebPartPages:WebPartZone id="CenterLeftColumn" runat="server" title="CenterLeftColumn">
+                    <ZoneTemplate></ZoneTemplate>
+                </WebPartPages:WebPartZone>
+            </td>
+            <td valign="top" style="width:50%;" >
+                <WebPartPages:WebPartZone id="CenterRightColumn" runat="server" title="CenterRightColumn">
+                    <ZoneTemplate></ZoneTemplate>
+                </WebPartPages:WebPartZone>
             </td>
         </tr>
-        <script type="text/javascript" language="javascript">
-            if (typeof (MSOLayout_MakeInvisibleIfEmpty) == "function") {
-                MSOLayout_MakeInvisibleIfEmpty(); 
-            }
-        </script>
-        <script src="/_layouts/1033/jquery-1.8.2.min.js" type="text/javascript"></script>
-        <script type="text/javascript" language="javascript">
-            $(window).load(function () {
-                $('#WPQ1_nav_prev_a').parent().hide();
-                $('#WPQ1_nav_next_a').parent().hide();
-                $('#WPQ2_nav_prev_a').parent().hide();
-                $('#WPQ2_nav_next_a').parent().hide();
-                MoveToDate('<%= DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd") %>', 'WPQ2');
+    </table>
+    <%--<script type="text/javascript" language="javascript">
+        if (typeof (MSOLayout_MakeInvisibleIfEmpty) == "function") {
+            MSOLayout_MakeInvisibleIfEmpty();
+        }
+    </script>--%>
+    <script src="/_layouts/1033/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript" language="javascript">
+        $(window).load(function () {
+            $('#WPQ1_nav_prev_a').parent().hide();
+            $('#WPQ1_nav_next_a').parent().hide();
+            $('#WPQ2_nav_prev_a').parent().hide();
+            $('#WPQ2_nav_next_a').parent().hide();
+            MoveToDate('<%= DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd") %>', 'WPQ2');
+            $('td').removeAttr('evtid');
+            $('th').removeAttr('evtid');
+        });
+        $(document).ready(function () {
+            setTimeout(function () {
                 $('td').removeAttr('evtid');
                 $('th').removeAttr('evtid');
-            });
-            $(document).ready(function () {
-                setTimeout(function () {
-                    $('td').removeAttr('evtid');
-                    $('th').removeAttr('evtid');
-                }, 800);
+            }, 800);
 
-            });
-        </script>
-        <script src="/_layouts/1033/fixed-calendar.js" type="text/javascript"></script>
-        <script src="/_layouts/1033/colour-calendar.js" type="text/javascript"></script>
-    </table>
+        });
+    </script>
+    <script src="/_layouts/1033/fixed-calendar.js" type="text/javascript"></script>
+    <script src="/_layouts/1033/colour-calendar.js" type="text/javascript"></script>
 </asp:Content>

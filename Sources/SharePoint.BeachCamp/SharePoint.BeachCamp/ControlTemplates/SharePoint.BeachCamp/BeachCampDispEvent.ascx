@@ -44,6 +44,7 @@
         font: normal 12px Arial, Tahoma, Verdana, Helvetica, sans-serif !important;
         font-size: 12px !important;
         color: #000000 !important;
+        width: 595px !important;
     }
     
     .tr-main

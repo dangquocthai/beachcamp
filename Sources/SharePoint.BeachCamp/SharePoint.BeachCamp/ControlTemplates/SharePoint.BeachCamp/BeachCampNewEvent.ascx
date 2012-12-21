@@ -14,6 +14,11 @@
 
 
 <style type="text/css">
+    .ms-dttimeinput
+    {
+        display:none;
+    }
+    
     .ms-long
     {
         width: 100%;
@@ -33,11 +38,6 @@
         border-collapse: collapse border=1;
     }
     
-    .ms-dttimeinput
-    {
-        display: none;
-    }
-    
     .tbl-main
     {
         width: 100%;
@@ -46,6 +46,7 @@
         font: normal 12px Arial, Tahoma, Verdana, Helvetica, sans-serif !important;
         font-size: 12px !important;
         color: #000000 !important;
+        width: 595px !important;
     }
     
     .tr-main
@@ -76,6 +77,7 @@
         font-weight: bold;
         padding: 2px 0px 2px 0px;
     }
+    
 </style>
 <span id='part1'>
     <%--<SharePoint:InformationBar ID="InformationBar2" runat="server" />--%>
@@ -192,18 +194,19 @@
                             <td>
                                 <table>
                                     <tr>
-                                        <td style="font-weight: bold;">
+                                        <%--<td style="font-weight: bold;">
                                             Require day:&nbsp;
                                         </td>
                                         <td>
-                                            <SharePoint:FormField FieldName="RequireDay" ErrorMessage="*" ID="ffRequireDay" runat="server">
+                                            <SharePoint:FormField FieldName="RequireDay" ID="ffRequireDay" runat="server">
                                             </SharePoint:FormField>
-                                        </td>
+                                        </td>--%>
                                         <td style="font-weight: bold;">
                                             &nbsp;On:&nbsp;
+                                            <span title="This is a required field." class="ms-formvalidation"> *</span>
                                         </td>
                                         <td>
-                                            <SharePoint:FormField FieldName="EventDate" ErrorMessage="*" ID="ffEventDate" runat="server">
+                                            <SharePoint:FormField FieldName="EventDate" ID="ffEventDate" runat="server">
                                             </SharePoint:FormField>
                                         </td>
                                     </tr>
@@ -229,7 +232,7 @@
                                                 <td style="padding-top: 3px; padding-bottom: 3px;" width="20%" valign="middle" align="center">
                                                     Full day
                                                     <br />
-                                                    00:70-02:00 hrs
+                                                    07:00-02:00 hrs
                                                 </td>
                                                 <td style="padding-top: 3px; padding-bottom: 3px;" width="20%" valign="middle" align="center">
                                                     Ramadan

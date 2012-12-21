@@ -123,6 +123,13 @@
     <Compile Include="Layouts\SharePoint.BeachCamp\BeachCampExport.aspx.designer.cs">
       <DependentUpon>BeachCampExport.aspx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Layouts\SharePoint.BeachCamp\BeachCampPayment.aspx.cs">
+      <DependentUpon>BeachCampPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\SharePoint.BeachCamp\BeachCampPayment.aspx.designer.cs">
+      <DependentUpon>BeachCampPayment.aspx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Layouts\SharePoint.BeachCamp\BeachCampTask.aspx.cs">
       <DependentUpon>BeachCampTask.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -131,6 +138,7 @@
       <DependentUpon>BeachCampTask.aspx.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimerJobs\BeachCampReminder.cs" />
     <Compile Include="WebParts\BeachCampCalendarFixed\BeachCampCalendarFixed.cs" />
     <Compile Include="WebParts\BeachCampViewer\BeachCampViewer.cs" />
   </ItemGroup>
@@ -148,6 +156,9 @@
       <SharePointProjectItemId>{b46a8b12-6299-4515-8912-9cd7a5e66392}</SharePointProjectItemId>
     </None>
     <None Include="Layouts\SharePoint.BeachCamp\BeachCampReservation.docx" />
+    <None Include="ListInstances\BCCalendar\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{cb631e6c-8b96-47e0-8d4d-a7bb5e9383ca}</SharePointProjectItemId>
+    </None>
     <None Include="ListInstances\BeachCampTask\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{748bf8b7-5520-40fe-b937-abf202cce299}</SharePointProjectItemId>
     </None>
@@ -169,9 +180,6 @@
     <None Include="Layouts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{472dc5da-57bd-4ea6-aa11-189b37c799ee}</SharePointProjectItemId>
       <SubType>Designer</SubType>
-    </None>
-    <None Include="ListInstances\BCCalendar\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{0c193c58-c23b-47ea-a006-3eeb07a0658b}</SharePointProjectItemId>
     </None>
     <None Include="ListInstances\BCPrices\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4be44827-6f22-4fdf-bec7-0374527644e3}</SharePointProjectItemId>
@@ -209,6 +217,7 @@
     <Content Include="ContentTypes\BeachCampTaskContentType\Elements.xml" />
     <Content Include="CustomActions\BeachCampRegistration\Elements.xml" />
     <Content Include="CustomActions\BeachCampRibbon\Elements.xml" />
+    <Content Include="Images\SharePoint.BeachCamp\Payment-icon-32.png" />
     <Content Include="Images\SharePoint.BeachCamp\Printer-icon-32.png" />
     <Content Include="Images\SharePoint.BeachCamp\Printer-icon-48.png" />
     <Content Include="Layouts\1033\colour-calendar.js" />
@@ -217,7 +226,12 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Images\SharePoint.BeachCamp\Printer-icon.png" />
+    <Content Include="Layouts\SharePoint.BeachCamp\BeachCampPayment.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Libs\itextsharp.dll" />
+    <Content Include="ListInstances\BCCalendar\Elements.xml" />
+    <Content Include="ListInstances\BCCalendar\Schema.xml" />
     <Content Include="ListInstances\BeachCampTask\Elements.xml" />
     <Content Include="BeachCampWorkflow\Elements.xml" />
     <Content Include="ContentTypes\BeachCampEvent\Elements.xml">
@@ -246,10 +260,6 @@
     <Content Include="Layouts\SharePoint.BeachCamp\BeachCampTask.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="ListInstances\BCCalendar\Elements.xml" />
-    <Content Include="ListInstances\BCCalendar\Schema.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="ListInstances\BCPrices\Elements.xml" />
     <Content Include="ListInstances\BCPrices\Schema.xml">
       <SubType>Designer</SubType>
@@ -268,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Webparts.xml" />
     <Content Include="TEMPLATE\PAGES\FullPage_WebPart.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="TEMPLATE\PAGES\TwoColumn_WebPart.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="WebParts\BeachCampCalendarFixed\Elements.xml" />

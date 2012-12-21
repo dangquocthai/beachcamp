@@ -139,15 +139,6 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp {
         protected global::Microsoft.SharePoint.WebControls.FormField ffReason;
         
         /// <summary>
-        /// ffRequireDay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FormField ffRequireDay;
-        
-        /// <summary>
         /// ffEventDate control.
         /// </summary>
         /// <remarks>

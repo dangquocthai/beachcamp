@@ -1,116 +1,40 @@
 ﻿using System;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
-using SharePoint.BeachCamp.Util;
-using System.Collections;
-using Microsoft.SharePoint.Workflow;
-using Microsoft.SharePoint.Utilities;
-using SharePoint.BeachCamp.Util.Utilities;
 using System.Web.UI.WebControls;
-using System.Data;
 using SharePoint.BeachCamp.Util.Helpers;
+using System.Data;
+using SharePoint.BeachCamp.Util.Utilities;
+using SharePoint.BeachCamp.Util;
+using Microsoft.SharePoint.Utilities;
+using System.Linq;
 
 namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
 {
-    public partial class BeachCampTask : LayoutsPageBase
+    public partial class BeachCampPayment : LayoutsPageBase
     {
-        #region Properties
-        protected SPList CurrentTaskList
-        {
-            get
-            {
-                if (SPContext.Current.List != null)
-                    return SPContext.Current.List;
-                return null;
-            }
-        }
-
-        protected SPListItem CurrentTaskItem
-        {
-            get
-            {
-                if (SPContext.Current.ListItem != null)
-                    return SPContext.Current.ListItem;
-                return null;
-            }
-        }
-
-        protected SPListItem CurrentWorkflowItem
-        {
-            get
-            {
-                try
-                {
-                    if (CurrentTaskItem == null) return null;
-                    string fileUrl = (string)CurrentTaskItem[SPBuiltInFieldId.WorkflowLink];
-                    fileUrl = fileUrl.Split(',')[0];
-                    return Utility.GetItemByDocumentUrl(fileUrl);
-                }
-                catch { return null; }
-            }
-        }
-
-        protected Hashtable CurrentTaskExtendedProperties
-        {
-            get
-            {
-                if (CurrentTaskItem != null)
-                    return SPWorkflowTask.GetExtendedPropertiesAsHashtable(CurrentTaskItem);
-                return null;
-            }
-        }
-
-        protected SPContentType CurrentTaskContentType
-        {
-            get
-            {
-                try
-                {
-                    if (SPContext.Current.ListItem != null)
-                        return SPContext.Current.ListItem.ContentType;
-                    else if (!string.IsNullOrEmpty(Request.QueryString["ContentTypeId"]))
-                        return SPContext.Current.List.ContentTypes[new SPContentTypeId(Request.QueryString["ContentTypeId"])];
-
-                    return SPContext.Current.List.ContentTypes[0];
-                }
-                catch { return null; }
-            }
-        }
-        #endregion Properties
-
         protected override void OnInit(EventArgs e)
         {
             btnUpdate.Click += new EventHandler(btnUpdate_Click);
             repeaterPrices.ItemDataBound += new RepeaterItemEventHandler(repeaterPrices_ItemDataBound);
-            radApproved.CheckedChanged += new EventHandler(radApproved_CheckedChanged);
-            radApproved.AutoPostBack = true;
-            radReject.CheckedChanged += new EventHandler(radApproved_CheckedChanged);
-            radReject.AutoPostBack = true;
+            
             base.OnInit(e);
         }
 
-        void radApproved_CheckedChanged(object sender, EventArgs e)
-        {
-            txtMessage.Enabled = false;
-            if (!radApproved.Checked)
-            {
-                txtMessage.Enabled = true;
-            }
-        }
-
+        
         void btnUpdate_Click(object sender, EventArgs e)
         {
-            Hashtable properties = CurrentTaskExtendedProperties;
-            properties[Constants.APPROVE_STATUS] = radApproved.Checked ? TaskResult.Approved.ToString() : TaskResult.Rejected.ToString();
-            if(!string.IsNullOrEmpty(txtMessage.Text))
-            properties[Constants.APPROVE_MESSAGE] = txtMessage.Text.Trim();
-
-            CurrentTaskItem[SPBuiltInFieldId.WorkflowVersion] = 1;
-            SPWorkflowTask.AlterTask(CurrentTaskItem, properties,true);
-            //CurrentTaskItem.SystemUpdate();
-            CurrentTaskItem.Update();
+            using (DisableItemEvent disableItemEvent = new DisableItemEvent())
+            {
+                var currentItem = SPContext.Current.ListItem;
+                if (radPaid.Checked)
+                    currentItem["Paid"] = true;                 
+                else
+                    currentItem["Paid"] = false;
+                currentItem.SystemUpdate();
+            }
+            
             Back();
-
         }
 
         protected void Back()
@@ -163,20 +87,37 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
             {
                 //Get Beach Camp Reservation
                 GetBeachCampReservation();
+                //Update
+                SPGroup reservationAdminGroup = Web.Groups[Constants.BEACH_CAMP_ADMIN_GROUP];
+                if (!IsValidUser(SPContext.Current.Web.CurrentUser, reservationAdminGroup))
+                {
+                    lblError.Text = "You do not have permission !!!";
+                    radPaid.Visible = false;
+                    radUnpaid.Visible = false;
+                    btnUpdate.Enabled = false;
+                }
             }
         }
 
         #region Functions
 
+        private bool IsValidUser(SPUser spUser, SPGroup spGroup)
+        {
+            return spUser.Groups.Cast<SPGroup>()
+              .Any(g => g.ID == spGroup.ID);
+        }
+
         private void GetBeachCampReservation()
         {
             try
             {
-                SPListItem item = CurrentWorkflowItem;
+                SPListItem item = SPContext.Current.ListItem;
 
                 string personal = item["TypeOfBeachCamp"].ToString();
                 if (personal == "Business")
+                {
                     rdbBusiness.Checked = true;
+                }
                 rdbBusiness.Enabled = false;
                 rdbPersonal.Enabled = false;
                 literalEmployeeName.Text = item[SPBuiltInFieldId.Title].ToString();
@@ -188,19 +129,29 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
                 literalReason.Text = item["Reason"] == null ? string.Empty : item["Reason"].ToString();
                 literalRequireDay.Text = item["RequireDay"].ToString();
                 literalEventDate.Text = item["EventDate"].ToString();
-                //Check reservation is approved or rejected
-                if (item["GSApproval"] != null  
-                    && (item["GSApproval"].ToString() == TaskResult.Rejected.ToString() || item["GSApproval"].ToString() == TaskResult.Approved.ToString()))
+
+                //Check reservation is paid or unpaid
+                radPaid.Enabled = false;
+                radUnpaid.Enabled = false;
+                btnUpdate.Enabled = false;
+                if (item["GSApproval"].ToString() == TaskResult.Approved.ToString())
                 {
-                    radApproved.Checked = true;
-                    if(item["GSApproval"].ToString() == TaskResult.Rejected.ToString())
-                        radApproved.Checked = true;
-                    txtMessage.Text = item["GSApprovalComment"] == null ? string.Empty : item["GSApprovalComment"].ToString();
-                    radReject.Enabled = false;
-                    radApproved.Enabled = false;
-                    txtMessage.Enabled = false;
-                    btnUpdate.Visible = false;
+                    radPaid.Enabled = true;
+                    radUnpaid.Enabled = true;
+                    btnUpdate.Enabled = true;
+                    if (bool.Parse(item["Paid"].ToString()))
+                    {
+                        radPaid.Checked = true;
+                    }
                 }
+                else
+                {
+                    lblError.Text = "This reservation status is : " + item["GSApproval"].ToString();
+                    lblError.Visible = true;
+                    radPaid.Visible = false;
+                    radUnpaid.Visible = false;
+                }
+                
                 BeachCampHelper.GetPrices(repeaterPrices, SPContext.Current.Web);
             }
             catch (Exception ex)
@@ -220,7 +171,7 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
                 string fullDay = BeachCampHelper.GetPeriod(BeachCampFieldId.FullDay, currentWeb);
                 string ramadan = BeachCampHelper.GetPeriod(BeachCampFieldId.Ramadan, currentWeb);
 
-                string sectionPeriod = CurrentWorkflowItem[SPBuiltInFieldId.Location].ToString();
+                string sectionPeriod = SPContext.Current.ListItem[SPBuiltInFieldId.Location].ToString();
 
                 Literal literalSection = (Literal)e.Item.FindControl("literalSection");
                 literalSection.Text = rowView["Title"].ToString();

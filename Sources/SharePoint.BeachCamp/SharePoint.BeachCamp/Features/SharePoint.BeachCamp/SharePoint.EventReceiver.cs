@@ -10,6 +10,8 @@ using Microsoft.SharePoint.Navigation;
 using SharePoint.BeachCamp.Util;
 using System.Xml;
 using System.Globalization;
+using Microsoft.SharePoint.Administration;
+using SharePoint.BeachCamp.TimerJobs;
 
 namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
 {
@@ -35,6 +37,17 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
                 //CreateOverlapCalenday(web);
                 EnsureSupervisorGroup(web);
                 SetListPermission(web);
+
+                SPWebApplication webApp = web.Site.WebApplication;
+                BeachCampReminder beachCampJob = new BeachCampReminder(webApp);
+                beachCampJob.Title = BeachCampReminder.BEACH_CAMP_JOB_NAME;
+                DeleteJob(webApp.JobDefinitions, BeachCampReminder.BEACH_CAMP_JOB_NAME);
+                SPDailySchedule dailySchedule = new SPDailySchedule();
+                dailySchedule.BeginHour = 23;
+                dailySchedule.BeginMinute = 0;
+                dailySchedule.BeginSecond = 0;
+                beachCampJob.Schedule = dailySchedule;
+                beachCampJob.Update();
             }
             catch (Exception ex)
             {
@@ -81,6 +94,18 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
 
 
         #region Functions
+
+        private void DeleteJob(SPJobDefinitionCollection jobs, string jobName)
+        {
+            foreach (SPJobDefinition job in jobs)
+            {
+                if (job.Name.Equals(jobName,
+                StringComparison.OrdinalIgnoreCase))
+                {
+                    job.Delete();
+                }
+            }
+        }
 
         private bool IsGroupAlreadyExist(SPWeb web, string groupName)
         {
