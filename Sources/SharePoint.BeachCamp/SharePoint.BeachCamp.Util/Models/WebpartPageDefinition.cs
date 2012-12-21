@@ -287,7 +287,12 @@ namespace SharePoint.BeachCamp.Util.Models
             SPView view = GetView(list, ViewName);
             webPart.ViewGuid = view.ID.ToString();
             webPart.ListViewXml = view.GetViewXml();
-
+            webPart.AllowMinimize = false;
+            webPart.AllowClose = false;
+            webPart.AllowHide = false;
+            webPart.AllowZoneChange = false;
+            webPart.AllowEdit = false;
+            webPart.AllowConnect = false;
             webPart.ExportMode = WebPartExportMode.All;
             base.UpdateProperties(webPart);
             return webPart;
