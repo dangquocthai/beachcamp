@@ -9,11 +9,39 @@ using System.Web.UI.WebControls;
 using Microsoft.SharePoint.Workflow;
 using System.Xml;
 using System.Globalization;
+using Microsoft.SharePoint.Utilities;
 
 namespace SharePoint.BeachCamp.Util.Helpers
 {
     public class BeachCampHelper
     {
+        public static void SendEmail(SPWeb web, string email, string url)
+        {
+            try
+            {
+                string body = string.Format("Hi there, <br /> Your Beach Camp Reservation is approved. Please paid and enjoy it ...<br /> {0}", url);
+
+                System.Collections.Specialized.StringDictionary headers = new System.Collections.Specialized.StringDictionary();
+                headers.Add("to", email);
+                //headers.Add("cc","anhtuan0030@gmail.com");
+                //headers.Add("bcc","anhtuan0030@gmail.com");
+                //headers.Add("from",anhtuan0030@gmail.com);
+                headers.Add("subject", "[Beach Camp Reservation] - Payment Notify");
+                headers.Add("content-type", "text/html");
+                string bodyText = body;
+                SPUtility.SendEmail(web, headers, bodyText);
+            }
+            catch (Exception ex)
+            {
+                Utility.LogError(ex.Message, BeachCampFeatures.BeachCamp);
+            }
+        }
+
+        public static void GetReservationTime(string sectionPeriod, ref DateTime startTime, ref DateTime endTime)
+        {
+
+        }
+
         public static void StartWorkflow(SPListItem spListItem, string workflowName)
         {
             //var beachCampCalendar = Utility.GetListFromURL("/Lists/BCCalendar", spWeb);
@@ -102,7 +130,16 @@ namespace SharePoint.BeachCamp.Util.Helpers
 
         public static bool IsUserReserved(SPWeb web, string employeeCode, DateTime date)
         {
-           string caml = string.Format(@"<Where>
+            string caml = string.Empty;
+            try
+            {
+                DateTime startDate = DateTime.Now.FirstDayOfMonthFromDateTime();
+                DateTime endDate = DateTime.Now.AddMonths(1).LastDayOfMonthFromDateTime();
+
+                if (date < DateTime.Now.AddDays(-1) || date > endDate)
+                    return true;
+
+                caml = string.Format(@"<Where>
                                             <And>
                                                 <Eq>
                                                     <FieldRef Name='EmployeeCode' />
@@ -119,14 +156,27 @@ namespace SharePoint.BeachCamp.Util.Helpers
                                                     </Leq>
                                                 </And>
                                             </And>
-                                        </Where>", employeeCode, date.FirstDayOfMonthFromDateTime().ToString("yyyy-MM-dd"), date.LastDayOfMonthFromDateTime().ToString("yyyy-MM-dd"));
+                                        </Where>", employeeCode, startDate.ToString("yyyy-MM-dd"), endDate.ToString("yyyy-MM-dd"));
 
+            }
+            catch (Exception ex)
+            {
+                Utility.LogError(ex.Message, BeachCampFeatures.BeachCamp);
+            }
             return GetItemByCaml(web, caml);
         }
 
         public static bool IsUserReserved(SPWeb web, string employeeCode, DateTime date, int id)
         {
-            string caml = string.Format(@"<<Where>
+            string caml = string.Empty;
+            try
+            {
+                DateTime startDate = DateTime.Now.FirstDayOfMonthFromDateTime();
+                DateTime endDate = DateTime.Now.AddMonths(1).LastDayOfMonthFromDateTime();
+
+                if (date < DateTime.Now.AddDays(-1) || date > endDate)
+                    return true;
+                caml = string.Format(@"<Where>
                                             <And>
                                                 <Neq>
                                                     <FieldRef Name='ID' />
@@ -149,8 +199,13 @@ namespace SharePoint.BeachCamp.Util.Helpers
                                                     </And>
                                                 </And>
                                             </And>
-                                        </Where>", id, employeeCode, date.FirstDayOfMonthFromDateTime().ToString("yyyy-MM-dd"), date.LastDayOfMonthFromDateTime().ToString("yyyy-MM-dd"));
+                                        </Where>", id, employeeCode, startDate.ToString("yyyy-MM-dd"), endDate.ToString("yyyy-MM-dd"));
 
+            }
+            catch (Exception ex)
+            {
+                Utility.LogError(ex.Message, BeachCampFeatures.BeachCamp);
+            }
             return GetItemByCaml(web, caml);
         }
 
@@ -158,54 +213,196 @@ namespace SharePoint.BeachCamp.Util.Helpers
         public static bool IsSectionPeriodReserved(SPWeb web, string sectionPeriod, DateTime date, int requiredDay)
         {
             string caml = string.Format(@"<Where>
-                                            <And>
-                                                <Contains>
-                                                    <FieldRef Name='Location' />
-                                                    <Value Type='Text'>{0}</Value>
-                                                </Contains>
+                                            <Or>
                                                 <And>
-                                                    <Geq>
-                                                        <FieldRef Name='EndDate' />
-                                                        <Value Type='DateTime'>{1}</Value>
-                                                    </Geq>
-                                                    <Leq>
-                                                        <FieldRef Name='EndDate' />
-                                                        <Value Type='DateTime'>{2}</Value>
-                                                    </Leq>
+                                                    <Eq>
+                                                        <FieldRef Name='Location' />
+                                                        <Value Type='Text'>{0}</Value>
+                                                    </Eq>
+                                                    <And>
+                                                        <Gt>
+                                                            <FieldRef Name='EndDate' />
+                                                            <Value Type='DateTime'>{1}</Value>
+                                                        </Gt>
+                                                        <Leq>
+                                                            <FieldRef Name='EventDate' />
+                                                            <Value Type='DateTime'>{1}</Value>
+                                                        </Leq>
+                                                    </And>
                                                 </And>
-                                            </And>
-                                        </Where>", sectionPeriod, date.ToString("yyyy-MM-dd"), date.AddDays(requiredDay).ToString("yyyy-MM-dd"));
+                                                <And>
+                                                    <Eq>
+                                                        <FieldRef Name='Location' />
+                                                        <Value Type='Text'>{0}</Value>
+                                                    </Eq>
+                                                    <And>
+                                                        <Gt>
+                                                            <FieldRef Name='EndDate' />
+                                                            <Value Type='DateTime'>{2}</Value>
+                                                        </Gt>
+                                                        <Leq>
+                                                            <FieldRef Name='EventDate' />
+                                                            <Value Type='DateTime'>{2}</Value>
+                                                        </Leq>
+                                                    </And>
+                                                </And>
+                                            </Or>
+                                        </Where>", sectionPeriod, date.ToString("yyyy-MM-dd"), date.AddDays(requiredDay - 1).ToString("yyyy-MM-dd")); ;
 
             return GetItemByCaml(web, caml);
         }
 
-        public static bool IsSectionPeriodReserved(SPWeb web, string sectionPeriod, DateTime date, int requiredDay, int id)
+        public static bool IsSectionPeriodReserved(SPWeb web, string sectionPeriod, DateTime date)
         {
-            string caml = string.Format(@"<<Where>
+            string caml = string.Format(@"<Where>
                                             <And>
-                                                <Neq>
-                                                    <FieldRef Name='ID' />
-                                                    <Value Type='Counter'>{0}</Value>
-                                                </Neq>
+                                                <Eq>
+                                                    <FieldRef Name='Location' />
+                                                    <Value Type='Text'>{0}</Value>
+                                                </Eq>
                                                 <And>
-                                                    <Contains>
+                                                    <Gt>
+                                                        <FieldRef Name='EndDate' />
+                                                        <Value Type='DateTime'>{1}</Value>
+                                                    </Gt>
+                                                    <Leq>
+                                                        <FieldRef Name='EventDate' />
+                                                        <Value Type='DateTime'>{1}</Value>
+                                                    </Leq>
+                                                </And>
+                                            </And>
+                                        </Where>
+                                    <OrderBy>
+                                        <FieldRef Name='EndDate' Ascending='False' />
+                                    </OrderBy>", sectionPeriod, date.AddDays(2).ToString("yyyy-MM-dd"));
+
+            string abc = string.Format(@"<Where>
+                                            <Or>
+                                                <And>
+                                                    <Eq>
                                                         <FieldRef Name='Location' />
                                                         <Value Type='Text'>{0}</Value>
-                                                    </Contains>
+                                                    </Eq>
                                                     <And>
-                                                        <Geq>
+                                                        <Gt>
                                                             <FieldRef Name='EndDate' />
-                                                            <Value Type='DateTime'>{2}</Value>
-                                                        </Geq>
+                                                            <Value Type='DateTime'>{1}</Value>
+                                                        </Gt>
                                                         <Leq>
-                                                            <FieldRef Name='EndDate' />
-                                                            <Value Type='DateTime'>{3}</Value>
+                                                            <FieldRef Name='EventDate' />
+                                                            <Value Type='DateTime'>{1}</Value>
                                                         </Leq>
                                                     </And>
                                                 </And>
-                                            </And>
-                                        </Where>", id, sectionPeriod, date.ToString("yyyy-MM-dd"), date.AddDays(requiredDay).ToString("yyyy-MM-dd"));
-                            
+                                                <And>
+                                                    <Eq>
+                                                        <FieldRef Name='Location' />
+                                                        <Value Type='Text'>{0}</Value>
+                                                    </Eq>
+                                                    <And>
+                                                        <Gt>
+                                                            <FieldRef Name='EndDate' />
+                                                            <Value Type='DateTime'>{2}</Value>
+                                                        </Gt>
+                                                        <Leq>
+                                                            <FieldRef Name='EventDate' />
+                                                            <Value Type='DateTime'>{2}</Value>
+                                                        </Leq>
+                                                    </And>
+                                                </And>
+                                            </Or>
+                                        </Where>", sectionPeriod, date.ToString("yyyy-MM-dd"), date.AddDays(2).ToString("yyyy-MM-dd")); ;
+
+            //            string caml = string.Format(@"<Where>
+            //                                                <Eq>
+            //                                                    <FieldRef Name='Location' />
+            //                                                    <Value Type='Text'>{0}</Value>
+            //                                                </Eq>
+            //                                        </Where>
+            //                                    <OrderBy>
+            //                                        <FieldRef Name='EndDate' Ascending='False' />
+            //                                    </OrderBy>", sectionPeriod, date.ToString("yyyy-MM-dd"));
+
+            return GetItemByCaml(web, abc);
+
+        }
+
+        public static bool IsSectionPeriodReserved(SPWeb web, string sectionPeriod, DateTime date, int requiredDay, int id)
+        {
+            string caml = string.Format(@"<Where>
+                                            <Or>
+                                                <And>
+                                                    <Neq>
+                                                        <FieldRef Name='ID' />
+                                                        <Value Type='Counter'>{3}</Value>
+                                                    </Neq>
+                                                    <And>
+                                                        <Eq>
+                                                            <FieldRef Name='Location' />
+                                                            <Value Type='Text'>{0}</Value>
+                                                        </Eq>
+                                                        <And>
+                                                            <Gt>
+                                                                <FieldRef Name='EndDate' />
+                                                                <Value Type='DateTime'>{1}</Value>
+                                                            </Gt>
+                                                            <Leq>
+                                                                <FieldRef Name='EventDate' />
+                                                                <Value Type='DateTime'>{1}</Value>
+                                                            </Leq>
+                                                        </And>
+                                                    </And>
+                                                </And>
+                                                <And>
+                                                    <Neq>
+                                                        <FieldRef Name='ID' />
+                                                        <Value Type='Counter'>{3}</Value>
+                                                    </Neq>
+                                                    <And>
+                                                        <Eq>
+                                                            <FieldRef Name='Location' />
+                                                            <Value Type='Text'>{0}</Value>
+                                                        </Eq>
+                                                        <And>
+                                                            <Gt>
+                                                                <FieldRef Name='EndDate' />
+                                                                <Value Type='DateTime'>{2}</Value>
+                                                            </Gt>
+                                                            <Leq>
+                                                                <FieldRef Name='EventDate' />
+                                                                <Value Type='DateTime'>{2}</Value>
+                                                            </Leq>
+                                                        </And>
+                                                    </And>
+                                                </And>
+                                            </Or>
+                                        </Where>", sectionPeriod, date.ToString("yyyy-MM-dd"), date.AddDays(requiredDay - 1).ToString("yyyy-MM-dd"), id);
+
+            //            string caml = string.Format(@"<<Where>
+            //                                            <And>
+            //                                                <Neq>
+            //                                                    <FieldRef Name='ID' />
+            //                                                    <Value Type='Counter'>{0}</Value>
+            //                                                </Neq>
+            //                                                <And>
+            //                                                    <Eq>
+            //                                                        <FieldRef Name='Location' />
+            //                                                        <Value Type='Text'>{0}</Value>
+            //                                                    </Eq>
+            //                                                    <And>
+            //                                                        <Gt>
+            //                                                            <FieldRef Name='EndDate' />
+            //                                                            <Value Type='DateTime'>{2}</Value>
+            //                                                        </Gt>
+            //                                                        <Leq>
+            //                                                            <FieldRef Name='EndDate' />
+            //                                                            <Value Type='DateTime'>{3}</Value>
+            //                                                        </Leq>
+            //                                                    </And>
+            //                                                </And>
+            //                                            </And>
+            //                                        </Where>", id, sectionPeriod, date.ToString("yyyy-MM-dd"), date.AddDays(requiredDay).ToString("yyyy-MM-dd"));
+
             return GetItemByCaml(web, caml);
         }
 
@@ -225,11 +422,10 @@ namespace SharePoint.BeachCamp.Util.Helpers
             }
             catch (Exception ex)
             {
-                throw;
+                return false;
             }
             return output;
         }
-
 
         #region Overlay Calendar
 
@@ -314,9 +510,9 @@ namespace SharePoint.BeachCamp.Util.Helpers
                 xmlNode.InnerXml = string.Format("{0}{1}", aggregationElement.OuterXml, existAggregationElements);
                 //xml.InnerXml = string.Format("{0}{1}", aggregationElement.OuterXml, existAggregationElements);
             }
-            
+
             targetView.CalendarSettings = xml.OuterXml;
-            
+
             targetView.Update();
             /*
             <AggregationCalendars>
@@ -349,7 +545,7 @@ namespace SharePoint.BeachCamp.Util.Helpers
         }
         #endregion Overlay Calendar
 
-        
+
 
     }
 

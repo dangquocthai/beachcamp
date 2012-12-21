@@ -16,5 +16,14 @@ namespace SharePoint.BeachCamp.Util
         public const string APPROVE_MESSAGE = "ApproveMessage";
 
         public const string TITLE_COLOUR_FORMAT = "|||{0}|||{1}";
+
+        public const string PERIOD_1ST = "07:00-16:30";
+        public const string PERIOD_2ST = "17:30-02:00";
+        public const string PERIOD_FULLDAY = "07:00-02:00";
+        public const string PERIOD_RAMADAN = "15:00-04:00";
+
+        public const string ERROR_MESSAGE = "* indicates a required field";
+
+        public const string BEACH_CAMP_ADMIN_GROUP = "Beach Camp General Supervisor";
     }
 }
