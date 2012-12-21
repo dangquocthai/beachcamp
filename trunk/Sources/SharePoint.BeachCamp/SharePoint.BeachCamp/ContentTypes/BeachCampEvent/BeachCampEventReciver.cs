@@ -26,6 +26,9 @@ namespace SharePoint.BeachCamp.ContentTypes
         public override void ItemAdded(SPItemEventProperties properties)
         {
             base.ItemAdded(properties);
+
+            BeachCampHelper.SendEmail(properties.Web, "anhtuan0030@gmail.com", "http://gooogle.com.vn");
+
             string status = properties.ListItem["GSApproval"].ToString();
             if (status == TaskResult.Pending.ToString())
                 //BeachCampHelper.StartWorkflow(properties.ListItem, "Approve Beach Camp Reservation");

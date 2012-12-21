@@ -31,6 +31,13 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
             {
                 //Load field value
                 SPListItem item = SPContext.Current.ListItem;
+                string personal = item["TypeOfBeachCamp"].ToString();
+                if (personal == "Business")
+                {
+                    rdbBusiness.Checked = true;
+                }
+                rdbBusiness.Enabled = false;
+                rdbPersonal.Enabled = false;
                 literalEmployeeName.Text = item[SPBuiltInFieldId.Title].ToString();
                 literalEmployeeCode.Text = item[SPBuiltInFieldId.ID].ToString();
                 literalDepartment.Text = item["Department"] == null ? string.Empty : item["Department"].ToString();
@@ -74,7 +81,7 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 chkPeriod1.Enabled = false;
                 string toolTipPeriod1 = rowView["Title"].ToString() + " - " + period1;
                 chkPeriod1.ToolTip = toolTipPeriod1;
-                if (sectionPeriod.Contains(toolTipPeriod1))
+                if (sectionPeriod.Equals(toolTipPeriod1))
                     chkPeriod1.Checked = true;
 
                 //Literal literalPeriod2 = (Literal)e.Item.FindControl("literalPeriod2");
@@ -85,7 +92,7 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 chkPeriod2.Enabled = false;
                 string toolTipPeriod2 = rowView["Title"].ToString() + " - " + period2;
                 chkPeriod2.ToolTip = toolTipPeriod2;
-                if (sectionPeriod.Contains(toolTipPeriod2))
+                if (sectionPeriod.Equals(toolTipPeriod2))
                     chkPeriod2.Checked = true;
 
                 //Literal literalFullDay = (Literal)e.Item.FindControl("literalFullDay");
@@ -94,9 +101,9 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 CheckBox chkFullDay = (CheckBox)e.Item.FindControl("chkFullDay");
                 chkFullDay.Text = rowView["FullDay"].ToString();
                 chkFullDay.Enabled = false;
-                string to0lTipFullDay = rowView["Title"].ToString() + " - " + fullDay;
-                chkFullDay.ToolTip = to0lTipFullDay;
-                if (sectionPeriod.Contains(to0lTipFullDay))
+                string toolTipFullDay = rowView["Title"].ToString() + " - " + fullDay;
+                chkFullDay.ToolTip = toolTipFullDay;
+                if (sectionPeriod.Equals(toolTipFullDay))
                     chkFullDay.Checked = true;
 
                 //Literal literalRamadan = (Literal)e.Item.FindControl("literalRamadan");
@@ -107,7 +114,7 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 chkRamadan.Enabled = false;
                 string toolTipRamadan = rowView["Title"].ToString() + " - " + ramadan;
                 chkRamadan.ToolTip = toolTipRamadan;
-                if (sectionPeriod.Contains(toolTipRamadan))
+                if (sectionPeriod.Equals(toolTipRamadan))
                     chkRamadan.Checked = true;
             }
         }

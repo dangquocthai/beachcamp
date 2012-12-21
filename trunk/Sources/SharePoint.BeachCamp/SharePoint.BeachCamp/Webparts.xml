@@ -20,8 +20,8 @@
     </Webparts>-->
 
     <Webparts xsi:type="ListViewWP">
-      <Title>Beach Camp Reservation</Title>
-      <ZoneId>Main</ZoneId>
+      <Title>Beach Camp Reservation Next Month</Title>
+      <ZoneId>CenterRightColumn</ZoneId>
       <Index>2</Index>
       <Hidden>false</Hidden>
       <AllowDuplicate>true</AllowDuplicate>
@@ -30,8 +30,8 @@
       <ViewName>Calendar</ViewName>
       <CreateDefaultWP>false</CreateDefaultWP>
       <Properties>
-        <Add Name="Title" Value="WPQ2" Type="string" />
-        <Add Name="ChromeType" Value="2" Type="chrometype" />
+        <Add Name="Title" Value="Beach Camp Reservation Next Month" Type="string" />
+        <!--<Add Name="ChromeType" Value="2" Type="chrometype" />-->
       </Properties>
     </Webparts>
 
