@@ -337,7 +337,7 @@
                 <td width="100%" align="right">
                     <asp:Button runat="server" ID="btnPrint" CssClass="ms-ButtonHeightWidth" Text="Print"
                         Enabled="true" OnClientClick="printIt(document.getElementById('printcontent').innerHTML); return false" />
-                    <asp:Button runat="server" ID="btnExport" CssClass="ms-ButtonHeightWidth" Text="Export" />
+                    <asp:Button runat="server" Visible="false" ID="btnExport" CssClass="ms-ButtonHeightWidth" Text="Export" />
                 </td>
             </tr>
         </table>
