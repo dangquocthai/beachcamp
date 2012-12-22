@@ -29,11 +29,11 @@
             <template_inputformcontrols>
          <wssuc:InputFormControl ID="InputFormControl1" runat="server">
 				 <Template_Control>
-                    <label>General Supervisor</label><br />
+                    <label>General Supervisor</label><span title="This is a required field." class="ms-formvalidation"> (*)</span><br />
 				    <SharePoint:PeopleEditor runat="server" SelectionSet="User" CssClass="ms-usereditor" MultiSelect="false" AllowEmpty="false" ID="ppGS" />
                     <asp:Label ID="lblError" runat="server" Visible ="false" ForeColor="Red" Font-Bold="true" Text="lblError"></asp:Label><br />
 
-                    <label>Task Title</label><br />
+                    <label>Task Title</label><span title="This is a required field." class="ms-formvalidation"> (*)</span><br />
                     <asp:TextBox runat="server" CssClass="ms-long" ID="txtTitle" /> <br />
 
                     <label>Message</label><br />
