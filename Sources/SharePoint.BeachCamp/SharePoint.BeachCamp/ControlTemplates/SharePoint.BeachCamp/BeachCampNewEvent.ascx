@@ -202,8 +202,8 @@
                                             </SharePoint:FormField>
                                         </td>--%>
                                         <td style="font-weight: bold;">
-                                            &nbsp;On:&nbsp;
-                                            <span title="This is a required field." class="ms-formvalidation"> *</span>
+                                            &nbsp;On<span title="This is a required field." class="ms-formvalidation"> (*)</span>:&nbsp;
+                                            
                                         </td>
                                         <td>
                                             <SharePoint:FormField FieldName="EventDate" ID="ffEventDate" runat="server">
