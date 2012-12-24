@@ -79,6 +79,7 @@
     }
     
 </style>
+
 <span id='part1'>
     <%--<SharePoint:InformationBar ID="InformationBar2" runat="server" />--%>
     <%--<div id="listFormToolBarTop">
@@ -319,7 +320,7 @@
                     <Template_RightButtons>
                         <%--<SharePoint:SaveButton ID="SaveButton2" runat="server" />--%>
                         <asp:Button ID="btnSave" CssClass="ms-ButtonHeightWidth" runat="server" Text="Save" />
-                        <asp:Button ID="btnSaveAndSubmit" CssClass="ms-ButtonHeightWidth" runat="server" Text="Save & Submit to GS" />
+                        <asp:Button ID="btnSaveAndSubmit" Visible="false" CssClass="ms-ButtonHeightWidth" runat="server" Text="Save & Submit to GS" />
                         <SharePoint:GoBackButton ID="GoBackButton2" runat="server" />
                     </Template_RightButtons>
                 </wssuc:ToolBar>
@@ -328,3 +329,7 @@
     </table>
 </span>
 <SharePoint:AttachmentUpload ID="AttachmentUpload1" runat="server" />
+<script type="text/javascript">
+//var eventDateID = g_strDateTimeControlIDs["SPEventDate"];
+//alert(eventDateID);
+</script>

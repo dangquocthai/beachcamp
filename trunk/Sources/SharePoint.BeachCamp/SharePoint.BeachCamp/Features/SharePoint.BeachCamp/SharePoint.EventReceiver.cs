@@ -316,39 +316,60 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
 
         private void EnsureSupervisorGroup(SPWeb web)
         {
-            string reservationAdminGroup = "Beach Camp General Supervisor";
-            if (!IsGroupAlreadyExist(web, reservationAdminGroup))
+            try
             {
-                CreateNewGroup(web, reservationAdminGroup, reservationAdminGroup);
+                string reservationAdminGroup = "Beach Camp General Supervisor";
+                if (!IsGroupAlreadyExist(web, reservationAdminGroup))
+                {
+                    CreateNewGroup(web, reservationAdminGroup, reservationAdminGroup);
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.LogError(ex.Message, BeachCampFeatures.BeachCamp);
             }
         }
 
         private void ProvisionWebParts(SPWeb web)
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            string xml = assembly.GetResourceTextFile("SharePoint.BeachCamp.Webparts.xml");
+            try
+            {
+                Assembly assembly = Assembly.GetExecutingAssembly();
+                string xml = assembly.GetResourceTextFile("SharePoint.BeachCamp.Webparts.xml");
 
-            var webpartPages = SerializationHelper.DeserializeFromXml<WebpartPageDefinitionCollection>(xml);
-            WebPartHelper.ProvisionWebpart(web, webpartPages);
+                var webpartPages = SerializationHelper.DeserializeFromXml<WebpartPageDefinitionCollection>(xml);
+                WebPartHelper.ProvisionWebpart(web, webpartPages);
+            }
+            catch (Exception ex)
+            {
+                Utility.LogError(ex.Message, BeachCampFeatures.BeachCamp);
+            }
         }
 
         private void AddNavigation(SPWeb web)
         {
-            web.AllowUnsafeUpdates = true;
-            if (!web.Navigation.UseShared)
+            try
             {
-                SPNavigationNodeCollection topNavigationNodes = web.Navigation.TopNavigationBar;
+                web.AllowUnsafeUpdates = true;
+                if (!web.Navigation.UseShared)
+                {
+                    SPNavigationNodeCollection topNavigationNodes = web.Navigation.TopNavigationBar;
 
-                //You can also edit the Quick Launch the same way  
-                //SPNavigationNodeCollection topNavigationNodes = web.Navigation.QuickLaunch;  
+                    //You can also edit the Quick Launch the same way  
+                    //SPNavigationNodeCollection topNavigationNodes = web.Navigation.QuickLaunch;  
 
-                SPNavigationNode objItem = new SPNavigationNode("Beach Camp Reservation", web.ServerRelativeUrl.TrimEnd('/') + Constants.BEACH_CAMP_CALENDAR_LIST_URL, false);
-                topNavigationNodes.AddAsLast(objItem);
-                //SPNavigationNode objItemChild = new SPNavigationNode("Management Reservation", web.ServerRelativeUrl.TrimEnd('/') + "/Lists/BCCalendar/AllItems.aspx", false);
-                //objItem.Children.AddAsFirst(objItemChild);
+                    SPNavigationNode objItem = new SPNavigationNode("Beach Camp Reservation", web.ServerRelativeUrl.TrimEnd('/') + Constants.BEACH_CAMP_CALENDAR_LIST_URL, false);
+                    topNavigationNodes.AddAsLast(objItem);
+                    //SPNavigationNode objItemChild = new SPNavigationNode("Management Reservation", web.ServerRelativeUrl.TrimEnd('/') + "/Lists/BCCalendar/AllItems.aspx", false);
+                    //objItem.Children.AddAsFirst(objItemChild);
+                }
+                web.Update();
+                web.AllowUnsafeUpdates = false;
             }
-            web.Update();
-            web.AllowUnsafeUpdates = false;
+            catch (Exception ex)
+            {
+                Utility.LogError(ex.Message, BeachCampFeatures.BeachCamp);
+            }
         }
 
         private void DeleteBeachCampList(SPWeb web)
@@ -386,8 +407,9 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
                 web.Update();
                 web.AllowUnsafeUpdates = false;
             }
-            catch
+            catch(Exception ex)
             {
+                Utility.LogError(ex.Message, BeachCampFeatures.BeachCamp);
             }
         }
 

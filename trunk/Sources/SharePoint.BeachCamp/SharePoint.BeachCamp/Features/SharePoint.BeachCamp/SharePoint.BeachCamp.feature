@@ -5,12 +5,10 @@
   </activationDependencies>
   <projectItems>
     <projectItemReference itemId="3b28a4c9-c760-42e2-af0d-3ecd0aa3f4b0" />
-    <projectItemReference itemId="88a42153-7c01-4e49-86a8-6acf49a6c137" />
     <projectItemReference itemId="2085b108-5315-43d7-828b-b87b81178978" />
     <projectItemReference itemId="748bf8b7-5520-40fe-b937-abf202cce299" />
     <projectItemReference itemId="253e32cc-47ba-42e7-a077-78699edcf3db" />
     <projectItemReference itemId="4be44827-6f22-4fdf-bec7-0374527644e3" />
-    <projectItemReference itemId="602814f3-2bd6-4da0-978b-00e8c237acec" />
     <projectItemReference itemId="776ed2f1-30f6-4be1-a628-23a01726c3d6" />
     <projectItemReference itemId="cb631e6c-8b96-47e0-8d4d-a7bb5e9383ca" />
   </projectItems>
