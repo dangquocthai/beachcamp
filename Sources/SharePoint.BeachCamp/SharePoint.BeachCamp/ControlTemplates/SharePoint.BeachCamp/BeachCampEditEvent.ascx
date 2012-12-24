@@ -326,7 +326,7 @@
                     <Template_RightButtons>
                         <%--<SharePoint:SaveButton ID="SaveButton2" runat="server" />--%>
                         <asp:Button ID="btnSave" CssClass="ms-ButtonHeightWidth" runat="server" Text="Save" />
-                        <asp:Button ID="btnSaveAndSubmit" CssClass="ms-ButtonHeightWidth" runat="server" Text="Save & Submit to GS" />
+                        <asp:Button ID="btnSaveAndSubmit" Visible="false" CssClass="ms-ButtonHeightWidth" runat="server" Text="Save & Submit to GS" />
                         <SharePoint:GoBackButton ID="GoBackButton2" runat="server" />
                     </Template_RightButtons>
                 </wssuc:ToolBar>
