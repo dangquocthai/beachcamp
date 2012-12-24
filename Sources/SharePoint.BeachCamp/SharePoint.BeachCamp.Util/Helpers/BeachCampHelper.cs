@@ -130,83 +130,86 @@ namespace SharePoint.BeachCamp.Util.Helpers
 
         public static bool IsUserReserved(SPWeb web, string employeeCode, DateTime date)
         {
-            string caml = string.Empty;
             try
             {
-                DateTime startDate = DateTime.Now.FirstDayOfMonthFromDateTime();
-                DateTime endDate = DateTime.Now.AddMonths(1).LastDayOfMonthFromDateTime();
-
-                if (date < DateTime.Now.AddDays(-1) || date > endDate)
+                if (date < DateTime.Now.AddDays(-1))
                     return true;
 
-                caml = string.Format(@"<Where>
-                                            <And>
-                                                <Eq>
-                                                    <FieldRef Name='EmployeeCode' />
-                                                    <Value Type='Text'>{0}</Value>
-                                                </Eq>
-                                                <And>
-                                                    <Geq>
-                                                        <FieldRef Name='EventDate' />
-                                                        <Value Type='DateTime'>{1}</Value>
-                                                    </Geq>
-                                                    <Leq>
-                                                        <FieldRef Name='EventDate' />
-                                                        <Value Type='DateTime'>{2}</Value>
-                                                    </Leq>
-                                                </And>
-                                            </And>
-                                        </Where>", employeeCode, startDate.ToString("yyyy-MM-dd"), endDate.ToString("yyyy-MM-dd"));
+                string caml = @"<Where>
+                            <And>
+                                <Eq>
+                                    <FieldRef Name='EmployeeCode' />
+                                    <Value Type='Text'>{0}</Value>
+                                </Eq>
+                                <And>
+                                    <Geq>
+                                        <FieldRef Name='EventDate' />
+                                        <Value Type='DateTime'>{1}</Value>
+                                    </Geq>
+                                    <Leq>
+                                        <FieldRef Name='EventDate' />
+                                        <Value Type='DateTime'>{2}</Value>
+                                    </Leq>
+                                </And>
+                            </And>
+                        </Where>";
+                bool isReserved = GetItemByCaml(web, string.Format(caml, employeeCode, date.AddDays(-60).ToString("yyyy-MM-dd"), date.AddDays(-1).ToString("yyyy-MM-dd")));
+                if (isReserved)
+                    return true;
+
+                isReserved = GetItemByCaml(web, string.Format(caml, employeeCode, date.AddDays(1).ToString("yyyy-MM-dd"), date.AddDays(60).ToString("yyyy-MM-dd")));
+                if (isReserved)
+                    return true;
 
             }
             catch (Exception ex)
             {
                 Utility.LogError(ex.Message, BeachCampFeatures.BeachCamp);
             }
-            return GetItemByCaml(web, caml);
+            return false;
         }
 
         public static bool IsUserReserved(SPWeb web, string employeeCode, DateTime date, int id)
         {
-            string caml = string.Empty;
             try
             {
-                DateTime startDate = DateTime.Now.FirstDayOfMonthFromDateTime();
-                DateTime endDate = DateTime.Now.AddMonths(1).LastDayOfMonthFromDateTime();
-
-                if (date < DateTime.Now.AddDays(-1) || date > endDate)
-                    return true;
-                caml = string.Format(@"<Where>
+                string caml = @"<Where>
+                                    <And>
+                                        <Neq>
+                                            <FieldRef Name='ID' />
+                                            <Value Type='Counter'>{0}</Value>
+                                        </Neq>
+                                        <And>
+                                            <Eq>
+                                                <FieldRef Name='EmployeeCode' />
+                                                <Value Type='Text'>{1}</Value>
+                                            </Eq>
                                             <And>
-                                                <Neq>
-                                                    <FieldRef Name='ID' />
-                                                    <Value Type='Counter'>{0}</Value>
-                                                </Neq>
-                                                <And>
-                                                    <Eq>
-                                                        <FieldRef Name='EmployeeCode' />
-                                                        <Value Type='Text'>{1}</Value>
-                                                    </Eq>
-                                                    <And>
-                                                        <Geq>
-                                                            <FieldRef Name='EventDate' />
-                                                            <Value Type='DateTime'>{2}</Value>
-                                                        </Geq>
-                                                        <Leq>
-                                                            <FieldRef Name='EventDate' />
-                                                            <Value Type='DateTime'>{3}</Value>
-                                                        </Leq>
-                                                    </And>
-                                                </And>
+                                                <Geq>
+                                                    <FieldRef Name='EventDate' />
+                                                    <Value Type='DateTime'>{2}</Value>
+                                                </Geq>
+                                                <Leq>
+                                                    <FieldRef Name='EventDate' />
+                                                    <Value Type='DateTime'>{3}</Value>
+                                                </Leq>
                                             </And>
-                                        </Where>", id, employeeCode, startDate.ToString("yyyy-MM-dd"), endDate.ToString("yyyy-MM-dd"));
+                                        </And>
+                                    </And>
+                                </Where>";
+                bool isReserved = GetItemByCaml(web, string.Format(caml, id, employeeCode, date.AddDays(-60).ToString("yyyy-MM-dd"), date.AddDays(-1).ToString("yyyy-MM-dd")));
+                if (isReserved)
+                    return true;
 
+                isReserved = GetItemByCaml(web, string.Format(caml, id, employeeCode, date.AddDays(1).ToString("yyyy-MM-dd"), date.AddDays(60).ToString("yyyy-MM-dd")));
+                if (isReserved)
+                    return true;
             }
             catch (Exception ex)
             {
                 Utility.LogError(ex.Message, BeachCampFeatures.BeachCamp);
             }
-            return GetItemByCaml(web, caml);
+            return false;
         }
 
 
