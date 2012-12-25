@@ -34,15 +34,17 @@ namespace SharePoint.BeachCamp.TimerJobs
 
         public override void Execute(Guid targetInstanceId)
         {
-            SPWebApplication webApplication = this.Parent as SPWebApplication;
-            for (int i = 0; i < webApplication.Sites.Count; i++)
+            try
             {
-                foreach (SPWeb web in webApplication.Sites[i].AllWebs)
+                SPWebApplication webApplication = this.Parent as SPWebApplication;
+                for (int i = 0; i < webApplication.Sites.Count; i++)
                 {
-                    SPList beachCamp = Utility.GetListFromURL(Constants.BEACH_CAMP_CALENDAR_LIST_URL, web);
-                    if (beachCamp != null)
+                    foreach (SPWeb web in webApplication.Sites[i].AllWebs)
                     {
-                        string calm = string.Format(@"<Where>
+                        SPList beachCamp = Utility.GetListFromURL(Constants.BEACH_CAMP_CALENDAR_LIST_URL, web);
+                        if (beachCamp != null)
+                        {
+                            string calm = string.Format(@"<Where>
                                                         <And>
                                                             <Eq>
                                                                 <FieldRef Name='GSApproval' />
@@ -67,19 +69,24 @@ namespace SharePoint.BeachCamp.TimerJobs
                                                         </And>
                                                     </Where>", DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.AddDays(15).ToString("yyyy-MM-dd"));
 
-                        SPQuery spQuery = new SPQuery();
-                        spQuery.Query = calm;
+                            SPQuery spQuery = new SPQuery();
+                            spQuery.Query = calm;
 
-                        SPListItemCollection itemCollections = beachCamp.GetItems(spQuery);
-                        string url = web.Site.MakeFullUrl(beachCamp.DefaultViewUrl);
-                        foreach (SPListItem item in itemCollections)
-                        {
-                            SPUser creator = ((SPFieldUserValue)(item.Fields["Created By"]).GetFieldValue(item["Created By"].ToString())).User;
-                            BeachCampHelper.SendEmail(web, creator.Email, url);
+                            SPListItemCollection itemCollections = beachCamp.GetItems(spQuery);
+                            string url = web.Site.MakeFullUrl(beachCamp.DefaultViewUrl);
+                            foreach (SPListItem item in itemCollections)
+                            {
+                                SPUser creator = ((SPFieldUserValue)(item.Fields["Created By"]).GetFieldValue(item["Created By"].ToString())).User;
+                                BeachCampHelper.SendEmail(web, creator.Email, item, url);
+                            }
+                            break;
                         }
-                        break;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Utility.LogError(ex.Message, BeachCampFeatures.BeachCamp);
             }
         }
 
