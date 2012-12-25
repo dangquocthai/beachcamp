@@ -253,8 +253,12 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
             CreateTask_TaskId = Guid.NewGuid();
             approvalTaskProperties.AssignedTo = AssignedTo;
             //Add code to populate variable here.
-            approvalTaskProperties.EmailBody = Message;
-            approvalTaskProperties.Description = Message;
+            string emailMessage = string.Format(@"{0} <br />A new reservation has been scheduled with the following informations :<br />
+                                                Name : {1} <br /> Date : {2} <br /> Section : {3} <br /><br /> Please approve/ reject the reservation.<br />"
+                                                , Message, WorkflowProperties.Item["Title"].ToString(), Convert.ToDateTime(WorkflowProperties.Item["EventDate"].ToString()).ToString("dd/MM/yyyy")
+                                                , WorkflowProperties.Item["Location"].ToString());
+            approvalTaskProperties.EmailBody = emailMessage;
+            approvalTaskProperties.Description = emailMessage;
             approvalTaskProperties.Title = TaskTitle + (string.IsNullOrEmpty(this.WorkflowProperties.Item.Title)? "" : this.WorkflowProperties.Item.Title);
         }
 
