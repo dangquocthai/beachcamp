@@ -15,10 +15,11 @@ namespace SharePoint.BeachCamp.Util.Helpers
 {
     public class BeachCampHelper
     {
-        public static void SendEmail(SPWeb web, string email, string url)
+        public static void SendEmail(SPWeb web, string email, SPListItem item, string url)
         {
             try
             {
+                /*
                 string body = string.Format("Hi there, <br /> Your Beach Camp Reservation is approved. Please paid and enjoy it ...<br /> {0}", url);
 
                 System.Collections.Specialized.StringDictionary headers = new System.Collections.Specialized.StringDictionary();
@@ -30,6 +31,16 @@ namespace SharePoint.BeachCamp.Util.Helpers
                 headers.Add("content-type", "text/html");
                 string bodyText = body;
                 SPUtility.SendEmail(web, headers, bodyText);
+                */
+                string subject = "[Beach Camp Reservation] - Payment Notify";
+                string htmlBody = string.Format(@"A reservation has been approved with the following informations : </br>
+                                                Name : {0} </br>
+                                                Date : {1} </br>
+                                                Section : {2} </br>
+                                                Please paid the reservation. </br>
+                                                {3}",item.Title, Convert.ToDateTime(item["EventDate"].ToString()).ToString("dd/MM/yyyy"), item["Location"].ToString(), url);
+
+                SPUtility.SendEmail(web, true, true, email, subject, htmlBody);
             }
             catch (Exception ex)
             {
