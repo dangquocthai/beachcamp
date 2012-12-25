@@ -35,6 +35,8 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
                 ProvisionWebParts(web);
                 AddNavigation(web);
                 //CreateOverlapCalenday(web);
+                EnableEmailNotify(web);
+                
                 EnsureSupervisorGroup(web);
                 SetListPermission(web);
 
@@ -311,6 +313,23 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
                 beachCampTask.BreakRoleInheritance(false);
                 beachCampTask.SetPermissions(reservationAdminGroup, SPRoleType.Contributor);
                 beachCampTask.SetPermissions(authenticatedUser, SPRoleType.Reader);
+            }
+        }
+
+        private void EnableEmailNotify(SPWeb web)
+        {
+            try
+            {
+                var beachCampTask = Utility.GetListFromURL(Constants.BEACH_CAMP_TASK_LIST_URL, web);
+                if (beachCampTask != null)
+                {
+                    beachCampTask.EnableAssignToEmail = true;
+                    beachCampTask.Update();
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.LogError(ex.Message, BeachCampFeatures.BeachCamp);
             }
         }
 
