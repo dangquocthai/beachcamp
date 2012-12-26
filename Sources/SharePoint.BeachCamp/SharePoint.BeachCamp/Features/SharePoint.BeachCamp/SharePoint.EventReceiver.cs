@@ -400,6 +400,12 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
                 {
                     beachCampList.Delete();
                 }
+
+                var beachCampTask = Utility.GetListFromURL(Constants.BEACH_CAMP_TASK_LIST_URL, web);
+                if (beachCampTask != null)
+                {
+                    beachCampTask.Delete();
+                }
             }
             catch (Exception ex)
             {

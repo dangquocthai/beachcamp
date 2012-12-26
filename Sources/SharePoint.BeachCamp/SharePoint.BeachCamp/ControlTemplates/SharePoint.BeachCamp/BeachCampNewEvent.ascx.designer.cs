@@ -139,13 +139,13 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp {
         protected global::Microsoft.SharePoint.WebControls.FormField ffReason;
         
         /// <summary>
-        /// ffEventDate control.
+        /// txtEventDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FormField ffEventDate;
+        protected global::System.Web.UI.WebControls.TextBox txtEventDate;
         
         /// <summary>
         /// repeaterPrices control.

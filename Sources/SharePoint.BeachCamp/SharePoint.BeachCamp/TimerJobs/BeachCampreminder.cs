@@ -77,7 +77,17 @@ namespace SharePoint.BeachCamp.TimerJobs
                             foreach (SPListItem item in itemCollections)
                             {
                                 SPUser creator = ((SPFieldUserValue)(item.Fields["Created By"]).GetFieldValue(item["Created By"].ToString())).User;
-                                BeachCampHelper.SendEmail(web, creator.Email, item, url);
+                                DateTime eventDate = Convert.ToDateTime(item["EventDate"].ToString());
+                                if (eventDate <= DateTime.Now.AddDays(10))
+                                {
+                                    BeachCampHelper.SendEmail(web, creator.Email, item, url, MailType.Cancel);
+                                    item["GSApproval"] = TaskResult.Rejected;
+                                    item.SystemUpdate();
+                                }
+                                else
+                                {
+                                    BeachCampHelper.SendEmail(web, creator.Email, item, url, MailType.Notify);
+                                }
                             }
                             break;
                         }

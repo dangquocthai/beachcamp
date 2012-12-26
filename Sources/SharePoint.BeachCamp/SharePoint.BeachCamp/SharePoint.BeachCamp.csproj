@@ -222,6 +222,16 @@
     <Content Include="Images\SharePoint.BeachCamp\Printer-icon-48.png" />
     <Content Include="Layouts\1033\colour-calendar.js" />
     <Content Include="Layouts\1033\fixed-calendar.js" />
+    <Content Include="Layouts\1033\public\css\calendar-disabled.png" />
+    <Content Include="Layouts\1033\public\css\calendar.png" />
+    <Content Include="Layouts\1033\public\css\metallic\default-date.png" />
+    <Content Include="Layouts\1033\public\css\metallic\disabled-date.png" />
+    <Content Include="Layouts\1033\public\css\metallic\header.png" />
+    <Content Include="Layouts\1033\public\css\metallic\selected-date.png" />
+    <Content Include="Layouts\1033\public\css\zebra_datepicker.css" />
+    <Content Include="Layouts\1033\public\css\zebra_datepicker_metallic.css" />
+    <Content Include="Layouts\1033\public\javascript\zebra_datepicker.js" />
+    <Content Include="Layouts\1033\public\javascript\zebra_datepicker.src.js" />
     <Content Include="Layouts\SharePoint.BeachCamp\BeachCampExport.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>

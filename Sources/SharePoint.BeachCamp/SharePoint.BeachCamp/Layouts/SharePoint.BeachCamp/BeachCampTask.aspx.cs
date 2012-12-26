@@ -229,7 +229,7 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
                 //literalPeriod1.Text = rowView["Period1"].ToString();
 
                 CheckBox chkPeriod1 = (CheckBox)e.Item.FindControl("chkPeriod1");
-                chkPeriod1.Text = rowView["Period1"].ToString();
+                chkPeriod1.Text = rowView["Period1"].ToString() + " SR";
                 chkPeriod1.Enabled = false;
                 string toolTipPeriod1 = rowView["Title"].ToString() + " - " + period1;
                 chkPeriod1.ToolTip = toolTipPeriod1;
@@ -240,7 +240,7 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
                 //literalPeriod2.Text = rowView["Period2"].ToString();
 
                 CheckBox chkPeriod2 = (CheckBox)e.Item.FindControl("chkPeriod2");
-                chkPeriod2.Text = rowView["Period2"].ToString();
+                chkPeriod2.Text = rowView["Period2"].ToString() + " SR";
                 chkPeriod2.Enabled = false;
                 string toolTipPeriod2 = rowView["Title"].ToString() + " - " + period2;
                 chkPeriod2.ToolTip = toolTipPeriod2;
@@ -251,7 +251,7 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
                 //literalFullDay.Text = rowView["FullDay"].ToString();
 
                 CheckBox chkFullDay = (CheckBox)e.Item.FindControl("chkFullDay");
-                chkFullDay.Text = rowView["FullDay"].ToString();
+                chkFullDay.Text = rowView["FullDay"].ToString() + " SR";
                 chkFullDay.Enabled = false;
                 string to0lTipFullDay = rowView["Title"].ToString() + " - " + fullDay;
                 chkFullDay.ToolTip = to0lTipFullDay;
@@ -262,7 +262,7 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
                 //literalRamadan.Text = rowView["Ramadan"].ToString();
 
                 CheckBox chkRamadan = (CheckBox)e.Item.FindControl("chkRamadan");
-                chkRamadan.Text = rowView["Ramadan"].ToString();
+                chkRamadan.Text = rowView["Ramadan"].ToString() + " SR";
                 chkRamadan.Enabled = false;
                 string toolTipRamadan = rowView["Title"].ToString() + " - " + ramadan;
                 chkRamadan.ToolTip = toolTipRamadan;

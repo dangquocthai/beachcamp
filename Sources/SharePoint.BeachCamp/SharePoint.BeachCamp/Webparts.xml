@@ -21,7 +21,7 @@
 
     <Webparts xsi:type="ListViewWP">
       <Title>Beach Camp Reservation Next Month</Title>
-      <ZoneId>CenterRightColumn</ZoneId>
+      <ZoneId>CenterLeftColumn</ZoneId>
       <Index>2</Index>
       <Hidden>false</Hidden>
       <AllowDuplicate>true</AllowDuplicate>
