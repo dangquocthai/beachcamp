@@ -33,7 +33,7 @@
         background: #ffffff;
         font: normal 12px Arial,Tahoma, Verdana, Helvetica, sans-serif !important;
         height: 15px;
-        width: 70px;
+        width: 85px;
         border-right: #f5f5f5 1px solid;
         border-top: #b3c5e1 1px solid;
         border-left: #b3c5e1 1px solid;
