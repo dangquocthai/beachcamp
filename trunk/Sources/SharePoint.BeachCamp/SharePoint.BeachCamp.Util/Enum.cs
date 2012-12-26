@@ -13,6 +13,12 @@ namespace SharePoint.BeachCamp.Util
         Rejected
     }
 
+    public enum MailType
+    {
+        Notify,
+        Cancel
+    }
+
     public enum CalendarOverlayColor
     {
         LightYellow = 1,
