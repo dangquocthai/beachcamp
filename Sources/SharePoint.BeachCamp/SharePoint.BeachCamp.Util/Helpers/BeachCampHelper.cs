@@ -15,7 +15,7 @@ namespace SharePoint.BeachCamp.Util.Helpers
 {
     public class BeachCampHelper
     {
-        public static void SendEmail(SPWeb web, string email, SPListItem item, string url)
+        public static void SendEmail(SPWeb web, string email, SPListItem item, string url, MailType type)
         {
             try
             {
@@ -33,12 +33,24 @@ namespace SharePoint.BeachCamp.Util.Helpers
                 SPUtility.SendEmail(web, headers, bodyText);
                 */
                 string subject = "[Beach Camp Reservation] - Payment Notify";
-                string htmlBody = string.Format(@"A reservation has been approved with the following informations : </br>
-                                                Name : {0} </br>
-                                                Date : {1} </br>
-                                                Section : {2} </br>
-                                                Please paid the reservation. </br>
-                                                {3}",item.Title, Convert.ToDateTime(item["EventDate"].ToString()).ToString("dd/MM/yyyy"), item["Location"].ToString(), url);
+                string htmlBody = string.Format(@"A reservation has been approved with the following informations : <br />
+                                                Name : {0} <br />
+                                                Date : {1} <br />
+                                                Section : {2} <br />
+                                                Please paid the reservation. <br />
+                                                {3}", item.Title, Convert.ToDateTime(item["EventDate"].ToString()).ToString("dd/MM/yyyy"), item["Location"].ToString(), url);
+
+                if (type == MailType.Cancel)
+                {
+                    subject = "[Beach Camp Reservation] - Reservation Cancel";
+                    htmlBody = string.Format(@"A reservation has been canceled with the following informations : <br />
+                                                Name : {0} <br />
+                                                Date : {1} <br />
+                                                Section : {2} <br />
+                                                Please reverse another one. <br />
+                                                {3}", item.Title, Convert.ToDateTime(item["EventDate"].ToString()).ToString("dd/MM/yyyy"), item["Location"].ToString(), url);
+                }
+
 
                 SPUtility.SendEmail(web, true, true, email, subject, htmlBody);
             }
@@ -46,11 +58,6 @@ namespace SharePoint.BeachCamp.Util.Helpers
             {
                 Utility.LogError(ex.Message, BeachCampFeatures.BeachCamp);
             }
-        }
-
-        public static void GetReservationTime(string sectionPeriod, ref DateTime startTime, ref DateTime endTime)
-        {
-
         }
 
         public static void StartWorkflow(SPListItem spListItem, string workflowName)
@@ -136,6 +143,86 @@ namespace SharePoint.BeachCamp.Util.Helpers
             catch (Exception ex)
             {
                 return ex.Message;
+            }
+        }
+
+        public static string GetReservationByDate(SPWeb web, DateTime date)
+        {
+            string sections = string.Empty;
+            try
+            {
+                SPList beachCampList = Utility.GetListFromURL(Constants.BEACH_CAMP_CALENDAR_LIST_URL, web);
+                SPQuery query = new SPQuery();
+                string caml = string.Format(@"<Where>
+                                                <And>
+                                                    <Geq>
+                                                        <FieldRef Name='EventDate' />
+                                                        <Value Type='DateTime'>{0}</Value>
+                                                    </Geq>
+                                                    <Leq>
+                                                        <FieldRef Name='EventDate' />
+                                                        <Value Type='DateTime'>{0}</Value>
+                                                    </Leq>
+                                                </And>
+                                            </Where>", date.ToString("yyyy-MM-dd"));
+                query.Query = caml;
+                SPListItemCollection listItemCollections = beachCampList.GetItems(query);
+                if (listItemCollections != null && listItemCollections.Count > 0)
+                {
+                    foreach (SPListItem item in listItemCollections)
+                    {
+                        sections += item["Location"] + "#";
+                    }
+                }
+                return sections.TrimEnd('#');
+            }
+            catch (Exception ex)
+            {
+                Utility.LogError(ex.Message, BeachCampFeatures.BeachCamp);
+                return string.Empty;
+            }
+        }
+
+        public static string GetReservationByDate(SPWeb web, DateTime date, int id)
+        {
+            string sections = string.Empty;
+            try
+            {
+                SPList beachCampList = Utility.GetListFromURL(Constants.BEACH_CAMP_CALENDAR_LIST_URL, web);
+                SPQuery query = new SPQuery();
+                string caml = string.Format(@"<Where>
+                                                <And>
+                                                    <Neq>
+                                                        <FieldRef Name='ID' />
+                                                        <Value Type='Counter'>{0}</Value>
+                                                    </Neq>
+                                                    <And>
+                                                        <Geq>
+                                                            <FieldRef Name='EventDate' />
+                                                            <Value Type='DateTime'>{1}</Value>
+                                                        </Geq>
+                                                        <Leq>
+                                                            <FieldRef Name='EventDate' />
+                                                            <Value Type='DateTime'>{1}</Value>
+                                                        </Leq>
+                                                    </And>
+                                                </And>
+                                            </Where>", id, date.ToString("yyyy-MM-dd"));
+                query.Query = caml;
+                SPListItemCollection listItemCollections = beachCampList.GetItems(query);
+                if (listItemCollections != null && listItemCollections.Count > 0)
+                {
+                    foreach (SPListItem item in listItemCollections)
+                    {
+                        sections += item["Location"] + "#";
+                    }
+                }
+                return sections.TrimEnd('#');
+            }
+            catch (Exception ex)
+            {
+                Utility.LogError(ex.Message, BeachCampFeatures.BeachCamp);
+                return string.Empty;
             }
         }
 
