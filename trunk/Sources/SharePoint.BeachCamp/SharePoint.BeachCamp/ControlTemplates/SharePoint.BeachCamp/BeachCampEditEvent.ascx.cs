@@ -43,6 +43,7 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 txtEmployeeName.Enabled = false;
                 txtEmployeeCode.Text = item["EmployeeCode"].ToString();
                 txtEmployeeCode.Enabled = false;
+                txtEventDate.Text = Convert.ToDateTime(item["EventDate"].ToString()).ToString("dd/MM/yyyy");
                 string output = string.Empty;
                 //Get price table
                 output = BeachCampHelper.GetPrices(repeaterPrices, SPContext.Current.Web);
@@ -95,6 +96,10 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
             }
             ((CheckBox)sender).Checked = true;
 
+            string errorMessage = CheckReverseSection(((CheckBox)sender).ToolTip);
+            if (!string.IsNullOrEmpty(errorMessage))
+                ShowErrorMessages(errorMessage, false);
+
             /*
             int requiredDay = 0;
             //int.TryParse(ffRequireDay.Value == null ? "0" : ffRequireDay.Value.ToString(), out requiredDay);
@@ -127,7 +132,7 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 //literalPeriod1.Text = rowView["Period1"].ToString();
 
                 CheckBox chkPeriod1 = (CheckBox)e.Item.FindControl("chkPeriod1");
-                chkPeriod1.Text = rowView["Period1"].ToString();
+                chkPeriod1.Text = rowView["Period1"].ToString() + " SR";
                 string toolTipPeriod1 = rowView["Title"].ToString() + " - " + period1;
                 chkPeriod1.ToolTip = toolTipPeriod1;
                 if (sectionPeriod.Equals(toolTipPeriod1))
@@ -137,7 +142,7 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 //literalPeriod2.Text = rowView["Period2"].ToString();
 
                 CheckBox chkPeriod2 = (CheckBox)e.Item.FindControl("chkPeriod2");
-                chkPeriod2.Text = rowView["Period2"].ToString();
+                chkPeriod2.Text = rowView["Period2"].ToString() + " SR";
                 string toolTipPeriod2 = rowView["Title"].ToString() + " - " + period2;
                 chkPeriod2.ToolTip = toolTipPeriod2;
                 if (sectionPeriod.Equals(toolTipPeriod2))
@@ -147,7 +152,7 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 //literalFullDay.Text = rowView["FullDay"].ToString();
 
                 CheckBox chkFullDay = (CheckBox)e.Item.FindControl("chkFullDay");
-                chkFullDay.Text = rowView["FullDay"].ToString();
+                chkFullDay.Text = rowView["FullDay"].ToString() + " SR";
                 string to0lTipFullDay = rowView["Title"].ToString() + " - " + fullDay;
                 chkFullDay.ToolTip = to0lTipFullDay;
                 if (sectionPeriod.Equals(to0lTipFullDay))
@@ -157,7 +162,7 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 //literalRamadan.Text = rowView["Ramadan"].ToString();
 
                 CheckBox chkRamadan = (CheckBox)e.Item.FindControl("chkRamadan");
-                chkRamadan.Text = rowView["Ramadan"].ToString();
+                chkRamadan.Text = rowView["Ramadan"].ToString() + " SR";
                 string toolTipRamadan = rowView["Title"].ToString() + " - " + ramadan;
                 chkRamadan.ToolTip = toolTipRamadan;
                 if (sectionPeriod.Equals(toolTipRamadan))
@@ -188,6 +193,37 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
 
         #region Functions
 
+        private string CheckReverseSection(string selectedSectionPeriod)
+        {
+            try
+            {
+                HideErrorMessages(true);
+                if (!string.IsNullOrEmpty(txtEventDate.Text))
+                {
+                    string[] eventDateArray = txtEventDate.Text.Split('/');
+                    string sectionPeriod = BeachCampHelper.GetReservationByDate(SPContext.Current.Web, new DateTime(int.Parse(eventDateArray[2]), int.Parse(eventDateArray[1]), int.Parse(eventDateArray[0])), SPContext.Current.ItemId);
+                    if (!string.IsNullOrEmpty(sectionPeriod))
+                    {
+                        string[] sectionPeriodArray = sectionPeriod.Split('#');
+                        for (int i = 0; i < sectionPeriodArray.Length; i++)
+                        {
+                            if (selectedSectionPeriod.Split('-')[0].TrimEnd(' ').Contains(sectionPeriodArray[i].Split('-')[0].TrimEnd(' '))
+                                || sectionPeriodArray[i].Split('-')[0].TrimEnd(' ').Contains(selectedSectionPeriod.Split('-')[0].TrimEnd(' ')))
+                            {
+                                return Constants.ERROR_MESSAGE2;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.LogError(ex.Message, BeachCampFeatures.BeachCamp);
+                return ex.Message;
+            }
+            return string.Empty;
+        }
+
         private void ShowErrorMessages(string message, bool hideSaveButton)
         {
             lblError.Text = message;
@@ -213,11 +249,16 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 string sectionPeriod = string.Empty;
                 double totalPrice = 0;
 
-                DateTime beachCampDate = DateTime.Parse(ffEventDate.Value.ToString());
+                if (string.IsNullOrEmpty(txtEventDate.Text))
+                    return Constants.ERROR_MESSAGE;
+
+                string[] eventDateArray = txtEventDate.Text.Split('/');
+
+                DateTime beachCampDate = new DateTime(int.Parse(eventDateArray[2]), int.Parse(eventDateArray[1]), int.Parse(eventDateArray[0])); //DateTime.Parse(ffEventDate.Value.ToString());
 
                 bool isReserved = BeachCampHelper.IsUserReserved(SPContext.Current.Web, SPContext.Current.ListItem["EmployeeCode"].ToString(), beachCampDate, SPContext.Current.ItemId);
                 if (isReserved)
-                    return Constants.ERROR_MESSAGE;//return "You can only reserve beach camp one a month. Please select another day!";
+                    return Constants.ERROR_MESSAGE1;//return "You can only reserve beach camp one a month. Please select another day!";
 
                 foreach (RepeaterItem prices in repeaterPrices.Items)
                 {
@@ -225,41 +266,39 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                     if (chkPeriod1 != null && chkPeriod1.Checked)
                     {
                         sectionPeriod += chkPeriod1.ToolTip + "|";
-                        totalPrice += double.Parse(chkPeriod1.Text);
+                        totalPrice += double.Parse(chkPeriod1.Text.Split(' ')[0]);
                     }
 
                     CheckBox chkPediod2 = (CheckBox)prices.FindControl("chkPeriod2");
                     if (chkPediod2 != null && chkPediod2.Checked)
                     {
                         sectionPeriod += chkPediod2.ToolTip + "|";
-                        totalPrice += double.Parse(chkPediod2.Text);
+                        totalPrice += double.Parse(chkPediod2.Text.Split(' ')[0]);
                     }
 
                     CheckBox chkFullDay = (CheckBox)prices.FindControl("chkFullDay");
                     if (chkFullDay != null && chkFullDay.Checked)
                     {
                         sectionPeriod += chkFullDay.ToolTip + "|";
-                        totalPrice += double.Parse(chkFullDay.Text);
+                        totalPrice += double.Parse(chkFullDay.Text.Split(' ')[0]);
                     }
 
                     CheckBox chkRamadan = (CheckBox)prices.FindControl("chkRamadan");
                     if (chkRamadan != null && chkRamadan.Checked)
                     {
                         sectionPeriod += chkRamadan.ToolTip + "|";
-                        totalPrice += double.Parse(chkRamadan.Text);
+                        totalPrice += double.Parse(chkRamadan.Text.Split(' ')[0]);
                     }
                 }
 
                 if (string.IsNullOrEmpty(sectionPeriod))
-                    return Constants.ERROR_MESSAGE;//return "Please choose a Section and Period !";
+                    return Constants.ERROR_MESSAGE3;//return "Please choose a Section and Period !";
 
                 sectionPeriod = sectionPeriod.TrimEnd('|');
 
-                /*
-                bool isSectionPeriodReserved = BeachCampHelper.IsSectionPeriodReserved(SPContext.Current.Web, sectionPeriod, beachCampDate, 1, SPContext.Current.ItemId);
-                if (isSectionPeriodReserved)
-                    return "This section and period is reserved. Please choose another section - period !";
-                */
+                string sectionPeriodReserved = CheckReverseSection(sectionPeriod);
+                if (!string.IsNullOrEmpty(sectionPeriodReserved))
+                    return sectionPeriodReserved;//"This section and period is reserved. Please choose another section - period !";
 
                 string typeOfBeachCamp = rdbPersonal.Text;
                 if (rdbBusiness.Checked)

@@ -355,7 +355,7 @@
         </Query>
       </View>
 
-      <View BaseViewID="2" Type="CALENDAR" WebPartZoneID="CenterLeftColumn" DisplayName="Calendar" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\TwoColumn_WebPart.aspx" ImageUrl="/_layouts/images/events.png" TabularView="FALSE" Url="calendar.aspx" RecurrenceRowset="TRUE" DefaultView="TRUE" MobileUrl="_layouts/mobile/viewdaily.aspx">
+      <View BaseViewID="2" Type="CALENDAR" WebPartZoneID="CenterRightColumn" DisplayName="Calendar" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\TwoColumn_WebPart.aspx" ImageUrl="/_layouts/images/events.png" TabularView="FALSE" Url="calendar.aspx" RecurrenceRowset="TRUE" DefaultView="TRUE" MobileUrl="_layouts/mobile/viewdaily.aspx">
         <Toolbar Type="Standard" />
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />

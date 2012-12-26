@@ -12,6 +12,12 @@
 <%@ Register TagPrefix="wssuc" TagName="ToolBar" Src="~/_controltemplates/ToolBar.ascx" %>
 <%@ Register TagPrefix="wssuc" TagName="ToolBarButton" Src="~/_controltemplates/ToolBarButton.ascx" %>
 
+<script src="../../_layouts/1033/jquery-1.8.2.min.js" type="text/javascript"></script>
+<link href="../../_layouts/1033/public/css/zebra_datepicker.css" rel="stylesheet"
+    type="text/css" />
+<link href="../../_layouts/1033/public/css/zebra_datepicker_metallic.css" rel="stylesheet"
+    type="text/css" />
+<script src="../../_layouts/1033/public/javascript/zebra_datepicker.js" type="text/javascript"></script>
 
 <style type="text/css">
     .ms-dttimeinput
@@ -30,7 +36,7 @@
         background: #ffffff;
         font: normal 12px Arial,Tahoma, Verdana, Helvetica, sans-serif;
         height: 15px;
-        width: 70px;
+        width: 85px;
         border-right: #f5f5f5 1px solid;
         border-top: #b3c5e1 1px solid;
         border-left: #b3c5e1 1px solid;
@@ -207,8 +213,20 @@
                                             
                                         </td>
                                         <td>
-                                            <SharePoint:FormField FieldName="EventDate" ID="ffEventDate" runat="server">
-                                            </SharePoint:FormField>
+                                            <%--<SharePoint:FormField FieldName="EventDate" ID="ffEventDate" runat="server">
+                                            </SharePoint:FormField>--%>
+
+                                            <asp:TextBox ID="txtEventDate" CssClass="eventDatePicker ms-input" runat="server"></asp:TextBox>
+                                            <script type="text/javascript">
+                                                $(".eventDatePicker").attr('readonly', true);
+                                                $('.eventDatePicker').Zebra_DatePicker({
+                                                    format: 'd/m/Y',
+                                                    direction: true,     
+                                                    disabled_dates: ['* * * *, *']   
+                                                    // all days, all monts, all years as long                                     
+                                                    // as the weekday is 0 or 6 (Sunday or Saturday) 
+                                                }); 
+                                            </script>
                                         </td>
                                     </tr>
                                 </table>
