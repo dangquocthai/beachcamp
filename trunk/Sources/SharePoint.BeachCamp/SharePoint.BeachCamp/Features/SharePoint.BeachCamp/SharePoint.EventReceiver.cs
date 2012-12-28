@@ -12,6 +12,10 @@ using System.Xml;
 using System.Globalization;
 using Microsoft.SharePoint.Administration;
 using SharePoint.BeachCamp.TimerJobs;
+using Microsoft.SharePoint.WebPartPages;
+using System.Collections;
+using System.Web.UI.WebControls.WebParts;
+using System.Linq;
 
 namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
 {
@@ -33,6 +37,8 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
             try
             {
                 ProvisionWebParts(web);
+                //Set WebPart Properties
+                RemoveWebPart(web);
                 AddNavigation(web);
                 //CreateOverlapCalenday(web);
                 EnableEmailNotify(web);
@@ -96,6 +102,45 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
 
 
         #region Functions
+
+        public static void RemoveWebPart(SPWeb spWeb)
+        {
+            SPSecurity.RunWithElevatedPrivileges(delegate()
+            {
+                using (SPSite site = new SPSite(spWeb.Site.ID))
+                {
+                    using (SPWeb web = site.OpenWeb(spWeb.ID))
+                    {
+                        web.AllowUnsafeUpdates = true;
+                        SPList bearchCampList = Utility.GetListFromURL(Constants.BEACH_CAMP_CALENDAR_LIST_URL, web);
+                        string fullPageUrl = site.MakeFullUrl(bearchCampList.DefaultViewUrl);
+                        SPLimitedWebPartManager webPartManager = web.GetLimitedWebPartManager(fullPageUrl, PersonalizationScope.Shared);
+                        IEnumerable webPartList = from System.Web.UI.WebControls.WebParts.WebPart webPart in webPartManager.WebParts
+                                                  where webPart.Title == bearchCampList.Title
+                                                  select webPart;
+                        foreach (System.Web.UI.WebControls.WebParts.WebPart webPart in webPartManager.WebParts)
+                        {
+                            if (webPart is ListViewWebPart)//|| webPart is XsltListViewWebPart)
+                            {
+                                var listViewWebPart = webPart as ListViewWebPart;
+                                //listViewWebPart.AllowMinimize = false;
+                                //listViewWebPart.AllowClose = false;
+                                //listViewWebPart.AllowHide = false;
+                                //listViewWebPart.AllowZoneChange = false;
+                                //listViewWebPart.AllowEdit = false;
+                                //listViewWebPart.AllowConnect = false;
+                                webPartManager.DeleteWebPart(listViewWebPart);
+                                web.Update();
+                                break;
+                            }
+                        }
+
+                        web.AllowUnsafeUpdates = false;
+                    }
+                }
+            });
+        }
+
 
         private void DeleteJob(SPJobDefinitionCollection jobs, string jobName)
         {
@@ -377,7 +422,7 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
                     //You can also edit the Quick Launch the same way  
                     //SPNavigationNodeCollection topNavigationNodes = web.Navigation.QuickLaunch;  
 
-                    SPNavigationNode objItem = new SPNavigationNode("Beach Camp Reservation", web.ServerRelativeUrl.TrimEnd('/') + Constants.BEACH_CAMP_CALENDAR_LIST_URL, false);
+                    SPNavigationNode objItem = new SPNavigationNode("Beach Camp Reservation", web.ServerRelativeUrl.TrimEnd('/') + Constants.BEACH_CAMP_CALENDAR_LIST_URL.TrimEnd('/') + "/Calendar.aspx", false);
                     topNavigationNodes.AddAsLast(objItem);
                     //SPNavigationNode objItemChild = new SPNavigationNode("Management Reservation", web.ServerRelativeUrl.TrimEnd('/') + "/Lists/BCCalendar/AllItems.aspx", false);
                     //objItem.Children.AddAsFirst(objItemChild);
@@ -425,7 +470,7 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
                     //You can also edit the Quick Launch the same way  
                     //SPNavigationNodeCollection topNavigationNodes = web.Navigation.QuickLaunch;  
 
-                    SPNavigationNode objItem = topNavigationNodes.Navigation.GetNodeByUrl("/sites/beachcamp/SitePages/BeachCampReservation.aspx");
+                    SPNavigationNode objItem = topNavigationNodes.Navigation.GetNodeByUrl(web.ServerRelativeUrl.TrimEnd('/') + Constants.BEACH_CAMP_CALENDAR_LIST_URL.TrimEnd('/') + "/Calendar.aspx");
                     //topNavigationNodes.AddAsFirst(objItem);
                     topNavigationNodes.Delete(objItem);
                 }
