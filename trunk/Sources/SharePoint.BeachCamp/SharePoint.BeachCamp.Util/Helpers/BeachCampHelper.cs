@@ -255,7 +255,7 @@ namespace SharePoint.BeachCamp.Util.Helpers
                 if (isReserved)
                     return true;
 
-                isReserved = GetItemByCaml(web, string.Format(caml, employeeCode, date.AddDays(1).ToString("yyyy-MM-dd"), date.AddDays(60).ToString("yyyy-MM-dd")));
+                isReserved = GetItemByCaml(web, string.Format(caml, employeeCode, date.ToString("yyyy-MM-dd"), date.AddDays(60).ToString("yyyy-MM-dd")));
                 if (isReserved)
                     return true;
 
@@ -299,7 +299,7 @@ namespace SharePoint.BeachCamp.Util.Helpers
                 if (isReserved)
                     return true;
 
-                isReserved = GetItemByCaml(web, string.Format(caml, id, employeeCode, date.AddDays(1).ToString("yyyy-MM-dd"), date.AddDays(60).ToString("yyyy-MM-dd")));
+                isReserved = GetItemByCaml(web, string.Format(caml, id, employeeCode, date.ToString("yyyy-MM-dd"), date.AddDays(60).ToString("yyyy-MM-dd")));
                 if (isReserved)
                     return true;
             }
