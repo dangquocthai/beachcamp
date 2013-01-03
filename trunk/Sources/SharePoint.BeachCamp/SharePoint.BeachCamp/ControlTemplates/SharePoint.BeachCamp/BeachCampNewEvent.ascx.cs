@@ -233,12 +233,19 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                         string[] sectionPeriodArray = sectionPeriod.Split('#');
                         for (int i = 0; i < sectionPeriodArray.Length; i++)
                         {
-                            if (selectedSectionPeriod.Split('-')[0].TrimEnd(' ').Contains(sectionPeriodArray[i].Split('-')[0].TrimEnd(' '))
-                                || sectionPeriodArray[i].Split('-')[0].TrimEnd(' ').Contains(selectedSectionPeriod.Split('-')[0].TrimEnd(' ')))
+                            if (selectedSectionPeriod.TrimEnd(' ').Equals(sectionPeriodArray[i].TrimEnd(' ')))
                             {
                                 return Constants.ERROR_MESSAGE2;
                             }
                         }
+                        //for (int i = 0; i < sectionPeriodArray.Length; i++)
+                        //{
+                        //    if (selectedSectionPeriod.Split('-')[0].TrimEnd(' ').Contains(sectionPeriodArray[i].Split('-')[0].TrimEnd(' '))
+                        //        || sectionPeriodArray[i].Split('-')[0].TrimEnd(' ').Contains(selectedSectionPeriod.Split('-')[0].TrimEnd(' ')))
+                        //    {
+                        //        return Constants.ERROR_MESSAGE2;
+                        //    }
+                        //}
                     }
                 }
             }

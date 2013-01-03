@@ -220,10 +220,10 @@
                                             <script type="text/javascript">
                                                 $(".eventDatePicker").attr('readonly', true);
                                                 $('.eventDatePicker').Zebra_DatePicker({
-                                                    format: 'd/m/Y',
-                                                    direction: [1, 60],     
-                                                    disabled_dates: ['* * * *, *']   
-                                                    // all days, all monts, all years as long                                     
+                                                    format: 'd/m/Y'
+                                                    ,direction: [1, 60] 
+                                                    //,disabled_dates: ['* * * *, *']
+                                                    // all days, all monts, all years as long                 
                                                     // as the weekday is 0 or 6 (Sunday or Saturday) 
                                                 }); 
                                             </script>
