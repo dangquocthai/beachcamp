@@ -17,6 +17,7 @@ using Microsoft.SharePoint.WorkflowActions;
 using SharePoint.BeachCamp.Util.Helpers;
 using SharePoint.BeachCamp.Util;
 using SharePoint.BeachCamp.Util.Utilities;
+using System.Globalization;
 
 namespace SharePoint.BeachCamp.BeachCampWorkflow
 {
@@ -85,6 +86,69 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
             item.Update();
         }
 
+        private void OnItemDeleted_Invoked(object sender, ExternalDataEventArgs e)
+        {
+            return;
 
+            //delete uncompleted tasks when 
+            //an item is deleted
+            SPWorkflow workflowInstance =
+                workflowProperties.Workflow;
+            SPWorkflowTaskCollection taskCollection =
+                GetWorkflowTasks(workflowInstance);
+            for (int i = taskCollection.Count; i > 0; i--)
+            {
+                SPWorkflowTask task =
+                    taskCollection[i - 1];
+                using (SPWeb web =
+                    workflowProperties.Web)
+                {
+                    //if (task[SPBuiltInFieldId.TaskStatus]
+                    //    .ToString() != SPResource.GetString
+                    //    (new CultureInfo((int)web.Language, false),
+                    //    "WorkflowTaskStatusComplete", new object[0]))
+                    {
+                        task.Delete();
+                    }
+                }
+            }
+        }
+
+
+
+        /// <summary>
+        /// Reads the workflow tasks. This method 
+        /// is implemented because the Tasks property
+        /// of the SPWorkflow instance takes a 
+        /// while to be populated.
+        /// </summary>
+        public static SPWorkflowTaskCollection
+            GetWorkflowTasks(SPWorkflow workflowInstance)
+        {
+            SPWorkflowTaskCollection taskCollection = null;
+            bool tasksPopulated = false;
+            while (!tasksPopulated)
+            {
+                try
+                {
+                    taskCollection = workflowInstance.Tasks;
+                    tasksPopulated = true;
+                }
+                catch { }
+            }
+
+            return taskCollection;
+        }
+        private bool endProcess = false;
+        private void EndOfLogicProcess(object sender, ConditionalEventArgs e)
+        {
+            e.Result = endProcess;
+        }
+
+        private void FinishProcess_ExecuteCode(object sender, EventArgs e)
+        {
+            endProcess = true;
+        }
     }
+
 }
