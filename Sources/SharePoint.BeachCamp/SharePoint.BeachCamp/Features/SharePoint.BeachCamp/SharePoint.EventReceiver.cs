@@ -46,6 +46,10 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
                 EnsureSupervisorGroup(web);
                 SetListPermission(web);
 
+                var list = web.Lists["Beach Camp Task"];
+                list.EnableAssignToEmail = true;
+                list.Update();
+
                 SPWebApplication webApp = web.Site.WebApplication;
                 BeachCampReminder beachCampJob = new BeachCampReminder(webApp);
                 beachCampJob.Title = BeachCampReminder.BEACH_CAMP_JOB_NAME;
@@ -56,6 +60,7 @@ namespace SharePoint.BeachCamp.Features.SharePoint.BeachCamp
                 dailySchedule.BeginSecond = 0;
                 beachCampJob.Schedule = dailySchedule;
                 beachCampJob.Update();
+
             }
             catch (Exception ex)
             {
