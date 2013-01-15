@@ -78,17 +78,17 @@ function GetColourCodeFromCategory(category) {
 	var colour = null;     
 	switch (category.trim().toLowerCase()) {
 		case 'draft':         
-				colour = "#F08616";
-				break;
-		case 'pending':         
-			colour = "#E0F558";         
+			colour = "#F08616";
 			break;
-		case 'approved':         
-			colour = '#4FDB51';
-			break;
-		case 'rejected':         
-			colour = "#6E80FA";         
-			break;			
+        case 'pending':
+            colour = "#FFFF00";//"#E0F558";  
+            break;
+        case 'approved':
+            colour = "#00FF00"; //'#4FDB51';
+            break;
+        case 'rejected':
+            colour = "#FF0000"; //"#6E80FA";         
+            break;			
 		case 'work hours':         
 			colour = '#4FB8DB';
 			break;       

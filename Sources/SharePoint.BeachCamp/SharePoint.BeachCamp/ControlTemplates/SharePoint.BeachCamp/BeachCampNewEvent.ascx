@@ -133,18 +133,22 @@
                     <table class="tbl-info">
                         <tr>
                             <td style="width: 20%; font-weight: bold;">
-                                Name :
+                                Name <span title="This is a required field." class="ms-formvalidation"> (*)</span> :
                             </td>
                             <td style="width: 25%;" align="left">
                                 <%--<asp:Literal ID="literalEmployeeName" Text="Tran Anh Tuan" runat="server"></asp:Literal>--%>
-                                <asp:TextBox ID="txtEmployeeName" runat="server"></asp:TextBox>
+                                <%--<asp:TextBox ID="txtEmployeeName" CssClass="ms-long ms-spellcheck-true" runat="server"></asp:TextBox>--%>
+                                <SharePoint:FormField FieldName="Title" ID="ffTitle" runat="server">
+                                </SharePoint:FormField>
                             </td>
                             <td style="width: 20%; font-weight: bold;">
-                                ID :
+                                ID <span title="This is a required field." class="ms-formvalidation"> (*)</span> :
                             </td>
                             <td style="width: 35%;" align="left">
                                 <%--<asp:Literal ID="literalEmployeeCode" Text="250692114" runat="server"></asp:Literal>--%>
-                                <asp:TextBox ID="txtEmployeeCode" runat="server"></asp:TextBox>
+                                <%--<asp:TextBox ID="txtEmployeeCode" CssClass="ms-long ms-spellcheck-true" runat="server"></asp:TextBox>--%>
+                                <SharePoint:FormField FieldName="EmployeeCode" ID="ffEmployeeCode" runat="server">
+                                </SharePoint:FormField>
                             </td>
                         </tr>
                         <tr>
@@ -153,14 +157,18 @@
                             </td>
                             <td>
                                 <%--<asp:Literal ID="literalDepartment" Text="Giai Phap" runat="server"></asp:Literal>--%>
-                                <asp:TextBox ID="txtDepartment" runat="server"></asp:TextBox>
+                                <%--<asp:TextBox ID="txtDepartment" runat="server"></asp:TextBox>--%>
+                                <SharePoint:FormField FieldName="Department" ID="ffDepartment" runat="server">
+                                </SharePoint:FormField>
                             </td>
                             <td style="font-weight: bold;">
                                 Section :
                             </td>
                             <td>
                                 <%--<asp:Literal ID="literalSection" Text="Section ABCD" runat="server"></asp:Literal>--%>
-                                <asp:TextBox ID="txtSection" runat="server"></asp:TextBox>
+                                <%--<asp:TextBox ID="txtSection" runat="server"></asp:TextBox>--%>
+                                <SharePoint:FormField FieldName="Section" ID="ffSection" runat="server">
+                                </SharePoint:FormField>
                             </td>
                         </tr>
                         <tr>
@@ -169,14 +177,18 @@
                             </td>
                             <td>
                                 <%--<asp:Literal ID="literalOfficeTel" Text="(08)-393 284 000" runat="server"></asp:Literal>--%>
-                                <asp:TextBox ID="txtOfficeTel" runat="server"></asp:TextBox>
+                                <%--<asp:TextBox ID="txtOfficeTel" runat="server"></asp:TextBox>--%>
+                                <SharePoint:FormField FieldName="OfficeTel" ID="ffOfficeTel" runat="server">
+                                </SharePoint:FormField>
                             </td>
                             <td style="font-weight: bold;">
-                                Mobile :
+                                Mobile <span title="This is a required field." class="ms-formvalidation"> (*)</span> :
                             </td>
                             <td>
                                 <%--<asp:Literal ID="literalMobile" Text="0906 760 486" runat="server"></asp:Literal>--%>
-                                <asp:TextBox ID="txtMobile" runat="server"></asp:TextBox>
+                                <%--<asp:TextBox ID="txtMobile" runat="server"></asp:TextBox>--%>
+                                <SharePoint:FormField FieldName="Mobile" ID="ffMobile" runat="server">
+                                </SharePoint:FormField>
                             </td>
                         </tr>
                     </table>

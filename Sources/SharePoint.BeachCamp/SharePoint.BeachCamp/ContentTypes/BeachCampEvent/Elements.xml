@@ -9,7 +9,7 @@
     </CHOICES>
   </Field>
 
-  <Field Type="Text" DisplayName="ID#" ID="{3FEAB511-86E5-48e9-8A57-CE0B72EE3E84}" Name="EmployeeCode" StaticName="EmployeeCode" Required="FALSE" Group="[BeachCamp]">
+  <Field Type="Text" DisplayName="ID#" ID="{3FEAB511-86E5-48e9-8A57-CE0B72EE3E84}" Name="EmployeeCode" StaticName="EmployeeCode" Required="TRUE" Group="[BeachCamp]">
   </Field>
 
   <Field Type="Text" DisplayName="Department" ID="{72966FEE-F992-44f1-9D07-8542DA0A049F}" Name="Department" StaticName="Department" Required="FALSE" Group="[BeachCamp]">
@@ -18,10 +18,10 @@
   <!--<Field Type="Text" DisplayName="Section" ID="{C55E571A-5AE7-459d-B9CE-55415795F2AF}" Name="Section" StaticName="Section" Required="FALSE" Group="[BeachCamp]">
   </Field>-->
 
-  <Field Type="Text" DisplayName="Office Tel" ID="{2BC93E37-5AAE-46f9-A37C-9810CF1E72B9}" Name="OfficeTel" StaticName="OfficeTel" Required="FALSE" Group="[BeachCamp]">
+  <Field Type="Text" DisplayName="Office Tel" ID="{2BC93E37-5AAE-46f9-A37C-9810CF1E72B9}" Name="OfficeTel" StaticName="OfficeTel" Required="TRUE" Group="[BeachCamp]">
   </Field>
 
-  <Field Type="Text" DisplayName="Mobile" ID="{42CD2627-1321-4ee7-8DA2-B546B22429B9}" Name="Mobile" StaticName="Mobile" Required="FALSE" Group="[BeachCamp]">
+  <Field Type="Text" DisplayName="Mobile" ID="{42CD2627-1321-4ee7-8DA2-B546B22429B9}" Name="Mobile" StaticName="Mobile" Required="TRUE" Group="[BeachCamp]">
   </Field>
 
   <Field Type="Note" DisplayName="Reason" ID="{66D8165A-11D0-4708-B204-0352040586ED}" Name="Reason" StaticName="Reason" Required="FALSE" Group="[BeachCamp]">
@@ -42,7 +42,7 @@
          UnlimitedLengthInDocumentLibrary="FALSE" RelationshipDeleteBehavior="None" Group="[BeachCamp]" >
   </Field>-->
 
-  <Field Type="Integer" DisplayName="TotalPrice" ID="{EB1B42F9-15E3-49ba-AFD3-F7CAFD959B11}" Name="TotalPrice" StaticName="TotalPrice" Required="FALSE" 
+  <Field Type="Integer" DisplayName="Total Price" ID="{EB1B42F9-15E3-49ba-AFD3-F7CAFD959B11}" Name="TotalPrice" StaticName="TotalPrice" Required="FALSE" 
          ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE" Group="[BeachCamp]">
   </Field>
 
@@ -86,14 +86,14 @@
       <RemoveFieldRef ID="{08fc65f9-48eb-4e99-bd61-5946c439e691}" Name="WorkspaceLink" />
 
       <FieldRef ID="{0785860E-5464-4e2f-81AA-CC7429D445CB}" Name="TypeOfBeachCamp" />
-      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="Employee Name" />
-      <FieldRef Name="LinkTitle" ID="{82642ec8-ef9b-478f-acf9-31f7d45fbc31}" DisplayName="Employee Name" />
-      <FieldRef Name="LinkTitleNoMenu" ID="{bc91a437-52e7-49e1-8c4e-4698904b2b6d}" DisplayName="Employee Name" />
-      <FieldRef ID="{3FEAB511-86E5-48e9-8A57-CE0B72EE3E84}" Name="EmployeeCode" />
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="Employee Name" ReadOnly="TRUE" />
+      <FieldRef Name="LinkTitle" ID="{82642ec8-ef9b-478f-acf9-31f7d45fbc31}" DisplayName="Employee Name" ReadOnly="TRUE" />
+      <FieldRef Name="LinkTitleNoMenu" ID="{bc91a437-52e7-49e1-8c4e-4698904b2b6d}" DisplayName="Employee Name" ReadOnly="TRUE" />
+      <FieldRef ID="{3FEAB511-86E5-48e9-8A57-CE0B72EE3E84}" Name="EmployeeCode" ReadOnly="TRUE" />
       <FieldRef ID="{72966FEE-F992-44f1-9D07-8542DA0A049F}" Name="Department" />
       <FieldRef ID="{B7E4E79C-D66D-4949-B425-66C0811EA74B}" Name="Section" />
       <FieldRef ID="{2BC93E37-5AAE-46f9-A37C-9810CF1E72B9}" Name="OfficeTel" />
-      <FieldRef ID="{42CD2627-1321-4ee7-8DA2-B546B22429B9}" Name="Mobile" />
+      <FieldRef ID="{42CD2627-1321-4ee7-8DA2-B546B22429B9}" Name="Mobile" ReadOnly="TRUE" />
       <FieldRef ID="{66D8165A-11D0-4708-B204-0352040586ED}" Name="Reason" />
       <FieldRef ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Name="EventDate" />
       <FieldRef ID="{2684f9f2-54be-429f-ba06-76754fc056bf}" Name="EndDate" />

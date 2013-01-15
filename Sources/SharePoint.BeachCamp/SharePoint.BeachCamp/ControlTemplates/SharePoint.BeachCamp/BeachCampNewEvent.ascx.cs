@@ -29,23 +29,23 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
             btnSaveAndSubmit.Click += new EventHandler(btnSaveAndSubmit_Click);
             //txtEventDate.AutoPostBack = true;
             //txtEventDate.TextChanged += new EventHandler(txtEventDate_TextChanged);
+
+            string output = string.Empty;
+            //Get user info
+            output = GetUserInfo();
+            if (!string.IsNullOrEmpty(output))
+            {
+                ShowErrorMessages(output, true);
+                return;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                string output = string.Empty;
-                //Get user info
-                output = GetUserInfo();
-                if (!string.IsNullOrEmpty(output))
-                {
-                    ShowErrorMessages(output, true);
-                    return;
-                }
-
                 //Get price table
-                output = BeachCampHelper.GetPrices(repeaterPrices, SPContext.Current.Web);
+                string output = BeachCampHelper.GetPrices(repeaterPrices, SPContext.Current.Web);
                 if (!string.IsNullOrEmpty(output))
                 {
                     ShowErrorMessages(output, true);
@@ -233,11 +233,26 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                         string[] sectionPeriodArray = sectionPeriod.Split('#');
                         for (int i = 0; i < sectionPeriodArray.Length; i++)
                         {
-                            if (selectedSectionPeriod.TrimEnd(' ').Equals(sectionPeriodArray[i].TrimEnd(' ')))
+                            string[] selectedSectionPeriodDetailArray = selectedSectionPeriod.Split('-');
+                            string[] sectionPeriodDetailArray = sectionPeriodArray[i].Split('-');
+                            if (selectedSectionPeriodDetailArray[1].TrimEnd(' ').Equals(sectionPeriodDetailArray[1].TrimEnd(' ')))
                             {
-                                return Constants.ERROR_MESSAGE2;
+                                if (selectedSectionPeriodDetailArray[0].TrimEnd(' ').Contains(sectionPeriodDetailArray[0].TrimEnd(' '))
+                                    || sectionPeriodDetailArray[0].TrimEnd(' ').Contains(selectedSectionPeriodDetailArray[0].TrimEnd(' ')))
+                                {
+                                    return Constants.ERROR_MESSAGE2;
+                                }
                             }
                         }
+
+                        //for (int i = 0; i < sectionPeriodArray.Length; i++)
+                        //{
+                        //    if (selectedSectionPeriod.TrimEnd(' ').Equals(sectionPeriodArray[i].TrimEnd(' ')))
+                        //    {
+                        //        return Constants.ERROR_MESSAGE2;
+                        //    }
+                        //}
+
                         //for (int i = 0; i < sectionPeriodArray.Length; i++)
                         //{
                         //    if (selectedSectionPeriod.Split('-')[0].TrimEnd(' ').Contains(sectionPeriodArray[i].Split('-')[0].TrimEnd(' '))
@@ -273,14 +288,14 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                             SPListItem userItem = web.Lists.TryGetList(web.SiteUserInfoList.Title).GetItemById(SPContext.Current.Web.CurrentUser.ID);
                             if (userItem != null)
                             {
-                                txtEmployeeName.Text = userItem["Title"].ToString();
-                                txtEmployeeName.Enabled = false;
-                                txtEmployeeCode.Text = userItem["ID"].ToString();
-                                txtEmployeeCode.Enabled = false;
-                                txtDepartment.Text = userItem["Department"] == null ? "Null" : userItem["Department"].ToString();
-                                txtSection.Text = "";
-                                txtOfficeTel.Text = "";
-                                txtMobile.Text = userItem["MobilePhone"] == null ? "Null" : userItem["MobilePhone"].ToString();
+                                ffTitle.Value = userItem["Title"].ToString();
+                                //txtEmployeeName.Enabled = false;
+                                ffEmployeeCode.Value = userItem["ID"].ToString();
+                                //txtEmployeeCode.Enabled = false;
+                                ffDepartment.Value = userItem["Department"] == null ? string.Empty : userItem["Department"].ToString();
+                                //ffSection.Value = "";
+                                //txtOfficeTel.Text = "";
+                                ffMobile.Value = userItem["MobilePhone"] == null ? string.Empty : userItem["MobilePhone"].ToString();
                             }
                         }
                     }
@@ -334,7 +349,7 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 //int requireDay = int.Parse(ffRequireDay.Value.ToString());
                 DateTime beachCampEndDate = beachCampDate;//beachCampDate.AddDays(requireDay);
 
-                bool isReserved = BeachCampHelper.IsUserReserved(SPContext.Current.Web, txtEmployeeCode.Text.TrimEnd(), beachCampDate);
+                bool isReserved = BeachCampHelper.IsUserReserved(SPContext.Current.Web, SPContext.Current.Web.CurrentUser.ID.ToString(), beachCampDate);
                 if (isReserved)
                     return Constants.ERROR_MESSAGE1; //return "You can only reserve beach camp one a month. Please select another day!";
 
@@ -426,13 +441,13 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 //totalPrice = totalPrice * int.Parse(ffRequireDay.Value.ToString());
 
                 SPListItem item = SPContext.Current.List.AddItem();
-                item[SPBuiltInFieldId.Title] = txtEmployeeName.Text;
+                item[SPBuiltInFieldId.Title] = ffTitle.Value;
                 item["TypeOfBeachCamp"] = typeOfBeachCamp;
-                item["EmployeeCode"] = txtEmployeeCode.Text;
-                item["Department"] = txtDepartment.Text;
-                item["Section"] = txtSection.Text;
-                item["OfficeTel"] = txtOfficeTel.Text;
-                item["Mobile"] = txtMobile.Text;
+                item["EmployeeCode"] = ffEmployeeCode.Value;
+                item["Department"] = ffDepartment.Value;
+                item["Section"] = ffSection.Value;
+                item["OfficeTel"] = ffOfficeTel.Value;
+                item["Mobile"] = ffMobile.Value;
 
                 beachCampDate = new DateTime(beachCampDate.Year, beachCampDate.Month, beachCampDate.Day, 0, 0, 1);
                 beachCampEndDate = new DateTime(beachCampEndDate.Year, beachCampEndDate.Month, beachCampEndDate.Day, 23, 59, 59);

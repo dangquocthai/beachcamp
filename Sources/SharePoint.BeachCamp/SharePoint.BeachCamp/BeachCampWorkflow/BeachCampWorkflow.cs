@@ -69,11 +69,11 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
 
         private void UpdateItem_ExecuteCode(object sender, EventArgs e)
         {
-            var item = workflowProperties.Item;
-            item["GSApproval"] = GeneralSupervisorApproval_TaskOutcome;
-            item["GSApprovalComment"] = GeneralSupervisorApproval_ApproveComments;
-            //item.SystemUpdate();
-            item.Update();
+            //var item = workflowProperties.Item;
+            //item["GSApproval"] = GeneralSupervisorApproval_TaskOutcome == null ? TaskResult.Pending.ToString() : GeneralSupervisorApproval_TaskOutcome;
+            //item["GSApprovalComment"] = GeneralSupervisorApproval_ApproveComments;
+            ////item.SystemUpdate();
+            //item.Update();
         }
 
         public String GeneralSupervisorApproval_ApproveComments = default(System.String);
@@ -82,8 +82,8 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
         {
             var item = workflowProperties.Item;
             item["GSApproval"] = TaskResult.Pending.ToString();
-            //item.SystemUpdate();
-            item.Update();
+            item.SystemUpdate();
+            //item.Update();
         }
 
         private void OnItemDeleted_Invoked(object sender, ExternalDataEventArgs e)

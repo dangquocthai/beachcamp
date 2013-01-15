@@ -76,58 +76,58 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp {
         protected global::System.Web.UI.WebControls.RadioButton rdbBusiness;
         
         /// <summary>
-        /// txtEmployeeName control.
+        /// ffTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmployeeName;
+        protected global::Microsoft.SharePoint.WebControls.FormField ffTitle;
         
         /// <summary>
-        /// txtEmployeeCode control.
+        /// ffEmployeeCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmployeeCode;
+        protected global::Microsoft.SharePoint.WebControls.FormField ffEmployeeCode;
         
         /// <summary>
-        /// txtDepartment control.
+        /// ffDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDepartment;
+        protected global::Microsoft.SharePoint.WebControls.FormField ffDepartment;
         
         /// <summary>
-        /// txtSection control.
+        /// ffSection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSection;
+        protected global::Microsoft.SharePoint.WebControls.FormField ffSection;
         
         /// <summary>
-        /// txtOfficeTel control.
+        /// ffOfficeTel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOfficeTel;
+        protected global::Microsoft.SharePoint.WebControls.FormField ffOfficeTel;
         
         /// <summary>
-        /// txtMobile control.
+        /// ffMobile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMobile;
+        protected global::Microsoft.SharePoint.WebControls.FormField ffMobile;
         
         /// <summary>
         /// ffReason control.
