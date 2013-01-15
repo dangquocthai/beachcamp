@@ -23,7 +23,7 @@ namespace SharePoint.BeachCamp.Util
         public const string PERIOD_RAMADAN = "15:00-04:00";
 
         public const string ERROR_MESSAGE = "* indicates a required field";
-        public const string ERROR_MESSAGE1 = "You can only reserve once every 2 months please pick another date for the sections !";
+        public const string ERROR_MESSAGE1 = "You can only reserve once every 60 days please cancel any active reservation before starting new one !";
         public const string ERROR_MESSAGE2 = "This section is not available. Please choose another one!";
         public const string ERROR_MESSAGE3 = "Please choose a Section and Period!";
 

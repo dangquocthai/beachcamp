@@ -236,8 +236,8 @@ namespace SharePoint.BeachCamp.Util.Helpers
                 string caml = @"<Where>
                             <And>
                                 <Eq>
-                                    <FieldRef Name='EmployeeCode' />
-                                    <Value Type='Text'>{0}</Value>
+                                    <FieldRef Name='Author' LookupId='True' />
+                                    <Value Type='User'>{0}</Value>
                                 </Eq>
                                 <And>
                                     <Geq>
@@ -279,8 +279,8 @@ namespace SharePoint.BeachCamp.Util.Helpers
                                         </Neq>
                                         <And>
                                             <Eq>
-                                                <FieldRef Name='EmployeeCode' />
-                                                <Value Type='Text'>{1}</Value>
+                                                <FieldRef Name='Author' LookupId='True' />
+                                                <Value Type='User'>{1}</Value>
                                             </Eq>
                                             <And>
                                                 <Geq>
