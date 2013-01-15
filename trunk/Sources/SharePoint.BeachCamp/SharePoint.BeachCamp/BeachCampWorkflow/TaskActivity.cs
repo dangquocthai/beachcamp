@@ -297,13 +297,18 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
                     TaskOutcome = approveStatus;
                 }
                 ApproveComments = TaskChanged_AfterProperties.ExtendedProperties[Constants.APPROVE_MESSAGE] as string;
+                //Update beachcamp item
+                var item = WorkflowProperties.Item;
+                item["GSApproval"] = approveStatus;
+                item["GSApprovalComment"] = ApproveComments;
+                item.SystemUpdate();
             }
             approver = e.Identity;
         }
 
         private void CompleteTask_MethodInvoking(object sender, EventArgs e)
         {
-
+            
         }
 
 

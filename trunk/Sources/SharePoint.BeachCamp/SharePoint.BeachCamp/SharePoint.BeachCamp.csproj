@@ -209,7 +209,9 @@
       <SharePointProjectItemId>{5aa9aa86-4854-4ebf-92d2-a635c0404915}</SharePointProjectItemId>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="BeachCampWorkflow\BCWorkflowAssociationForm.aspx">
       <SubType>ASPXCodeBehind</SubType>
