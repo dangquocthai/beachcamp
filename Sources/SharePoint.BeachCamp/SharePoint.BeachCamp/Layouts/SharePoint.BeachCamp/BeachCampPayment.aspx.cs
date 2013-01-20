@@ -91,9 +91,10 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
                 SPGroup reservationAdminGroup = Web.Groups[Constants.BEACH_CAMP_ADMIN_GROUP];
                 if (!IsValidUser(SPContext.Current.Web.CurrentUser, reservationAdminGroup))
                 {
-                    lblError.Text = "You do not have permission !!!";
-                    radPaid.Visible = false;
-                    radUnpaid.Visible = false;
+                    lblError.Text = "You do not have GS Approval permission.";
+                    lblError.Visible = true;
+                    radPaid.Enabled = false;
+                    radUnpaid.Enabled = false;
                     btnUpdate.Enabled = false;
                 }
             }
@@ -130,6 +131,23 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
                 literalRequireDay.Text = item["RequireDay"].ToString();
                 literalEventDate.Text = item["EventDate"].ToString();
 
+                //Load GSApproval
+                if (item["GSApproval"] != null && item["GSApproval"].ToString() == TaskResult.Approved.ToString())
+                {
+                    radApproved.Checked = true;
+                }
+                else if(item["GSApproval"] != null && item["GSApproval"].ToString() == TaskResult.Rejected.ToString())
+                {
+                    radReject.Checked = true;
+                    txtMessage.Text = item["GSApprovalComment"] == null ? string.Empty : item["GSApprovalComment"].ToString();
+                    txtMessage.Enabled = true;
+                }
+                else
+                {
+                    lblApprovalError.Text = "This reservation status is : " + item["GSApproval"].ToString();
+                    lblApprovalError.Visible = true;
+                }
+
                 //Check reservation is paid or unpaid
                 radPaid.Enabled = false;
                 radUnpaid.Enabled = false;
@@ -143,13 +161,6 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
                     {
                         radPaid.Checked = true;
                     }
-                }
-                else
-                {
-                    lblError.Text = "This reservation status is : " + item["GSApproval"].ToString();
-                    lblError.Visible = true;
-                    radPaid.Visible = false;
-                    radUnpaid.Visible = false;
                 }
                 
                 BeachCampHelper.GetPrices(repeaterPrices, SPContext.Current.Web);

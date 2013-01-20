@@ -219,6 +219,14 @@
     <Content Include="ContentTypes\BeachCampTaskContentType\Elements.xml" />
     <Content Include="CustomActions\BeachCampRegistration\Elements.xml" />
     <Content Include="CustomActions\BeachCampRibbon\Elements.xml" />
+    <Content Include="Images\SharePoint.BeachCamp\css\style.css" />
+    <Content Include="Images\SharePoint.BeachCamp\images\bgcontainer_form.png" />
+    <Content Include="Images\SharePoint.BeachCamp\images\bgfieldset.png" />
+    <Content Include="Images\SharePoint.BeachCamp\images\bgtitle_list.gif" />
+    <Content Include="Images\SharePoint.BeachCamp\images\btn_shortblue.png" />
+    <Content Include="Images\SharePoint.BeachCamp\images\dot_note.gif" />
+    <Content Include="Images\SharePoint.BeachCamp\images\icon.gif" />
+    <Content Include="Images\SharePoint.BeachCamp\images\icon_cal.gif" />
     <Content Include="Images\SharePoint.BeachCamp\Payment-icon-32.png" />
     <Content Include="Images\SharePoint.BeachCamp\Printer-icon-32.png" />
     <Content Include="Images\SharePoint.BeachCamp\Printer-icon-48.png" />

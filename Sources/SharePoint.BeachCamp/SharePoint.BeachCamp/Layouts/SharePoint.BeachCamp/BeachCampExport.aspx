@@ -76,6 +76,7 @@
             font-size: 12px !important;
             color: #000000 !important;
             width: 595px;
+            margin: auto auto auto 10px;
         }
         
         .tr-main
@@ -109,16 +110,16 @@
     </style>
 </asp:Content>
 <asp:Content ID="Main" ContentPlaceHolderID="PlaceHolderMain" runat="server">
-    <center>
+    <div style="margin: 0 auto">
         <asp:HiddenField ID="hiddenFieldContent" runat="server" />
 
         <div id="divContent" runat="server">
             <div id="printcontent">
                 &nbsp;<br />
-                <h2>
+                <h2 style="text-align:center;">
                     <b>BEACH CAMP RESERVATION FORM</b></h2>
                 <br />
-                <table style="width:595px; border: 1px solid black; font:normal 12px Arial, Tahoma, Verdana, Hevetica, sans-serif; font-size: 12px; color: #000000">
+                <table class="tbl-main" style="width:595px; border: 1px solid black; font:normal 12px Arial, Tahoma, Verdana, Hevetica, sans-serif; font-size: 12px; color: #000000">
                     <tr class="tr-main" style="border: 1px solid black;">
                         <td class="td-main">
                             <table width="100%" cellspacing="0" cellpadding="0">
@@ -281,45 +282,73 @@
                                             </asp:Repeater>
                                         </table>
                                         <br />
-                                        <hr />
                                         <br />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        I understand that:<br />
-                                        <br />
-                                        1. I will be responsible for cleaning the Beach Camp before leaving.<br />
-                                        2. I will be responsible for the conduct and behavior of my guests and consequently
-                                        the general moral of those who might jeopardize the reputation of the company.<br />
-                                        3. I will be responsible for any damages due to negligence or misuse and the cost
-                                        of the repair or replacing missing items will be determined by the company and to
-                                        be deducted from my salary.<br />
-                                        4. I must submit the camp fees to GS maximum 10 days before the required date.
-                                        <br />
-                                        <br />
-                                        Requestor Signature: ______________________ Date: _________________
                                     </td>
                                 </tr>
                             </table>
                         </td>
                     </tr>
+
+                    <tr class="tr-main">
+                        <td class="td-main">
+                    
+                            <table  width="100%" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td colspan="2">
+                                        <b>I understand that:</b>
+                                        <br />
+                                        <br />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%;">
+                                        <div style="float:left;">
+                                            1. I will be responsible for cleaning the Beach Camp before leaving.<br />
+                                            2. I will be responsible for the conduct and behavior of my guests and consequently
+                                            the general moral of those who might jeopardize the reputation of the company.<br />
+                                            3. I will be responsible for any damages due to negligence or misuse and the cost
+                                            of the repair or replacing missing items will be determined by the company and to
+                                            be deducted from my salary.<br />
+                                            4. I must submit the camp fees to GS maximum 10 days before the required date.
+                                        </div>
+                                    </td>
+                                    <td style="width: 50%;">
+                                        <div style="float:left; font: Arabic Transparent; font-size: 14px !important; direction: rtl; unicode-bidi: bidi-override;">
+                                            1. يمنع منعاً باتاً إقامة المحاظرات والندوات الدينة أو حفلات الزفاف.
+                                            <br />2. في حالة الشركة للمخيم فإن لها الحق في إلغاء حجز الموظف ومنحه حجز آخر في وقت لاحق بدون أجر.
+                                            <br />3. في حالة سؤ استخدام أو أي تلف يلحق بالمخيم أو نواقص تحدث لمعدات المخيم يكون الموظف مسؤلاً مسؤلية تامة عن ذلك وسوف يتم تقييم التلفيات أو النواقص وإستقطاع المبالغ المترتبة على ذلك من الموظف.
+                                            <br />4. سوف أكون مسؤلاً مسؤلية تامة عن نظافة المخيم قبل مغادرته.
+                                            <br />5. يمنع منعاً باتاً التخين والشيشة في داخل مباني المخيم.
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <div style="clear: both;"></div>
+                            <br />
+                            <br />
+
+                            <asp:CheckBox ID="chkUnderstand" Enabled="false" Checked="true" Font-Bold="true" Text="Read and understood the terms and undertake to comply with it’s" runat="server" />
+
+                        </td>
+                    </tr>
+
                     <tr class="tr-main" style="border: 1px solid black;">
                         <td class="td-main">
-                            <b>General Services Department :</b><br /><br />
-
-                            <asp:Label ID="lblError" Font-Bold="true" ForeColor="Red" Visible="false" runat="server" Text=""></asp:Label>
+                            <b>General Services Department :</b>
+                            <br />
+                                <asp:Label ID="lblError" Font-Bold="true" ForeColor="Red" Visible="false" runat="server" Text=""></asp:Label>
                             <br />
 
-                            <asp:RadioButton GroupName="BeachCampApprove" Visible="false" Checked="true" Font-Bold="true" Text="Accepted and Reservation charges received."
+                            <asp:RadioButton GroupName="BeachCampApprove" Enabled="false" Checked="true" Font-Bold="true" Text="Accepted and Reservation charges received."
                                 runat="server" ID="radApproved" />
                             <br />
-                            <asp:RadioButton GroupName="BeachCampApprove" Visible="false" ID="radReject" Font-Bold="true" Text="Not Accepted for the following reasons :"
+                            <asp:RadioButton GroupName="BeachCampApprove" Enabled="false" ID="radReject" Font-Bold="true" Text="Not Accepted for the following reasons :"
                                 runat="server" />
                             <br />
                             <br />
-                            <%--<asp:TextBox runat="server" TextMode="MultiLine" Width="100%" Rows="15" ID="txtMessage" />--%>
-                            <asp:Literal ID="literalApproveComments" Visible="false" Text="" runat="server"></asp:Literal>
+                            <asp:TextBox runat="server" TextMode="MultiLine" Enabled="false" Width="98%" Rows="15" ID="txtMessage" />
+                            <%--<asp:Literal ID="literalApproveComments" Visible="false" Text="" runat="server"></asp:Literal>--%>
                         </td>
                     </tr>
                 </table>
@@ -341,7 +370,7 @@
                 </td>
             </tr>
         </table>
-    </center>
+    </div>
 
     <script type="text/javascript">
 

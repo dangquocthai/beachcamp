@@ -88,8 +88,6 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
 
         private void OnItemDeleted_Invoked(object sender, ExternalDataEventArgs e)
         {
-            return;
-
             //delete uncompleted tasks when 
             //an item is deleted
             SPWorkflow workflowInstance =

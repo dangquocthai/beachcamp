@@ -11,18 +11,16 @@
     Inherits="SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp.BeachCampNewEvent" %>
 <%@ Register TagPrefix="wssuc" TagName="ToolBar" Src="~/_controltemplates/ToolBar.ascx" %>
 <%@ Register TagPrefix="wssuc" TagName="ToolBarButton" Src="~/_controltemplates/ToolBarButton.ascx" %>
-
 <script src="../../_layouts/1033/jquery-1.8.2.min.js" type="text/javascript"></script>
 <link href="../../_layouts/1033/public/css/zebra_datepicker.css" rel="stylesheet"
     type="text/css" />
 <link href="../../_layouts/1033/public/css/zebra_datepicker_metallic.css" rel="stylesheet"
     type="text/css" />
 <script src="../../_layouts/1033/public/javascript/zebra_datepicker.js" type="text/javascript"></script>
-
 <style type="text/css">
     .ms-dttimeinput
     {
-        display:none;
+        display: none;
     }
     
     .ms-long
@@ -84,8 +82,11 @@
         padding: 2px 0px 2px 0px;
     }
     
+    
+    
 </style>
 
+<link href="../../_layouts/images/SharePoint.BeachCamp/css/style.css" rel="stylesheet" type="text/css" />
 <span id='part1'>
     <%--<SharePoint:InformationBar ID="InformationBar2" runat="server" />--%>
     <%--<div id="listFormToolBarTop">
@@ -108,7 +109,9 @@
         <!-- myCustomForm -->
         <asp:Label ID="lblError" Font-Bold="true" ForeColor="Red" Visible="false" runat="server"
             Text=""></asp:Label>
-        &nbsp;<br /><br />
+        &nbsp;<br />
+        <br />
+        
         <table class="tbl-main" id="tblMain" runat="server">
             <tr class="tr-main">
                 <td class="td-main">
@@ -128,21 +131,24 @@
                     </table>
                 </td>
             </tr>
+
             <tr class="tr-main">
                 <td class="td-main">
                     <table class="tbl-info">
                         <tr>
-                            <td style="width: 20%; font-weight: bold;">
-                                Name <span title="This is a required field." class="ms-formvalidation"> (*)</span> :
+                            <td style="width: 15%; font-weight: bold;">
+                                Name <span title="This is a required field." class="ms-formvalidation">(*)</span>
+                                :
                             </td>
-                            <td style="width: 25%;" align="left">
+                            <td style="width: 35%;" align="left">
                                 <%--<asp:Literal ID="literalEmployeeName" Text="Tran Anh Tuan" runat="server"></asp:Literal>--%>
                                 <%--<asp:TextBox ID="txtEmployeeName" CssClass="ms-long ms-spellcheck-true" runat="server"></asp:TextBox>--%>
                                 <SharePoint:FormField FieldName="Title" ID="ffTitle" runat="server">
                                 </SharePoint:FormField>
                             </td>
-                            <td style="width: 20%; font-weight: bold;">
-                                ID <span title="This is a required field." class="ms-formvalidation"> (*)</span> :
+                            <td style="width: 15%; padding:0px 0px 0px 15px; font-weight: bold;">
+                                ID <span title="This is a required field." class="ms-formvalidation">(*)</span>
+                                :
                             </td>
                             <td style="width: 35%;" align="left">
                                 <%--<asp:Literal ID="literalEmployeeCode" Text="250692114" runat="server"></asp:Literal>--%>
@@ -161,7 +167,7 @@
                                 <SharePoint:FormField FieldName="Department" ID="ffDepartment" runat="server">
                                 </SharePoint:FormField>
                             </td>
-                            <td style="font-weight: bold;">
+                            <td style="padding:0px 0px 0px 15px; font-weight: bold;">
                                 Section :
                             </td>
                             <td>
@@ -181,8 +187,9 @@
                                 <SharePoint:FormField FieldName="OfficeTel" ID="ffOfficeTel" runat="server">
                                 </SharePoint:FormField>
                             </td>
-                            <td style="font-weight: bold;">
-                                Mobile <span title="This is a required field." class="ms-formvalidation"> (*)</span> :
+                            <td style="padding:0px 0px 0px 15px; font-weight: bold;">
+                                Mobile <span title="This is a required field." class="ms-formvalidation">(*)</span>
+                                :
                             </td>
                             <td>
                                 <%--<asp:Literal ID="literalMobile" Text="0906 760 486" runat="server"></asp:Literal>--%>
@@ -194,6 +201,7 @@
                     </table>
                 </td>
             </tr>
+
             <tr class="tr-main">
                 <td class="td-main">
                     <table>
@@ -222,18 +230,16 @@
                                         </td>--%>
                                         <td style="font-weight: bold;">
                                             &nbsp;On<span title="This is a required field." class="ms-formvalidation"> (*)</span>:&nbsp;
-                                            
                                         </td>
                                         <td>
                                             <%--<SharePoint:FormField FieldName="EventDate" ID="ffEventDate" runat="server">
                                             </SharePoint:FormField>--%>
-
                                             <asp:TextBox ID="txtEventDate" CssClass="eventDatePicker ms-input" runat="server"></asp:TextBox>
                                             <script type="text/javascript">
                                                 $(".eventDatePicker").attr('readonly', true);
                                                 $('.eventDatePicker').Zebra_DatePicker({
                                                     format: 'd/m/Y'
-                                                    ,direction: [1, 60] 
+                                                    , direction: [1, 60]
                                                     //,disabled_dates: ['* * * *, *']
                                                     // all days, all monts, all years as long                 
                                                     // as the weekday is 0 or 6 (Sunday or Saturday) 
@@ -279,22 +285,26 @@
                                                 </td>
                                                 <td valign="middle" align="center" class="textlist">
                                                     <asp:Literal ID="literalPeriod1" runat="server"></asp:Literal>
-                                                    <asp:CheckBox ID="chkPeriod1" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />
+                                                    <asp:CheckBox ID="chkPeriod1" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true"
+                                                        runat="server" />
                                                     <%--<asp:RadioButton ID="radPeriod1" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />--%>
                                                 </td>
                                                 <td valign="middle" align="center">
                                                     <asp:Literal ID="literalPeriod2" runat="server"></asp:Literal>
-                                                    <asp:CheckBox ID="chkPeriod2" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />
+                                                    <asp:CheckBox ID="chkPeriod2" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true"
+                                                        runat="server" />
                                                     <%--<asp:RadioButton ID="radPeriod2" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />--%>
                                                 </td>
                                                 <td valign="middle" align="center">
                                                     <asp:Literal ID="literalFullDay" runat="server"></asp:Literal>
-                                                    <asp:CheckBox ID="chkFullDay" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />
+                                                    <asp:CheckBox ID="chkFullDay" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true"
+                                                        runat="server" />
                                                     <%--<asp:RadioButton ID="radFullDay" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />--%>
                                                 </td>
                                                 <td valign="middle" align="center">
                                                     <asp:Literal ID="literalRamadan" runat="server"></asp:Literal>
-                                                    <asp:CheckBox ID="chkRamadan" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />
+                                                    <asp:CheckBox ID="chkRamadan" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true"
+                                                        runat="server" />
                                                     <%--<asp:RadioButton ID="radRamadan" OnCheckedChanged="SectionPeriod_OnCheckedChanged" AutoPostBack="true" runat="server" />--%>
                                                 </td>
                                             </tr>
@@ -302,29 +312,58 @@
                                     </asp:Repeater>
                                 </table>
                                 <br />
-                                <hr />
-                                <br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                I understand that:<br />
-                                <br />
-                                1. I will be responsible for cleaning the Beach Camp before leaving.<br />
-                                2. I will be responsible for the conduct and behavior of my guests and consequently
-                                the general moral of those who might jeopardize the reputation of the company.<br />
-                                3. I will be responsible for any damages due to negligence or misuse and the cost
-                                of the repair or replacing missing items will be determined by the company and to
-                                be deducted from my salary.<br />
-                                4. I must submit the camp fees to GS maximum 10 days before the required date.
-                                <br />
                                 <br />
                             </td>
                         </tr>
                     </table>
                 </td>
             </tr>
+
+            <tr class="tr-main">
+                <td class="td-main">
+                    
+                    <table  width="100%" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td colspan="2">
+                                <b>I understand that:</b>
+                                <br />
+                                <br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 50%;">
+                                <div style="float:left;">
+                                    1. I will be responsible for cleaning the Beach Camp before leaving.<br />
+                                    2. I will be responsible for the conduct and behavior of my guests and consequently
+                                    the general moral of those who might jeopardize the reputation of the company.<br />
+                                    3. I will be responsible for any damages due to negligence or misuse and the cost
+                                    of the repair or replacing missing items will be determined by the company and to
+                                    be deducted from my salary.<br />
+                                    4. I must submit the camp fees to GS maximum 10 days before the required date.
+                                </div>
+                            </td>
+                            <td style="width: 50%;">
+                                <div style="float:left; font: Arabic Transparent; font-size: 14px !important; direction: rtl; unicode-bidi: bidi-override;">
+                                    1. يمنع منعاً باتاً إقامة المحاظرات والندوات الدينة أو حفلات الزفاف.
+                                    <br />2. في حالة الشركة للمخيم فإن لها الحق في إلغاء حجز الموظف ومنحه حجز آخر في وقت لاحق بدون أجر.
+                                    <br />3. في حالة سؤ استخدام أو أي تلف يلحق بالمخيم أو نواقص تحدث لمعدات المخيم يكون الموظف مسؤلاً مسؤلية تامة عن ذلك وسوف يتم تقييم التلفيات أو النواقص وإستقطاع المبالغ المترتبة على ذلك من الموظف.
+                                    <br />4. سوف أكون مسؤلاً مسؤلية تامة عن نظافة المخيم قبل مغادرته.
+                                    <br />5. يمنع منعاً باتاً التخين والشيشة في داخل مباني المخيم.
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div style="clear: both;"></div>
+                    <br />
+                    <br />
+                    <asp:CheckBox ID="chkUnderstand" AutoPostBack="true" Font-Bold="true" Text="Read and understood the terms and undertake to comply with it’s" runat="server" />
+
+                </td>
+            </tr>
+
         </table>
+
         <!-- myCustomForm -->
         <SharePoint:ApprovalStatus ID="ApprovalStatus2" runat="server" />
         <SharePoint:FormComponent ID="FormComponent2" TemplateName="AttachmentRows" runat="server" />
@@ -349,8 +388,9 @@
                     </Template_Buttons>
                     <Template_RightButtons>
                         <%--<SharePoint:SaveButton ID="SaveButton2" runat="server" />--%>
-                        <asp:Button ID="btnSave" CssClass="ms-ButtonHeightWidth" runat="server" Text="Save" />
-                        <asp:Button ID="btnSaveAndSubmit" Visible="false" CssClass="ms-ButtonHeightWidth" runat="server" Text="Save & Submit to GS" />
+                        <asp:Button ID="btnSave" Enabled="false" CssClass="ms-ButtonHeightWidth" runat="server" Text="Save" />
+                        <asp:Button ID="btnSaveAndSubmit" Visible="false" CssClass="ms-ButtonHeightWidth"
+                            runat="server" Text="Save & Submit to GS" />
                         <SharePoint:GoBackButton ID="GoBackButton2" runat="server" />
                     </Template_RightButtons>
                 </wssuc:ToolBar>
@@ -359,7 +399,3 @@
     </table>
 </span>
 <SharePoint:AttachmentUpload ID="AttachmentUpload1" runat="server" />
-<script type="text/javascript">
-//var eventDateID = g_strDateTimeControlIDs["SPEventDate"];
-//alert(eventDateID);
-</script>
