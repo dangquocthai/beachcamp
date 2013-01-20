@@ -139,6 +139,15 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp {
         protected global::System.Web.UI.WebControls.Repeater repeaterPrices;
         
         /// <summary>
+        /// chkUnderstand control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkUnderstand;
+        
+        /// <summary>
         /// lblError control.
         /// </summary>
         /// <remarks>
@@ -166,13 +175,13 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp {
         protected global::System.Web.UI.WebControls.RadioButton radReject;
         
         /// <summary>
-        /// literalApproveComments control.
+        /// txtMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal literalApproveComments;
+        protected global::System.Web.UI.WebControls.TextBox txtMessage;
         
         /// <summary>
         /// btnPrint control.

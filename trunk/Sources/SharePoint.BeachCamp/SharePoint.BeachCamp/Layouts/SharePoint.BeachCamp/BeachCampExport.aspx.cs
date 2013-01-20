@@ -142,14 +142,12 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp
                 if (item["GSApproval"] != null && item["GSApproval"].ToString() == TaskResult.Approved.ToString())
                 {
                     radApproved.Checked = true;
-                    radApproved.Visible = true;
                 }
                 else if (item["GSApproval"] != null && item["GSApproval"].ToString() == TaskResult.Rejected.ToString())
                 {
                     radReject.Checked = true;
-                    radReject.Visible = true;
-                    literalApproveComments.Text = item["GSApprovalComment"] == null ? string.Empty : item["GSApprovalComment"].ToString();
-                    literalApproveComments.Visible = true;
+                    txtMessage.Text = item["GSApprovalComment"] == null ? string.Empty : item["GSApprovalComment"].ToString();
+                    txtMessage.Enabled = true;
                 }
                 else
                 {

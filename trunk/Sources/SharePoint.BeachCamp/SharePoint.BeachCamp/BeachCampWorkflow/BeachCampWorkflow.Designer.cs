@@ -45,7 +45,6 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
             this.FinishProcess = new System.Workflow.Activities.CodeActivity();
             this.ifElseActivity1 = new System.Workflow.Activities.IfElseActivity();
             this.taskActivity1 = new SharePoint.BeachCamp.BeachCampWorkflow.TaskActivity();
-            this.UpdateItem = new System.Workflow.Activities.CodeActivity();
             this.CreateInitialParams = new System.Workflow.Activities.CodeActivity();
             this.sequenceActivity2 = new System.Workflow.Activities.SequenceActivity();
             this.sequenceActivity1 = new System.Workflow.Activities.SequenceActivity();
@@ -110,11 +109,6 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
             this.taskActivity1.SetBinding(SharePoint.BeachCamp.BeachCampWorkflow.TaskActivity.TaskTitleProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind5)));
             this.taskActivity1.SetBinding(SharePoint.BeachCamp.BeachCampWorkflow.TaskActivity.ApproveCommentsProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind1)));
             // 
-            // UpdateItem
-            // 
-            this.UpdateItem.Name = "UpdateItem";
-            this.UpdateItem.ExecuteCode += new System.EventHandler(this.UpdateItem_ExecuteCode);
-            // 
             // CreateInitialParams
             // 
             this.CreateInitialParams.Name = "CreateInitialParams";
@@ -128,7 +122,6 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
             // sequenceActivity1
             // 
             this.sequenceActivity1.Activities.Add(this.CreateInitialParams);
-            this.sequenceActivity1.Activities.Add(this.UpdateItem);
             this.sequenceActivity1.Activities.Add(this.taskActivity1);
             this.sequenceActivity1.Activities.Add(this.ifElseActivity1);
             this.sequenceActivity1.Activities.Add(this.FinishProcess);
@@ -182,8 +175,6 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
 
         private TaskActivity taskActivity1;
 
-        private CodeActivity UpdateItem;
-
         private CodeActivity CreateInitialParams;
 
         private SequenceActivity sequenceActivity2;
@@ -193,6 +184,7 @@ namespace SharePoint.BeachCamp.BeachCampWorkflow
         private ConditionedActivityGroup conditionedActivityGroup1;
 
         private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated onWorkflowActivated;
+
 
 
 

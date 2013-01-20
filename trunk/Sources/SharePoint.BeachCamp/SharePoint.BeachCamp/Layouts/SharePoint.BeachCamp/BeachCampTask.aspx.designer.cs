@@ -157,6 +157,15 @@ namespace SharePoint.BeachCamp.Layouts.SharePoint.BeachCamp {
         protected global::System.Web.UI.WebControls.Repeater repeaterPrices;
         
         /// <summary>
+        /// chkUnderstand control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkUnderstand;
+        
+        /// <summary>
         /// radApproved control.
         /// </summary>
         /// <remarks>

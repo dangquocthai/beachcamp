@@ -27,6 +27,7 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
             repeaterPrices.ItemDataBound += new RepeaterItemEventHandler(repeaterPrices_ItemDataBound);
             btnSave.Click += new EventHandler(btnSave_Click);
             btnSaveAndSubmit.Click += new EventHandler(btnSaveAndSubmit_Click);
+            chkUnderstand.CheckedChanged += new EventHandler(chkUnderstand_CheckedChanged);
             //txtEventDate.AutoPostBack = true;
             //txtEventDate.TextChanged += new EventHandler(txtEventDate_TextChanged);
 
@@ -39,6 +40,8 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
                 return;
             }
         }
+
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -55,6 +58,14 @@ namespace SharePoint.BeachCamp.ControlTemplates.SharePoint.BeachCamp
         }
 
         #region Events
+
+        void chkUnderstand_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkUnderstand.Checked)
+                btnSave.Enabled = true;
+            else
+                btnSave.Enabled = false;
+        }
 
         void txtEventDate_TextChanged(object sender, EventArgs e)
         {
